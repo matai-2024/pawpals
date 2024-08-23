@@ -1,16 +1,27 @@
 import { createRoot } from 'react-dom/client'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './routes'
 
-import App from './components/App.tsx'
+const root = createRoot(document.getElementById('app') as HTMLElement)
+// Previously we were using <App/>: 
+// root.render(<App />) 
 
-const queryClient = new QueryClient()
+// Now we are using <RouterProvider router={router} /> 
+root.render(<RouterProvider router={router} />)
 
-document.addEventListener('DOMContentLoaded', () => {
-  createRoot(document.getElementById('app') as HTMLElement).render(
-    <QueryClientProvider client={queryClient}>
-      <App />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
-  )
-})
+// import { createRoot } from 'react-dom/client'
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+// import App from './App.tsx'
+
+// const queryClient = new QueryClient()
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   createRoot(document.getElementById('app') as HTMLElement).render(
+//     <QueryClientProvider client={queryClient}>
+//       <App />
+//       <ReactQueryDevtools />
+//     </QueryClientProvider>
+//   )
+// })
