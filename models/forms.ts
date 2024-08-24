@@ -1,4 +1,5 @@
 export interface PetData {
+  ownerId: number
   petName: string
   dateofBirth: string
   sex: string
