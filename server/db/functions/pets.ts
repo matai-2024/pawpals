@@ -10,8 +10,8 @@ export async function getAllPets() {
 
 // Get a pet by id
 export async function getPetById(id: number) {
-  const pets: PetData[] = await db('pets').where({ id }).select('*').first()
-  return pets as Pet[]
+  const pets: PetData = await db('pets').where({ id }).select('*').first()
+  return pets as Pet
 }
 
 // Get pets by owner_id
@@ -77,4 +77,6 @@ export async function addNewPet(pet: PetData) {
   return result[0]
 }
 
+// TODO LIST:
+// -----------
 // Edit a pet

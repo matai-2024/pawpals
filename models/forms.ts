@@ -25,3 +25,13 @@ export interface PetData {
 export interface Pet extends PetData {
   id: number
 }
+
+export interface OwnerData {
+  firstName: string
+  lastName: string
+  email: string
+}
+
+export interface Owner extends OwnerData {
+  id: number
+}
