@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom'
 import { usePetList } from '../hooks/api.ts'
-import { Pet } from '../../models/forms.ts';
-
+import { Pet } from '../../models/forms.ts'
 
 export default function ProfileList() {
   const { data, isPending, isError, error } = usePetList()
-  console.log(data);
-  
 
   if (isPending)
     return (
@@ -25,12 +22,14 @@ export default function ProfileList() {
 
   return (
     <div className="container">
-      <h1>Profile List</h1>
-      {data.map((profile: Pet, index: number) => (
-        <div key='profile-list' className="my-4">
-          <Link to={`/profiles/${profile.id}`}>Pet name {index + 1} {profile.petName}</Link>
-        </div>
+      <h1 className='text-2xl my-3'>Profile List</h1>
+      <div className="flex flex-col gap-3">
+      {data.map((profile: Pet) => (
+          <Link key={profile.id} to={`/profiles/${profile.id}`}>
+            Pet name {profile.id} {profile.petName}
+          </Link>
       ))}
+      </div>
     </div>
   )
 }

@@ -7,7 +7,7 @@ export default function usePetList() {
     queryKey: ['pets'],
     queryFn: async () => {
       const res = await request.get(`api/v1/pets`)
-      return res.body
+      return res.body as Pet[]
     },
   })
 }
