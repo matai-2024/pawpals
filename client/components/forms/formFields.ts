@@ -3,13 +3,11 @@ export const formFields = {
     type: 'text',
     name: 'petName',
     placeholder: 'Pet name',
-    options: [''],
   },
   'Date of birth': {
     type: 'date',
     name: 'dateOfBirth',
     placeholder: 'Age in years e.g. 2',
-    options: [''],
   },
   Sex: {
     type: 'select',
@@ -21,25 +19,22 @@ export const formFields = {
     type: 'text',
     name: 'breed',
     placeholder: 'Gold fish',
-    options: [''],
   },
   Species: {
     type: 'text',
     name: 'species',
     placeholder: 'Fish',
-    options: [''],
   },
   Bio: {
     type: 'textarea',
     name: 'bio',
     placeholder: 'Share what makes your pet unique',
-    options: ['5'],
+    options: [5],
   },
   'Favourite food': {
     type: 'text',
     name: 'faveFood',
     placeholder: 'Anything!',
-    options: [''],
   },
   Traits: {
     type: 'checkbox',

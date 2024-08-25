@@ -1,7 +1,18 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
 export default {
   content: ['./index.html', './client/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+    },
     screens: {
       sm: '480px',
       md: '768px',
@@ -19,10 +30,6 @@ export default {
       gray: '#8492a6',
       'gray-light': '#d3dce6',
     },
-    fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
-    },
     extend: {
       spacing: {
         128: '32rem',
@@ -31,7 +38,10 @@ export default {
       borderRadius: {
         '4xl': '2rem',
       },
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }

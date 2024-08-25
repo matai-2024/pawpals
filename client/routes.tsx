@@ -19,7 +19,7 @@ const routes = createRoutesFromElements(
       <Route path="pet" element={<PetForm />} />
     </Route>
     <Route path="profiles" element={<ProfileList />} />
-    <Route path="profiles/:profileName" element={<Profile />} />
+    <Route path="profiles/:id" element={<Profile />} />
   </Route>,
 )
 

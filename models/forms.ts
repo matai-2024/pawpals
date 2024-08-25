@@ -35,3 +35,29 @@ export interface OwnerData {
 export interface Owner extends OwnerData {
   id: number
 }
+
+// Form inputs
+export interface FormInput {
+  "Pet name":       UndefinedArr;
+  "Date of birth":  UndefinedArr;
+  Sex:              DefinedArr;
+  Breed:            UndefinedArr;
+  Species:          UndefinedArr;
+  Bio:              UndefinedArr;
+  "Favourite food": UndefinedArr;
+  Traits:           DefinedArr;
+}
+
+export interface UndefinedArr {
+  type:        string;
+  name:        string;
+  placeholder: string;
+  options?:     Array<number | string>;
+}
+
+export interface DefinedArr {
+  type:        string;
+  name:        string;
+  placeholder: string;
+  options:     string[];
+}
