@@ -54,7 +54,7 @@ export default function Profile() {
             </h1>
             <div className="mt-6 flex items-center justify-center gap-x-6">
               <p className="text-xl font-semibold leading-8 text-gray-600">
-                DOB {data.dateofBirth}
+                {data.dateofBirth}
               </p>
               <p className="text-xl font-semibold leading-8 text-gray-600">
                 {data.sex}
@@ -150,5 +150,3 @@ export default function Profile() {
     </div>
   )
 }
-
-// TODO: update data selectors from snake case to camel case

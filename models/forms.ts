@@ -52,13 +52,13 @@ export interface FormInput {
 export interface UndefinedArr {
   type:        string;
   name:        string;
-  placeholder: string;
+  placeholder?: string;
   options?:     Array<number | string>;
 }
 
 export interface DefinedArr {
   type:        string;
   name:        string;
-  placeholder: string;
+  placeholder?: string;
   options:     string[];
 }

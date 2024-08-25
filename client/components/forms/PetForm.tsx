@@ -6,6 +6,7 @@ import {
   TextAreaField,
   CheckboxField,
   SelectField,
+  FileField,
 } from './formInputs.tsx'
 
 const initialVal: PetData = {
@@ -87,6 +88,15 @@ export default function PetForm() {
         case 'select':
           return (
             <SelectField
+              handleChange={handleChange}
+              form={form}
+              fields={fields}
+              type={type}
+            />
+          )
+          case 'file':
+          return (
+            <FileField
               handleChange={handleChange}
               form={form}
               fields={fields}

@@ -4,26 +4,28 @@ export const formFields = {
     name: 'petName',
     placeholder: 'Pet name',
   },
+  'Image': {
+    type: 'file',
+    name: 'image',
+  },
   'Date of birth': {
     type: 'date',
     name: 'dateOfBirth',
-    placeholder: 'Age in years e.g. 2',
   },
   Sex: {
     type: 'select',
     name: 'sex',
-    placeholder: '',
     options: ['Female', 'Male', 'Other'],
-  },
-  Breed: {
-    type: 'text',
-    name: 'breed',
-    placeholder: 'Gold fish',
   },
   Species: {
     type: 'text',
     name: 'species',
     placeholder: 'Fish',
+  },
+  Breed: {
+    type: 'text',
+    name: 'breed',
+    placeholder: 'Gold fish',
   },
   Bio: {
     type: 'textarea',
