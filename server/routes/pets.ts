@@ -45,6 +45,7 @@ router.post('/', async (req, res) => {
     const {
       owner_id: ownerId,
       pet_name: petName,
+      image,
       dob: dateofBirth,
       sex,
       breed,
@@ -68,6 +69,7 @@ router.post('/', async (req, res) => {
     const id = await db.addNewPet({
       ownerId,
       petName,
+      image,
       dateofBirth,
       sex,
       breed,
@@ -94,6 +96,7 @@ router.post('/', async (req, res) => {
       id,
       ownerId,
       petName,
+      image,
       dateofBirth,
       sex,
       breed,

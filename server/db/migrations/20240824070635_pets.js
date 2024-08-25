@@ -7,6 +7,7 @@ export function up(knex) {
     table.increments('id').primary()
     table.integer('owner_id').notNullable()
     table.string('pet_name').notNullable()
+    table.string('image')
     table.string('dob')
     table.string('sex')
     table.string('breed')

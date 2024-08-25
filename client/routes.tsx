@@ -15,8 +15,8 @@ import Profile from './pages/Profile'
 const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
     <Route index element={<Home />} />
-    <Route path="signup" element={<Signup />}>
-      <Route path="pet" element={<PetForm />} />
+    <Route element={<Signup />}>
+      <Route path="/signup" element={<PetForm />} />
     </Route>
     <Route path="profiles" element={<ProfileList />} />
     <Route path="profiles/:id" element={<Profile />} />

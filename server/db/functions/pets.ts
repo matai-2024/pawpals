@@ -10,7 +10,31 @@ export async function getAllPets() {
 
 // Get a pet by id
 export async function getPetById(id: number) {
-  const pets: PetData = await db('pets').where({ id }).select('*').first()
+  const pets: PetData = await db('pets').where({ id })
+  .select(
+    'owner_id as ownerId',
+    'pet_name as petName',
+    'image',
+    'dob as dateofBirth',
+    'sex',
+    'breed',
+    'species',
+    'bio',
+    'fave_food as faveFood',
+    'traits',
+    'busy',
+    'lazy',
+    'goofy',
+    'gorgeous',
+    'brat',
+    'loyal',
+    'playful',
+    'adventurous',
+    'foodie',
+    'snorer',
+    'crazy',
+    'floofy',)
+  .first()
   return pets as Pet
 }
 
@@ -29,6 +53,7 @@ export async function addNewPet(pet: PetData) {
   const {
     ownerId,
     petName,
+    image,
     dateofBirth,
     sex,
     breed,
@@ -53,6 +78,7 @@ export async function addNewPet(pet: PetData) {
   const serverData = {
     owner_id: ownerId,
     pet_name: petName,
+    image,
     dob: dateofBirth,
     sex,
     breed,
