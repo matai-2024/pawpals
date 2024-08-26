@@ -6,7 +6,7 @@ export default function Profile() {
   const { id } = useParams()
   const { data, isPending, isError, error } = usePetData(Number(id))
 
-  console.log(id)
+  console.log('profile data', data)
 
   if (isPending)
     return (
@@ -57,7 +57,7 @@ export default function Profile() {
                 {data.dateofBirth}
               </p>
               <p className="text-xl font-semibold leading-8 text-gray-600">
-                {data.sex}
+                {data.gender}
               </p>
               <p className="text-xl font-semibold leading-8 text-gray-600">
                 {data.breed}
