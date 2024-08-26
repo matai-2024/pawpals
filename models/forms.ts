@@ -3,7 +3,7 @@ export interface PetData {
   petName: string
   image: string
   dateofBirth: string
-  sex: string
+  gender: string
   breed: string
   species: string
   bio: string
@@ -41,7 +41,7 @@ export interface Owner extends OwnerData {
 export interface FormInput {
   "Pet name":       UndefinedArr;
   "Date of birth":  UndefinedArr;
-  Sex:              DefinedArr;
+  Gender:              DefinedArr;
   Breed:            UndefinedArr;
   Species:          UndefinedArr;
   Bio:              UndefinedArr;

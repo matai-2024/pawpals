@@ -5,6 +5,8 @@ import Nav from '../components/Nav.tsx'
 
 export default function ProfileList() {
   const { data, isPending, isError, error } = usePetList()
+  console.log(data);
+  
 
   if (isPending)
     return (
@@ -48,16 +50,68 @@ export default function ProfileList() {
               lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
               fugiat aliqua.
             </p>
+
             <div className="mt-10 flex items-center justify-center gap-x-6">
               {data.map((profile: Pet) => (
-                <Link
-                  key={profile.id}
-                  to={`/profiles/${profile.id}`}
-                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Pet name {profile.id} {profile.petName}{' '}
-                  <span aria-hidden="true">→</span>
-                </Link>
+                <>
+                  <div
+                    key={profile.id}
+                    className="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-blue-400"
+                  >
+                    <div className="relative">
+                      <img
+                        className="w-full h-48 object-cover"
+                        src={profile.image}
+                        alt={profile.petName}
+                      />
+                    </div>
+                    <div className="px-6 py-4">
+                      <div className="text-xl font-semibold text-gray-800">
+                        {profile.petName}
+                      </div>
+                      <p className="text-gray-600">{profile.gender}</p>
+                      <p className="text-gray-600">{profile.breed}</p>
+                    </div>
+                    <div className="px-6 py-4">
+                      {profile.busy === 'on' ? (
+                        <span className="inline-block px-2 py-1 font-semibold text-teal-900 bg-yellow rounded-full">
+                          Busy
+                        </span>
+                      ) : (
+                        ''
+                      )}
+                      {profile.lazy === 'on' ? (
+                        <span className="inline-block px-2 py-1 font-semibold text-teal-900 bg-yellow rounded-full">
+                          Lazy
+                        </span>
+                      ) : (
+                        ''
+                      )}
+                      {profile.brat === 'on' ? (
+                        <span className="inline-block px-2 py-1 font-semibold text-indigo-900 bg-yellow rounded-full">
+                          Brat
+                        </span>
+                      ) : (
+                        ''
+                      )}
+                      {profile.foodie === 'on' ? (
+                        <span className="inline-block px-2 py-1 font-semibold text-purple-900 bg-yellow rounded-full">
+                          Foodie
+                        </span>
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                    <div className="px-6 py-4">
+                      <Link
+                        to={`/profiles/${profile.id}`}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Profile <span aria-hidden="true">→</span>
+                      </Link>
+                    </div>
+                  </div>
+                </>
               ))}
             </div>
           </div>

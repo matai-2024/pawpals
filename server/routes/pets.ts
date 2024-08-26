@@ -43,15 +43,15 @@ router.get('/owner/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-      owner_id: ownerId,
-      pet_name: petName,
+      ownerId,
+      petName,
       image,
-      dob: dateofBirth,
-      sex,
+      dateofBirth,
+      gender,
       breed,
       species,
       bio,
-      fave_food: faveFood,
+      faveFood,
       traits,
       busy,
       lazy,
@@ -66,12 +66,14 @@ router.post('/', async (req, res) => {
       crazy,
       floofy,
     } = req.body
+    console.log('string route', petName)
+
     const id = await db.addNewPet({
       ownerId,
       petName,
       image,
       dateofBirth,
-      sex,
+      gender,
       breed,
       species,
       bio,
@@ -90,33 +92,9 @@ router.post('/', async (req, res) => {
       crazy,
       floofy,
     })
-    const url = `/api/v1/pets/${id}`
-    res.setHeader('ownerId', url)
-    res.status(201).json({
-      id,
-      ownerId,
-      petName,
-      image,
-      dateofBirth,
-      sex,
-      breed,
-      species,
-      bio,
-      faveFood,
-      traits,
-      busy,
-      lazy,
-      goofy,
-      gorgeous,
-      brat,
-      loyal,
-      playful,
-      adventurous,
-      foodie,
-      snorer,
-      crazy,
-      floofy,
-    })
+    // const url = `/api/v1/pets/${id}`
+    // res.setHeader('ownerId', url)
+    res.status(201).json(id)
   } catch (error) {
     console.log('Error: ', error)
     res.sendStatus(500)

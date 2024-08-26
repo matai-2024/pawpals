@@ -5,11 +5,11 @@
 export function up(knex) {
   return knex.schema.createTable('pets', (table) => {
     table.increments('id').primary()
-    table.integer('owner_id').notNullable()
-    table.string('pet_name').notNullable()
+    table.integer('owner_id').references('owners.id')
+    table.string('pet_name')
     table.string('image')
     table.string('dob')
-    table.string('sex')
+    table.string('gender')
     table.string('breed')
     table.string('species')
     table.string('bio')

@@ -8,6 +8,8 @@ import {
   SelectField,
   FileField,
 } from './formInputs.tsx'
+import { useCreatePet } from '../../hooks/api.ts'
+import { useNavigate } from 'react-router-dom'
 
 const initialVal: PetData = {
   ownerId: 0,
@@ -46,10 +48,12 @@ export default function PetForm() {
     setForm({ ...form, [name]: value })
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    console.log(form)
-    setForm(initialVal)
+  const createPet = useCreatePet()
+  const navigate = useNavigate()
+  
+  async function handleSubmit(data: PetData) {
+    await createPet.mutateAsync(data)
+    navigate(`/profiles/${data.petName}`)
   }
 
   const fields: FormInput = formFields
