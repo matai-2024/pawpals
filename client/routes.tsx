@@ -10,13 +10,13 @@ import Home from './pages/Home'
 import Signup from './pages/Signup'
 import ProfileList from './pages/ProfileList'
 import Profile from './pages/Profile'
-import EditPetForm from './components/forms/EditPetForm'
+import PetForm from './components/forms/PetForm'
 
 const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
     <Route index element={<Home />} />
     <Route element={<Signup />}>
-      <Route path="/signup" element={<EditPetForm />} />
+      <Route path="/signup" element={<PetForm />} />
     </Route>
     <Route path="profiles" element={<ProfileList />} />
     <Route path="profiles/:id" element={<Profile />} />

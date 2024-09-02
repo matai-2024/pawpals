@@ -1,9 +1,5 @@
-import { Outlet, useParams } from 'react-router-dom'
 import Nav from '../components/Nav'
-import EditPetForm from '../components/forms/EditPetForm'
-import usePetData from '../hooks/use-pet-data'
-import useEditPet from '../hooks/use-edit-pet'
-import { PetData } from '../../models/forms'
+import PetForm from '../components/forms/PetForm'
 
 export default function Signup() {
   return (
@@ -34,7 +30,7 @@ export default function Signup() {
             </p>
           </div>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <EditPetForm />
+            <PetForm />
           </div>
           {/* <div className="mt-10 flex items-center justify-center gap-x-6">
             <Outlet />
