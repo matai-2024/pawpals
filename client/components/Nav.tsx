@@ -26,7 +26,7 @@ export default function Nav() {
             <span className="sr-only">Your Company</span>
             <img
               alt="logo"
-              src="../assets/logo.svg"
+              src="../../public/logo.png"
               className="h-14 w-auto"
             />
           </Link>
