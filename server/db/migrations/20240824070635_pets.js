@@ -9,7 +9,6 @@ export function up(knex) {
     table.string('breed')
     table.string('species')
     table.string('bio')
-    table.string('fave_food')
     table.string('traits')
     table.string('busy')
     table.string('lazy')

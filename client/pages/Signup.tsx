@@ -6,15 +6,6 @@ import useEditPet from '../hooks/use-edit-pet'
 import { PetData } from '../../models/forms'
 
 export default function Signup() {
-  const params = useParams()
-  const id = Number(params.id)
-  const pet = usePetData(id)
-  const editPet = useEditPet(id)
-
-  const handleSubmit = async (formData: PetData) => {
-    editPet.mutateAsync({ id, ...formData })
-  }
-
   return (
     <div>
       <Nav />
@@ -43,11 +34,7 @@ export default function Signup() {
             </p>
           </div>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <EditPetForm
-              {...pet.data}
-              submitLabel="Update pet"
-              onSubmit={handleSubmit}
-            />
+            <EditPetForm />
           </div>
           {/* <div className="mt-10 flex items-center justify-center gap-x-6">
             <Outlet />

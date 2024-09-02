@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addPet } from '../apis/pets'
-import { PetData } from '../../models/forms'
+import { addPet } from '../apis/apiClientPets.ts'
+import { PetData } from '../../models/forms.ts'
 
 export default function useCreatePet() {
   const queryClient = useQueryClient()

@@ -1,17 +1,16 @@
 import db from '../connection.ts'
-
 import { Pet, PetData } from '../../../models/forms.ts'
 
-const camelData = [
+const camelCase = [
+  'id',
   'owner_id as ownerId',
   'pet_name as petName',
   'image',
-  'dob as dateofBirth',
+  'dob as dateOfBirth',
   'gender',
   'breed',
   'species',
   'bio',
-  'fave_food as faveFood',
   'traits',
   'busy',
   'lazy',
@@ -29,19 +28,19 @@ const camelData = [
 
 // Get all pets
 export async function getAllPets() {
-  const pets: PetData[] = await db('pets').select(camelData)
+  const pets: PetData[] = await db('pets').select(camelCase)
   return pets as Pet[]
 }
 
 // Get a pet by id
 export async function getPetById(id: number) {
-  const pets: PetData = await db('pets').where({ id }).select(camelData).first()
+  const pets: PetData = await db('pets').where({ id }).select(camelCase).first()
   return pets as Pet
 }
 
 // Get pets by owner_id
 export async function getPetsByOwnerId(ownerId: number) {
-  return await db('pets').where('owner_id', ownerId).select(camelData)
+  return await db('pets').where('owner_id', ownerId).select(camelCase)
 }
 
 // Delete a pet by id
@@ -50,17 +49,16 @@ export async function deletePet(id: number) {
 }
 
 // Add a pet
-export async function addNewPet(pet: PetData) {
+export async function createNewPet(newPet: PetData) {
   const {
     ownerId,
     petName,
     image,
-    dateofBirth,
+    dateOfBirth,
     gender,
     breed,
     species,
     bio,
-    faveFood,
     traits,
     busy,
     lazy,
@@ -74,18 +72,17 @@ export async function addNewPet(pet: PetData) {
     snorer,
     crazy,
     floofy,
-  } = pet
-
-  const serverData = {
+  } = newPet
+  // Ensure that the object matches your table's column names exactly
+  const massageData = {
     owner_id: ownerId,
     pet_name: petName,
     image,
-    dob: dateofBirth,
+    dob: dateOfBirth,
     gender,
     breed,
     species,
     bio,
-    fave_food: faveFood,
     traits,
     busy,
     lazy,
@@ -100,12 +97,15 @@ export async function addNewPet(pet: PetData) {
     crazy,
     floofy,
   }
-  const result = await db('pets').insert(serverData)
-  console.log('pets func result', result[0])
 
-  return result[0]
+  const result = await db('pets').insert(massageData, ['id'])
+  // console.log('dbfunc result', result[0].id)
+  return result[0].id
 }
 
-// TODO LIST:
-// -----------
 // Edit a pet
+export async function updatePet(pet: PetData, id: number) {
+  return await db('pets').where({ id }).update(pet).returning('id')
+}
+
+// TODO Add pet and the aliases

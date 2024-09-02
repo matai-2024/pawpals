@@ -1,13 +1,8 @@
+import { PhotoIcon } from '@heroicons/react/24/solid'
+import { useNavigate } from 'react-router-dom'
 import { useState, FormEvent, ChangeEvent } from 'react'
 import { PetData } from '../../../models/forms.ts'
-import { PhotoIcon } from '@heroicons/react/24/solid'
-import useCreatePet from '../../hooks/use-create-pet.ts'
-import { useNavigate } from 'react-router-dom'
-
-interface Props extends PetData {
-  submitLabel: string
-  onSubmit: (_: PetData) => void
-}
+import * as hooks from '../../hooks/hooks.ts'
 
 const traitsArr = [
   'Busy',
@@ -24,58 +19,33 @@ const traitsArr = [
   'Floofy',
 ]
 
-export default function EditPetForm({
-  ownerId,
-  petName,
-  submitLabel,
-  image,
-  dateofBirth,
-  gender,
-  breed,
-  species,
-  bio,
-  faveFood,
-  traits,
-  busy,
-  lazy,
-  goofy,
-  gorgeous,
-  brat,
-  loyal,
-  playful,
-  adventurous,
-  foodie,
-  snorer,
-  crazy,
-  floofy,
-  onSubmit,
-}: Props) {
+export default function EditPetForm() {
   const initialVal: PetData = {
-    ownerId,
-    petName,
-    image,
-    dateofBirth,
-    gender,
-    breed,
-    species,
-    bio,
-    faveFood,
-    traits,
-    busy,
-    lazy,
-    goofy,
-    gorgeous,
-    brat,
-    loyal,
-    playful,
-    adventurous,
-    foodie,
-    snorer,
-    crazy,
-    floofy,
+    ownerId: 1,
+    petName: '',
+    image: '',
+    dateOfBirth: '',
+    gender: '',
+    breed: '',
+    species: '',
+    bio: '',
+    traits: '',
+    busy: '',
+    lazy: '',
+    goofy: '',
+    gorgeous: '',
+    brat: '',
+    loyal: '',
+    playful: '',
+    adventurous: '',
+    foodie: '',
+    snorer: '',
+    crazy: '',
+    floofy: '',
   }
+
   const [formState, setFormState] = useState<PetData>(initialVal)
-  const addPet = useCreatePet()
+  const addPet = hooks.useCreatePet()
   const navigate = useNavigate()
   // console.log('Mutation', addPet)
 
@@ -93,12 +63,7 @@ export default function EditPetForm({
 
   const handleSubmit = async (evt: FormEvent) => {
     evt.preventDefault()
-    // onSubmit(formState)
-    console.log('form state', formState)
     const id = await addPet.mutateAsync(formState)
-    console.log('works')
-
-    // setFormState(initialVal)
     navigate(`/profiles/${id}`)
   }
 
@@ -205,7 +170,7 @@ export default function EditPetForm({
                 <div className="mt-2">
                   <input
                     onChange={handleChange}
-                    value={formState.dateofBirth || ''}
+                    value={formState.dateOfBirth || ''}
                     type="date"
                     name="dateOfBirth"
                     id="dateOfBirth"
@@ -268,6 +233,7 @@ export default function EditPetForm({
               </label>
               <div className="mt-2">
                 <textarea
+                  onChange={handleChange}
                   id="bio"
                   name="bio"
                   placeholder="Write a few sentences about your pet"
@@ -333,3 +299,29 @@ export default function EditPetForm({
     </div>
   )
 }
+
+// {
+//   ownerId,
+//   petName,
+//   submitLabel,
+//   image,
+//   dateOfBirth,
+//   gender,
+//   breed,
+//   species,
+//   bio,
+//   traits,
+//   busy,
+//   lazy,
+//   goofy,
+//   gorgeous,
+//   brat,
+//   loyal,
+//   playful,
+//   adventurous,
+//   foodie,
+//   snorer,
+//   crazy,
+//   floofy,
+//   onSubmit,
+// }: Props

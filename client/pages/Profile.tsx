@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom'
-import { usePetData } from '../hooks/api.ts'
 import Nav from '../components/Nav.tsx'
+import { usePetById } from '../hooks/hookPets.ts'
 
 export default function Profile() {
   const { id } = useParams()
-  const { data, isPending, isError, error } = usePetData(Number(id))
+  const { data, isPending, isError, error } = usePetById(Number(id))
 
-  console.log('profile data', data)
+  // console.log('profile data', data)
 
   if (isPending)
     return (
@@ -45,7 +45,7 @@ export default function Profile() {
             <div className="mb-6 w-52 h-52 rounded-full overflow-hidden">
               <img
               className='relative w-full -top-12'
-                src={data.image}
+                src={`../../${data.image}`}
                 alt={data.petName}
               />
             </div>
@@ -54,7 +54,7 @@ export default function Profile() {
             </h1>
             <div className="mt-6 flex items-center justify-center gap-x-6">
               <p className="text-xl font-semibold leading-8 text-gray-600">
-                {data.dateofBirth}
+                {data.dateOfBirth}
               </p>
               <p className="text-xl font-semibold leading-8 text-gray-600">
                 {data.gender}

@@ -1,13 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import request from 'superagent'
-import { Pet } from '../../models/forms'
+import { getPets } from '../apis/apiClientPets'
 
 export default function usePetList() {
-  return useQuery({
+  const query = useQuery({
     queryKey: ['pets'],
-    queryFn: async () => {
-      const res = await request.get(`api/v1/pets`)
-      return res.body as Pet[]
-    },
+    queryFn: getPets,
   })
+  return query
 }

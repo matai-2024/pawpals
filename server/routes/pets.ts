@@ -1,107 +1,46 @@
 import express from 'express'
 
 import * as db from '../db/functions/pets.ts'
+import { Pet, PetData } from '../../models/forms.ts'
 
 const router = express.Router()
 
-// GET all pets for /api/v1/pets
+// get all
 router.get('/', async (req, res) => {
   try {
     const pets = await db.getAllPets()
-    res.json(pets)
+    res.status(200).json(pets)
   } catch (error) {
     console.log('Error: ', error)
-    res.sendStatus(500)
+    res.status(500).json(error)
   }
 })
 
-// GET pet by id
+// get by id
 router.get('/:id', async (req, res) => {
-  const { id } = req.params
+  const id = req.params.id
   try {
     const pet = await db.getPetById(Number(id))
-    res.json(pet)
+    res.status(200).json(pet)
   } catch (error) {
     console.log('Error: ', error)
-    res.sendStatus(500)
+    res.status(500).json(error)
   }
 })
 
-// GET pets by owner id
+// get by owner id
 router.get('/owner/:id', async (req, res) => {
-  const { id } = req.params
+  const id = req.params.id
   try {
     const pets = await db.getPetsByOwnerId(Number(id))
-    res.json(pets)
+    res.status(200).json(pets)
   } catch (error) {
     console.log('Error: ', error)
-    res.sendStatus(500)
+    res.status(500).json(error)
   }
 })
 
-// POST add a new pet
-router.post('/', async (req, res) => {
-  try {
-    const {
-      ownerId,
-      petName,
-      image,
-      dateofBirth,
-      gender,
-      breed,
-      species,
-      bio,
-      faveFood,
-      traits,
-      busy,
-      lazy,
-      goofy,
-      gorgeous,
-      brat,
-      loyal,
-      playful,
-      adventurous,
-      foodie,
-      snorer,
-      crazy,
-      floofy,
-    } = req.body
-    console.log('string route', petName)
-
-    const id = await db.addNewPet({
-      ownerId,
-      petName,
-      image,
-      dateofBirth,
-      gender,
-      breed,
-      species,
-      bio,
-      faveFood,
-      traits,
-      busy,
-      lazy,
-      goofy,
-      gorgeous,
-      brat,
-      loyal,
-      playful,
-      adventurous,
-      foodie,
-      snorer,
-      crazy,
-      floofy,
-    })
-    // const url = `/api/v1/pets/${id}`
-    // res.setHeader('ownerId', url)
-    res.status(201).json(id)
-  } catch (error) {
-    console.log('Error: ', error)
-    res.sendStatus(500)
-  }
-})
-
-// DELETE pet by id
+// delete pet by id
 router.delete('/:id', async (req, res) => {
   const { id } = req.params
   try {
@@ -109,7 +48,32 @@ router.delete('/:id', async (req, res) => {
     res.sendStatus(204)
   } catch (error) {
     console.log('Error: ', error)
-    res.sendStatus(500)
+    res.status(500).json(error)
+  }
+})
+
+// add a new pet
+router.post('/', async (req, res) => {
+  try {
+    const newPet: PetData = req.body
+    const id = await db.createNewPet(newPet)
+    res.status(201).json(id)
+  } catch (error) {
+    console.log('Error: ', error)
+    res.status(500).json(error)
+  }
+})
+
+// edit pet by id
+router.patch('/:id', async (req, res) => {
+  const { id } = req.params
+  const pet: Pet = req.body
+  try {
+    await db.updatePet(pet, Number(id))
+    res.status(201).json(id)
+  } catch (error) {
+    console.log('Error: ', error)
+    res.status(500).json(error)
   }
 })
 

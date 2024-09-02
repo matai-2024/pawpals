@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-import { usePetList } from '../hooks/api.ts'
 import { Pet } from '../../models/forms.ts'
 import Nav from '../components/Nav.tsx'
+import { usePets } from '../hooks/hookPets.ts'
 
 export default function ProfileList() {
-  const { data, isPending, isError, error } = usePetList()
-  console.log(data);
+  const { data, isPending, isError, error } = usePets()
+  console.log('Profiles: ',data);
   
 
   if (isPending)

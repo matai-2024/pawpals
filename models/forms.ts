@@ -2,12 +2,11 @@ export interface PetData {
   ownerId: number
   petName: string
   image: string
-  dateofBirth: string
+  dateOfBirth: string
   gender: string
   breed: string
   species: string
   bio: string
-  faveFood: string
   traits: string
   busy: string
   lazy: string

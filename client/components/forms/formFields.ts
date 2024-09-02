@@ -12,9 +12,9 @@ export const formFields = {
     type: 'date',
     name: 'dateOfBirth',
   },
-  Sex: {
+  Gender: {
     type: 'select',
-    name: 'sex',
+    name: 'gender',
     options: ['Female', 'Male', 'Other'],
   },
   Species: {
@@ -32,11 +32,6 @@ export const formFields = {
     name: 'bio',
     placeholder: 'Share what makes your pet unique',
     options: [5],
-  },
-  'Favourite food': {
-    type: 'text',
-    name: 'faveFood',
-    placeholder: 'Anything!',
   },
   Traits: {
     type: 'checkbox',
