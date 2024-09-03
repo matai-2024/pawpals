@@ -32,9 +32,5 @@ export const addOwners = [
 ]
 
 export async function seed(knex) {
-  // Delete all the data
-  await knex('owners').del()
-
-  // Insert all the data
   await knex('owners').insert(addOwners)
 }

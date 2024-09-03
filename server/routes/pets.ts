@@ -1,25 +1,14 @@
 import express from 'express'
 
 import * as db from '../db/functions/pets.ts'
-import { Pet, PetData } from '../../models/forms.ts'
+import { Pet, PetData, PetProfileData } from '../../models/forms.ts'
 
 const router = express.Router()
 
 // get all
-// router.get('/', async (req, res) => {
-//   try {
-//     const pets = await db.getAllPets()
-//     res.status(200).json(pets)
-//   } catch (error) {
-//     console.log('Error: ', error)
-//     res.status(500).json(error)
-//   }
-// })
-
-// get all with traits
 router.get('/', async (req, res) => {
   try {
-    const pets = await db.getAllPetsAndTraits()
+    const pets = await db.getAllPets()
     res.status(200).json(pets)
   } catch (error) {
     console.log('Error: ', error)
@@ -66,8 +55,8 @@ router.delete('/:id', async (req, res) => {
 // add a new pet
 router.post('/', async (req, res) => {
   try {
-    const newPet: PetData = req.body
-    const id = await db.createNewPet(newPet)
+    const newPet: PetProfileData = req.body
+    const id = await db.createNewPetTraits(newPet)
     res.status(201).json(id)
   } catch (error) {
     console.log('Error: ', error)

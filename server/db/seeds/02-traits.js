@@ -32,9 +32,5 @@ export const addTraits = [
 ]
 
 export async function seed(knex) {
-  // Delete all the data
-  await knex('traits').del()
-
-  // Insert all the data
   await knex('traits').insert(addTraits)
 }
