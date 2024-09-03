@@ -2,18 +2,13 @@ import { Link } from 'react-router-dom'
 import { Pet } from '../../models/forms.ts'
 import Nav from '../components/Nav.tsx'
 import { usePets } from '../hooks/hookPets.ts'
+import LoadingSpinner from '../components/LoadingSpinner.tsx'
 
 export default function ProfileList() {
   const { data, isPending, isError, error } = usePets()
-  console.log('Profiles: ',data);
-  
+  console.log('Profiles: ', data)
 
-  if (isPending)
-    return (
-      <div>
-        <h3>Loading...</h3>
-      </div>
-    )
+  if (isPending) return <LoadingSpinner />
 
   if (isError)
     return (

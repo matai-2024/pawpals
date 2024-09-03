@@ -1,10 +1,8 @@
-import Nav from '../components/Nav'
 import PetForm from '../components/forms/PetForm'
 
 export default function Signup() {
   return (
     <div>
-      <Nav />
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
           aria-hidden="true"

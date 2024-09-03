@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
-import Nav from '../components/Nav.tsx'
 import { usePetById } from '../hooks/hookPets.ts'
+import LoadingSpinner from '../components/LoadingSpinner.tsx'
 
 export default function Profile() {
   const { id } = useParams()
@@ -8,12 +8,7 @@ export default function Profile() {
 
   // console.log('profile data', data)
 
-  if (isPending)
-    return (
-      <div>
-        <h3>Loading...</h3>
-      </div>
-    )
+  if (isPending) return <LoadingSpinner />
 
   if (isError)
     return (
@@ -25,8 +20,6 @@ export default function Profile() {
 
   return (
     <div>
-      <Nav />
-
       <div className="relative isolate px-6 lg:px-8">
         <div
           aria-hidden="true"
@@ -44,7 +37,7 @@ export default function Profile() {
           <div className="text-center">
             <div className="mb-6 w-52 h-52 rounded-full overflow-hidden">
               <img
-              className='relative w-full -top-12'
+                className="relative w-full -top-12"
                 src={`../../${data.image}`}
                 alt={data.petName}
               />

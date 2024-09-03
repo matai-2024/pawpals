@@ -3,21 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState, FormEvent, ChangeEvent } from 'react'
 import { PetData } from '../../../models/forms.ts'
 import * as hooks from '../../hooks/hooks.ts'
-
-const traitsArr = [
-  'Busy',
-  'Lazy',
-  'Goofy',
-  'Gorgeous',
-  'Brat',
-  'Loyal',
-  'Playful',
-  'Adventurous',
-  'Foodie',
-  'Snorer',
-  'Crazy',
-  'Floofy',
-]
+import Checkbox from './Checkbox.tsx'
 
 export default function EditPetForm() {
   const initialVal: PetData = {
@@ -54,7 +40,9 @@ export default function EditPetForm() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => {
+    // const { name, value } = evt.target.checked
     const { name, value } = evt.target
+    console.log(`Form field ${name}: ${value}`)
     setFormState((prev) => ({
       ...prev,
       [name]: value,
@@ -255,31 +243,7 @@ export default function EditPetForm() {
                     you pick what else you want to hear about.
                   </p>
                   <div className="flex flex-row flex-wrap gap-3 mt-6">
-                    {traitsArr.map((trait: string) => (
-                      <div
-                        className="bg-yellow rounded-full py-1 px-4"
-                        key={trait}
-                      >
-                        <div className="flex items-center">
-                          <input
-                            onChange={handleChange}
-                            type="checkbox"
-                            name={trait}
-                            id={trait}
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 sr-only"
-                          />
-                        </div>
-                        <div className="text-sm">
-                          <label
-                            id={trait}
-                            htmlFor={trait}
-                            className="font-medium text-gray-900"
-                          >
-                            {trait}
-                          </label>
-                        </div>
-                      </div>
-                    ))}
+                    <Checkbox onChange={handleChange} />
                   </div>
                 </fieldset>
               </div>

@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -24,11 +22,7 @@ export default function Nav() {
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
-              alt="logo"
-              src="../../public/logo.png"
-              className="h-14 w-auto"
-            />
+            <img alt="logo" src="/logo.png" className="h-14 w-auto" />
           </Link>
         </div>
         <div className="flex lg:hidden">
