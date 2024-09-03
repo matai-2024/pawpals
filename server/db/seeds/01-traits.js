@@ -1,7 +1,6 @@
 export const addTraits = [
   {
     id: 1,
-    pet_id: 1,
     busy: 'on',
     lazy: '',
     goofy: '',
@@ -17,7 +16,6 @@ export const addTraits = [
   },
   {
     id: 2,
-    pet_id: 2,
     busy: 'on',
     lazy: '',
     goofy: 'on',

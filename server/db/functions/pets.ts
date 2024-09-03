@@ -26,6 +26,14 @@ const camelCase = [
   'floofy',
 ]
 
+// Join pets and traits and get all
+export async function getAllPetsAndTraits() {
+  const petsAndTraits = await db('pets')
+    .join('traits', 'traits.id', 'pets.trait_id')
+    .select()
+  return petsAndTraits
+}
+
 // Get all pets
 export async function getAllPets() {
   const pets: PetData[] = await db('pets').select(camelCase)

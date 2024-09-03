@@ -7,7 +7,14 @@ export interface PetData {
   breed: string
   species: string
   bio: string
-  trait: string
+  trait_id: number
+}
+
+export interface Pet extends PetData {
+  id: number
+}
+
+export interface TraitData {
   busy: string
   lazy: string
   goofy: string
@@ -22,7 +29,7 @@ export interface PetData {
   floofy: string
 }
 
-export interface Pet extends PetData {
+export interface Trait extends TraitData {
   id: number
 }
 

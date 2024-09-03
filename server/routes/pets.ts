@@ -6,9 +6,20 @@ import { Pet, PetData } from '../../models/forms.ts'
 const router = express.Router()
 
 // get all
+// router.get('/', async (req, res) => {
+//   try {
+//     const pets = await db.getAllPets()
+//     res.status(200).json(pets)
+//   } catch (error) {
+//     console.log('Error: ', error)
+//     res.status(500).json(error)
+//   }
+// })
+
+// get all with traits
 router.get('/', async (req, res) => {
   try {
-    const pets = await db.getAllPets()
+    const pets = await db.getAllPetsAndTraits()
     res.status(200).json(pets)
   } catch (error) {
     console.log('Error: ', error)
