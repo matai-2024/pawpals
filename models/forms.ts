@@ -7,7 +7,7 @@ export interface PetData {
   breed: string
   species: string
   bio: string
-  traits: string
+  trait: string
   busy: string
   lazy: string
   goofy: string

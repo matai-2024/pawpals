@@ -15,7 +15,7 @@ export default function EditPetForm() {
     breed: '',
     species: '',
     bio: '',
-    traits: '',
+    trait: '',
     busy: '',
     lazy: '',
     goofy: '',
