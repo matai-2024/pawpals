@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Pet, PetData } from '../../models/forms.ts'
+import { Pet, PetData, PetProfileData } from '../../models/forms.ts'
 
 const rootUrl = '/api/v1/pets'
 
@@ -27,9 +27,9 @@ export async function deletePetById(id: number) {
 }
 
 // add a pet
-export async function addPet(newPet: PetData) {
+export async function addPet(newPet: PetProfileData) {
   const res = await request.post(rootUrl + '/').send(newPet)
-  return res.body as Pet
+  return res.body as number
 }
 
 // TODO
