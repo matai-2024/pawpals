@@ -30,7 +30,6 @@
     "@heroicons/react": "^2.1.5",
     "express": "^4.17.2",
     "knex": "^2.5.1",
-    "react-select": "^5.8.0",
     "sqlite3": "^5.1.7",
     "superagent": "^8.1.2"
   },
