@@ -67,3 +67,8 @@
     transform: scale(1.2, 1);
   }
 }
+
+/* Pet traits form checkboxes */
+.checkbox:checked + .trait-label {
+  @apply bg-yellow-50 border-yellow-400 border-2;
+}

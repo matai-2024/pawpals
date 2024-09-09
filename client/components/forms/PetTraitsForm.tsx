@@ -22,7 +22,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Busy bee</h3>
-              <p className="text-gray-500">Hardly ever sits still.</p>
+              <p className="text-gray-500">Why would I ever sit still.</p>
             </div>
           </div>
         </label>
@@ -46,7 +46,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Lazy</h3>
-              <p className="text-gray-500">Fave activity is taking a nap.</p>
+              <p className="text-gray-500">The best activity is taking a nap.</p>
             </div>
           </div>
         </label>
@@ -117,7 +117,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <i className="fa-solid fa-handcuffs text-4xl text-yellow-400"></i>
             </div>
             <div className="text-sm leading-6">
-              <h3 className="font-medium text-gray-900">brat</h3>
+              <h3 className="font-medium text-gray-900">Brat</h3>
               <p className="text-gray-500">Some details about brat.</p>
             </div>
           </div>
@@ -141,7 +141,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <i className="fa-solid fa-ring text-4xl text-yellow-400"></i>
             </div>
             <div className="text-sm leading-6">
-              <h3 className="font-medium text-gray-900">loyal</h3>
+              <h3 className="font-medium text-gray-900">Loyal</h3>
               <p className="text-gray-500">Some details about loyal.</p>
             </div>
           </div>
@@ -165,7 +165,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <i className="fa-solid fa-grin-tongue text-4xl text-yellow-400"></i>
             </div>
             <div className="text-sm leading-6">
-              <h3 className="font-medium text-gray-900">playful</h3>
+              <h3 className="font-medium text-gray-900">Playful</h3>
               <p className="text-gray-500">Some details about playful.</p>
             </div>
           </div>
@@ -189,7 +189,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <i className="fa-solid fa-person-hiking text-4xl text-yellow-400"></i>
             </div>
             <div className="text-sm leading-6">
-              <h3 className="font-medium text-gray-900">adventurous</h3>
+              <h3 className="font-medium text-gray-900">Adventurous</h3>
               <p className="text-gray-500">Some details about adventurous.</p>
             </div>
           </div>
@@ -213,7 +213,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <i className="fa-solid fa-pizza-slice text-4xl text-yellow-400"></i>
             </div>
             <div className="text-sm leading-6">
-              <h3 className="font-medium text-gray-900">foodie</h3>
+              <h3 className="font-medium text-gray-900">Foodie</h3>
               <p className="text-gray-500">Some details about foodie.</p>
             </div>
           </div>
@@ -237,7 +237,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <i className="fa-solid fa-bed text-4xl text-yellow-400"></i>
             </div>
             <div className="text-sm leading-6">
-              <h3 className="font-medium text-gray-900">snorer</h3>
+              <h3 className="font-medium text-gray-900">Snorer</h3>
               <p className="text-gray-500">Some details about snorer.</p>
             </div>
           </div>
@@ -261,7 +261,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <i className="fa-solid fa-dumpster-fire text-4xl text-yellow-400"></i>
             </div>
             <div className="text-sm leading-6">
-              <h3 className="font-medium text-gray-900">crazy</h3>
+              <h3 className="font-medium text-gray-900">Crazy</h3>
               <p className="text-gray-500">Some details about crazy.</p>
             </div>
           </div>
@@ -285,7 +285,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <i className="fa-solid fa-cloud text-4xl text-yellow-400"></i>
             </div>
             <div className="text-sm leading-6">
-              <h3 className="font-medium text-gray-900">floofy</h3>
+              <h3 className="font-medium text-gray-900">Floofy</h3>
               <p className="text-gray-500">Some details about floofy.</p>
             </div>
           </div>
