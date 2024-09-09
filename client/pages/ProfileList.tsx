@@ -17,6 +17,17 @@ export default function ProfileList() {
       </div>
     )
 
+  function getAge(dateString: string) {
+    const today = new Date()
+    const birthDate = new Date(dateString)
+    let age = today.getFullYear() - birthDate.getFullYear()
+    const m = today.getMonth() - birthDate.getMonth()
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--
+    }
+    return age
+  }
+
   return (
     <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-24">
       <div className="text-center">
@@ -44,7 +55,10 @@ export default function ProfileList() {
                 <div className="absolute h-32 inset-x-0 bottom-0 bg-gradient-to-t from-gray-900 from-10% opacity-80"></div>
                 <div className="absolute bottom-4 inset-x-0">
                   <div className="text-2xl font-bold text-white">
-                    {profile.petName}, Age
+                    {profile.petName},{' '}
+                    {getAge(profile.dateOfBirth) > 1
+                      ? `${getAge(profile.dateOfBirth)}yrs`
+                      : `${getAge(profile.dateOfBirth)}yr`}
                   </div>
                   <div className="mt-1 text-md text-white uppercase tracking-widest">
                     Location
