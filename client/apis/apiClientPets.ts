@@ -1,24 +1,24 @@
 import request from 'superagent'
-import { Pet, PetData, PetProfileData } from '../../models/forms.ts'
+import { PetProfile, PetProfileData } from '../../models/forms.ts'
 
 const rootUrl = '/api/v1/pets'
 
 // get all pets
 export async function fetchPets() {
   const res = await request.get(rootUrl)
-  return res.body as Pet[]
+  return res.body as PetProfile[]
 }
 
 // get pet by id
 export async function fetchPetById(id: number) {
   const res = await request.get(rootUrl + '/' + id)
-  return res.body as Pet
+  return res.body as PetProfile
 }
 
 // get pets by owner id
 export async function fetchPetsByOwnerId(id: number) {
   const res = await request.get(rootUrl + 'owner/' + id)
-  return res.body as Pet[]
+  return res.body as PetProfile[]
 }
 
 // delete by id
