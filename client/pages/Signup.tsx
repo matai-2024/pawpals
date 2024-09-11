@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import OwnerForm from '../components/forms/OwnerForm.tsx'
 import PetProfileForm from '../components/forms/PetProfileForm.tsx'
-import * as hooks from '../hooks/hooks.ts'
+import { useCreatePet, useMultistepForm } from '../hooks/hooks.ts'
 import PetBasicsForm from '../components/forms/PetBasicsForm.tsx'
 import PetTraitsForm from '../components/forms/PetTraitsForm.tsx'
 
@@ -34,7 +34,7 @@ const INITIAL_DATA = {
 
 export default function Signup() {
   const [data, setData] = useState(INITIAL_DATA)
-  const addPet = hooks.useCreatePet()
+  const addPet = useCreatePet()
   const navigate = useNavigate()
 
   function updateFields(fields: Partial<FormData>) {
@@ -45,11 +45,19 @@ export default function Signup() {
   }
 
   const { step, steps, currentStepIndex, isFirstStep, isLastStep, back, next } =
-    hooks.useMultistepForm([
-      <PetBasicsForm {...data} updateFields={updateFields} key={'pet-basics-form'} />,
-      <PetTraitsForm {...data} updateFields={updateFields} key={'pet-traits-form'} />,
-      <PetProfileForm {...data} updateFields={updateFields} key={'pet-form'}/>,
-      <OwnerForm {...data} updateFields={updateFields} key={'owner-form'}/>,
+    useMultistepForm([
+      <PetBasicsForm
+        {...data}
+        updateFields={updateFields}
+        key={'pet-basics-form'}
+      />,
+      <PetTraitsForm
+        {...data}
+        updateFields={updateFields}
+        key={'pet-traits-form'}
+      />,
+      <PetProfileForm {...data} updateFields={updateFields} key={'pet-form'} />,
+      <OwnerForm {...data} updateFields={updateFields} key={'owner-form'} />,
     ])
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -81,7 +89,7 @@ export default function Signup() {
           </div>
         </div>
         <div className="mt-10 flex items-center gap-x-6">
-          <form onSubmit={onSubmit} className='w-full'>
+          <form onSubmit={onSubmit} className="w-full">
             <div className="space-y-12">
               <div className="border-b border-gray-900/10 pb-12">
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
