@@ -29,7 +29,7 @@ export default function ProfileList() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-24">
+    <div className="mx-auto max-w-5xl py-32 sm:py-48 lg:py-24">
       <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           Pet Profiles
@@ -44,7 +44,7 @@ export default function ProfileList() {
           {data.map((profile: Pet) => (
             <div
               key={profile.id}
-              className="w-1/3 h-72 overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-xl relative"
+              className="w-1/5 h-72 overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-xl relative"
             >
               <Link to={`/profiles/${profile.id}`}>
                 <img
