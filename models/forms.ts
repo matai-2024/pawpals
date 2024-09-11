@@ -25,6 +25,11 @@ export interface FormData {
   floofy: string
 }
 
+export interface Form extends FormData {
+  id: number
+  ownerId: number
+}
+
 export interface PetData {
   ownerId: number
   petName: string
