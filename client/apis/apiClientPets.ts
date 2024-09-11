@@ -33,6 +33,7 @@ export async function addPet(newPet: PetProfileData) {
 }
 
 // TODO
+// Check these work!!
 // delete by id
 // update
 // log res.body is not returning
