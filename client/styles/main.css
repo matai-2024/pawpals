@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* From Uiverse.io by alexruix */
+/* Loading spinner - From Uiverse.io by alexruix */
 .loader {
   width: 48px;
   height: 48px;
