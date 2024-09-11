@@ -28,11 +28,11 @@ router.get('/:id', async (req, res) => {
 })
 
 // GET owner by name
-router.get('/name/:name', async (req, res) => {
-  const { name } = req.params
+router.get('/name/:firstName', async (req, res) => {
+  const { firstName } = req.params
   try {
-    const owner = await db.getOwnerByName(name)
-    res.json(owner)
+    const owners = await db.getOwnerByName(firstName)
+    res.json(owners)
   } catch (error) {
     console.log('Error: ', error)
     res.sendStatus(500)
@@ -43,6 +43,6 @@ router.get('/name/:name', async (req, res) => {
 // -----------
 // Add new owner
 // Delete an owner
-// Edit a owner
+// Edit an owner
 
 export default router
