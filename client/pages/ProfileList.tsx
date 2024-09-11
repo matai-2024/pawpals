@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
-import { Pet } from '../../models/forms.ts'
-import * as hook from '../hooks/hookPets.ts'
+import { PetProfile } from '../../models/forms.ts'
 import LoadingSpinner from '../components/LoadingSpinner.tsx'
+import { usePets } from '../hooks/hooks.ts'
+
 
 export default function ProfileList() {
-  const { data, isPending, isError, error } = hook.usePets()
+  const { data, isPending, isError, error } = usePets()
   // console.log('Profiles: ', data)
 
   if (isPending) return <LoadingSpinner />
@@ -41,7 +42,7 @@ export default function ProfileList() {
         </p>
 
         <div className="mt-10 flex flex-wrap gap-6">
-          {data.map((profile: Pet) => (
+          {data.map((profile: PetProfile) => (
             <div
               key={profile.id}
               className="w-1/5 h-72 overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-xl relative"
