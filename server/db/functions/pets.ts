@@ -1,5 +1,5 @@
 import db from '../connection.ts'
-import { Pet, PetData, PetProfileData } from '../../../models/forms.ts'
+import { Form, PetData, PetProfileData } from '../../../models/forms.ts'
 
 const camelCase = [
   'pets.id as id',
@@ -11,7 +11,6 @@ const camelCase = [
   'pets.breed as breed',
   'pets.species as species',
   'pets.bio as bio',
-  // 'pets.trait_id as traitId',
   'traits.busy as busy',
   'traits.lazy as lazy',
   'traits.goofy as goofy',
@@ -26,12 +25,12 @@ const camelCase = [
   'traits.floofy as floofy',
 ]
 
-// Get all
+// Get all pets
 export async function getAllPets() {
   const petsAndTraits = await db('pets')
     .join('traits', 'traits.id', 'pets.trait_id')
     .select(camelCase)
-  return petsAndTraits
+  return petsAndTraits as Form[]
 }
 
 // Get a pet by id
@@ -41,83 +40,38 @@ export async function getPetById(id: number) {
     .where('pets.id', id)
     .select(camelCase)
     .first()
-  return pets
+  return pets as Form
 }
 
 // Get pets by owner_id
 export async function getPetsByOwnerId(ownerId: number) {
-  return await db('pets').where('owner_id', ownerId).select(camelCase)
+  const pets = await db('pets')
+    .join('traits', 'traits.id', 'pets.trait_id')
+    .where('owner_id', ownerId)
+    .select(camelCase)
+  return pets as Form[]
 }
 
 // Delete a pet by id
-export async function deletePet(id: number) {
-  return await db('pets').where({ id }).delete()
+// TODO: Needs fix, this deletes pet table data but not trait table data
+export async function deletePet(petsId: number) {
+  const traitId = await db('pets')
+    .where('pets.id', petsId)
+    .select('trait_id as id')
+    .first()
+  console.log(traitId.id)
+
+  const deleteTraits = await db('traits')
+    .where('traits.id', traitId.id)
+    .delete()
+  const deletePet = await db('pets').where('pets.id', petsId).delete()
+
+  return { deleteTraits, deletePet }
 }
-
-// // Add a pet
-// export async function createNewPet(newPet: PetData) {
-//   const {
-//     ownerId,
-//     petName,
-//     image,
-//     dateOfBirth,
-//     gender,
-//     breed,
-//     species,
-//     bio,
-//     trait,
-//     busy,
-//     lazy,
-//     goofy,
-//     gorgeous,
-//     brat,
-//     loyal,
-//     playful,
-//     adventurous,
-//     foodie,
-//     snorer,
-//     crazy,
-//     floofy,
-//   } = newPet
-//   // Ensure that the object matches your table's column names exactly
-//   const massageData = {
-//     owner_id: ownerId,
-//     pet_name: petName,
-//     image,
-//     dob: dateOfBirth,
-//     gender,
-//     breed,
-//     species,
-//     bio,
-//     trait,
-//     busy,
-//     lazy,
-//     goofy,
-//     gorgeous,
-//     brat,
-//     loyal,
-//     playful,
-//     adventurous,
-//     foodie,
-//     snorer,
-//     crazy,
-//     floofy,
-//   }
-
-//   const result = await db('pets').insert(massageData, ['id'])
-//   // console.log('dbfunc result', result[0].id)
-//   return result[0].id
-// }
-
-// Edit a pet
-export async function updatePet(pet: PetData, id: number) {
-  return await db('pets').where({ id }).update(pet).returning('id')
-}
-
-// TODO Add pet and the aliases
 
 // Add a pet
-export async function createNewPetTraits(newPetProfile: PetProfileData) {
+export async function createNewPet(newPetProfile: PetProfileData) {
+  // All the data being passed in from the form
   const {
     ownerId,
     petName,
@@ -140,7 +94,8 @@ export async function createNewPetTraits(newPetProfile: PetProfileData) {
     crazy,
     floofy,
   } = newPetProfile
-  // Ensure that the object matches your table's column names exactly
+
+  // Defining traits data being passed in by the form
   const traitData = {
     busy,
     lazy,
@@ -155,8 +110,11 @@ export async function createNewPetTraits(newPetProfile: PetProfileData) {
     crazy,
     floofy,
   }
+
+  // Insert traits data into the traits table and return traits.id
   const traitResult = await db('traits').insert(traitData, ['id'])
 
+  // Defining pets data being passed in by the form, incl traits.id
   const petData = {
     owner_id: ownerId,
     pet_name: petName,
@@ -168,7 +126,16 @@ export async function createNewPetTraits(newPetProfile: PetProfileData) {
     bio,
     trait_id: traitResult[0].id,
   }
+
+  // Insert pets data into the pets table and return pets.id
   const petResult = await db('pets').insert(petData, ['id'])
-  // console.log('dbfunc result', result[0].id)
+
+  // Return pets.id in order to navigate to their profile after submitting sign up form, see client/pages/Profile.tsx
   return petResult[0].id
+}
+
+// Edit a pet
+// TODO: Needs fix, recommend starting from scratch. Might need to follow createNewPet function
+export async function updatePet(pet: PetProfileData, id: number) {
+  return await db('pets').where({ id }).update(pet).returning('id')
 }

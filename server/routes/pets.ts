@@ -1,11 +1,10 @@
 import express from 'express'
-
 import * as db from '../db/functions/pets.ts'
-import { Pet, PetData, PetProfileData } from '../../models/forms.ts'
+import { Pet, PetProfileData } from '../../models/forms.ts'
 
 const router = express.Router()
 
-// get all
+// GET all pets (joins pet and trait tables)
 router.get('/', async (req, res) => {
   try {
     const pets = await db.getAllPets()
@@ -16,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-// get by id
+// GET pet by id
 router.get('/:id', async (req, res) => {
   const id = req.params.id
   try {
@@ -28,9 +27,9 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-// get by owner id
+// GET pets by owner id
 router.get('/owner/:id', async (req, res) => {
-  const id = req.params.id
+  const { id } = req.params
   try {
     const pets = await db.getPetsByOwnerId(Number(id))
     res.status(200).json(pets)
@@ -40,7 +39,8 @@ router.get('/owner/:id', async (req, res) => {
   }
 })
 
-// delete pet by id
+// DELETE pet by id
+// TODO: Fix deletePet function
 router.delete('/:id', async (req, res) => {
   const { id } = req.params
   try {
@@ -52,11 +52,11 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
-// add a new pet
+// POST / add a new pet
 router.post('/', async (req, res) => {
   try {
     const newPet: PetProfileData = req.body
-    const id = await db.createNewPetTraits(newPet)
+    const id = await db.createNewPet(newPet)
     res.status(201).json(id)
   } catch (error) {
     console.log('Error: ', error)
@@ -64,10 +64,11 @@ router.post('/', async (req, res) => {
   }
 })
 
-// edit pet by id
+// PATCH / edit pet by id
+// TODO: Fix updatePet function
 router.patch('/:id', async (req, res) => {
   const { id } = req.params
-  const pet: Pet = req.body
+  const pet: PetProfileData = req.body
   try {
     await db.updatePet(pet, Number(id))
     res.status(201).json(id)
