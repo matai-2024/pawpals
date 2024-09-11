@@ -8,7 +8,7 @@ export const addPets = [
     gender: 'Girlie pop',
     breed: 'Maltese',
     species: 'Dog',
-    bio: "I love long walks, belly rubs, and chasing after toys. I'm always up for an adventure, whether it's exploring the outdoors or snuggling on the couch. I bring joy and laughter to everyone I meet, and I'm the perfect partner in crime for any fun!",
+    bio: "I’m Pepper, the Maltese with a personality that’s as spicy as my name! My hobbies include performing the ‘zoomies’ at 3 AM and pretending my toys are top-secret spy gadgets. I may be small, but I’ve got big dreams—mostly involving endless belly rubs and making my humans laugh with my playful antics. I’m your go-to gal for a good time and an even better cuddle session!",
     trait_id: 1,
   },
   {
@@ -20,7 +20,7 @@ export const addPets = [
     gender: 'Boy',
     breed: 'Border Collie',
     species: 'Dog',
-    bio: "I love long walks, belly rubs, and chasing after toys. I'm always up for an adventure, whether it's exploring the outdoors or snuggling on the couch. I bring joy and laughter to everyone I meet, and I'm the perfect partner in crime for any fun!",
+    bio: "Meet Obi, the Border Collie who’s always on a quest for the next great adventure! My life motto? ‘Why sit still when you can sprint?’ When I’m not busy herding invisible sheep or concocting new ways to catch the frisbee mid-air, I’m plotting my next prank on my human. Keep up if you can—I promise, it’ll be a wild ride!",
     trait_id: 2,
   },
   {
@@ -32,7 +32,7 @@ export const addPets = [
     gender: 'Girl',
     breed: 'Cat',
     species: 'Cat',
-    bio: 'I am a curious and playful cat who loves climbing and exploring new spaces. My purrs are as soothing as a lullaby, and I enjoy napping in sunny spots and getting cozy in warm blankets. I’m a true companion with a touch of mischief.',
+    bio: "Hey there, I’m Luna! I’m the cat who’s got more curiosity than a catnip store and more mischief than a kitten with a laser pointer. My hobbies include perfecting my stealthy pounce and making sure no sunny spot is left un-napped. Don’t let my sweet purrs fool you—I’m a tiny troublemaker with a penchant for drama!",
     trait_id: 3,
   },
   {
@@ -44,7 +44,7 @@ export const addPets = [
     gender: 'Boy',
     breed: 'Cat',
     species: 'Cat',
-    bio: 'I am a curious and playful cat who loves climbing and exploring new spaces. My purrs are as soothing as a lullaby, and I enjoy napping in sunny spots and getting cozy in warm blankets. I’m a true companion with a touch of mischief.',
+    bio: "I’m Django, the cat who believes every day should be an adventure, preferably one that ends with a nap in a cozy corner. If you hear mysterious noises at night, that’s probably me trying to figure out how to open the treat cupboard. My motto? ‘Why be a boring cat when you can be a cat with a flair for the dramatic?’",
     trait_id: 4,
   },
   {
@@ -56,7 +56,7 @@ export const addPets = [
     gender: 'Girl',
     breed: 'Cat',
     species: 'Cat',
-    bio: 'I am a curious and playful cat who loves climbing and exploring new spaces. My purrs are as soothing as a lullaby, and I enjoy napping in sunny spots and getting cozy in warm blankets. I’m a true companion with a touch of mischief.',
+    bio: "Pixel here, your pint-sized explorer with a heart as big as my curiosity! I’m on a mission to discover every nook and cranny of the house, and if you’ve misplaced something, don’t worry—I’m on it. Between my playful pounces and dramatic sprawls in sunbeams, I’m here to bring a touch of whimsy to your life!",
     trait_id: 5,
   },
   {
@@ -68,7 +68,7 @@ export const addPets = [
     gender: 'Boy',
     breed: 'Cutie',
     species: 'Cat',
-    bio: 'I am a loyal and intelligent cat with a strong protective instinct. My training and obedience make me a reliable companion. I enjoy challenging activities like agility training and playing fetch, and I’m always ready to guard and protect my loved ones.',
+    bio: "Hello, I’m Miso, the cat who takes ‘loyal companion’ to a whole new level. I’m like a four-legged secret agent—always alert and ready for action, whether it’s a game of fetch or an intense round of agility training. I might look like a cute cuddle bug, but don’t let that fool you; I’m a dedicated protector and a playful prankster!",
     trait_id: 6,
   },
   {
@@ -80,7 +80,7 @@ export const addPets = [
     gender: 'Boy',
     breed: 'Meow meow',
     species: 'Cat',
-    bio: 'I’m an energetic and friendly cat who loves to fetch and play with everyone. My wagging tail and happy demeanor make me a hit at the park. I thrive on companionship and am always eager to make new friends and join in on adventures.',
+    bio: "Starsky, reporting for duty! I’m the cat who’s always up for a game of fetch, no matter how many times I have to chase that toy. My tail’s a wagging, my spirit’s soaring, and my favorite pastime is making sure everyone knows how friendly and fun I am. If you’re looking for a partner in play and a friend for life, I’m your guy!",
     trait_id: 7,
   },
   {
@@ -92,7 +92,7 @@ export const addPets = [
     gender: 'Girlie pop',
     breed: 'Labrador',
     species: 'Dog',
-    bio: 'I’m a unique and affectionate gorgeous gorgeous girl with a love for warmth and cuddles. My playful antics and loving nature make me a joy to be around. I enjoy snuggling up with my human and being the center of attention.',
+    bio: "Hi, I’m Bella, your friendly neighborhood Labrador with a tail that’s practically a metronome of happiness! I live for belly rubs, the occasional snack, and being the center of attention. If you’re looking for someone to help you find your lost socks or just snuggle up for a movie night, I’m your go-to girl!",
     trait_id: 8,
   },
   {
@@ -123,7 +123,7 @@ export const addPets = [
     id: 11,
     owner_id: 9,
     pet_name: 'Luna',
-    image: 'luna.jpg',
+    image: 'luna-2.jpg',
     dob: '2021-07-03',
     gender: 'Girl',
     breed: 'Husky',
@@ -135,7 +135,7 @@ export const addPets = [
     id: 12,
     owner_id: 10,
     pet_name: 'Bella',
-    image: 'bella.jpg',
+    image: 'bella-2.jpg',
     dob: '2019-08-15',
     gender: 'Girl',
     breed: 'Cocker Spaniel',
