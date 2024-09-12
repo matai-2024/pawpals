@@ -9,6 +9,17 @@ export function EventList() {
       <p className="mt-6 text-lg leading-8 text-gray-600">
         A list of all upcoming events in your area...
       </p>
+      <ul>
+        {Events.map((event) => (
+          <li key={event.id}>
+            <h3>{event.title}</h3>
+            <p>{event.location}</p>
+            <p>{event.date}</p>
+            <p>{event.description}</p>
+            <p>{event.creatorId}</p>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }
