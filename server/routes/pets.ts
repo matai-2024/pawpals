@@ -1,6 +1,6 @@
 import express from 'express'
 import * as db from '../db/functions/pets.ts'
-import { Pet, PetProfileData } from '../../models/forms.ts'
+import { PetProfileData } from '../../models/forms.ts'
 
 const router = express.Router()
 

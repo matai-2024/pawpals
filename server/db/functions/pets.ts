@@ -1,5 +1,5 @@
 import db from '../connection.ts'
-import { Form, PetData, PetProfileData } from '../../../models/forms.ts'
+import { Form, PetProfileData } from '../../../models/forms.ts'
 
 const camelCase = [
   'pets.id as id',
