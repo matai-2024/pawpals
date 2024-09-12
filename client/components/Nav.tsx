@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { IfAuthenticated, IfNotAuthenticated } from './utils/Authenticated.tsx'
 import { Link } from 'react-router-dom'
 
 const navigation = [
@@ -12,6 +14,14 @@ const navigation = [
 
 export default function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { user, logout, loginWithRedirect } = useAuth0()
+  const handleSignOut = () => {
+    logout()
+  }
+
+  const handleSignIn = () => {
+    loginWithRedirect()
+  }
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
@@ -53,12 +63,16 @@ export default function Nav() {
           >
             Sign up
           </Link>
-          <Link
-            to="#"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          <IfAuthenticated>
+          <button 
+          className="text-sm font-semibold leading-6 text-gray-900"
+          onClick={handleSignOut}>Sign out</button>
+        </IfAuthenticated>
+        <IfNotAuthenticated>
+          <button
+          className="text-sm font-semibold leading-6 text-gray-900"
+          onClick={handleSignIn}>Sign in</button>
+        </IfNotAuthenticated>
         </div>
       </nav>
       <Dialog
