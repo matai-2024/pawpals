@@ -1,5 +1,5 @@
 import db from '../connection.ts'
-import { Form, PetData, PetProfileData } from '../../../models/forms.ts'
+import { Form, PetProfileData } from '../../../models/forms.ts'
 
 const camelCase = [
   'pets.id as id',
@@ -59,6 +59,7 @@ export async function deletePet(petsId: number) {
     .where('pets.id', petsId)
     .select('trait_id as id')
     .first()
+  // eslint-disable-next-line no-console
   console.log(traitId.id)
 
   const deleteTraits = await db('traits')

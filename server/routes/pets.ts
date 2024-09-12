@@ -1,6 +1,6 @@
 import express from 'express'
 import * as db from '../db/functions/pets.ts'
-import { Pet, PetProfileData } from '../../models/forms.ts'
+import { PetProfileData } from '../../models/forms.ts'
 
 const router = express.Router()
 
@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
     const pets = await db.getAllPets()
     res.status(200).json(pets)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.status(500).json(error)
   }
@@ -22,6 +23,7 @@ router.get('/:id', async (req, res) => {
     const pet = await db.getPetById(Number(id))
     res.status(200).json(pet)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.status(500).json(error)
   }
@@ -34,6 +36,7 @@ router.get('/owner/:id', async (req, res) => {
     const pets = await db.getPetsByOwnerId(Number(id))
     res.status(200).json(pets)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.status(500).json(error)
   }
@@ -47,6 +50,7 @@ router.delete('/:id', async (req, res) => {
     await db.deletePet(Number(id))
     res.sendStatus(204)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.status(500).json(error)
   }
@@ -59,6 +63,7 @@ router.post('/', async (req, res) => {
     const id = await db.createNewPet(newPet)
     res.status(201).json(id)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.status(500).json(error)
   }
@@ -73,6 +78,7 @@ router.patch('/:id', async (req, res) => {
     await db.updatePet(pet, Number(id))
     res.status(201).json(id)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.status(500).json(error)
   }

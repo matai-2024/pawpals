@@ -6,7 +6,6 @@ import { usePets } from '../hooks/hooks.ts'
 
 export default function ProfileList() {
   const { data, isPending, isError, error } = usePets()
-  // console.log('Profiles: ', data)
 
   if (isPending) return <LoadingSpinner />
 

@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
     const owners = await db.getAllOwners()
     res.json(owners)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.sendStatus(500)
   }
@@ -22,6 +23,7 @@ router.get('/:id', async (req, res) => {
     const owner = await db.getOwnerById(Number(id))
     res.json(owner)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.sendStatus(500)
   }
@@ -34,6 +36,7 @@ router.get('/name/:firstName', async (req, res) => {
     const owners = await db.getOwnerByName(firstName)
     res.json(owners)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.sendStatus(500)
   }

@@ -6,6 +6,7 @@ export default function useCreatePet() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (data: PetProfileData) => {
+      // eslint-disable-next-line no-console
       console.log('mutation data', data)
 
       const id = addPet(data)
