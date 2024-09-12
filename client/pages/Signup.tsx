@@ -41,6 +41,7 @@ export default function Signup() {
     setData((prev) => {
       return { ...prev, ...fields }
     })
+    // eslint-disable-next-line no-console
     console.log(fields)
   }
 

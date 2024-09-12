@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
     const traits = await db.getAllTraits()
     res.status(200).json(traits)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.status(500).json(error)
   }

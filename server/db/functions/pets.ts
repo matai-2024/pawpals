@@ -59,6 +59,7 @@ export async function deletePet(petsId: number) {
     .where('pets.id', petsId)
     .select('trait_id as id')
     .first()
+  // eslint-disable-next-line no-console
   console.log(traitId.id)
 
   const deleteTraits = await db('traits')
