@@ -17,7 +17,7 @@ export async function fetchPetById(id: number) {
 
 // get pets by owner id
 export async function fetchPetsByOwnerId(id: number) {
-  const res = await request.get(rootUrl + 'owner/' + id)
+  const res = await request.get(rootUrl + '/owner/' + id)
   return res.body as PetProfile[]
 }
 

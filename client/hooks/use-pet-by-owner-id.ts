@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchPetsByOwnerId } from '../apis/apiClientPets.ts'
 
-export default function usePetById(id: number) {
+export default function usePetByOwnerId(ownerId: number) {
   const query = useQuery({
-    queryKey: ['pets', id],
-    queryFn: () => fetchPetsByOwnerId(id),
+    queryKey: ['pets', ownerId],
+    queryFn: () => fetchPetsByOwnerId(ownerId),
   })
   return { ...query }
 }
