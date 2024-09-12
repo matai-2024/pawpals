@@ -1,0 +1,65 @@
+name: CI/CD
+
+env:
+  # For Auth0 - this will be used for testing
+  # These are environment variables that the workflow will use during execution. 
+  # The values are stored in GitHub secrets (for security reasons) and injected into the environment at runtime. 
+  # These variables are used for the Auth0 authentication service in the project.
+  VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
+  VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
+  VITE_AUTH0_AUDIENCE: ${{ secrets.VITE_AUTH0_AUDIENCE }}
+  VITE_AUTH0_CLIENT_SECRET: ${{ secrets.VITE_AUTH0_CLIENT_SECRET }}
+
+on:
+  # This section defines the events that trigger the workflow:
+    # push: The workflow will run when there is a push event on the dev or main branches.
+    # pull_request: The workflow will also run when a pull request is made to the dev or main branches.
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+
+jobs:
+  # This section defines a job named build, which will run on the latest Ubuntu runner provided by GitHub. 
+  # A runner is a virtual machine that will execute the steps in the workflow.
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # This step uses the checkout action to pull the repository's code onto the runner so that it can be built and tested.
+      - uses: actions/checkout@v2
+      - name: Cache packages
+      # This step caches the Node.js dependencies (node_modules) to speed up the workflow by avoiding reinstallation on each run.
+      # cache-name: A custom name for the cache, which helps in identifying the cache key.
+      # path: The path to the directory where Node.js dependencies are stored (~/.npm).
+      # key: A unique key generated based on the runner's OS and a hash of the package-lock.json file, ensuring the cache is tied to a specific version of the dependencies.
+      # restore-keys: Fallback keys to restore an older cache in case the exact key does not exist.
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      # This step installs the project's dependencies using npm ci, which installs dependencies based on the package-lock.json file. 
+      # It's faster and more reliable than npm install for CI environments because it ensures the exact dependencies are installed.
+      - name: Install Dependencies
+        run: npm ci --legacy-peer-deps
+
+      # This step runs the linter (npm run lint) with an additional rule to enforce the no-console rule with error level 2,
+      #  which means console statements will result in errors during the linting process.
+      - name: Linting
+        run: "npm run lint -- --rule 'no-console: 2'"
+
+      # This step runs the project's tests using npm run test. 
+      # The tests ensure the code is working as expected and haven't broken after recent changes.
+      - name: Test
+        run: npm run test
+
+      # This step runs a TypeScript type-checking process to verify that the TypeScript code is free from type errors (npm run typecheck).
+      - name: Typecheck
+        run: npm run typecheck
