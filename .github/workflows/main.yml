@@ -15,7 +15,7 @@ on:
     # push: The workflow will run when there is a push event on the dev or main branches.
     # pull_request: The workflow will also run when a pull request is made to the dev or main branches.
   push:
-    branches: [dev, main, ci/cd-setup]
+    branches: [dev, main]
   pull_request:
     branches: [dev, main, ci/cd-setup]
 
