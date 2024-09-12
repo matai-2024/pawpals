@@ -15,9 +15,9 @@ on:
     # push: The workflow will run when there is a push event on the dev or main branches.
     # pull_request: The workflow will also run when a pull request is made to the dev or main branches.
   push:
-    branches: [dev, main]
+    branches: [dev, main, ci/cd-setup]
   pull_request:
-    branches: [dev, main]
+    branches: [dev, main, ci/cd-setup]
 
 jobs:
   # This section defines a job named build, which will run on the latest Ubuntu runner provided by GitHub. 
