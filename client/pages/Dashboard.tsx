@@ -11,7 +11,8 @@ export default function Dashboard() {
       <div className="flex-1 p-8">
         <Card title="My Pets" addAction="Add Pet">
           <div className="space-y-4">
-            <PetCard name="Gary" imageUrl="https://via.placeholder.com/150" />
+            <PetCard name="Starsky" imageUrl="starsky.jpg" />
+
             <PetCard name="Peach" imageUrl="https://via.placeholder.com/150" />
           </div>
         </Card>
