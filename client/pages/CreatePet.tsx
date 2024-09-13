@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, MouseEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PetProfileForm from '../components/forms/PetProfileForm.tsx'
 import { useCreatePet, useMultistepForm } from '../hooks/hooks.ts'
@@ -8,9 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { PetProfileData } from '../../models/forms.ts'
 
 const INITIAL_DATA = {
-  firstName: '',
-  lastName: '',
-  email: '',
+  // get owner by sign-in ID
   ownerId: 1,
   petName: '',
   image: '',
@@ -44,7 +42,7 @@ export default function Signup() {
       return { ...prev, ...fields }
     })
     // eslint-disable-next-line no-console
-    console.log(fields)
+    console.log(data)
   }
 
   const { step, steps, currentStepIndex, isFirstStep, isLastStep, back, next } =
