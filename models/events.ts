@@ -5,6 +5,8 @@ export interface Event {
   location: string
   description: string
   creatorId: number
+  eventImage: string
+  eventWebsite: string
 }
 export interface EventId extends Event {
   id: number

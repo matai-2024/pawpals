@@ -9,6 +9,8 @@ export const Events: EventId[] = [
     location: 'Mission Bay',
     description: 'Grandpa is having a birthday bbq',
     creatorId: 1,
+    eventImage: 'img/img',
+    eventWebsite: 'www.website.com/website',
   },
   {
     id: 2,
@@ -18,6 +20,8 @@ export const Events: EventId[] = [
     location: 'Grey Lynn',
     description: 'Happy new year',
     creatorId: 5,
+    eventImage: 'img/img',
+    eventWebsite: 'www.website.com/website',
   },
   {
     id: 3,
@@ -27,6 +31,8 @@ export const Events: EventId[] = [
     location: 'Waiheke',
     description: 'Obis birthday party',
     creatorId: 1,
+    eventImage: 'img/img',
+    eventWebsite: 'www.website.com/website',
   },
   {
     id: 4,
@@ -34,18 +40,11 @@ export const Events: EventId[] = [
     date: '28-09-2024',
     time: '1pm-2pm',
     location: 'Newmarket',
-    description: 'Mutual friends cafe are having a bring your pet event',
-    creatorId: 3,
-  },
-  {
-    id: 5,
-    title: 'My Iguana is missing',
-    date: '26-09-2024',
-    time: '1pm-2pm',
-    location: 'North shore',
     description:
-      'My pet iguana has escaped. Pleasse come to the park in birkenhead and help me look for him!',
-    creatorId: 1,
+      'Mutual friends cafe are having a bring your pet event yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    creatorId: 3,
+    eventImage: 'img/img',
+    eventWebsite: 'www.website.com/website',
   },
 ]
 
