@@ -10,7 +10,7 @@ const navigation = [
   { name: 'About', to: '#' },
   { name: 'Pets', to: '/profiles' },
   { name: 'Events', to: '#' },
-  { name: 'Dashboard', to: '/Dashboard' },
+  { name: 'Dashboard', to: '/dashboard' },
 ]
 
 export default function Nav() {

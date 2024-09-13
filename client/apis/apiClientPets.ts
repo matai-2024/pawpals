@@ -16,9 +16,13 @@ export async function fetchPetById(id: number) {
 }
 
 // get pets by owner id
-export async function fetchPetsByOwnerId(id: number) {
-  const res = await request.get(rootUrl + '/owner/' + id)
-  return res.body as PetProfile[]
+// export async function fetchPetsByOwnerId(id: number) {
+//   const res = await request.get(rootUrl + '/owner/' + id)
+//   return res.body as PetProfile[]
+// }
+export const fetchPetsByOwnerId = async (ownerId: string) => {
+  const response = await fetch(rootUrl + `/owner/${ownerId}`)
+  return response.json()
 }
 
 // delete by id
