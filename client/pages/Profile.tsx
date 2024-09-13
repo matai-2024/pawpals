@@ -57,7 +57,7 @@ export default function Profile() {
 
           <div className="mt-6 flex items-center justify-center gap-x-6">
             <p className="text-xl font-semibold leading-8 text-gray-600">
-              {data.dateOfBirth}
+              {data.dateOfBirth.split('-').reverse().join('-')}
             </p>
             <p className="text-xl font-semibold leading-8 text-gray-600">
               {data.gender}
