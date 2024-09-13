@@ -1,13 +1,14 @@
-export interface Event {
+export interface EventData {
   title: string
   date: string
   time: string
   location: string
   description: string
-  creatorId: number
   eventImage: string
   eventWebsite: string
+  audience: string
+  creatorId: number
 }
-export interface EventId extends Event {
+export interface Event extends EventData {
   id: number
 }

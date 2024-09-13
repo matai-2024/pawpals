@@ -1,6 +1,6 @@
-import { EventId } from '../../../models/events'
+import { Event } from '../../../models/events'
 
-export const Events: EventId[] = [
+export const Events: Event[] = [
   {
     id: 1,
     title: 'Grandpas birthday',
@@ -8,9 +8,10 @@ export const Events: EventId[] = [
     time: '1pm-2pm',
     location: 'Mission Bay',
     description: 'Grandpa is having a birthday bbq',
-    creatorId: 1,
     eventImage: 'img/img',
     eventWebsite: 'www.website.com/website',
+    audience: 'my friends only',
+    creatorId: 1,
   },
   {
     id: 2,
@@ -19,9 +20,10 @@ export const Events: EventId[] = [
     time: '1pm-2pm',
     location: 'Grey Lynn',
     description: 'Happy new year',
-    creatorId: 5,
     eventImage: 'img/img',
     eventWebsite: 'www.website.com/website',
+    audience: 'anyone!',
+    creatorId: 5,
   },
   {
     id: 3,
@@ -30,9 +32,10 @@ export const Events: EventId[] = [
     time: '1pm-2pm',
     location: 'Waiheke',
     description: 'Obis birthday party',
-    creatorId: 1,
     eventImage: 'img/img',
     eventWebsite: 'www.website.com/website',
+    audience: 'my friends only',
+    creatorId: 1,
   },
   {
     id: 4,
@@ -42,9 +45,10 @@ export const Events: EventId[] = [
     location: 'Newmarket',
     description:
       'Mutual friends cafe are having a bring your pet event yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    creatorId: 3,
     eventImage: 'img/img',
     eventWebsite: 'www.website.com/website',
+    audience: 'anyone!',
+    creatorId: 3,
   },
 ]
 
