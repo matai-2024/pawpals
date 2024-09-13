@@ -20,7 +20,7 @@ export function dateToReadable(date: string) {
   const split = date.split(regex)
   split.pop()
   const string = split.toString()
-  const hash: any = string.split(',').pop()
+  const hash = string.split(',').pop() || ''
   const currMonth = months[hash]
 
   return `${split[0]} ${currMonth}`
