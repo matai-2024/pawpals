@@ -1,4 +1,3 @@
-import Nav from '../components/Nav'
 import { Events } from '../components/utils/tempEvents'
 
 export function EventList() {
@@ -26,14 +25,12 @@ export function EventList() {
                     {event.title}
                   </h3>
                   <p className="text-lg leading-8 text-gray-600">
+                    {event.date} {event.time}
+                  </p>
+                  <p className="text-lg leading-8 text-gray-600">
                     {event.location}
                   </p>
-                  <p className="text-lg leading-8 text-gray-600">
-                    {event.date}
-                  </p>
-                  <p className="text-lg leading-8 text-gray-600">
-                    {event.time}
-                  </p>
+
                   <p className="text-lg leading-8 text-gray-600">
                     {event.description}
                   </p>
