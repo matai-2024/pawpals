@@ -59,8 +59,7 @@ export default function Signup() {
         updateFields={updateFields}
         key={'pet-traits-form'}
       />,
-      <PetProfileForm {...data} updateFields={updateFields} key={'pet-form'} />,
-      <OwnerForm {...data} updateFields={updateFields} key={'owner-form'} />,
+      <PetProfileForm {...data} updateFields={updateFields} key={'pet-form'} />
     ])
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -75,7 +74,7 @@ export default function Signup() {
   }
 
   return (
-    <div>mutation
+    <div>
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-24">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
