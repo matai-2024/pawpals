@@ -16,4 +16,17 @@ router.get('/', async (req, res) => {
   }
 })
 
+// POST / add a new event
+router.post('/', async (req, res) => {
+  try {
+    const newEvent: EventData = req.body
+    const id = await db.insertEvent(newEvent)
+    res.status(201).json(id)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error: ', error)
+    res.status(500).json(error)
+  }
+})
+
 export default router
