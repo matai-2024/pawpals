@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 // GET pet by id
-router.get('/:id', checkJwt, async (req, res) => {
+router.get('/:id', async (req, res) => {
   const id = req.params.id
   try {
     const pet = await db.getPetById(Number(id))
@@ -31,7 +31,7 @@ router.get('/:id', checkJwt, async (req, res) => {
 })
 
 // GET pets by owner id
-router.get('/owner/:id', checkJwt, async (req, res) => {
+router.get('/owner/:id', async (req, res) => {
   const { id } = req.params
   try {
     const pets = await db.getPetsByOwnerId(Number(id))

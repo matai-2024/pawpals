@@ -38,6 +38,6 @@ describe('Nav.tsx', () => {
     await user.click(button)
     const homeText = await screen.getByText('Find more friends for your best friend')
 
-    expect(homeText).toBeInTheDocument()
+    expect(homeText).toBeTruthy()
   })
 })

@@ -10,8 +10,8 @@ export async function fetchPets() {
 }
 
 // get pet by id
-export async function fetchPetById(id: number, token: string) {
-  const res = await request.get(rootUrl + '/' + id).set('Authorization', `Bearer ${token}`)
+export async function fetchPetById(id: number) {
+  const res = await request.get(rootUrl + '/' + id)
   return res.body as PetProfile
 }
 

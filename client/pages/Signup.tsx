@@ -5,6 +5,7 @@ import PetProfileForm from '../components/forms/PetProfileForm.tsx'
 import { useCreatePet, useMultistepForm } from '../hooks/hooks.ts'
 import PetBasicsForm from '../components/forms/PetBasicsForm.tsx'
 import PetTraitsForm from '../components/forms/PetTraitsForm.tsx'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const INITIAL_DATA = {
   firstName: '',
@@ -36,6 +37,7 @@ export default function Signup() {
   const [data, setData] = useState(INITIAL_DATA)
   const addPet = useCreatePet()
   const navigate = useNavigate()
+  const { getAccessTokenSilently } = useAuth0()
 
   function updateFields(fields: Partial<FormData>) {
     setData((prev) => {
@@ -66,13 +68,14 @@ export default function Signup() {
     if (!isLastStep) {
       next()
     } else {
-      const id = await addPet.mutateAsync(data, token)
+      const token = await getAccessTokenSilently()
+      const id = await addPet.mutateAsync({data, token})
       navigate(`/profiles/${id}`)
     }
   }
 
   return (
-    <div>
+    <div>mutation
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-24">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
