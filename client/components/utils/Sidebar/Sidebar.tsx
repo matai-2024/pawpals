@@ -8,7 +8,7 @@ const Sidebar = () => {
           alt="Profile"
           className="w-24 h-24 rounded-full mb-4"
         />
-        <p className="text-lg font-semibold">Sam Pedersen</p>
+        <p className="text-lg font-semibold">Your name</p>
       </div>
       <div className="flex flex-col space-y-6 mt-10 pl-6">
         <a

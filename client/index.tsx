@@ -10,24 +10,25 @@ const queryClient = new QueryClient()
 document.addEventListener('DOMContentLoaded', () => {
   createRoot(document.getElementById('app') as HTMLElement).render(
     <Auth0Provider
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    domain={import.meta.env.VITE_AUTH0_DOMAIN as string}
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    clientId={import.meta.env.VITE_AUTH0_CLIENT_ID as string}
-    cacheLocation="localstorage"
-    authorizationParams={{
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      audience: import.meta.env.VITE_AUTH0_AUDIENCE as string,
-      redirect_uri: 'http://localhost:5173/dashboard',
-    }}
-  >
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <ReactQueryDevtools />
-    </QueryClientProvider>,
-  </Auth0Provider>
+      domain={import.meta.env.VITE_AUTH0_DOMAIN as string}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      clientId={import.meta.env.VITE_AUTH0_CLIENT_ID as string}
+      cacheLocation="localstorage"
+      authorizationParams={{
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        audience: import.meta.env.VITE_AUTH0_AUDIENCE as string,
+        redirect_uri: 'http://localhost:5173/dashboard',
+      }}
+    >
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+      ,
+    </Auth0Provider>,
   )
 })
