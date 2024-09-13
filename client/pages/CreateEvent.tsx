@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react'
 import CreateEventForm from '../components/forms/create-event/CreateEventForm.tsx'
 import { useNavigate } from 'react-router-dom'
 import useCreateEvent from '../hooks/use-event-create.ts'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const INITIAL_DATA = {
   title: '',
@@ -12,12 +13,15 @@ const INITIAL_DATA = {
   eventImage: '',
   eventWebsite: '',
   audience: '',
+  creatorId: '',
 }
 
 export default function CreateEvent() {
   const [data, setData] = useState(INITIAL_DATA)
   const addEvent = useCreateEvent()
   const navigate = useNavigate()
+  const { user } = useAuth0()
+  console.log(user)
 
   function updateFields(fields: Partial<FormData>) {
     setData((prev) => {
