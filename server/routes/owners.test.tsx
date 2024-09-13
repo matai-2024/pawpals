@@ -7,6 +7,7 @@ import { getMockToken } from './mockToken.ts'
 vi.mock('../db/functions/owners')
 vi.mocked(db.addNewOwner).mockResolvedValue(201)
 
+const mockToken = getMockToken()
 describe('POST /api/v1/owners/', () => {
   it('should return 201 when creating a new owner', async () => {
     const newOwner = {
@@ -17,7 +18,7 @@ describe('POST /api/v1/owners/', () => {
 
     const response = await request(server)
       .post('/api/v1/owners')
-      .set('authorization', `Bearer ${getMockToken()}`)
+      .set('authorization', `Bearer ${mockToken}`)
       .send(newOwner)
     expect(response.status).toBe(201)
   })
