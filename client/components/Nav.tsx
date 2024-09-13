@@ -58,12 +58,14 @@ export default function Nav() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
-          <Link
-            to="/signup"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Sign up
-          </Link>
+        <IfAuthenticated>
+          <></>
+        </IfAuthenticated>
+        <IfNotAuthenticated>
+          <button
+          className="text-sm font-semibold leading-6 text-gray-900"
+          onClick={handleSignIn}>Sign up</button>
+        </IfNotAuthenticated>
           <IfAuthenticated>
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
