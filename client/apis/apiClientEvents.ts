@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { EventData } from '../../models/events'
 
 const rootUrl = '/api/v1/events'
 
@@ -9,8 +10,11 @@ export async function fetchEvents() {
 }
 
 // add an event
-export async function addEvent(newEvent: EventData) {
-  const res = await request.post(rootUrl + '/').send(newEvent)
+export async function addEvent(newEvent: EventData, token: string) {
+  const res = await request
+    .post(rootUrl + '/')
+    .set('Authorization', `Bearer ${token}`)
+    .send(newEvent)
   return res.body as number
 }
 

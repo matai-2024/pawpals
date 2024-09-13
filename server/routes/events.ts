@@ -1,6 +1,8 @@
 import express from 'express'
 
 import * as db from '../db/functions/events.ts'
+import checkJwt from '../db/auth0.ts'
+import { EventData } from '../../models/events.ts'
 
 const router = express.Router()
 
@@ -17,7 +19,7 @@ router.get('/', async (req, res) => {
 })
 
 // POST / add a new event
-router.post('/', async (req, res) => {
+router.post('/', checkJwt, async (req, res) => {
   try {
     const newEvent: EventData = req.body
     const id = await db.insertEvent(newEvent)
