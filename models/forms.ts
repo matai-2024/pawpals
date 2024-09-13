@@ -96,9 +96,12 @@ export interface PetProfile extends PetProfileData {
   id: number
 }
 
-export interface OwnerData {
+export interface Names {
   firstName: string
   lastName: string
+}
+
+export interface OwnerData extends Names {
   email: string
 }
 

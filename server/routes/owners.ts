@@ -1,11 +1,12 @@
 import express from 'express'
 
 import * as db from '../db/functions/owners.ts'
+import checkJwt from '../db/auth0.ts'
 
 const router = express.Router()
 
 // GET all owners for /api/v1/owners
-router.get('/', async (req, res) => {
+router.get('/', checkJwt, async (req, res) => {
   try {
     const owners = await db.getAllOwners()
     res.json(owners)
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 // GET owner by id
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkJwt, async (req, res) => {
   const { id } = req.params
   try {
     const owner = await db.getOwnerById(Number(id))
@@ -30,7 +31,7 @@ router.get('/:id', async (req, res) => {
 })
 
 // GET owner by name
-router.get('/name/:firstName', async (req, res) => {
+router.get('/name/:firstName', checkJwt, async (req, res) => {
   const { firstName } = req.params
   try {
     const owners = await db.getOwnerByName(firstName)
@@ -45,6 +46,18 @@ router.get('/name/:firstName', async (req, res) => {
 // TODO LIST:
 // -----------
 // Add new owner
+router.post('/', checkJwt, async (req, res) => {
+  try {
+    const owner = req.body
+    await db.addNewOwner(owner)
+    res.status(201).json(owner)
+  } catch (error) {
+     // eslint-disable-next-line no-console
+     console.log('Error: ', error)
+     res.sendStatus(500)
+  }
+})
+
 // Delete an owner
 // Edit an owner
 
