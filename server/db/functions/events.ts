@@ -1,3 +1,4 @@
+import { EventData } from '../../../models/events.ts'
 import db from '../connection.ts'
 
 // Get all events
@@ -17,6 +18,7 @@ export async function insertEvent(eventData: EventData) {
     eventImage,
     eventWebsite,
     audience,
+    creatorId,
   } = eventData
 
   const newEvent = {
@@ -28,8 +30,9 @@ export async function insertEvent(eventData: EventData) {
     event_image: eventImage,
     event_website: eventWebsite,
     audience,
+    creator_id: creatorId
   }
 
   const result = await db('events').insert(newEvent, ['id'])
-  return result
+  return result[0].id
 }

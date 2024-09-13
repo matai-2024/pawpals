@@ -1,4 +1,5 @@
-import FormWrapper from '../FormWrapper'
+import { EventFormProps } from '../../../../models/events.ts'
+import FormWrapper from '../FormWrapper.tsx'
 
 export default function CreateEventForm({
   title,
@@ -9,6 +10,7 @@ export default function CreateEventForm({
   eventImage,
   eventWebsite,
   audience,
+  creatorId,
   updateFields,
 }: EventFormProps) {
   return (
