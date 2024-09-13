@@ -11,7 +11,7 @@ import Signup from './pages/Signup'
 import ProfileList from './pages/ProfileList'
 import Profile from './pages/Profile'
 
-const routes = createRoutesFromElements(
+export const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
     <Route index element={<Home />} />
     <Route path="signup" element={<Signup />} />
