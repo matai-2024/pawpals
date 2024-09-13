@@ -1,7 +1,7 @@
 // -- HELPER FUNCTIONS FOR EVENT DATES -- //
 
 export function dateToReadable(date: string) {
-  const months = {
+  const months: { [key: string]: string } = {
     '01': 'Jan',
     '02': 'Feb',
     '03': 'Mar',
@@ -20,7 +20,7 @@ export function dateToReadable(date: string) {
   const split = date.split(regex)
   split.pop()
   const string = split.toString()
-  const hash = string.split(',').pop()
+  const hash: any = string.split(',').pop()
   const currMonth = months[hash]
 
   return `${split[0]} ${currMonth}`
