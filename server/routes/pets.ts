@@ -1,6 +1,7 @@
 import express from 'express'
 import * as db from '../db/functions/pets.ts'
 import { PetProfileData } from '../../models/forms.ts'
+import checkJwt from '../db/auth0.ts'
 
 const router = express.Router()
 
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 // GET pet by id
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkJwt, async (req, res) => {
   const id = req.params.id
   try {
     const pet = await db.getPetById(Number(id))
@@ -30,7 +31,7 @@ router.get('/:id', async (req, res) => {
 })
 
 // GET pets by owner id
-router.get('/owner/:id', async (req, res) => {
+router.get('/owner/:id', checkJwt, async (req, res) => {
   const { id } = req.params
   try {
     const pets = await db.getPetsByOwnerId(Number(id))
@@ -44,7 +45,7 @@ router.get('/owner/:id', async (req, res) => {
 
 // DELETE pet by id
 // TODO: Fix deletePet function
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkJwt, async (req, res) => {
   const { id } = req.params
   try {
     await db.deletePet(Number(id))
@@ -57,7 +58,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 // POST / add a new pet
-router.post('/', async (req, res) => {
+router.post('/', checkJwt, async (req, res) => {
   try {
     const newPet: PetProfileData = req.body
     const id = await db.createNewPet(newPet)
@@ -71,7 +72,7 @@ router.post('/', async (req, res) => {
 
 // PATCH / edit pet by id
 // TODO: Fix updatePet function
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', checkJwt, async (req, res) => {
   const { id } = req.params
   const pet: PetProfileData = req.body
   try {
