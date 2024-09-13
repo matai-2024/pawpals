@@ -12,7 +12,7 @@ describe('POST /api/v1/owners/', () => {
     const newOwner = {
       firstName: 'Sam',
       lastName: 'Ham',
-      email: 'sam@ham.br'
+      email: 'sam@ham.br',
     }
 
     const response = await request(server)

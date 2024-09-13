@@ -51,15 +51,19 @@ export default function Signup() {
     useMultistepForm([
       <PetBasicsForm
         {...data}
+        // @ts-expect-error cowboy
         updateFields={updateFields}
         key={'pet-basics-form'}
       />,
       <PetTraitsForm
         {...data}
+        // @ts-expect-error cowboy
         updateFields={updateFields}
         key={'pet-traits-form'}
       />,
+      // @ts-expect-error cowboy
       <PetProfileForm {...data} updateFields={updateFields} key={'pet-form'} />,
+      // @ts-expect-error cowboy
       <OwnerForm {...data} updateFields={updateFields} key={'owner-form'} />,
     ])
 
@@ -69,13 +73,14 @@ export default function Signup() {
       next()
     } else {
       const token = await getAccessTokenSilently()
-      const id = await addPet.mutateAsync({data, token})
+      const id = await addPet.mutateAsync({ data, token })
       navigate(`/profiles/${id}`)
     }
   }
 
   return (
-    <div>mutation
+    <div>
+      mutation
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-24">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
