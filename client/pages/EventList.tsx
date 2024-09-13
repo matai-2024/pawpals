@@ -1,5 +1,8 @@
 import { Events } from '../components/utils/tempEvents'
-import { dateToReadable } from '../components/utils/EventPresentation'
+import {
+  dateToReadable,
+  TimeFormat,
+} from '../components/utils/EventPresentation'
 export function EventList() {
   return (
     <>
@@ -25,7 +28,7 @@ export function EventList() {
                     <div className="self-stretch h-[107px] flex-col justify-start items-start gap-2 flex">
                       <p className="self-stretch text-[#1e1e1e] text-base font-semibold font-['Inter'] leading-snug">
                         {`${dateToReadable(event.date)},`}{' '}
-                        {event.time.toUpperCase()}
+                        {TimeFormat(event.time)}
                       </p>
                       <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
                         {event.title}
