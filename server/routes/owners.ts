@@ -50,8 +50,7 @@ router.post('/', checkJwt, async (req, res) => {
   try {
     const owner = req.body
     await db.addNewOwner(owner)
-    let resStatus = 201 //success
-    res.status(resStatus).json(owner)
+    res.status(201).json(owner)
   } catch (error) {
      // eslint-disable-next-line no-console
      console.log('Error: ', error)
