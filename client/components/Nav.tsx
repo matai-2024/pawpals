@@ -9,7 +9,7 @@ const navigation = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '#' },
   { name: 'Pets', to: '/profiles' },
-  { name: 'Events', to: '#' },
+  { name: 'Events', to: '/events' },
 ]
 
 export default function Nav() {
@@ -64,15 +64,21 @@ export default function Nav() {
             Sign up
           </Link>
           <IfAuthenticated>
-          <button 
-          className="text-sm font-semibold leading-6 text-gray-900"
-          onClick={handleSignOut}>Sign out</button>
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <button
-          className="text-sm font-semibold leading-6 text-gray-900"
-          onClick={handleSignIn}>Sign in</button>
-        </IfNotAuthenticated>
+            <button
+              className="text-sm font-semibold leading-6 text-gray-900"
+              onClick={handleSignOut}
+            >
+              Sign out
+            </button>
+          </IfAuthenticated>
+          <IfNotAuthenticated>
+            <button
+              className="text-sm font-semibold leading-6 text-gray-900"
+              onClick={handleSignIn}
+            >
+              Sign in
+            </button>
+          </IfNotAuthenticated>
         </div>
       </nav>
       <Dialog
