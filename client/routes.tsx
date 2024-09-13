@@ -11,6 +11,7 @@ import Signup from './pages/Signup'
 import ProfileList from './pages/ProfileList'
 import Profile from './pages/Profile'
 import CreateEvent from './pages/CreateEvent'
+import EventList from './pages/EventList'
 
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
@@ -18,6 +19,7 @@ export const routes = createRoutesFromElements(
     <Route path="signup" element={<Signup />} />
     <Route path="profiles" element={<ProfileList />} />
     <Route path="profiles/:id" element={<Profile />} />
+    <Route path="events" element={<EventList />} />
     <Route path="events/create" element={<CreateEvent />} />
   </Route>,
 )
