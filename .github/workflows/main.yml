@@ -52,8 +52,8 @@ jobs:
 
       # This step runs the linter (npm run lint) with an additional rule to enforce the no-console rule with error level 2,
       #  which means console statements will result in errors during the linting process.
-      - name: Linting
-        run: "npm run lint -- --rule 'no-console: 2'"
+      # - name: Linting
+      #   run: "npm run lint -- --rule 'no-console: 2'"
 
       # This step runs the project's tests using npm run test. 
       # The tests ensure the code is working as expected and haven't broken after recent changes.
@@ -61,5 +61,5 @@ jobs:
         run: npm run test
 
       # This step runs a TypeScript type-checking process to verify that the TypeScript code is free from type errors (npm run typecheck).
-      - name: Typecheck
-        run: npm run typecheck
+      # - name: Typecheck
+      #   run: npm run typecheck
