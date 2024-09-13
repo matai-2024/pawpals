@@ -10,8 +10,8 @@ export async function fetchPets() {
 }
 
 // get pet by id
-export async function fetchPetById(id: number) {
-  const res = await request.get(rootUrl + '/' + id)
+export async function fetchPetById(id: number, token: string) {
+  const res = await request.get(rootUrl + '/' + id).set('Authorization', `Bearer ${token}`)
   return res.body as PetProfile
 }
 
@@ -22,13 +22,13 @@ export async function fetchPetsByOwnerId(id: number) {
 }
 
 // delete by id
-export async function deletePetById(id: number) {
-  await request.delete(rootUrl + '/' + id)
+export async function deletePetById(id: number, token: string) {
+  await request.delete(rootUrl + '/' + id).set('Authorization', `Bearer ${token}`)
 }
 
 // add a pet
-export async function addPet(newPet: PetProfileData) {
-  const res = await request.post(rootUrl + '/').send(newPet)
+export async function addPet(newPet: PetProfileData, token: string) {
+  const res = await request.post(rootUrl + '/').set('Authorization', `Bearer ${token}`).send(newPet)
   return res.body as number
 }
 
