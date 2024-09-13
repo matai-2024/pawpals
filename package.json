@@ -17,7 +17,11 @@
     "build:client": "vite build",
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "knex": "knex --knexfile ./server/db/knexfile.js"
+    "knex": "knex --knexfile ./server/db/knexfile.js",
+    "storybook": "run-p watch:storybook dev:css",
+    "watch:storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "dev:css": "tailwindcss -i client/styles/main.css -o public/output.css --watch"
   },
   "eslintConfig": {
     "extends": "@devacademy/eslint-config/react",
@@ -72,7 +76,17 @@
     "tsx": "^3.12.7",
     "typescript": "^5.3.3",
     "vite": "^5.0.0",
-    "vitest": "^1.2.0"
+    "vitest": "^1.2.0",
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-styling": "^1.3.7",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/react": "^7.5.3",
+    "@storybook/react-vite": "^7.5.3",
+    "@storybook/testing-library": "^0.2.2",
+    "eslint-plugin-storybook": "^0.6.15",
+    "storybook": "^7.5.3"
   },
   "prettier": {
     "semi": false,

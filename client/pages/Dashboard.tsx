@@ -1,9 +1,10 @@
 import { PetProfile } from '../../models/forms'
 import LoadingSpinner from '../components/LoadingSpinner'
+import Sidebar from '../components/utils/Sidebar'
 import usePetByOwnerId from '../hooks/use-pet-by-owner-id'
 
 export default function Dashboard() {
-  const { data, isPending, isError, error } = usePetByOwnerId(3)
+  const { data, isPending, isError, error } = usePetByOwnerId(5)
   if (isPending) return <LoadingSpinner />
 
   if (isError)
@@ -30,6 +31,8 @@ export default function Dashboard() {
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
         My Pets
       </h1>
+
+      <Sidebar />
       <div className="flex gap-x-4">
         <ul>
           {data.map((profile: PetProfile) => (
