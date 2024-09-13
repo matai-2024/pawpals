@@ -46,6 +46,19 @@ router.get('/name/:firstName', checkJwt, async (req, res) => {
 // TODO LIST:
 // -----------
 // Add new owner
+router.post('/', checkJwt, async (req, res) => {
+  try {
+    const owner = req.body
+    await db.addNewOwner(owner)
+    let resStatus = 201 //success
+    res.status(resStatus).json(owner)
+  } catch (error) {
+     // eslint-disable-next-line no-console
+     console.log('Error: ', error)
+     res.sendStatus(500)
+  }
+})
+
 // Delete an owner
 // Edit an owner
 
