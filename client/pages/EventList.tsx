@@ -22,28 +22,31 @@ export function EventList() {
         <ul>
           {Events.map((event) => (
             <li key={event.id}>
-              <div className="flex justify-start w-880px gap-6 my-8 items-center bg-white border border-gray-200 rounded-lg shadow  hover:bg-gray-100">
-                <img
-                  src="public/luna.jpg"
-                  alt={`${event.title}`}
-                  className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
-                />
-                <div className="flex flex-col items-start px-14 leading-normal text-left">
-                  <p className=" leading-snug text-gray-900 text-base font-semibold">
-                    {dateToReadable(event.date)} {event.time}
-                  </p>
-                  <h3 className="self-stretch  leading-[28.80px] text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
-                    {event.title}
-                  </h3>
-                  <p className="leading-snug text-gray-900 text-base font-semibold">
-                    {event.location}
-                  </p>
-                  <p className="self-stretch leading-tight text-sm font-normal text-gray-600">
-                    {event.description}
-                  </p>
-
-                  <div className="self-stretch text-[#b3b3b3] gap-2 pt-6 text-sm font-normal font-['Inter'] leading-tight">
-                    26 Attending
+              <div className="self-stretch h-[1136px] flex-col justify-start items-start gap-6 flex">
+                <div className="w-[880px] h-52 p-6 bg-white rounded-lg border border-[#d9d9d9] justify-start items-start gap-6 inline-flex">
+                  <img
+                    className="w-40 h-40"
+                    src="public/luna.jpg"
+                    alt={`${event.title}`}
+                  />
+                  <div className="grow shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">
+                    <div className="self-stretch h-[107px] flex-col justify-start items-start gap-2 flex">
+                      <p className="self-stretch text-[#1e1e1e] text-base font-semibold font-['Inter'] leading-snug">
+                        {dateToReadable(event.date)} {event.time}
+                      </p>
+                      <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
+                        {event.title}
+                      </h1>
+                      <p className="self-stretch text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
+                        {event.location}
+                      </p>
+                      <p className="self-stretch text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
+                        {event.description}
+                      </p>
+                      <p className="self-stretch text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
+                        x attending
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

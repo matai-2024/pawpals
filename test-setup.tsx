@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { beforeEach, expect } from 'vitest'
 import { cleanup, render } from '@testing-library/react'
 import * as matchers from '@testing-library/jest-dom/matchers'
