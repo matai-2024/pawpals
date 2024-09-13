@@ -66,7 +66,7 @@ export default function Signup() {
     if (!isLastStep) {
       next()
     } else {
-      const id = await addPet.mutateAsync(data)
+      const id = await addPet.mutateAsync(data, token)
       navigate(`/profiles/${id}`)
     }
   }

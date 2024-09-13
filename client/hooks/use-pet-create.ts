@@ -5,11 +5,11 @@ import { PetProfileData } from '../../models/forms.ts'
 export default function useCreatePet() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: PetProfileData) => {
+    mutationFn: (data: PetProfileData, token: string) => {
       // eslint-disable-next-line no-console
       console.log('mutation data', data)
 
-      const id = addPet(data)
+      const id = addPet(data, token)
       return id
     },
     onSuccess: () => {
