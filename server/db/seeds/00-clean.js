@@ -3,4 +3,5 @@ export async function seed(knex) {
   await knex('pets').del()
   await knex('traits').del()
   await knex('owners').del()
+  await knex('events').del()
 }
