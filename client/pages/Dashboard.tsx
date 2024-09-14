@@ -52,58 +52,64 @@ export function Dashboard() {
   }
 
   return (
-    <div className="flex">
-      <Sidebar />
+    <div className="mx-auto  text-center max-w-5xl py-32 sm:py-48 lg:py-24">
+      <div className="flex">
+        <Sidebar />
 
-      <div className="flex-1 p-8">
-        {/* Pets Section */}
-        <Card title="My Pets" addAction="Add Pet">
-          <div className="space-y-4">
-            {pets.length > 0 ? (
-              pets.map((pet) => (
-                <PetCard key={pet.id} name={pet.name} imageUrl={pet.imageUrl} />
-              ))
-            ) : (
-              <p>You don't have any pets yet.</p>
-            )}
-          </div>
-        </Card>
+        <div className="flex-1 p-8">
+          {/* Pets Section */}
+          <Card title="My Pets" addAction="Add Pet">
+            <div className="space-y-4">
+              {pets.length > 0 ? (
+                pets.map((pet) => (
+                  <PetCard
+                    key={pet.id}
+                    name={pet.name}
+                    imageUrl={pet.imageUrl}
+                  />
+                ))
+              ) : (
+                <p>You don't have any pets yet.</p>
+              )}
+            </div>
+          </Card>
 
-        {/* Schedule Section */}
-        <Card title="My Schedule" addAction="See more events">
-          <div className="space-y-4">
-            {events.length > 0 ? (
-              events.map((event) => (
-                <ScheduleCard
-                  key={event.id}
-                  title={event.title}
-                  time={event.time}
-                  going={undefined}
-                />
-              ))
-            ) : (
-              <p>You don't have any events scheduled.</p>
-            )}
-          </div>
-        </Card>
+          {/* Schedule Section */}
+          <Card title="My Schedule" addAction="See more events">
+            <div className="space-y-4">
+              {events.length > 0 ? (
+                events.map((event) => (
+                  <ScheduleCard
+                    key={event.id}
+                    title={event.title}
+                    time={event.time}
+                    going={undefined}
+                  />
+                ))
+              ) : (
+                <p>You don't have any events scheduled.</p>
+              )}
+            </div>
+          </Card>
 
-        {/* Events Section */}
-        <Card title="My Events" addAction="Add Event">
-          <div className="space-y-4">
-            {events.length > 0 ? (
-              events.map((event) => (
-                <ScheduleCard
-                  key={event.id}
-                  title={event.title}
-                  time={event.time}
-                  going={undefined}
-                />
-              ))
-            ) : (
-              <p>You don't have any events yet.</p>
-            )}
-          </div>
-        </Card>
+          {/* Events Section */}
+          <Card title="My Events" addAction="Add Event">
+            <div className="space-y-4">
+              {events.length > 0 ? (
+                events.map((event) => (
+                  <ScheduleCard
+                    key={event.id}
+                    title={event.title}
+                    time={event.time}
+                    going={undefined}
+                  />
+                ))
+              ) : (
+                <p>You don't have any events yet.</p>
+              )}
+            </div>
+          </Card>
+        </div>
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Owner, PetProfile, PetProfileData } from '../../models/forms.ts'
+import { PetProfile, PetProfileData } from '../../models/forms.ts'
 
 const rootUrl = '/api/v1/pets'
 
@@ -35,12 +35,6 @@ export async function addPet(newPet: PetProfileData, token: string) {
     .set('Authorization', `Bearer ${token}`)
     .send(newPet)
   return res.body as number
-}
-
-//get Owner info
-export async function getOwnerInfo(externalKey: string) {
-  const res = await request.get(rootUrl + '/owners/' + externalKey)
-  return res.body as Owner[]
 }
 // TODO
 // Check these work!!
