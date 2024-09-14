@@ -5,7 +5,7 @@ import PetCard from '../components/utils/PetCard/PetCard'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
 import { fetchPetsByOwnerId } from '../apis/apiClientPets' // Your API call to fetch pets
-// import { fetchUserEvents } from '../apis/apiClientEvents' // Assuming you have a separate API for fetching events
+import { getEventById } from '../apis/apiClientEvents'
 
 // Dashboard Component
 export function Dashboard() {
@@ -22,9 +22,9 @@ export function Dashboard() {
         .catch((err) => console.error('Error fetching pets:', err))
 
       // Fetch events for the authenticated user
-      // fetchUserEvents(user.sub) // user.sub is passed to fetch user-specific events
-      //   .then((eventsData) => setEvents(eventsData))
-      //   .catch((err) => console.error('Error fetching events:', err))
+      getEventById(user.sub, user.sub) // user.sub is passed to fetch user-specific events
+        .then((eventsData) => setEvents(eventsData))
+        .catch((err) => console.error('Error fetching events:', err))
     }
   }, [isAuthenticated, user])
 
@@ -55,7 +55,7 @@ export function Dashboard() {
                 pets.map((pet) => (
                   <PetCard
                     key={pet.id}
-                    petName={pet.petName}
+                    petname={pet.petName}
                     imageUrl={pet.imageUrl}
                   />
                 ))
