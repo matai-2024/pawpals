@@ -67,78 +67,78 @@ export default function Profile() {
             </p>
           </div>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2 lg:gap-4">
-            {data.busy === 'on' ? (
+            {data.busy === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">Busy</span>
             ) : (
               ''
             )}
-            {data.lazy === 'on' ? (
+            {data.lazy === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">Lazy</span>
             ) : (
               ''
             )}
-            {data.goofy === 'on' ? (
+            {data.goofy === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">
                 Goofy
               </span>
             ) : (
               ''
             )}
-            {data.gorgeous === 'on' ? (
+            {data.gorgeous === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">
                 Gorgeous
               </span>
             ) : (
               ''
             )}
-            {data.brat === 'on' ? (
+            {data.brat === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">Brat</span>
             ) : (
               ''
             )}
-            {data.loyal === 'on' ? (
+            {data.loyal === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">
                 Loyal
               </span>
             ) : (
               ''
             )}
-            {data.playful === 'on' ? (
+            {data.playful === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">
                 Playful
               </span>
             ) : (
               ''
             )}
-            {data.adventurous === 'on' ? (
+            {data.adventurous === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">
                 Adventurous
               </span>
             ) : (
               ''
             )}
-            {data.foodie === 'on' ? (
+            {data.foodie === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">
                 Foodie
               </span>
             ) : (
               ''
             )}
-            {data.snorer === 'on' ? (
+            {data.snorer === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">
                 Snorer
               </span>
             ) : (
               ''
             )}
-            {data.crazy === 'on' ? (
+            {data.crazy === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">
                 Crazy
               </span>
             ) : (
               ''
             )}
-            {data.floofy === 'on' ? (
+            {data.floofy === 'true' ? (
               <span className="bg-yellow-400 rounded-full py-1 px-4">
                 Floofy
               </span>
