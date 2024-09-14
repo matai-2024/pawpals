@@ -5,24 +5,41 @@ import PetCard from '../components/utils/PetCard/PetCard'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
 import { fetchPetsByOwnerId } from '../apis/apiClientPets' // Your API call to fetch pets
-import { getEventById } from '../apis/apiClientEvents'
+import { getEventsByCreatorId } from '../apis/apiClientEvents' // Assuming you're fetching events by user ID
+
+// Define types for pets and events
+interface Pet {
+  image: any
+  id: number
+  petName: string
+  imageUrl: string
+}
+
+interface Event {
+  id: number
+  title: string
+  time: string
+  going: boolean
+}
 
 // Dashboard Component
 export function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
-  const [pets, setPets] = useState([]) // State to store fetched pets
-  const [events, setEvents] = useState([]) // State to store fetched events
+
+  // Explicitly typing pets and events as arrays of Pet and Event
+  const [pets, setPets] = useState<Pet[]>([]) // State to store fetched pets
+  const [events, setEvents] = useState<Event[]>([]) // State to store fetched events
 
   // Fetch pets and events when the user is authenticated
   useEffect(() => {
     if (isAuthenticated && user) {
       // Fetch pets for the authenticated user
-      fetchPetsByOwnerId(user.sub) // user.sub is the unique user identifier
+      fetchPetsByOwnerId(5) // user.sub is the unique user identifier
         .then((petsData) => setPets(petsData))
         .catch((err) => console.error('Error fetching pets:', err))
 
       // Fetch events for the authenticated user
-      getEventById(user.sub, user.sub) // user.sub is passed to fetch user-specific events
+      getEventsByCreatorId('5') // Assuming you have a function to get all events by creator ID
         .then((eventsData) => setEvents(eventsData))
         .catch((err) => console.error('Error fetching events:', err))
     }
@@ -55,12 +72,12 @@ export function Dashboard() {
                 pets.map((pet) => (
                   <PetCard
                     key={pet.id}
-                    petname={pet.petName}
-                    imageUrl={pet.imageUrl}
+                    petName={pet.petName}
+                    image={pet.image}
                   />
                 ))
               ) : (
-                <p>You don't have any pets yet.</p>
+                <p>You do not have any pets yet.</p>
               )}
             </div>
           </Card>
@@ -78,7 +95,7 @@ export function Dashboard() {
                   />
                 ))
               ) : (
-                <p>You don't have any events scheduled.</p>
+                <p>You do not have any events scheduled.</p>
               )}
             </div>
           </Card>
@@ -96,7 +113,7 @@ export function Dashboard() {
                   />
                 ))
               ) : (
-                <p>You don't have any events yet.</p>
+                <p>You do not have any events yet.</p>
               )}
             </div>
           </Card>

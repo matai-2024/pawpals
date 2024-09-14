@@ -1,8 +1,8 @@
 // PetCard component
-const PetCard = ({ petName, imageUrl }) => (
+const PetCard = ({ petName, image }) => (
   <div className="flex items-center border p-4 rounded-lg space-x-4">
     <img
-      src={imageUrl}
+      src={image}
       alt={petName}
       className="w-20 h-20 object-cover rounded-lg"
     />
