@@ -9,22 +9,23 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
           htmlFor="busy"
           className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
         >
-          <input
-            id="busy"
-            name="busy"
-            type="checkbox"
-            onChange={(e) => updateFields({ busy: e.target.value })}
-            className="checkbox hidden"
-            aria-label="busy checkbox"
-          />
           <div className="flex gap-x-4">
             <div className="h-12">
               <i className="fa-solid fa-gauge-high text-4xl text-yellow-400"></i>
             </div>
+            
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Busy bee</h3>
-              <p className="text-gray-500">Why would I ever sit still.</p>
+              <p className="text-gray-600">Why would I ever sit still.</p>
             </div>
+            <input
+            id="busy"
+            name="busy"
+            type="checkbox"
+            onChange={(e) => updateFields({ busy: e.target.value })}
+            className="border-2 border-gray-300"
+            aria-label="busy checkbox"
+          />
           </div>
         </label>
       </div>
@@ -47,7 +48,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Lazy</h3>
-              <p className="text-gray-500">
+              <p className="text-gray-600">
                 The best activity is taking a nap.
               </p>
             </div>
@@ -74,7 +75,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Goofy</h3>
-              <p className="text-gray-500">Some details about Goofy.</p>
+              <p className="text-gray-600">Some details about Goofy.</p>
             </div>
           </div>
         </label>
@@ -99,7 +100,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Gorgeous</h3>
-              <p className="text-gray-500">Some details about Gorgeous.</p>
+              <p className="text-gray-600">Some details about Gorgeous.</p>
             </div>
           </div>
         </label>
@@ -124,7 +125,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Brat</h3>
-              <p className="text-gray-500">Some details about brat.</p>
+              <p className="text-gray-600">Some details about brat.</p>
             </div>
           </div>
         </label>
@@ -149,7 +150,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Loyal</h3>
-              <p className="text-gray-500">Some details about loyal.</p>
+              <p className="text-gray-600">Some details about loyal.</p>
             </div>
           </div>
         </label>
@@ -174,7 +175,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Playful</h3>
-              <p className="text-gray-500">Some details about playful.</p>
+              <p className="text-gray-600">Some details about playful.</p>
             </div>
           </div>
         </label>
@@ -199,7 +200,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Adventurous</h3>
-              <p className="text-gray-500">Some details about adventurous.</p>
+              <p className="text-gray-600">Some details about adventurous.</p>
             </div>
           </div>
         </label>
@@ -224,7 +225,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Foodie</h3>
-              <p className="text-gray-500">Some details about foodie.</p>
+              <p className="text-gray-600">Some details about foodie.</p>
             </div>
           </div>
         </label>
@@ -249,7 +250,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Snorer</h3>
-              <p className="text-gray-500">Some details about snorer.</p>
+              <p className="text-gray-600">Some details about snorer.</p>
             </div>
           </div>
         </label>
@@ -274,7 +275,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Crazy</h3>
-              <p className="text-gray-500">Some details about crazy.</p>
+              <p className="text-gray-600">Some details about crazy.</p>
             </div>
           </div>
         </label>
@@ -299,7 +300,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Floofy</h3>
-              <p className="text-gray-500">Some details about floofy.</p>
+              <p className="text-gray-600">Some details about floofy.</p>
             </div>
           </div>
         </label>

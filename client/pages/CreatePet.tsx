@@ -1,4 +1,4 @@
-import { FormEvent, MouseEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PetProfileForm from '../components/forms/PetProfileForm.tsx'
 import { useCreatePet, useMultistepForm } from '../hooks/hooks.ts'
