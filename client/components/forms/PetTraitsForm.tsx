@@ -2,14 +2,14 @@ import { PetFormProps } from '../../../models/forms.ts'
 import FormWrapper from './FormWrapper.tsx'
 
 function changeBorder(isChecked: boolean, trait: string) {
-  let oldBorder;
-  let newBorder;
-  if(isChecked) {
-    oldBorder="border-gray-100"
-    newBorder="border-blue-500"
+  let oldBorder
+  let newBorder
+  if (isChecked) {
+    oldBorder = 'border-gray-100'
+    newBorder = 'border-blue-500'
   } else {
-    oldBorder ="border-blue-500"
-    newBorder ="border-gray-100"
+    oldBorder = 'border-blue-500'
+    newBorder = 'border-gray-100'
   }
 
   const div = document.querySelector(`#${trait}-label`)
@@ -30,20 +30,24 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             <div className="h-12">
               <i className="fa-solid fa-gauge-high text-4xl text-yellow-400"></i>
             </div>
-            
+
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Busy bee</h3>
               <p className="text-gray-600">Why would I ever sit still?</p>
             </div>
             <input
-            id="busy"
-            name="busy"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="busy checkbox"
-          />
+              id="busy"
+              name="busy"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="busy checkbox"
+            />
           </div>
         </label>
       </div>
@@ -64,14 +68,18 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               </p>
             </div>
             <input
-            id="lazy"
-            name="lazy"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="lazy checkbox"
-          />
+              id="lazy"
+              name="lazy"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="lazy checkbox"
+            />
           </div>
         </label>
       </div>
@@ -91,14 +99,18 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <p className="text-gray-600">I&apos;m here to have fun!</p>
             </div>
             <input
-            id="goofy"
-            name="goofy"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="goofy checkbox"
-          />
+              id="goofy"
+              name="goofy"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="goofy checkbox"
+            />
           </div>
         </label>
       </div>
@@ -115,17 +127,23 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Gorgeous</h3>
-              <p className="text-gray-600">I&apos;m just a little bit prettier.</p>
+              <p className="text-gray-600">
+                I&apos;m just a little bit prettier.
+              </p>
             </div>
             <input
-            id="gorgeous"
-            name="gorgeous"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="gorgeous checkbox"
-          />
+              id="gorgeous"
+              name="gorgeous"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="gorgeous checkbox"
+            />
           </div>
         </label>
       </div>
@@ -145,14 +163,18 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <p className="text-gray-600">Defiant and selfish? Maybe.</p>
             </div>
             <input
-            id="brat"
-            name="brat"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="brat checkbox"
-          />
+              id="brat"
+              name="brat"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="brat checkbox"
+            />
           </div>
         </label>
       </div>
@@ -172,14 +194,18 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <p className="text-gray-600">Standing by you no matter what.</p>
             </div>
             <input
-            id="loyal"
-            name="loyal"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="loyal checkbox"
-          />
+              id="loyal"
+              name="loyal"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="loyal checkbox"
+            />
           </div>
         </label>
       </div>
@@ -199,14 +225,18 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <p className="text-gray-600">Can&apos;t we play some more?</p>
             </div>
             <input
-            id="playful"
-            name="playful"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="playful checkbox"
-          />
+              id="playful"
+              name="playful"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="playful checkbox"
+            />
           </div>
         </label>
       </div>
@@ -226,14 +256,18 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <p className="text-gray-600">Investigating is my passion.</p>
             </div>
             <input
-            id="adventurous"
-            name="adventurous"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="adventurous checkbox"
-          />
+              id="adventurous"
+              name="adventurous"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="adventurous checkbox"
+            />
           </div>
         </label>
       </div>
@@ -250,17 +284,23 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Foodie</h3>
-              <p className="text-gray-600">Who doesn&apos;t love a little treat?</p>
+              <p className="text-gray-600">
+                Who doesn&apos;t love a little treat?
+              </p>
             </div>
             <input
-            id="foodie"
-            name="foodie"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="foodie checkbox"
-          />
+              id="foodie"
+              name="foodie"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="foodie checkbox"
+            />
           </div>
         </label>
       </div>
@@ -277,17 +317,23 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Snorer</h3>
-              <p className="text-gray-600">It&apos;s called heavy breathing, ok!?</p>
+              <p className="text-gray-600">
+                It&apos;s called heavy breathing, ok!?
+              </p>
             </div>
             <input
-            id="snorer"
-            name="snorer"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="snorer checkbox"
-          />
+              id="snorer"
+              name="snorer"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="snorer checkbox"
+            />
           </div>
         </label>
       </div>
@@ -307,14 +353,18 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <p className="text-gray-600">What did you call me?</p>
             </div>
             <input
-            id="crazy"
-            name="crazy"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="crazy checkbox"
-          />
+              id="crazy"
+              name="crazy"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="crazy checkbox"
+            />
           </div>
         </label>
       </div>
@@ -334,14 +384,18 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
               <p className="text-gray-600">Great for cuddling.</p>
             </div>
             <input
-            id="floofy"
-            name="floofy"
-            type="checkbox"
-            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
-              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
-            className="border-2 border-gray-300 absolute rounded-sm"
-            aria-label="floofy checkbox"
-          />
+              id="floofy"
+              name="floofy"
+              type="checkbox"
+              onChange={(e) => {
+                changeBorder(e.currentTarget.checked, e.target.name)
+                updateFields({
+                  [e.target.name]: String(e.currentTarget.checked),
+                })
+              }}
+              className="border-2 border-gray-300 absolute rounded-sm"
+              aria-label="floofy checkbox"
+            />
           </div>
         </label>
       </div>

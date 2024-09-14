@@ -36,7 +36,9 @@ describe('Nav.tsx', () => {
     const { user, ...screen } = renderApp('/')
     const button = await screen.getByText('Sign out')
     await user.click(button)
-    const homeText = await screen.getByText('Find more friends for your best friend')
+    const homeText = await screen.getByText(
+      'Find more friends for your best friend',
+    )
 
     expect(homeText).toBeTruthy()
   })
