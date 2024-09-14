@@ -1,4 +1,3 @@
-import { Events } from '../components/utils/tempEvents'
 import {
   dateToReadable,
   TimeFormat,
@@ -26,7 +25,7 @@ export function EventList() {
         {String(error)}
       </div>
     )
-  console.log(events[0].eventImage)
+
   if (events)
     return (
       <>
