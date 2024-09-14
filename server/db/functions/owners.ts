@@ -25,9 +25,27 @@ export async function getOwnerByName(firstName: string) {
 // TODO: Check this works
 export async function addNewOwner(owner: OwnerData) {
   const { firstName, lastName, email } = owner
-  const serverData = { first_name: firstName, last_name: lastName, email: email}
+  const serverData = {
+    first_name: firstName,
+    last_name: lastName,
+    email: email,
+  }
   const result = await db('owners').insert(serverData)
   return result[0]
+}
+
+// Upsert owners to pass auth0 id into db
+export async function upsertOwners(owner: OwnerData) {
+  const { externalKey, firstName, lastName, email } = owner
+  await db('owners')
+    .insert({
+      external_key: externalKey,
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+    })
+    .onConflict('external_key')
+    .merge()
 }
 
 // Delete an owner
@@ -36,6 +54,10 @@ export async function deleteOwner(id: number) {
   return await db('owners').where({ id }).delete()
 }
 
+
+export function upsertProfile(profile: { auth0Id: any; firstName: string; lastName: string; email: string; externalKey: string }) {
+  throw new Error('Function not implemented.')
+}
 // TODO LIST:
 // -----------
 // Edit an owner
