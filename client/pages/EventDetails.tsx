@@ -1,11 +1,33 @@
 // import { useAuth0 } from '@auth0/auth0-react'
+import { Link } from 'react-router-dom'
+import { EventData } from '../../models/events'
+import { Pet } from '../../models/forms'
 import dateToReadable, {
   TimeFormat,
 } from '../components/utils/EventPresentation'
 import { Events } from '../components/utils/tempEvents'
+import usePets from '../hooks/use-pets'
+import LoadingSpinner from '../components/LoadingSpinner'
 
-export default function EventDetails() {
+interface Props {
+  event: EventData
+  pet: Pet
+}
+
+export default function EventDetails(props: Props) {
   // const user = useAuth0()
+  const { event, pet } = props
+  const { data: pets, isLoading, isError, error } = usePets()
+
+  if (isLoading) return <LoadingSpinner />
+
+  if (isError)
+    return (
+      <div>
+        <h3>Error loading event details: </h3>
+        {String(error)}
+      </div>
+    )
 
   return (
     <div className="h-[464px] px-40 py-16  flex-col justify-start items-center inline-flex">
@@ -13,18 +35,14 @@ export default function EventDetails() {
         <div className="self-stretch text-[#1e1e1e] text-7xl font-bold font-['Inter'] leading-[86.40px]">
           {Events[0].title}
         </div>
-        {/* {useIsAuthenticated() && user?.sub === evt.creatorId ? (
-          <>
-            <div className="w-[58px] text-black text-xs font-normal font-['Inter']">
-              Edit Event
-            </div>
-            <div className="text-black text-xs font-normal font-['Inter']">
-              Delete Event
-            </div>
-          </>
-        ) : (
-          <></>
-        )} */}
+        {/* TODO: Conditionally render these buttons based on if the user added this event */}
+        <div className="w-[58px] text-black text-xs font-normal font-['Inter']">
+          Edit Event
+        </div>
+        <div className="text-black text-xs font-normal font-['Inter']">
+          Delete Event
+        </div>
+
         <div className="self-stretch justify-start items-start gap-3 inline-flex">
           <div className="w-[70px] h-[70px] relative rounded-full">
             <img
@@ -110,23 +128,32 @@ export default function EventDetails() {
           </div>
         </div>
         <div className="self-stretch justify-start items-start gap-6 inline-flex">
-          <div className="p-4 bg-white rounded-lg border border-[#d9d9d9] flex-col justify-start items-center gap-4 inline-flex">
-            <img
-              className="w-[120px] h-[120px] rounded-full"
-              src="public/obi.png"
-              alt=""
-            />
-            <div className="h-[42px] flex-col justify-start items-center gap-2 flex">
-              <div className="h-[42px] flex-col justify-start items-center flex">
-                <div className="text-[#1e1e1e] text-base font-semibold font-['Inter'] leading-snug">
-                  Attendee Name
-                </div>
-                <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
-                  Attendee Location
-                </div>
+          <ul>
+            {pets?.map((pet) => (
+              <div
+                key={pet.id}
+                className="p-4 bg-white rounded-lg border border-[#d9d9d9] flex-col justify-start items-center gap-4 inline-flex"
+              >
+                <Link to={`/profiles/${pet.id}`}>
+                  <img
+                    className="w-[120px] h-[120px] rounded-full"
+                    src={`../../${pet.image}`}
+                    alt={pet.petName}
+                  />
+                  <div className="h-[42px] flex-col justify-start items-center gap-2 flex">
+                    <div className="h-[42px] flex-col justify-start items-center flex">
+                      <div className="text-[#1e1e1e] text-base font-semibold font-['Inter'] leading-snug">
+                        {pet.petName}
+                      </div>
+                      <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
+                        {pet.species}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               </div>
-            </div>
-          </div>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
