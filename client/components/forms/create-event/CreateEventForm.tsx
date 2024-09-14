@@ -10,7 +10,6 @@ export default function CreateEventForm({
   eventImage,
   eventWebsite,
   audience,
-  creatorId,
   updateFields,
 }: EventFormProps) {
   return (
