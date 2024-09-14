@@ -17,7 +17,9 @@
     "build:client": "vite build",
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "knex": "knex --knexfile ./server/db/knexfile.js"
+    "knex": "knex --knexfile ./server/db/knexfile.js",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"./**/*.{js,ts,jsx,tsx,json,md}\""
   },
   "eslintConfig": {
     "extends": "@devacademy/eslint-config/react",
