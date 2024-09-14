@@ -4,45 +4,36 @@ import Card from '../components/utils/Card/Card'
 import PetCard from '../components/utils/PetCard/PetCard'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
-import { fetchPetsByOwnerId, getOwnerInfo } from '../apis/apiClientPets'
-import PetProfileForm from '../components/forms/PetProfileForm'
+import { fetchPetsByOwnerId } from '../apis/apiClientPets' // Your API call to fetch pets
+// import { fetchUserEvents } from '../apis/apiClientEvents' // Assuming you have a separate API for fetching events
 
-// API call to fetch user events
-const fetchUserEvents = async (ownerId: string | undefined) => {
-  try {
-    const response = await fetch(`/api/events?userId=${ownerId}`)
-    if (!response.ok) {
-      throw new Error('Failed to fetch events')
-    }
-    return response.json()
-  } catch (error) {
-    console.error('Error fetching events:', error)
-    return ['oops i did it again']
-  }
-}
-
+// Dashboard Component
 export function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
-  const [pets, setPets] = useState([])
-  const [events, setEvents] = useState([])
+  const [pets, setPets] = useState([]) // State to store fetched pets
+  const [events, setEvents] = useState([]) // State to store fetched events
 
+  // Fetch pets and events when the user is authenticated
   useEffect(() => {
     if (isAuthenticated && user) {
       // Fetch pets for the authenticated user
-      fetchPetsByOwnerId(user.sub) // user.sub is a string
-        .then(setPets)
+      fetchPetsByOwnerId(user.sub) // user.sub is the unique user identifier
+        .then((petsData) => setPets(petsData))
         .catch((err) => console.error('Error fetching pets:', err))
+
       // Fetch events for the authenticated user
-      fetchUserEvents(user.sub)
-        .then(setEvents)
-        .catch((err) => console.error('Error fetching events:', err))
+      // fetchUserEvents(user.sub) // user.sub is passed to fetch user-specific events
+      //   .then((eventsData) => setEvents(eventsData))
+      //   .catch((err) => console.error('Error fetching events:', err))
     }
   }, [isAuthenticated, user])
 
+  // If the app is still loading user data, show a loading indicator
   if (isLoading) {
     return <div>Loading...</div>
   }
 
+  // If the user is not authenticated, show a message
   if (!isAuthenticated) {
     return (
       <div>
@@ -52,7 +43,7 @@ export function Dashboard() {
   }
 
   return (
-    <div className="mx-auto  text-center max-w-5xl py-32 sm:py-48 lg:py-24">
+    <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
       <div className="flex">
         <Sidebar />
 
@@ -64,7 +55,7 @@ export function Dashboard() {
                 pets.map((pet) => (
                   <PetCard
                     key={pet.id}
-                    name={pet.name}
+                    petName={pet.petName}
                     imageUrl={pet.imageUrl}
                   />
                 ))
@@ -83,7 +74,7 @@ export function Dashboard() {
                     key={event.id}
                     title={event.title}
                     time={event.time}
-                    going={undefined}
+                    going={event.going} // You can pass this property if it's in your data
                   />
                 ))
               ) : (
@@ -101,7 +92,7 @@ export function Dashboard() {
                     key={event.id}
                     title={event.title}
                     time={event.time}
-                    going={undefined}
+                    going={event.going} // Again, using any event data you have
                   />
                 ))
               ) : (
