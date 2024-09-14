@@ -35,7 +35,7 @@ export default function Profile() {
             <div className="mb-6 w-52 h-52 rounded-full overflow-hidden">
               <img
                 className="relative w-full -top-12"
-                src={`../../${data.image}`}
+                src={data.image? `../../${data.image}` : `../../miso.jpg`}
                 alt={data.petName}
               />
             </div>
