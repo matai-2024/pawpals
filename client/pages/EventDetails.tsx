@@ -1,7 +1,5 @@
-// import { useAuth0 } from '@auth0/auth0-react'
-import { Link } from 'react-router-dom'
-import { EventData } from '../../models/events'
-import { Pet } from '../../models/forms'
+import { useAuth0 } from '@auth0/auth0-react'
+import { Link, useNavigate } from 'react-router-dom'
 import dateToReadable, {
   TimeFormat,
 } from '../components/utils/EventPresentation'
@@ -9,15 +7,20 @@ import { Events } from '../components/utils/tempEvents'
 import usePets from '../hooks/use-pets'
 import LoadingSpinner from '../components/LoadingSpinner'
 
-interface Props {
-  event: EventData
-  pet: Pet
-}
-
-export default function EventDetails(props: Props) {
-  // const user = useAuth0()
-  const { event, pet } = props
+export default function EventDetails() {
+  const { getAccessTokenSilently } = useAuth0()
   const { data: pets, isLoading, isError, error } = usePets()
+  const navigate = useNavigate()
+
+  async function handleDeleteEvent(id: number) {
+    const token = await getAccessTokenSilently()
+
+    deleteEvent.mutate({ token, id })
+  }
+
+  function handleEditEvent(id: number) {
+    navigate(`/edit-event/${id}`)
+  }
 
   if (isLoading) return <LoadingSpinner />
 
@@ -36,13 +39,22 @@ export default function EventDetails(props: Props) {
           {Events[0].title}
         </div>
         {/* TODO: Conditionally render these buttons based on if the user added this event */}
-        <div className="w-[58px] text-black text-xs font-normal font-['Inter']">
-          Edit Event
-        </div>
-        <div className="text-black text-xs font-normal font-['Inter']">
-          Delete Event
-        </div>
-
+        <button
+          onClick={() => handleEditEvent}
+          className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
+        >
+          <div className="w-[58px] text-black text-xs font-normal font-['Inter']">
+            Edit Event
+          </div>
+        </button>
+        <button
+          onClick={() => handleDeleteEvent}
+          className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
+        >
+          <div className="text-black text-xs font-normal font-['Inter']">
+            Delete Event
+          </div>
+        </button>
         <div className="self-stretch justify-start items-start gap-3 inline-flex">
           <div className="w-[70px] h-[70px] relative rounded-full">
             <img
@@ -127,13 +139,13 @@ export default function EventDetails(props: Props) {
             Attendees
           </div>
         </div>
-        <div className="self-stretch justify-start items-start gap-6 inline-flex">
-          <ul>
-            {pets?.map((pet) => (
-              <div
-                key={pet.id}
-                className="p-4 bg-white rounded-lg border border-[#d9d9d9] flex-col justify-start items-center gap-4 inline-flex"
-              >
+        <ul>
+          {pets?.map((pet) => (
+            <div
+              key={pet.id}
+              className="self-stretch p-2 justify-start items-start gap-6 inline-flex"
+            >
+              <div className="p-4 bg-white rounded-lg border border-[#d9d9d9] flex-col justify-start items-center gap-4 inline-flex">
                 <Link to={`/profiles/${pet.id}`}>
                   <img
                     className="w-[120px] h-[120px] rounded-full"
@@ -152,9 +164,9 @@ export default function EventDetails(props: Props) {
                   </div>
                 </Link>
               </div>
-            ))}
-          </ul>
-        </div>
+            </div>
+          ))}
+        </ul>
       </div>
     </div>
   )
