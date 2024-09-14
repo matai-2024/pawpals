@@ -1,13 +1,30 @@
 import { PetFormProps } from '../../../models/forms.ts'
 import FormWrapper from './FormWrapper.tsx'
 
+function changeBorder(isChecked: boolean, trait: string) {
+  let oldBorder;
+  let newBorder;
+  if(isChecked) {
+    oldBorder="border-gray-100"
+    newBorder="border-blue-500"
+  } else {
+    oldBorder ="border-blue-500"
+    newBorder ="border-gray-100"
+  }
+
+  const div = document.querySelector(`#${trait}-label`)
+  div?.classList.remove(`${oldBorder}`)
+  div?.classList.add(`${newBorder}`)
+}
+
 export default function PetTraitsForm({ updateFields }: PetFormProps) {
   return (
     <FormWrapper title="Choose your pet's traits">
       <div className="sm:col-span-2">
         <label
+          id="busy-label"
           htmlFor="busy"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -22,7 +39,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="busy"
             name="busy"
             type="checkbox"
-            onChange={(e) => updateFields({ busy: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="busy checkbox"
           />
@@ -31,8 +49,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
       </div>
       <div className="sm:col-span-2">
         <label
+          id="lazy-label"
           htmlFor="lazy"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -48,7 +67,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="lazy"
             name="lazy"
             type="checkbox"
-            onChange={(e) => updateFields({ lazy: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="lazy checkbox"
           />
@@ -58,8 +78,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="goofy-label"
           htmlFor="goofy"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -73,7 +94,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="goofy"
             name="goofy"
             type="checkbox"
-            onChange={(e) => updateFields({ goofy: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="goofy checkbox"
           />
@@ -83,8 +105,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="gorgeous-label"
           htmlFor="gorgeous"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -98,7 +121,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="gorgeous"
             name="gorgeous"
             type="checkbox"
-            onChange={(e) => updateFields({ gorgeous: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="gorgeous checkbox"
           />
@@ -108,8 +132,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="brat-label"
           htmlFor="brat"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -123,7 +148,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="brat"
             name="brat"
             type="checkbox"
-            onChange={(e) => updateFields({ brat: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="brat checkbox"
           />
@@ -133,8 +159,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="loyal-label"
           htmlFor="loyal"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -148,7 +175,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="loyal"
             name="loyal"
             type="checkbox"
-            onChange={(e) => updateFields({ loyal: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="loyal checkbox"
           />
@@ -158,8 +186,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="playful-label"
           htmlFor="playful"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -173,7 +202,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="playful"
             name="playful"
             type="checkbox"
-            onChange={(e) => updateFields({ playful: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="playful checkbox"
           />
@@ -183,8 +213,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="adventurous-label"
           htmlFor="adventurous"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -198,7 +229,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="adventurous"
             name="adventurous"
             type="checkbox"
-            onChange={(e) => updateFields({ adventurous: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="adventurous checkbox"
           />
@@ -208,8 +240,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="foodie-label"
           htmlFor="foodie"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -223,7 +256,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="foodie"
             name="foodie"
             type="checkbox"
-            onChange={(e) => updateFields({ foodie: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="foodie checkbox"
           />
@@ -233,8 +267,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="snorer-label"
           htmlFor="snorer"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -248,7 +283,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="snorer"
             name="snorer"
             type="checkbox"
-            onChange={(e) => updateFields({ snorer: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="snorer checkbox"
           />
@@ -258,8 +294,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="crazy-label"
           htmlFor="crazy"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -273,7 +310,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="crazy"
             name="crazy"
             type="checkbox"
-            onChange={(e) => updateFields({ crazy: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="crazy checkbox"
           />
@@ -283,8 +321,9 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
 
       <div className="sm:col-span-2">
         <label
+          id="floofy-label"
           htmlFor="floofy"
-          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer transition-all"
+          className="trait-label block p-4 border-2 border-gray-100 rounded-lg cursor-pointer"
         >
           <div className="flex gap-x-4 justify-end">
             <div className="h-12">
@@ -298,7 +337,8 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             id="floofy"
             name="floofy"
             type="checkbox"
-            onChange={(e) => updateFields({ floofy: e.target.value })}
+            onChange={(e) => {changeBorder(e.currentTarget.checked, e.target.name)
+              updateFields({ [e.target.name]: String(e.currentTarget.checked) })}}
             className="border-2 border-gray-300 absolute rounded-sm"
             aria-label="floofy checkbox"
           />
