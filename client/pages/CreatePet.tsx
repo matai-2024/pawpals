@@ -79,9 +79,7 @@ export default function Signup() {
             Let&apos;s get started
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-            lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-            fugiat aliqua.
+            Fill in the details below to add your pet&apos;s new pawpal profile.
           </p>
           <div>
             <h2>
