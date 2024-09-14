@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import * as z from 'zod'
 
 export interface FormData {
   firstName: string
@@ -96,22 +97,45 @@ export interface PetProfile extends PetProfileData {
   id: number
 }
 
-export interface Names {
-  firstName: string
-  lastName: string
-}
+// Owner interfaces
+// export interface Names {
+//   firstName: string
+//   lastName: string
+// }
 
-export interface OwnerData extends Names {
-  email: string
-}
+// export interface OwnerData extends Names {
+//   email: string
+//   externalKey: string
+// }
 
 export interface OwnerFormProps extends OwnerData {
   updateFields: (fields: Partial<OwnerData>) => void
 }
 
-export interface Owner extends OwnerData {
-  id: number
-}
+// export interface Owner extends OwnerData {
+//   id: number
+// }
+
+// Owner interfaces using zod
+export const namesSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+});
+
+export const ownerDataSchema = namesSchema.extend({
+  email: z.string().email(),
+  externalKey: z.string(),
+});
+
+export const ownerSchema = ownerDataSchema.extend({
+  id: z.number(),
+});
+
+// Using Zod-inferred types directly
+export type Names = z.infer<typeof namesSchema>;
+export type OwnerData = z.infer<typeof ownerDataSchema>;
+export type Owner = z.infer<typeof ownerSchema>;
+
 
 // Form inputs
 export interface FormInput {
