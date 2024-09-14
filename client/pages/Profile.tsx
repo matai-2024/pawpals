@@ -30,136 +30,142 @@ export default function Profile() {
   return (
     <>
       <div className="mx-auto max-w-5xl py-32 sm:py-48 lg:py-32">
-        <div id="profile" className="flex flex-col">
-          <div>
-            <div className="mb-6 w-52 h-52 rounded-full overflow-hidden">
-              <img
-                className="relative w-full -top-12"
-                src={data.image? `../../${data.image}` : `../../miso.jpg`}
-                alt={data.petName}
-              />
-            </div>
+        <div className="mt-10 grid grid-cols-5 gap-12 items-center">
+          <div className="col-span-2 h-[450px] overflow-hidden rounded-xl">
+            <img
+              className="object-cover min-h-[520px] relative -top-8"
+              src={data.image ? `../../${data.image}` : `../../miso.jpg`}
+              alt={data.petName}
+            />
+          </div>
+          <div className="col-span-3">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                {data.petName ? data.petName : 'Cutie Patootie'}
+              <h1 className="text-gray-950 text-6xl font-bold pb-8">
+                {data.petName}
               </h1>
-              <div className="flex gap-x-4">
-                <p className="text-lg leading-8 text-gray-600">
-                  {getAge(data.dateOfBirth) > 1
-                    ? `${getAge(data.dateOfBirth)}yrs old`
-                    : `${getAge(data.dateOfBirth)}yr old`}
-                </p>
-                <p className="text-lg leading-8 text-gray-600">{data.gender}</p>
-                <p className="text-lg leading-8 text-gray-600">{data.breed}</p>
+              <h2 className="text-gray-950 text-2xl font-normal">
+                {getAge(data.dateOfBirth) > 1
+                  ? `${getAge(data.dateOfBirth)}yrs old`
+                  : `${getAge(data.dateOfBirth)}yr old`}
+                , {data.gender}, {data.breed}
+              </h2>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {[
+                  { key: 'busy', label: 'Busy' },
+                  { key: 'lazy', label: 'Lazy' },
+                  { key: 'goofy', label: 'Goofy' },
+                  { key: 'gorgeous', label: 'Gorgeous' },
+                  { key: 'brat', label: 'Brat' },
+                  { key: 'loyal', label: 'Loyal' },
+                  { key: 'playful', label: 'Playful' },
+                  { key: 'adventurous', label: 'Adventurous' },
+                  { key: 'foodie', label: 'Foodie' },
+                  { key: 'snorer', label: 'Snorer' },
+                  { key: 'crazy', label: 'Crazy' },
+                  { key: 'floofy', label: 'Floofy' },
+                ].map(
+                  (trait) =>
+                    data[trait.key] === 'on' && (
+                      <span
+                        key={trait.key}
+                        className="px-4 p-2 bg-yellow-200 rounded-full text-gray-950"
+                      >
+                        {trait.label}
+                      </span>
+                    ),
+                )}
+              </div>
+              <div className="mt-12 justify-start items-center gap-4 inline-flex">
+                <div className="w-16 h-16 rounded-full overflow-hidden">
+                  <img
+                    className="object-cover"
+                    src="https://via.placeholder.com/69x69"
+                    alt="owner"
+                  />
+                </div>
+                <h3 className="text-2xl text-gray-400">Amy</h3>
               </div>
             </div>
           </div>
-
-          <div className="mt-6 flex items-center justify-center gap-x-6">
-            <p className="text-xl font-semibold leading-8 text-gray-600">
-              {data.dateOfBirth.split('-').reverse().join('-')}
-            </p>
-            <p className="text-xl font-semibold leading-8 text-gray-600">
-              {data.gender}
-            </p>
-            <p className="text-xl font-semibold leading-8 text-gray-600">
-              {data.breed}
-            </p>
-          </div>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 lg:gap-4">
-            {data.busy === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">Busy</span>
-            ) : (
-              ''
-            )}
-            {data.lazy === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">Lazy</span>
-            ) : (
-              ''
-            )}
-            {data.goofy === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">
-                Goofy
-              </span>
-            ) : (
-              ''
-            )}
-            {data.gorgeous === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">
-                Gorgeous
-              </span>
-            ) : (
-              ''
-            )}
-            {data.brat === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">Brat</span>
-            ) : (
-              ''
-            )}
-            {data.loyal === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">
-                Loyal
-              </span>
-            ) : (
-              ''
-            )}
-            {data.playful === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">
-                Playful
-              </span>
-            ) : (
-              ''
-            )}
-            {data.adventurous === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">
-                Adventurous
-              </span>
-            ) : (
-              ''
-            )}
-            {data.foodie === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">
-                Foodie
-              </span>
-            ) : (
-              ''
-            )}
-            {data.snorer === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">
-                Snorer
-              </span>
-            ) : (
-              ''
-            )}
-            {data.crazy === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">
-                Crazy
-              </span>
-            ) : (
-              ''
-            )}
-            {data.floofy === 'true' ? (
-              <span className="bg-yellow-400 rounded-full py-1 px-4">
-                Floofy
-              </span>
-            ) : (
-              ''
-            )}
-          </div>
-          <p className="mt-6 text-lg leading-8 text-gray-600">{data.bio}</p>
         </div>
-      </div>
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-      >
+        <div className="mt-20 flex flex-col gap-6">
+          <h2 className="text-2xl font-semibold">About me</h2>
+          <p className="text-lg text-gray-500">{data.bio}</p>
+        </div>
+
+        <div className="mt-20 grid grid-cols-3 gap-6">
+          <h2 className="col-span-3 text-3xl font-semibold">Find me at these events</h2>
+          <div className="col-span-1 h-96 p-6 bg-white rounded-lg border border-gray-200 flex-col gap-6 inline-flex">
+            <img
+              className="h-40 rounded-lg"
+              src="https://via.placeholder.com/277x160"
+              alt="event"
+            />
+            <div className="h-44 flex-col gap-2 flex">
+              <div className="text-gray-950 text-base font-semibold leading-snug">
+                Thu 12 Sep, 5:30 PM
+              </div>
+              <div className="text-gray-950 text-2xl font-semibold leading-[28.80px]">
+                Name
+              </div>
+              <div className="text-gray-500 text-sm font-normal leading-tight">
+                Body text for whatever you’d like to say. Add main takeaway
+                points, quotes, anecdotes, or even a very very short story.
+              </div>
+            </div>
+          </div>
+          <div className="col-span-1 h-96 p-6 bg-white rounded-lg border border-gray-200 flex-col gap-6 inline-flex">
+            <img
+              className="h-40 rounded-lg"
+              src="https://via.placeholder.com/277x160"
+              alt="event"
+            />
+            <div className="h-44 flex-col gap-2 flex">
+              <div className="text-gray-950 text-base font-semibold leading-snug">
+                Thu 12 Sep, 5:30 PM
+              </div>
+              <div className="text-gray-950 text-2xl font-semibold leading-[28.80px]">
+                Name
+              </div>
+              <div className="text-gray-500 text-sm font-normal leading-tight">
+                Body text for whatever you’d like to say. Add main takeaway
+                points, quotes, anecdotes, or even a very very short story.
+              </div>
+            </div>
+          </div>
+          <div className="col-span-1 h-96 p-6 bg-white rounded-lg border border-gray-200 flex-col gap-6 inline-flex">
+            <img
+              className="h-40 rounded-lg"
+              src="https://via.placeholder.com/277x160"
+              alt="event"
+            />
+            <div className="h-44 flex-col gap-2 flex">
+              <div className="text-gray-950 text-base font-semibold leading-snug">
+                Thu 12 Sep, 5:30 PM
+              </div>
+              <div className="text-gray-950 text-2xl font-semibold leading-[28.80px]">
+                Name
+              </div>
+              <div className="text-gray-500 text-sm font-normal leading-tight">
+                Body text for whatever you’d like to say. Add main takeaway
+                points, quotes, anecdotes, or even a very very short story.
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div
-          style={{
-            clipPath:
-              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-          }}
-          className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-        />
+          aria-hidden="on"
+          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+        >
+          <div
+            style={{
+              clipPath:
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+            }}
+            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+          />
+        </div>
       </div>
     </>
   )
