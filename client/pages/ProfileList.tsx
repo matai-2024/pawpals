@@ -39,21 +39,21 @@ export default function ProfileList() {
             lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
             fugiat aliqua.
           </p>
-          <div className="mt-10 grid grid-cols-5 gap-x-6 gap-y-6 ">
+          <div className="mt-10 grid grid-cols-5 gap-x-8 gap-y-8  sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
             {data.map((profile: PetProfile) => (
               <div
                 key={profile.id}
-                className=" shadow-lg hover:shadow-xl relative group duration-500 cursor-pointer group overflow-hidden  text-gray-50 h-72 w-56  rounded-2xl hover:duration-700 "
+                className="shadow-lg hover:shadow-xl relative group duration-500 group overflow-hidden  text-gray-50 h-64 w-56  rounded-2xl hover:duration-700 "
               >
                 <Link to={`${profile.id}`}>
-                  <div>
+                  <div className="w-full h-full">
                     <img
-                      className="rounded-2xl object-contain h-full w-full"
+                      className="rounded-2xl object-cover object-center w-full h-full"
                       src={profile.image}
                       alt={profile.petName}
                     />
                   </div>
-                  <div className="opacity-90 rounded rounded-lg absolute bg-gray-50 -bottom-12 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500 ease-in-out duration-200 group-hover:bg-yellow-100 group-hover:border-yellow-400 group-hover:opacity-90">
+                  <div className="opacity-90 rounded rounded-lg absolute bg-gray-50 -bottom-12 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500 ease-in-out group-hover:bg-yellow-100 group-hover:border-yellow-400 group-hover:opacity-90">
                     <span className="text-[#2b2b2d] font-['Inter'] font-bold text-2xl pb-6 align-text-top">
                       {profile.petName}
                     </span>
