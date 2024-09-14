@@ -39,7 +39,7 @@ export default function ProfileList() {
             lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
             fugiat aliqua.
           </p>
-          <div className="grid grid-cols-5 gap-x-4 gap-y-6 ">
+          <div className="mt-10 grid grid-cols-5 gap-x-6 gap-y-6 ">
             {data.map((profile: PetProfile) => (
               <div
                 key={profile.id}
