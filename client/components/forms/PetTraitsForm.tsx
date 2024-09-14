@@ -115,7 +115,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Gorgeous</h3>
-              <p className="text-gray-600">I'm just a little bit prettier.</p>
+              <p className="text-gray-600">I&apos;m just a little bit prettier.</p>
             </div>
             <input
             id="gorgeous"
