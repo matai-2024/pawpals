@@ -7,8 +7,8 @@ const PetCard = ({ petName, image }) => (
       className="w-20 h-20 object-cover rounded-lg"
     />
     <div className="flex-1">
-      <p className="font-semibold">{petName}</p>
-      <div className="flex space-x-4 mt-2">
+      <p className="  flex font-semibold">{petName}</p>
+      <div className=" flex space-x-4 mt-2">
         <button className="text-sm text-blue-500">Edit Profile</button>
         <button className="text-sm text-red-500">Delete Profile</button>
       </div>

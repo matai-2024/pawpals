@@ -9,10 +9,9 @@ import { getEventsByCreatorId } from '../apis/apiClientEvents' // Assuming you'r
 
 // Define types for pets and events
 interface Pet {
-  image: any
+  image: unknown
   id: number
   petName: string
-  imageUrl: string
 }
 
 interface Event {
@@ -34,17 +33,16 @@ export function Dashboard() {
   useEffect(() => {
     if (isAuthenticated && user) {
       // Fetch pets for the authenticated user
-      fetchPetsByOwnerId(5) // user.sub is the unique user identifier
+      fetchPetsByOwnerId(4) // user.sub is the unique user identifier
         .then((petsData) => setPets(petsData))
         .catch((err) => console.error('Error fetching pets:', err))
 
       // Fetch events for the authenticated user
-      getEventsByCreatorId('5') // Assuming you have a function to get all events by creator ID
+      getEventsByCreatorId('auth0|66e4c67a85ce6c31049fb8a6') // Assuming you have a function to get all events by creator ID
         .then((eventsData) => setEvents(eventsData))
         .catch((err) => console.error('Error fetching events:', err))
     }
   }, [isAuthenticated, user])
-
   // If the app is still loading user data, show a loading indicator
   if (isLoading) {
     return <div>Loading...</div>
