@@ -9,6 +9,7 @@ const navigation = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '#' },
   { name: 'Pets', to: '/profiles' },
+  { name: 'Add a Pet', to: '/create' },
   { name: 'Events', to: '/events' },
 ]
 
