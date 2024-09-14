@@ -13,9 +13,9 @@ export default async function EventDetails() {
   const navigate = useNavigate()
   const { getAccessTokenSilently } = useAuth0()
   // const deleteEvent = useDelEvent()
-  const id = Number(useParams())
+  const id = useParams()
   const token = await getAccessTokenSilently()
-
+  console.log(id)
   const { data: pets, isLoading, isError, error } = usePets()
   const { data: evts } = useQuery({
     queryKey: ['event'],
