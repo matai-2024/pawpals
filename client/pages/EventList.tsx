@@ -38,7 +38,7 @@ export function EventList() {
           </p>
           <ul>
             {events.map((event) => (
-              <li key={event.id}>
+              <div key={event.id}>
                 <div className="self-stretch p-3 flex-col justify-start items-start gap-6 flex">
                   <div className="w-[880px] bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100 text-left h-52 p-6 bg-white rounded-lg border border-[#d9d9d9] justify-start items-start gap-6 inline-flex">
                     <img
@@ -59,9 +59,7 @@ export function EventList() {
                           {event.location}
                         </p>
                         <p className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight ">
-                          <div className="line-clamp-2">
-                            {event.description}
-                          </div>
+                          <p className="line-clamp-2">{event.description}</p>
                         </p>
                         <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
                           x attending
@@ -70,7 +68,7 @@ export function EventList() {
                     </div>
                   </div>
                 </div>
-              </li>
+              </div>
             ))}
           </ul>
         </div>
