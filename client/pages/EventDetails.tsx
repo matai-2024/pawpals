@@ -1,21 +1,26 @@
-import { useAuth0 } from '@auth0/auth0-react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import dateToReadable, {
   TimeFormat,
 } from '../components/utils/EventPresentation'
-import { Events } from '../components/utils/tempEvents'
 import usePets from '../hooks/use-pets'
 import LoadingSpinner from '../components/LoadingSpinner'
+import useDelEvent from '../hooks/eventHooks/useDeleteEvent'
+import { Event } from '../../models/events'
 
-export default function EventDetails() {
-  const { getAccessTokenSilently } = useAuth0()
+interface Props {
+  eventData: Event
+}
+
+export default function EventDetails(props: Props) {
   const { data: pets, isLoading, isError, error } = usePets()
   const navigate = useNavigate()
+  const deleteEvent = useDelEvent()
+  const id = Number(useParams())
+  const { eventData } = props
 
+  console.log(eventData.id, eventData.title)
   async function handleDeleteEvent(id: number) {
-    const token = await getAccessTokenSilently()
-
-    deleteEvent.mutate({ token, id })
+    deleteEvent.mutate(id)
   }
 
   function handleEditEvent(id: number) {
@@ -36,7 +41,7 @@ export default function EventDetails() {
     <div className="h-[464px] px-40 py-16  flex-col justify-start items-center inline-flex">
       <div className="self-stretch h-[336px] pt-[70px] flex-col justify-start items-start gap-6 flex">
         <div className="self-stretch text-[#1e1e1e] text-7xl font-bold font-['Inter'] leading-[86.40px]">
-          {Events[0].title}
+          {eventData.title}
         </div>
         {/* TODO: Conditionally render these buttons based on if the user added this event */}
         <button
@@ -48,7 +53,7 @@ export default function EventDetails() {
           </div>
         </button>
         <button
-          onClick={() => handleDeleteEvent}
+          onClick={() => handleDeleteEvent(id)}
           className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
         >
           <div className="text-black text-xs font-normal font-['Inter']">
@@ -60,7 +65,7 @@ export default function EventDetails() {
             <img
               className="w-[75px] h-[75px] left-0 top-0 absolute"
               src="https://via.placeholder.com/408x260"
-              alt={`${Events[0].title}`}
+              alt={`${eventData.id}`}
             />
           </div>
           <div className="grow shrink basis-0 flex-col justify-start items-start gap-0.5 inline-flex">
@@ -78,7 +83,7 @@ export default function EventDetails() {
           <img
             className="grow shrink basis-0 h-[260px] rounded-lg"
             src="https://via.placeholder.com/408x260"
-            alt={`${Events[0].title}`}
+            alt={`${eventData.title}`}
           />
           <div className="grow shrink basis-0 flex-col justify-center items-start gap-6 inline-flex">
             <div className="self-stretch h-[458px] flex-col justify-start items-start gap-4 flex">
@@ -86,8 +91,8 @@ export default function EventDetails() {
                 <div className="w-7 h-7 relative"></div>
                 <div className="grow shrink basis-0 h-[29px] justify-start items-start flex">
                   <div className="text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
-                    {`${dateToReadable(Events[0].date)}, `}{' '}
-                    {TimeFormat(Events[0].time)}
+                    {`${dateToReadable(eventData.date)}, `}{' '}
+                    {TimeFormat(eventData.time)}
                   </div>
                 </div>
               </div>
@@ -95,14 +100,14 @@ export default function EventDetails() {
                 <div className="w-7 h-7 relative"></div>
                 <div className="grow shrink basis-0 h-[29px] justify-start items-start flex">
                   <div className="text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
-                    {Events[0].location}
+                    {eventData.location}
                   </div>
                 </div>
               </div>
               <div className="self-stretch h-[368px] flex-col justify-start items-start gap-4 flex">
                 <div className="self-stretch justify-start items-start inline-flex">
                   <div className="text-[#1e1e1e] text-base font-semibold font-['Inter'] leading-snug">
-                    {Events[0].description}
+                    {eventData.description}
                   </div>
                 </div>
                 <div className="self-stretch justify-start items-start inline-flex">

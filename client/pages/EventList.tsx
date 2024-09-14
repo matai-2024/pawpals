@@ -3,10 +3,9 @@ import {
   dateToReadable,
   TimeFormat,
 } from '../components/utils/EventPresentation'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export function EventList() {
-  const evtId = useParams()
   return (
     <>
       <div className="mx-auto  text-center max-w-5xl py-32 sm:py-48 lg:py-24">
@@ -21,7 +20,7 @@ export function EventList() {
           {Events.map((event) => (
             <li key={event.id}>
               <div className="self-stretch p-3 flex-col justify-start items-start gap-6 flex">
-                <Link to={`/event/${evtId}`}>
+                <Link to={`/events/${event.id}`}>
                   <div className="w-[880px] bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100 text-left h-52 p-6 bg-white rounded-lg border border-[#d9d9d9] justify-start items-start gap-6 inline-flex">
                     <img
                       className="w-40 h-40"

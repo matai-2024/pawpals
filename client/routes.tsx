@@ -20,7 +20,7 @@ export const routes = createRoutesFromElements(
     <Route path="profiles" element={<ProfileList />} />
     <Route path="profiles/:id" element={<Profile />} />
     <Route path="events" element={<EventList />} />
-    <Route path="event/:id" element={<EventDetails />} />
+    <Route path="events/:id" element={<EventDetails />} />
   </Route>,
 )
 

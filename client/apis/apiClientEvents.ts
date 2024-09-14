@@ -27,10 +27,8 @@ export async function getEventById(id: number, token: string) {
 }
 
 //DEL event by id
-export async function delEvent(id: number, token: string) {
-  await request
-    .delete(`${rootUrl}/event/${id}`)
-    .set('Authorization', `Bearer ${token}`)
+export async function delEvent(id: number) {
+  await request.delete(`${rootUrl}/event/${id}`)
 }
 
 // TODO
