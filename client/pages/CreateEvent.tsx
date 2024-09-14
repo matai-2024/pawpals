@@ -13,30 +13,25 @@ const INITIAL_DATA = {
   eventImage: '',
   eventWebsite: '',
   audience: '',
-  creatorId: '',
+  creatorId: 1,
 }
 
 export default function CreateEvent() {
   const [data, setData] = useState(INITIAL_DATA)
-  const [authUser, setAuthUser] = useState(INITIAL_DATA.creatorId)
   const addEvent = useCreateEvent()
   const navigate = useNavigate()
-  const { user } = useAuth0()
-  // eslint-disable-next-line no-console
-  console.log('auth0 user: ', user?.sub)
+  const { getAccessTokenSilently } = useAuth0()
 
   function updateFields(fields: Partial<FormData>) {
-    setAuthUser(user?.sub)
     setData((prev) => {
       return { ...prev, ...fields }
     })
-    // eslint-disable-next-line no-console
-    console.log('data: ', data)
   }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const id = await addEvent.mutateAsync(data)
+    const token = await getAccessTokenSilently()
+    const id = await addEvent.mutateAsync({ data, token })
     navigate(`/events/${id}`)
   }
 
