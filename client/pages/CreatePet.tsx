@@ -57,7 +57,7 @@ export default function Signup() {
         updateFields={updateFields}
         key={'pet-traits-form'}
       />,
-      <PetProfileForm {...data} updateFields={updateFields} key={'pet-form'} />
+      <PetProfileForm {...data} updateFields={updateFields} key={'pet-form'} />,
     ])
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -66,7 +66,7 @@ export default function Signup() {
       next()
     } else {
       const token = await getAccessTokenSilently()
-      const id = await addPet.mutateAsync({data, token})
+      const id = await addPet.mutateAsync({ data, token })
       navigate(`/profiles/${id}`)
     }
   }

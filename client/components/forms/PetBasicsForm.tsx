@@ -19,7 +19,8 @@ export default function PetBasicsForm({
           Pet name
         </label>
         <div className="mt-2">
-          <input required
+          <input
+            required
             id="petName"
             name="petName"
             type="text"
@@ -108,7 +109,8 @@ export default function PetBasicsForm({
           Date of birth
         </label>
         <div className="mt-2">
-          <input required
+          <input
+            required
             id="dateOfBirth"
             name="dateOfBirth"
             type="date"
