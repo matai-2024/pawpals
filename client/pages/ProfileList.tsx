@@ -29,45 +29,44 @@ export default function ProfileList() {
 
   return (
     <>
-      <div className="mx-auto max-w-5xl py-32 sm:py-48 lg:py-24">
-        <div className="">
-          <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+      <div className="mx-auto max-w-7xl py-32 sm:py-48 lg:py-24">
+        <div>
+          <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl ">
             Pet Profiles
           </h1>
-          <p className="text-center mt-6 text-lg leading-8 text-gray-600">
+          <p className="my-6 text-lg leading-8 text-gray-600">
             Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
             lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
             fugiat aliqua.
           </p>
-          <div className="p-16 grid grid-cols-4 gap-x-6 gap-y-8  ">
+          <div className="grid grid-cols-5 gap-x-4 gap-y-6 ">
             {data.map((profile: PetProfile) => (
               <div
                 key={profile.id}
-                className="bg-white rounded-2xl shadow sm:col-span-1 bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100"
+                className=" shadow-lg hover:shadow-xl relative group duration-500 cursor-pointer group overflow-hidden  text-gray-50 h-72 w-56  rounded-2xl hover:duration-700 "
               >
                 <Link to={`${profile.id}`}>
-                  <div className="rounded-2xl h-40 overflow-hidden ">
+                  <div>
                     <img
-                      className="rounded-2xl object-cover h-full w-full"
+                      className="rounded-2xl object-contain h-full w-full"
                       src={profile.image}
                       alt={profile.petName}
                     />
                   </div>
-                  <div className="p-2  rounded-2xl ">
-                    <div className="flex flex-row justify-between pb-2">
-                      <p className="text-[#2b2b2d] text-base font-thin font-['Inter'] leading-tight">
-                        {profile.petName}
-                      </p>
-                      <p className="opacity-70 text-right text-[#2b2b2d] text-[13px] font-medium font-['Inter'] leading-none">
+                  <div className="opacity-90 rounded rounded-lg absolute bg-gray-50 -bottom-12 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500 ease-in-out duration-200 group-hover:bg-yellow-100 group-hover:border-yellow-400 group-hover:opacity-90">
+                    <span className="text-[#2b2b2d] font-['Inter'] font-bold text-2xl pb-6 align-text-top">
+                      {profile.petName}
+                    </span>
+                    <div className="flex flex-row justify-between">
+                      <span className="text-[#2b2b2d] font-['Inter'] font-bold text-xs">
+                        {profile.breed}
+                      </span>
+                      <span className="opacity-70 text-right text-[#2b2b2d] text-[13px] font-medium font-['Inter'] leading-none">
                         {getAge(profile.dateOfBirth) > 1
                           ? `${getAge(profile.dateOfBirth)}yrs`
                           : `${getAge(profile.dateOfBirth)}yr`}
-                      </p>
+                      </span>
                     </div>
-
-                    <p className="pb-4 opacity-70 text-[#2b2b2d] text-xs font-normal font-['Inter'] leading-[14px]">
-                      {profile.breed}
-                    </p>
                   </div>
                 </Link>
               </div>
@@ -76,6 +75,36 @@ export default function ProfileList() {
         </div>
       </div>
     </>
+    // <div
+    //   key={profile.id}
+    //   className="bg-white rounded-2xl shadow sm:col-span-1 bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100"
+    // >
+    //   <Link to={`${profile.id}`}>
+    //     <div className="rounded-2xl h-40 overflow-hidden ">
+    //       <img
+    //         className=" object-cover h-full w-full"
+    //         src={profile.image}
+    //         alt={profile.petName}
+    //       />
+    //     </div>
+    //     <div className="p-2  rounded-2xl ">
+    //       <div className="flex flex-row justify-between pb-2">
+    //         <p className="text-[#2b2b2d] text-base font-thin font-['Inter'] leading-tight">
+    //           {profile.petName}
+    //         </p>
+    //         <p className="opacity-70 text-right text-[#2b2b2d] text-[13px] font-medium font-['Inter'] leading-none">
+    //           {getAge(profile.dateOfBirth) > 1
+    //             ? `${getAge(profile.dateOfBirth)}yrs`
+    //             : `${getAge(profile.dateOfBirth)}yr`}
+    //         </p>
+    //       </div>
+
+    //       <p className="pb-4 opacity-70 text-[#2b2b2d] text-xs font-normal font-['Inter'] leading-[14px]">
+    //         {profile.breed}
+    //       </p>
+    //     </div>
+    //   </Link>
+    // </div>
 
     //     <div className="mt-10 flex flex-wrap gap-6">
     //       {data.map((profile: PetProfile) => (
