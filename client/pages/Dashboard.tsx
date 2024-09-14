@@ -4,7 +4,8 @@ import Card from '../components/utils/Card/Card'
 import PetCard from '../components/utils/PetCard/PetCard'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
-import { fetchPetsByOwnerId } from '../apis/apiClientPets'
+import { fetchPetsByOwnerId, getOwnerInfo } from '../apis/apiClientPets'
+import PetProfileForm from '../components/forms/PetProfileForm'
 
 // API call to fetch user events
 const fetchUserEvents = async (ownerId: string | undefined) => {
@@ -16,15 +17,15 @@ const fetchUserEvents = async (ownerId: string | undefined) => {
     return response.json()
   } catch (error) {
     console.error('Error fetching events:', error)
-    return []
+    return ['oops i did it again']
   }
 }
 
-export default function Dashboard() {
+export function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
   const [pets, setPets] = useState([])
   const [events, setEvents] = useState([])
-  console.log(user.sub)
+
   useEffect(() => {
     if (isAuthenticated && user) {
       // Fetch pets for the authenticated user
@@ -35,11 +36,6 @@ export default function Dashboard() {
       fetchUserEvents(user.sub)
         .then(setEvents)
         .catch((err) => console.error('Error fetching events:', err))
-
-      fetch(`/api/events?userId=${user.sub}`)
-        .then((response) => response.json())
-        .then((data) => setEvents(data))
-        .catch((error) => console.error('Error fetching events:', error))
     }
   }, [isAuthenticated, user])
 
@@ -49,7 +45,7 @@ export default function Dashboard() {
 
   if (!isAuthenticated) {
     return (
-      <div className="flex items-center border p-4 rounded-lg space-x-10 mt-100">
+      <div>
         <h2>You need to log in to see your dashboard.</h2>
       </div>
     )
@@ -112,3 +108,5 @@ export default function Dashboard() {
     </div>
   )
 }
+
+export default Dashboard

@@ -3,7 +3,7 @@ import db from '../connection.ts'
 
 // Get all owners
 export async function getAllOwners() {
-  const owners: OwnerData[] = await db('owners').select('*')
+  const owners: Owner[] = await db('owners').select('*')
   return owners as Owner[]
 }
 
@@ -25,7 +25,11 @@ export async function getOwnerByName(firstName: string) {
 // TODO: Check this works
 export async function addNewOwner(owner: OwnerData) {
   const { firstName, lastName, email } = owner
-  const serverData = { first_name: firstName, last_name: lastName, email: email}
+  const serverData = {
+    first_name: firstName,
+    last_name: lastName,
+    email: email,
+  }
   const result = await db('owners').insert(serverData)
   return result[0]
 }
