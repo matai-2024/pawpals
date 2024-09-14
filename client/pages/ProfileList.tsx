@@ -45,29 +45,31 @@ export default function ProfileList() {
                 key={profile.id}
                 className="bg-white rounded-2xl shadow sm:col-span-1 bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100"
               >
-                <div className="rounded-2xl h-40 overflow-hidden ">
-                  <img
-                    className="rounded-2xl object-cover h-full w-full"
-                    src={profile.image}
-                    alt={profile.petName}
-                  />
-                </div>
-                <div className="p-2  rounded-2xl ">
-                  <div className="flex flex-row justify-between pb-2">
-                    <p className="text-[#2b2b2d] text-base font-thin font-['Inter'] leading-tight">
-                      {profile.petName}
-                    </p>
-                    <p className="opacity-70 text-right text-[#2b2b2d] text-[13px] font-medium font-['Inter'] leading-none">
-                      {getAge(profile.dateOfBirth) > 1
-                        ? `${getAge(profile.dateOfBirth)}yrs`
-                        : `${getAge(profile.dateOfBirth)}yr`}
+                <Link to={`${profile.id}`}>
+                  <div className="rounded-2xl h-40 overflow-hidden ">
+                    <img
+                      className="rounded-2xl object-cover h-full w-full"
+                      src={profile.image}
+                      alt={profile.petName}
+                    />
+                  </div>
+                  <div className="p-2  rounded-2xl ">
+                    <div className="flex flex-row justify-between pb-2">
+                      <p className="text-[#2b2b2d] text-base font-thin font-['Inter'] leading-tight">
+                        {profile.petName}
+                      </p>
+                      <p className="opacity-70 text-right text-[#2b2b2d] text-[13px] font-medium font-['Inter'] leading-none">
+                        {getAge(profile.dateOfBirth) > 1
+                          ? `${getAge(profile.dateOfBirth)}yrs`
+                          : `${getAge(profile.dateOfBirth)}yr`}
+                      </p>
+                    </div>
+
+                    <p className="pb-4 opacity-70 text-[#2b2b2d] text-xs font-normal font-['Inter'] leading-[14px]">
+                      {profile.breed}
                     </p>
                   </div>
-
-                  <p className="pb-4 opacity-70 text-[#2b2b2d] text-xs font-normal font-['Inter'] leading-[14px]">
-                    {profile.breed}
-                  </p>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
