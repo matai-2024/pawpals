@@ -1,12 +1,21 @@
 import request from 'superagent'
-import { Event } from '../../models/events'
+import { EventData } from '../../models/events'
 
 const rootUrl = '/api/v1/events'
 
-//GET all events
-export async function getEvents(token: string) {
-  const res = await request.get(rootUrl).set('Authorization', `Bearer ${token}`)
+// get all events
+export async function fetchEvents() {
+  const res = await request.get(rootUrl)
   return res.body as Event[]
+}
+
+// add an event
+export async function addEvent(newEvent: EventData, token: string) {
+  const res = await request
+    .post(rootUrl + '/')
+    .set('Authorization', `Bearer ${token}`)
+    .send(newEvent)
+  return res.body as number
 }
 
 //GET event by id
@@ -24,15 +33,5 @@ export async function delEvent(id: number, token: string) {
     .set('Authorization', `Bearer ${token}`)
 }
 
-//ADD event
-export async function addEvent(newEvt: Event, token: string) {
-  const res = await request
-    .post(rootUrl)
-    .set('Authorization', `Bearer ${token}`)
-    .send(newEvt)
-
-  return res.body as number
-}
-
-//TODO:
-//test these work
+// TODO
+// get event by creator id
