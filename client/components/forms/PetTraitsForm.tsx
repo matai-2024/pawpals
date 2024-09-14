@@ -88,7 +88,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Goofy</h3>
-              <p className="text-gray-600">I'm here to have fun!</p>
+              <p className="text-gray-600">I&apos;m here to have fun!</p>
             </div>
             <input
             id="goofy"
@@ -196,7 +196,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Playful</h3>
-              <p className="text-gray-600">Cheerful and ready to play.</p>
+              <p className="text-gray-600">Can&apos;t we play some more?</p>
             </div>
             <input
             id="playful"
@@ -223,7 +223,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Adventurous</h3>
-              <p className="text-gray-600">Ready to snoop and search.</p>
+              <p className="text-gray-600">Investigating is my passion.</p>
             </div>
             <input
             id="adventurous"
@@ -250,7 +250,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Foodie</h3>
-              <p className="text-gray-600">Who doesn't love a little treat?</p>
+              <p className="text-gray-600">Who doesn&apos;t love a little treat?</p>
             </div>
             <input
             id="foodie"
@@ -277,7 +277,7 @@ export default function PetTraitsForm({ updateFields }: PetFormProps) {
             </div>
             <div className="text-sm leading-6">
               <h3 className="font-medium text-gray-900">Snorer</h3>
-              <p className="text-gray-600">It's called heavy breathing, ok!?</p>
+              <p className="text-gray-600">It&apos;s called heavy breathing, ok!?</p>
             </div>
             <input
             id="snorer"
