@@ -1,3 +1,7 @@
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
 export const addEvents = [
   {
     id: 1,

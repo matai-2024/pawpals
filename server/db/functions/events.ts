@@ -30,7 +30,7 @@ export async function insertEvent(eventData: EventData) {
     event_image: eventImage,
     event_website: eventWebsite,
     audience,
-    creator_id: creatorId
+    creator_id: creatorId,
   }
 
   const result = await db('events').insert(newEvent, ['id'])

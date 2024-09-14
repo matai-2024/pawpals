@@ -9,6 +9,7 @@ const navigation = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '#' },
   { name: 'Pets', to: '/profiles' },
+  { name: 'Add a Pet', to: '/create' },
   { name: 'Events', to: '/events' },
 ]
 
@@ -122,12 +123,22 @@ export default function Nav() {
                 ))}
               </div>
               <div className="py-6">
-                <Link
-                  to="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </Link>
+              <IfAuthenticated>
+              <button
+                className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                onClick={handleSignOut}
+              >
+              Sign out
+            </button>
+          </IfAuthenticated>
+          <IfNotAuthenticated>
+            <button
+              className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              onClick={handleSignIn}
+            >
+              Sign in
+            </button>
+          </IfNotAuthenticated>
               </div>
             </div>
           </div>

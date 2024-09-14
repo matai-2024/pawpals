@@ -18,7 +18,20 @@ export async function addEvent(newEvent: EventData, token: string) {
   return res.body as number
 }
 
+//GET event by id
+export async function getEventById(id: number, token: string) {
+  const res = await request
+    .get(`${rootUrl}/event/${id}`)
+    .set('Authorization', `Bearer ${token}`)
+  return res.body as Event
+}
+
+//DEL event by id
+export async function delEvent(id: number, token: string) {
+  await request
+    .delete(`${rootUrl}/event/${id}`)
+    .set('Authorization', `Bearer ${token}`)
+}
+
 // TODO
-// get event by id
 // get event by creator id
-// delete by id
