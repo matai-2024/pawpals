@@ -22,6 +22,7 @@ export default function CreateEvent() {
   const addEvent = useCreateEvent()
   const navigate = useNavigate()
   const { user } = useAuth0()
+  // eslint-disable-next-line no-console
   console.log('auth0 user: ', user?.sub)
 
   function updateFields(fields: Partial<FormData>) {
