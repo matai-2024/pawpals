@@ -35,6 +35,11 @@ export default function Dashboard() {
       fetchUserEvents(user.sub)
         .then(setEvents)
         .catch((err) => console.error('Error fetching events:', err))
+
+      fetch(`/api/events?userId=${user.sub}`)
+        .then((response) => response.json())
+        .then((data) => setEvents(data))
+        .catch((error) => console.error('Error fetching events:', error))
     }
   }, [isAuthenticated, user])
 
@@ -77,6 +82,7 @@ export default function Dashboard() {
                   key={event.id}
                   title={event.title}
                   time={event.time}
+                  going={undefined}
                 />
               ))
             ) : (
@@ -94,6 +100,7 @@ export default function Dashboard() {
                   key={event.id}
                   title={event.title}
                   time={event.time}
+                  going={undefined}
                 />
               ))
             ) : (
