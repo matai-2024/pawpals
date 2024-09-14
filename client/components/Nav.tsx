@@ -58,14 +58,17 @@ export default function Nav() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
-        <IfAuthenticated>
-          <></>
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <button
-          className="text-sm font-semibold leading-6 text-gray-900"
-          onClick={handleSignIn}>Sign up</button>
-        </IfNotAuthenticated>
+          <IfAuthenticated>
+            <></>
+          </IfAuthenticated>
+          <IfNotAuthenticated>
+            <button
+              className="text-sm font-semibold leading-6 text-gray-900"
+              onClick={handleSignIn}
+            >
+              Sign up
+            </button>
+          </IfNotAuthenticated>
           <IfAuthenticated>
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
@@ -123,22 +126,22 @@ export default function Nav() {
                 ))}
               </div>
               <div className="py-6">
-              <IfAuthenticated>
-              <button
-                className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                onClick={handleSignOut}
-              >
-              Sign out
-            </button>
-          </IfAuthenticated>
-          <IfNotAuthenticated>
-            <button
-              className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              onClick={handleSignIn}
-            >
-              Sign in
-            </button>
-          </IfNotAuthenticated>
+                <IfAuthenticated>
+                  <button
+                    className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={handleSignOut}
+                  >
+                    Sign out
+                  </button>
+                </IfAuthenticated>
+                <IfNotAuthenticated>
+                  <button
+                    className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={handleSignIn}
+                  >
+                    Sign in
+                  </button>
+                </IfNotAuthenticated>
               </div>
             </div>
           </div>

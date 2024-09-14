@@ -10,7 +10,7 @@ interface Props {
 export default function useCreateEvent() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: ({data, token}: Props) => {
+    mutationFn: ({ data, token }: Props) => {
       // eslint-disable-next-line no-console
       console.log('mutation data', data)
 
