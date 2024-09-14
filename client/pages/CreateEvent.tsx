@@ -18,17 +18,19 @@ const INITIAL_DATA = {
 
 export default function CreateEvent() {
   const [data, setData] = useState(INITIAL_DATA)
+  const [authUser, setAuthUser] = useState(INITIAL_DATA.creatorId)
   const addEvent = useCreateEvent()
   const navigate = useNavigate()
   const { user } = useAuth0()
-  console.log(user)
+  console.log('auth0 user: ', user?.sub)
 
   function updateFields(fields: Partial<FormData>) {
+    setAuthUser(user?.sub)
     setData((prev) => {
       return { ...prev, ...fields }
     })
     // eslint-disable-next-line no-console
-    console.log(fields)
+    console.log('data: ', data)
   }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
