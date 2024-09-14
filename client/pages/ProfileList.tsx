@@ -3,7 +3,6 @@ import { PetProfile } from '../../models/forms.ts'
 import LoadingSpinner from '../components/LoadingSpinner.tsx'
 import { usePets } from '../hooks/hooks.ts'
 
-
 export default function ProfileList() {
   const { data, isPending, isError, error } = usePets()
 
