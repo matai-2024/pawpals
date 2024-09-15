@@ -52,9 +52,9 @@ router.post('/', checkJwt, async (req, res) => {
     await db.addNewOwner(owner)
     res.status(201).json(owner)
   } catch (error) {
-     // eslint-disable-next-line no-console
-     console.log('Error: ', error)
-     res.sendStatus(500)
+    // eslint-disable-next-line no-console
+    console.log('Error: ', error)
+    res.sendStatus(500)
   }
 })
 
