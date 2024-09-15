@@ -16,7 +16,7 @@ const camelCase = [
 // Get all events
 export async function getAllEvents() {
   const events = await db('events').select(camelCase)
-  return events as Events[]
+  return events as Event[]
 }
 
 // Add an event
@@ -53,3 +53,6 @@ export async function insertEvent(eventData: EventData) {
 export async function deleteEvent(id: number) {
   return await db('events').where({ id }).del()
 }
+
+// edit an event
+// TODO
