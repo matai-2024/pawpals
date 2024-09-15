@@ -6,16 +6,12 @@ import usePets from '../hooks/use-pets'
 import LoadingSpinner from '../components/LoadingSpinner'
 import useEventById from '../hooks/eventHooks/useEventById'
 import useDelEvent from '../hooks/eventHooks/useDeleteEvent'
-import {
-  IfAuthenticated,
-  IfNotAuthenticated,
-} from '../components/utils/Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function EventDetails() {
   const navigate = useNavigate()
   const deleteEvent = useDelEvent()
-  const { user, isAuthenticated } = useAuth0
+  const { user, isAuthenticated } = useAuth0()
   const params = useParams()
   const id = Number(params.id)
   const { data: pets, isLoading, isError, error } = usePets()
@@ -53,7 +49,7 @@ export default function EventDetails() {
             {evts.title}
           </div>
           {/* TODO: Conditionally render these buttons based on if the user added this event */}
-          {isAuthenticated && user?.sub ? (
+          {user?.sub === '' ? (
             <>
               <button
                 onClick={() => handleEditEvent(id)}
@@ -80,7 +76,7 @@ export default function EventDetails() {
             <div className="w-[70px] h-[70px] relative rounded-full">
               <img
                 className="w-[75px] h-[75px] left-0 top-0 absolute"
-                src="https://via.placeholder.com/408x260"
+                src={user?.picture || 'https://via.placeholder.com/100'}
                 alt={`${evts.creatorId}`}
               />
             </div>
@@ -89,7 +85,7 @@ export default function EventDetails() {
                 Hosted By
               </div>
               <div className="self-stretch text-[#b3b3b3] text-[32px] font-normal font-['Inter'] leading-[38.40px]">
-                Event Creator Name
+                {user?.nickname}
               </div>
             </div>
           </div>
