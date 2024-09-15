@@ -21,7 +21,9 @@
     "storybook": "run-p watch:storybook dev:css",
     "watch:storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "dev:css": "tailwindcss -i client/styles/main.css -o public/output.css --watch"
+    "dev:css": "tailwindcss -i client/styles/main.css -o public/output.css --watch",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"./**/*.{js,ts,jsx,tsx,json,md}\""
   },
   "eslintConfig": {
     "extends": "@devacademy/eslint-config/react",

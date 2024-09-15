@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { EventData } from '../../models/events'
+import { EventData, Event } from '../../models/events'
 
 const rootUrl = '/api/v1/events'
 

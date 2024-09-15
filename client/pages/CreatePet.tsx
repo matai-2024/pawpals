@@ -1,16 +1,14 @@
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import OwnerForm from '../components/forms/OwnerForm.tsx'
 import PetProfileForm from '../components/forms/PetProfileForm.tsx'
 import { useCreatePet, useMultistepForm } from '../hooks/hooks.ts'
 import PetBasicsForm from '../components/forms/PetBasicsForm.tsx'
 import PetTraitsForm from '../components/forms/PetTraitsForm.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
+import { PetProfileData } from '../../models/forms.ts'
 
 const INITIAL_DATA = {
-  firstName: '',
-  lastName: '',
-  email: '',
+  // get owner by sign-in ID
   ownerId: 1,
   petName: '',
   image: '',
@@ -19,18 +17,18 @@ const INITIAL_DATA = {
   breed: '',
   species: '',
   bio: '',
-  busy: '',
-  lazy: '',
-  goofy: '',
-  gorgeous: '',
-  brat: '',
-  loyal: '',
-  playful: '',
-  adventurous: '',
-  foodie: '',
-  snorer: '',
-  crazy: '',
-  floofy: '',
+  busy: 'false',
+  lazy: 'false',
+  goofy: 'false',
+  gorgeous: 'false',
+  brat: 'false',
+  loyal: 'false',
+  playful: 'false',
+  adventurous: 'false',
+  foodie: 'false',
+  snorer: 'false',
+  crazy: 'false',
+  floofy: 'false',
 }
 
 export default function Signup() {
@@ -39,12 +37,12 @@ export default function Signup() {
   const navigate = useNavigate()
   const { getAccessTokenSilently } = useAuth0()
 
-  function updateFields(fields: Partial<FormData>) {
+  function updateFields(fields: Partial<PetProfileData>) {
     setData((prev) => {
       return { ...prev, ...fields }
     })
     // eslint-disable-next-line no-console
-    console.log(fields)
+    console.log(data)
   }
 
   const { step, steps, currentStepIndex, isFirstStep, isLastStep, back, next } =
@@ -60,7 +58,6 @@ export default function Signup() {
         key={'pet-traits-form'}
       />,
       <PetProfileForm {...data} updateFields={updateFields} key={'pet-form'} />,
-      <OwnerForm {...data} updateFields={updateFields} key={'owner-form'} />,
     ])
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -69,22 +66,20 @@ export default function Signup() {
       next()
     } else {
       const token = await getAccessTokenSilently()
-      const id = await addPet.mutateAsync({data, token})
+      const id = await addPet.mutateAsync({ data, token })
       navigate(`/profiles/${id}`)
     }
   }
 
   return (
-    <div>mutation
+    <div>
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-24">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Let&apos;s get started
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-            lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-            fugiat aliqua.
+            Fill in the details below to add your pet&apos;s new pawpal profile.
           </p>
           <div>
             <h2>
