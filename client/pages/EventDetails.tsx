@@ -4,31 +4,33 @@ import dateToReadable, {
 } from '../components/utils/EventPresentation'
 import usePets from '../hooks/use-pets'
 import LoadingSpinner from '../components/LoadingSpinner'
-// import useDelEvent from '../hooks/eventHooks/useDeleteEvent'
-import { useQuery } from '@tanstack/react-query'
-import { getEventById } from '../apis/apiClientEvents'
-import { useAuth0 } from '@auth0/auth0-react'
+import useEventById from '../hooks/eventHooks/useEventById'
+import useDelEvent from '../hooks/eventHooks/useDeleteEvent'
+import {
+  IfAuthenticated,
+  IfNotAuthenticated,
+} from '../components/utils/Authenticated'
 
-export default async function EventDetails() {
+export default function EventDetails() {
   const navigate = useNavigate()
-  const { getAccessTokenSilently } = useAuth0()
-  // const deleteEvent = useDelEvent()
-  const id = useParams()
-  const token = await getAccessTokenSilently()
-  console.log(id)
+  const deleteEvent = useDelEvent()
+  const params = useParams()
+  const id = Number(params.id)
   const { data: pets, isLoading, isError, error } = usePets()
-  const { data: evts } = useQuery({
-    queryKey: ['event'],
-    queryFn: () => getEventById(id, token),
-  })
-
-  console.log(evts?.title)
-  // async function handleDeleteEvent(id: number) {
-  //   deleteEvent.mutate(id)
-  // }
+  const { data: evts } = useEventById(id)
 
   function handleEditEvent(id: number) {
     navigate(`/edit-event/${id}`)
+  }
+
+  function handleDeleteEvent(id: number) {
+    deleteEvent.mutate(id)
+    navigate(`/events`)
+  }
+
+  //TODO: implement attend logic
+  function handleAttend() {
+    return
   }
 
   if (isLoading) return <LoadingSpinner />
@@ -49,28 +51,34 @@ export default async function EventDetails() {
             {evts.title}
           </div>
           {/* TODO: Conditionally render these buttons based on if the user added this event */}
-          <button
-            onClick={() => handleEditEvent}
-            className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
-          >
-            <div className="w-[58px] text-black text-xs font-normal font-['Inter']">
-              Edit Event
-            </div>
-          </button>
-          <button
-            // onClick={() => handleDeleteEvent(id)}
-            className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
-          >
-            <div className="text-black text-xs font-normal font-['Inter']">
-              Delete Event
-            </div>
-          </button>
+          <IfAuthenticated>
+            <button
+              onClick={() => handleEditEvent(id)}
+              className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
+            >
+              <div className="w-[58px] text-black text-xs font-normal font-['Inter']">
+                Edit Event
+              </div>
+            </button>
+
+            <button
+              onClick={() => handleDeleteEvent(id)}
+              className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
+            >
+              <div className="text-black text-xs font-normal font-['Inter']">
+                Delete Event
+              </div>
+            </button>
+          </IfAuthenticated>
+          <IfNotAuthenticated>
+            <></>
+          </IfNotAuthenticated>
           <div className="self-stretch justify-start items-start gap-3 inline-flex">
             <div className="w-[70px] h-[70px] relative rounded-full">
               <img
                 className="w-[75px] h-[75px] left-0 top-0 absolute"
                 src="https://via.placeholder.com/408x260"
-                alt={`${evts.id}`}
+                alt={`${evts.creatorId}`}
               />
             </div>
             <div className="grow shrink basis-0 flex-col justify-start items-start gap-0.5 inline-flex">
@@ -85,11 +93,19 @@ export default async function EventDetails() {
         </div>
         <div className="h-[650px] px-40 py-16 flex-col justify-start items-start gap-6 inline-flex">
           <div className="self-stretch justify-start items-start gap-16 inline-flex">
-            <img
-              className="grow shrink basis-0 h-[260px] rounded-lg"
-              src={evts.eventImage}
-              alt={`${evts.title}`}
-            />
+            {evts.eventImage === '' || undefined ? (
+              <img
+                className="grow shrink basis-0 h-[260px] rounded-lg"
+                src="https://via.placeholder.com/408x260"
+                alt={evts.title}
+              />
+            ) : (
+              <img
+                className="grow shrink basis-0 h-[260px] rounded-lg"
+                src={evts.eventImage || 'https://via.placeholder.com/408x260'}
+                alt={`${evts.title}`}
+              />
+            )}
             <div className="grow shrink basis-0 flex-col justify-center items-start gap-6 inline-flex">
               <div className="self-stretch h-[458px] flex-col justify-start items-start gap-4 flex">
                 <div className="self-stretch justify-start items-center gap-2 inline-flex">
@@ -109,33 +125,22 @@ export default async function EventDetails() {
                   </div>
                 </div>
                 <div className="self-stretch h-[368px] flex-col justify-start items-start gap-4 flex">
-                  <div className="self-stretch justify-start items-start inline-flex">
+                  <div className="self-stretch justify-start items-start py-6 inline-flex">
                     <div className="text-[#1e1e1e] text-base font-semibold font-['Inter'] leading-snug">
-                      {evts.description}
+                      {evts.title}
                     </div>
                   </div>
                   <div className="self-stretch justify-start items-start inline-flex">
                     <div className="grow shrink basis-0 text-[#757575] text-base font-normal font-['Inter'] leading-snug">
-                      Lorem ipsum dolor sit amet consectetur adipiscing elit
-                      auctor, diam porta netus tempus habitasse aptent donec
-                      condimentum vulputate, turpis purus magna cursus elementum
-                      iaculis facilisis. <br />
-                      <br />
-                      Hendrerit cursus felis habitant suscipit tempus tellus
-                      proin malesuada, netus duis quam fringilla molestie sed
-                      augue velit ante, cum in ultrices rhoncus condimentum
-                      neque tincidunt. <br />
-                      <br />
-                      Netus semper nibh faucibus curabitur imperdiet magna
-                      sapien libero, torquent gravida ante dignissim magnis
-                      tristique aliquet, potenti leo tincidunt eleifend
-                      malesuada fames congue tortor, montes a primis at
-                      suspendisse nisl.
+                      {evts.description}
                     </div>
                   </div>
                 </div>
               </div>
-              <button className="self-stretch p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex">
+              <button
+                onClick={() => handleAttend()}
+                className="self-stretch p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
+              >
                 <div className="text-neutral-100 text-base font-normal font-['Inter'] leading-none">
                   Attend
                 </div>

@@ -18,6 +18,30 @@ router.get('/', async (req, res) => {
   }
 })
 
+// GET single event for /api/v1/events/:id
+router.get('/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    const event = await db.getEventById(id)
+    res.json(event)
+  } catch (e) {
+    console.error(e)
+    res.sendStatus(500)
+  }
+})
+
+// DEL event
+router.delete('/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const event = await db.delEvent(Number(id))
+    res.status(204).json(event)
+  } catch (e) {
+    console.error(e)
+    res.sendStatus(500)
+  }
+})
+
 // POST / add a new event
 router.post('/', checkJwt, async (req, res) => {
   try {

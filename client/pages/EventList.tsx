@@ -27,7 +27,6 @@ export function EventList() {
         {String(error)}
       </div>
     )
-
   if (events)
     return (
       <>
@@ -40,7 +39,7 @@ export function EventList() {
           </p>
           <ul>
             {events.map((event) => (
-              <div key={event.id}>
+              <li key={event.id}>
                 <div className="self-stretch p-3 flex-col justify-start items-start gap-6 flex">
                   <Link to={`/events/${event.id}`}>
                     <div className="w-[880px] bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100 text-left h-52 p-6 bg-white rounded-lg border border-[#d9d9d9] justify-start items-start gap-6 inline-flex">
@@ -61,9 +60,9 @@ export function EventList() {
                           <p className="self-stretch text-[#1e1e1e] text-xl font-semibold font-['Inter'] leading-[28.80px]">
                             {event.location}
                           </p>
-                          <p className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight ">
+                          <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight ">
                             <p className="line-clamp-2">{event.description}</p>
-                          </p>
+                          </div>
                           <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
                             x attending
                           </p>
@@ -72,7 +71,7 @@ export function EventList() {
                     </div>
                   </Link>
                 </div>
-              </div>
+              </li>
             ))}
           </ul>
         </div>

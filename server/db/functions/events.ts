@@ -2,6 +2,7 @@ import { Event, EventData } from '../../../models/events.ts'
 import db from '../connection.ts'
 
 const camelCase = [
+  'id',
   'title',
   'date',
   'time',
@@ -19,9 +20,14 @@ export async function getAllEvents() {
   return events as Event[]
 }
 
-//Get event by ID
+// Get event by ID
 export async function getEventById(id: number) {
   return await db('events').select(camelCase).where({ id }).first()
+}
+
+// DEL event by ID
+export async function delEvent(id: number) {
+  return await db('events').where({ id }).del()
 }
 
 // Add an event
