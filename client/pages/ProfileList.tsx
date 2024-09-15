@@ -53,7 +53,7 @@ export default function ProfileList() {
                       alt={profile.petName}
                     />
                   </div>
-                  <div className="opacity-90 rounded rounded-lg absolute bg-gray-50 -bottom-12 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500 ease-in-out group-hover:bg-yellow-100 group-hover:border-yellow-400 group-hover:opacity-90">
+                  <div className="opacity-90 rounded-lg absolute bg-gray-50 -bottom-12 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500 ease-in-out group-hover:bg-yellow-100 group-hover:border-yellow-400 group-hover:opacity-90">
                     <span className="text-[#2b2b2d] font-['Inter'] font-bold text-2xl pb-6 align-text-top">
                       {profile.petName}
                     </span>
