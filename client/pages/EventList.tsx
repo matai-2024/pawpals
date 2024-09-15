@@ -55,12 +55,12 @@ export function EventList() {
                         <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
                           {event.title}
                         </h1>
-                        <p className="self-stretch text-[#1e1e1e] text-xl font-semibold font-['Inter'] leading-[28.80px]">
+                        <div className="self-stretch text-[#1e1e1e] text-xl font-semibold font-['Inter'] leading-[28.80px]">
                           {event.location}
-                        </p>
-                        <p className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight ">
+                        </div>
+                        <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight ">
                           <p className="line-clamp-2">{event.description}</p>
-                        </p>
+                        </div>
                         <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
                           x attending
                         </p>

@@ -5,6 +5,7 @@ export { default as useCreatePet } from './use-pet-create.ts'
 export { default as useMultistepForm } from './use-multistep-form.ts'
 export { default as useEventsByPetId } from './eventHooks/use-events-pet-id.ts'
 export { default as useOwnerByPetId } from './ownerHooks/user-owner-pet-id.ts'
+export { default as usePetByOwnerId } from './use-pet-by-owner-id.ts'
 
 // TODO:
 // delete pets

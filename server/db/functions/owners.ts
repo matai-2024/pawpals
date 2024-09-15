@@ -10,7 +10,7 @@ const camelCase = [
 
 // Get all owners
 export async function getAllOwners() {
-  const owners: OwnerData[] = await db('owners').select('*')
+  const owners: Owner[] = await db('owners').select('*')
   return owners as Owner[]
 }
 
