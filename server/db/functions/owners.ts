@@ -9,7 +9,10 @@ export async function getAllOwners() {
 
 // Get owner by id
 export async function getOwnerById(id: number) {
-  const owner: OwnerData = await db('owners').where({ id }).select('*').first()
+  const owner: OwnerData = await db('owners').where({ id })
+  .select('first_name as firstName', 'last_name as lastName', 'email')
+  .first()
+
   return owner as Owner
 }
 
