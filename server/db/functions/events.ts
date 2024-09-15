@@ -59,3 +59,23 @@ export async function insertEvent(eventData: EventData) {
   const result = await db('events').insert(newEvent, ['id'])
   return result[0].id
 }
+
+// Get all events by pet id
+export async function getEventsByPetId(petId: number) {
+  const events = await db('events')
+    .join('attendees', 'attendees.event_id', 'events.id')
+    .where('attendees.pet_id', petId)
+    .select(
+      'events.id',
+      'events.title',
+      'events.date',
+      'events.time',
+      'events.location',
+      'events.description',
+      'events.event_image as eventImage',
+      'events.event_website as eventWebsite',
+      'events.audience',
+      'events.creator_id as creatorId',
+    )
+  return events as Event[]
+}

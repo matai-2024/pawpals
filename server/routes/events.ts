@@ -55,4 +55,17 @@ router.post('/', checkJwt, async (req, res) => {
   }
 })
 
+// GET all events by pet id
+router.get('/pet/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const events = await db.getEventsByPetId(Number(id))
+    res.json(events)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error: ', error)
+    res.sendStatus(500)
+  }
+})
+
 export default router
