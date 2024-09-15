@@ -1,10 +1,39 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import LoadingSpinner from '../components/LoadingSpinner.tsx'
-import { usePetById } from '../hooks/hooks.ts'
+import {
+  usePetById,
+  useEventsByPetId,
+  useOwnerByPetId,
+} from '../hooks/hooks.ts'
+import dateToReadable, {
+  TimeFormat,
+} from '../components/utils/EventPresentation.tsx'
+
+interface TraitObj {
+  key: string
+  label: string
+}
+
+const traits = [
+  { key: 'busy', label: 'Busy' },
+  { key: 'lazy', label: 'Lazy' },
+  { key: 'goofy', label: 'Goofy' },
+  { key: 'gorgeous', label: 'Gorgeous' },
+  { key: 'brat', label: 'Brat' },
+  { key: 'loyal', label: 'Loyal' },
+  { key: 'playful', label: 'Playful' },
+  { key: 'adventurous', label: 'Adventurous' },
+  { key: 'foodie', label: 'Foodie' },
+  { key: 'snorer', label: 'Snorer' },
+  { key: 'crazy', label: 'Crazy' },
+  { key: 'floofy', label: 'Floofy' },
+] as TraitObj[]
 
 export default function Profile() {
   const { id } = useParams()
   const { data, isPending, isError, error } = usePetById(Number(id))
+  const events = useEventsByPetId(Number(id)).data
+  const owner = useOwnerByPetId(Number(id)).data
 
   if (isPending) return <LoadingSpinner />
 
@@ -50,25 +79,12 @@ export default function Profile() {
                 , {data.gender}, {data.breed}
               </h2>
               <div className="flex flex-wrap gap-2 mt-4">
-                {[
-                  { key: 'busy', label: 'Busy' },
-                  { key: 'lazy', label: 'Lazy' },
-                  { key: 'goofy', label: 'Goofy' },
-                  { key: 'gorgeous', label: 'Gorgeous' },
-                  { key: 'brat', label: 'Brat' },
-                  { key: 'loyal', label: 'Loyal' },
-                  { key: 'playful', label: 'Playful' },
-                  { key: 'adventurous', label: 'Adventurous' },
-                  { key: 'foodie', label: 'Foodie' },
-                  { key: 'snorer', label: 'Snorer' },
-                  { key: 'crazy', label: 'Crazy' },
-                  { key: 'floofy', label: 'Floofy' },
-                ].map(
+                {traits.map(
                   (trait) =>
                     data[trait.key] === 'on' && (
                       <span
                         key={trait.key}
-                        className="px-4 p-2 bg-yellow-200 rounded-full text-gray-950"
+                        className="px-4 p-2 bg-yellow-300 rounded-full text-gray-950"
                       >
                         {trait.label}
                       </span>
@@ -76,82 +92,54 @@ export default function Profile() {
                 )}
               </div>
               <div className="mt-12 justify-start items-center gap-4 inline-flex">
-                <div className="w-16 h-16 rounded-full overflow-hidden">
+                <div className="w-12 h-12 rounded-full overflow-hidden">
                   <img
                     className="object-cover"
-                    src="https://via.placeholder.com/69x69"
+                    src="../placeholder-user.png"
                     alt="owner"
                   />
                 </div>
-                <h3 className="text-2xl text-gray-400">Amy</h3>
+                <h3 className="text-xl text-gray-600">
+                  {owner?.firstName} {owner?.lastName.charAt(0)}.
+                </h3>
               </div>
             </div>
           </div>
         </div>
         <div className="mt-20 flex flex-col gap-6">
           <h2 className="text-2xl font-semibold">About me</h2>
-          <p className="text-lg text-gray-500">{data.bio}</p>
+          <p className="text-lg text-gray-600">{data.bio}</p>
         </div>
 
         <div className="mt-20 grid grid-cols-3 gap-6">
-          <h2 className="col-span-3 text-3xl font-semibold">Find me at these events</h2>
-          <div className="col-span-1 h-96 p-6 bg-white rounded-lg border border-gray-200 flex-col gap-6 inline-flex">
-            <img
-              className="h-40 rounded-lg"
-              src="https://via.placeholder.com/277x160"
-              alt="event"
-            />
-            <div className="h-44 flex-col gap-2 flex">
-              <div className="text-gray-950 text-base font-semibold leading-snug">
-                Thu 12 Sep, 5:30 PM
+          <h2 className="col-span-3 text-3xl font-semibold">
+            Find me at these events
+          </h2>
+          {events?.map((event) => (
+            <Link to={`/events/${event.id}`} key={`event-${event.id}`}>
+              <div className="col-span-1 h-96 p-4 py-6 bg-white hover:bg-blue-50 shadow-md hover:shadow-lg border rounded-lg flex-col gap-6 inline-flex ease-in-out duration-200">
+                <img
+                  className="h-40 rounded-lg"
+                  src={`../${event.eventImage}`}
+                  alt={event.title}
+                />
+                <div className="h-44 flex-col gap-2 flex">
+                  <p className="text-sm text-blue-800 font-semibold">
+                    {`${dateToReadable(event.date)},`} {TimeFormat(event.time)}
+                  </p>
+
+                  <div>
+                    <h3 className="text-xl text-gray-950 font-semibold">
+                      {event.title}
+                    </h3>
+                  </div>
+                  <div className="text-gray-600 text-sm font-normal leading-tight">
+                    <p className="line-clamp-3">{event.description}</p>
+                  </div>
+                </div>
               </div>
-              <div className="text-gray-950 text-2xl font-semibold leading-[28.80px]">
-                Name
-              </div>
-              <div className="text-gray-500 text-sm font-normal leading-tight">
-                Body text for whatever you’d like to say. Add main takeaway
-                points, quotes, anecdotes, or even a very very short story.
-              </div>
-            </div>
-          </div>
-          <div className="col-span-1 h-96 p-6 bg-white rounded-lg border border-gray-200 flex-col gap-6 inline-flex">
-            <img
-              className="h-40 rounded-lg"
-              src="https://via.placeholder.com/277x160"
-              alt="event"
-            />
-            <div className="h-44 flex-col gap-2 flex">
-              <div className="text-gray-950 text-base font-semibold leading-snug">
-                Thu 12 Sep, 5:30 PM
-              </div>
-              <div className="text-gray-950 text-2xl font-semibold leading-[28.80px]">
-                Name
-              </div>
-              <div className="text-gray-500 text-sm font-normal leading-tight">
-                Body text for whatever you’d like to say. Add main takeaway
-                points, quotes, anecdotes, or even a very very short story.
-              </div>
-            </div>
-          </div>
-          <div className="col-span-1 h-96 p-6 bg-white rounded-lg border border-gray-200 flex-col gap-6 inline-flex">
-            <img
-              className="h-40 rounded-lg"
-              src="https://via.placeholder.com/277x160"
-              alt="event"
-            />
-            <div className="h-44 flex-col gap-2 flex">
-              <div className="text-gray-950 text-base font-semibold leading-snug">
-                Thu 12 Sep, 5:30 PM
-              </div>
-              <div className="text-gray-950 text-2xl font-semibold leading-[28.80px]">
-                Name
-              </div>
-              <div className="text-gray-500 text-sm font-normal leading-tight">
-                Body text for whatever you’d like to say. Add main takeaway
-                points, quotes, anecdotes, or even a very very short story.
-              </div>
-            </div>
-          </div>
+            </Link>
+          ))}
         </div>
 
         <div
