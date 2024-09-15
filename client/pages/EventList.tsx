@@ -15,7 +15,7 @@ export default function EventList({ search }: Props) {
           <div>
             <div className="inline-flex justify-start items-start gap-6 my-3 w-[880px] text-left bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100h-52 p-6 bg-white rounded-lg border border-[#d9d9d9]">
               <img
-                className="w-40 h-40"
+                className="w-40 h-40 object-cover"
                 src={event.eventImage}
                 alt={event.title}
               />
