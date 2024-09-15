@@ -81,7 +81,7 @@ export default function Profile() {
             <div className="flex gap-x-8">
               <div className="flex flex-row gap-4">
                 <i className="fa-solid fa-cake-candles text-3xl text-gray-950"></i>
-                <h2 className="text-xl">
+                <h2 data-testid="age-heading" className="text-xl">
                   {getAge(data.dateOfBirth) > 1
                     ? `${getAge(data.dateOfBirth)}yrs old`
                     : `${getAge(data.dateOfBirth)}yr old`}
@@ -102,7 +102,7 @@ export default function Profile() {
                 (trait: TraitObj) =>
                   data[trait.key] === 'on' && (
                     <span
-                      key={trait.key}
+                      key={`trait-${trait.key}`}
                       className="px-4 p-2 bg-yellow-300 rounded-full text-gray-950"
                     >
                       {trait.label}
@@ -115,11 +115,11 @@ export default function Profile() {
                 <img
                   className="object-cover"
                   src="../placeholder-user.png"
-                  alt="owner"
+                  alt={owner?.firstName}
                 />
               </div>
-              <h3 className="text-xl text-gray-600">
-                {owner?.firstName} {owner?.lastName.charAt(0)}.
+              <h3 data-testid="owner" className="text-xl text-gray-600">
+                Owner: {owner?.firstName} {owner?.lastName.charAt(0)}.
               </h3>
             </div>
           </div>
