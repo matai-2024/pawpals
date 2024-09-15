@@ -35,7 +35,7 @@ export default function Events() {
   if (events)
     return (
       <>
-        <div className="mx-auto  text-center max-w-5xl py-32 sm:py-48 lg:py-24">
+        <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Pet-friendly Events
           </h1>
@@ -43,6 +43,7 @@ export default function Events() {
             placeholder text of a list of all upcoming events in your area...
           </p>
           <input
+            className="w-5/12 rounded-md border-2 mb-5 border-gray-400"
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Search events..."
