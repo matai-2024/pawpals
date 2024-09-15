@@ -17,7 +17,7 @@ export async function fetchPetById(id: number) {
 
 // get pets by owner id
 export async function fetchPetsByOwnerId(id: number) {
-  const res = await request.get(rootUrl + 'owner/' + id)
+  const res = await request.get(rootUrl + '/owner/' + id)
   return res.body as PetProfile[]
 }
 
@@ -36,7 +36,6 @@ export async function addPet(newPet: PetProfileData, token: string) {
     .send(newPet)
   return res.body as number
 }
-
 // TODO
 // Check these work!!
 // delete by id

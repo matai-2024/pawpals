@@ -111,6 +111,7 @@ export interface OwnerFormProps extends OwnerData {
 
 export interface Owner extends OwnerData {
   id: number
+  externalKey: string
 }
 
 // Form inputs
