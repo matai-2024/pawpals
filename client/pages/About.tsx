@@ -24,12 +24,12 @@ export default function About() {
               </div>
             </div>
             <div className="self-stretch justify-start items-start inline-flex">
-              <div className="grow shrink basis-0 text-[#1e1e1e] text-base font-normal font-['Inter'] leading-snug">
+              <div className=" basis-0 text-[#1e1e1e] text-base font-normal font-['Inter'] leading-snug">
                 Body text for your whole article or post. We’ll put in some
                 lorem ipsum to show how a filled-out page might look:
               </div>
             </div>
-            <div className="self-stretch justify-start items-start inline-flex">
+            <div className=" justify-start items-start inline-flex">
               <div className="grow shrink basis-0 text-[#1e1e1e] text-base font-normal font-['Inter'] leading-snug">
                 Excepteur efficient emerging, minim veniam anim aute carefully
                 curated Ginza conversation exquisite perfect nostrud nisi
