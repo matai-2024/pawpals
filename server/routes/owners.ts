@@ -43,6 +43,19 @@ router.get('/name/:firstName', checkJwt, async (req, res) => {
   }
 })
 
+// GET owner by pet id
+router.get('/pet/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const owner = await db.getOwnerByPetId(Number(id))
+    res.json(owner)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error: ', error)
+    res.sendStatus(500)
+  }
+})
+
 // TODO LIST:
 // -----------
 // Add new owner
