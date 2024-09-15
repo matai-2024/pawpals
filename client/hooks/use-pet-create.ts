@@ -10,10 +10,10 @@ interface Props {
 export default function useCreatePet() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: ({data, token}: Props) => {
+    mutationFn: ({ data, token }: Props) => {
       // eslint-disable-next-line no-console
       console.log('mutation data', data)
-      
+
       const id = addPet(data, token)
       return id
     },

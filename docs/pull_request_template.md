@@ -5,6 +5,7 @@ Before creating a pull request, make sure the following tests pass:
 `npm run typecheck`
 
 I have ensured:
+
 - [ ] All terminal commands listed above have run and passed.
 - [ ] Code fulfils the user story and scenarios set out in my ticket.
 - [ ] The feature has been thoroughly manually tested
