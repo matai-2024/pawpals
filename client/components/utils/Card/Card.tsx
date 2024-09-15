@@ -1,5 +1,18 @@
+// Update the CardProps interface
+interface CardProps {
+  title?: string // Make title optional
+  children: React.ReactNode
+  addAction?: () => void // Assuming addAction is a function
+  buttonText?: string
+}
+
 // Card Component
-const Card = ({ title, children, addAction, buttonText }) => (
+const Card: React.FC<CardProps> = ({
+  title = '',
+  children,
+  addAction,
+  buttonText,
+}) => (
   <div className="bg-white shadow-md rounded-lg p-6 mb-6 w-full">
     <div className="flex justify-between items-center mb-4">
       <h2 className="text-xl font-semibold">{title}</h2>
@@ -15,5 +28,4 @@ const Card = ({ title, children, addAction, buttonText }) => (
     {children}
   </div>
 )
-
 export default Card

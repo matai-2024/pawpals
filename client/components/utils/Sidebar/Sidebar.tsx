@@ -13,11 +13,12 @@ const Sidebar = () => {
       <div className="bg-white w-60 h-screen shadow-lg bg-white shadow-md rounded-lg p-6 mb-6">
         <div className="flex flex-col items-center py-6">
           <img
-            src={user.picture || 'https://via.placeholder.com/100'}
+            src={user?.picture || 'https://via.placeholder.com/100'} // Use optional chaining
             alt="Profile"
             className="w-24 h-24 rounded-full mb-4"
           />
-          <p className="text-lg font-semibold">{user.name || 'User'}</p>
+          <p className="text-lg font-semibold">{user?.name || 'User'}</p>{' '}
+          {/* Use optional chaining */}
         </div>
         <div className="flex flex-col space-y-6 mt-10 pl-6">
           <a

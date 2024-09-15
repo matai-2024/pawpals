@@ -9,7 +9,7 @@ import Sidebar from '../components/utils/Sidebar/Sidebar'
 
 // Hardcoding the type for pets and events
 interface Pet {
-  image: unknown
+  image: string
   id: number
   petName: string
 }
