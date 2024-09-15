@@ -15,7 +15,7 @@ export default function About() {
         </div>
         <div className="w-[1200px] p-16 opacity-80 bg-white justify-start items-center gap-12 inline-flex">
           <div className="w-[484px] h-[351px] flex-col justify-start items-start gap-6 inline-flex">
-            <div className="self-stretch h-[61px] flex-col justify-start items-start gap-2 flex">
+            <div className="self-stretch h-[61px] flex-col items-start gap-2 flex">
               <div className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
                 Heading
               </div>
