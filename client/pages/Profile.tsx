@@ -58,88 +58,103 @@ export default function Profile() {
 
   return (
     <>
-      <div className="mx-auto max-w-5xl py-32 sm:py-48 lg:py-32">
-        <div className="mt-10 grid grid-cols-5 gap-12 items-center">
-          <div className="col-span-2 h-[450px] overflow-hidden rounded-xl">
+      <div className="mx-auto max-w-5xl pt-24 sm:pt-32 lg:pt-24">
+        <div className="flex flex-col justify-center items-center shadow-2xl rounded-4xl">
+          <div className="h-72 overflow-hidden rounded-t-4xl">
             <img
-              className="object-cover min-h-[520px] relative -top-8"
-              src={data.image ? `../../${data.image}` : `../../miso.jpg`}
-              alt={data.petName}
+              src="../cover-photo2.webp"
+              alt="mountain scape"
+              className="relative -top-72"
             />
           </div>
-          <div className="col-span-3">
-            <div>
-              <h1 className="text-gray-950 text-6xl font-bold pb-8">
-                {data.petName}
-              </h1>
-              <h2 className="text-gray-950 text-2xl font-normal">
-                {getAge(data.dateOfBirth) > 1
-                  ? `${getAge(data.dateOfBirth)}yrs old`
-                  : `${getAge(data.dateOfBirth)}yr old`}
-                , {data.gender}, {data.breed}
-              </h2>
-              <div className="flex flex-wrap gap-2 mt-4">
-                {traits.map(
-                  (trait) =>
-                    data[trait.key] === 'on' && (
-                      <span
-                        key={trait.key}
-                        className="px-4 p-2 bg-yellow-300 rounded-full text-gray-950"
-                      >
-                        {trait.label}
-                      </span>
-                    ),
-                )}
+          <div className="relative -top-28 px-10">
+            <div className="w-48 h-48 overflow-hidden rounded-full border border-4 border-white">
+              <img
+                className="object-cover min-h-48 relative -top-8"
+                src={data.image ? `../../${data.image}` : `../../miso.jpg`}
+                alt={data.petName}
+              />
+            </div>
+            <h1 className="text-gray-950 text-6xl font-bold pb-8 mt-4">
+              {data.petName}
+            </h1>
+            <div className="flex gap-x-8">
+              <div className="flex flex-row gap-4">
+                <i className="fa-solid fa-cake-candles text-3xl text-gray-950"></i>
+                <h2 className="text-xl">
+                  {getAge(data.dateOfBirth) > 1
+                    ? `${getAge(data.dateOfBirth)}yrs old`
+                    : `${getAge(data.dateOfBirth)}yr old`}
+                </h2>
               </div>
-              <div className="mt-12 justify-start items-center gap-4 inline-flex">
-                <div className="w-12 h-12 rounded-full overflow-hidden">
-                  <img
-                    className="object-cover"
-                    src="../placeholder-user.png"
-                    alt="owner"
-                  />
-                </div>
-                <h3 className="text-xl text-gray-600">
-                  {owner?.firstName} {owner?.lastName.charAt(0)}.
-                </h3>
+              <div className="flex flex-row gap-4">
+                <i className="fa-solid fa-transgender text-3xl text-gray-950"></i>
+                <h2 className="text-xl">{data.gender}</h2>
+              </div>
+              <div className="flex flex-row gap-4">
+                <i className="fa-solid fa-paw text-3xl text-gray-950"></i>
+                <h2 className="text-xl">{data.breed}</h2>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="mt-20 flex flex-col gap-6">
-          <h2 className="text-2xl font-semibold">About me</h2>
-          <p className="text-lg text-gray-600">{data.bio}</p>
-        </div>
-
-        <div className="mt-20 grid grid-cols-3 gap-6">
-          <h2 className="col-span-3 text-3xl font-semibold">
-            Find me at these events
-          </h2>
-          {events?.map((event) => (
-            <Link to={`/events/${event.id}`} key={`event-${event.id}`}>
-              <div className="col-span-1 h-96 p-4 py-6 bg-white hover:bg-blue-50 shadow-md hover:shadow-lg border rounded-lg flex-col gap-6 inline-flex ease-in-out duration-200">
+            <div className="my-10">{data.bio}</div>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {traits.map(
+                (trait: TraitObj) =>
+                  data[trait.key] === 'on' && (
+                    <span
+                      key={trait.key}
+                      className="px-4 p-2 bg-yellow-300 rounded-full text-gray-950"
+                    >
+                      {trait.label}
+                    </span>
+                  ),
+              )}
+            </div>
+            <div className="mt-12 justify-start items-center gap-4 inline-flex">
+              <div className="w-12 h-12 rounded-full overflow-hidden">
                 <img
-                  className="h-40 rounded-lg"
-                  src={`../${event.eventImage}`}
-                  alt={event.title}
+                  className="object-cover"
+                  src="../placeholder-user.png"
+                  alt="owner"
                 />
-                <div className="h-44 flex-col gap-2 flex">
-                  <p className="text-sm text-blue-800 font-semibold">
-                    {`${dateToReadable(event.date)},`} {TimeFormat(event.time)}
-                  </p>
+              </div>
+              <h3 className="text-xl text-gray-600">
+                {owner?.firstName} {owner?.lastName.charAt(0)}.
+              </h3>
+            </div>
+          </div>
 
-                  <div>
-                    <h3 className="text-xl text-gray-950 font-semibold">
-                      {event.title}
-                    </h3>
-                  </div>
-                  <div className="text-gray-600 text-sm font-normal leading-tight">
-                    <p className="line-clamp-3">{event.description}</p>
+          <div className="px-10 grid grid-cols-3 gap-6 mb-20">
+            <h2 className="col-span-3 text-3xl font-semibold">
+              Find {data.petName} at these events
+            </h2>
+            {events?.map((event) => (
+              <Link to={`/events/${event.id}`} key={`event-${event.id}`}>
+                <div className="col-span-1 h-96 p-4 py-6 bg-white hover:bg-gray-50 shadow-md hover:shadow-lg border border-gray-100 rounded-lg flex-col gap-6 inline-flex ease-in-out duration-200">
+                  <img
+                    className="h-40 rounded-lg"
+                    src={`../${event.eventImage}`}
+                    alt={event.title}
+                  />
+                  <div className="h-44 flex-col gap-2 flex">
+                    <p className="text-sm text-gray-800 font-semibold">
+                      {`${dateToReadable(event.date)},`}{' '}
+                      {TimeFormat(event.time)}
+                    </p>
+
+                    <div>
+                      <h3 className="text-xl text-gray-950 font-semibold">
+                        {event.title}
+                      </h3>
+                    </div>
+                    <div className="text-gray-600 text-sm font-normal leading-tight">
+                      <p className="line-clamp-3">{event.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
 
         <div
