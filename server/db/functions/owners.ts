@@ -13,12 +13,18 @@ export async function getOwnerById(id: number) {
   return owner as Owner
 }
 
-// Get owner by name
-export async function getOwnerByName(firstName: string) {
-  const owners: OwnerData[] = await db('owners')
-    .where('first_name', firstName)
-    .select('*')
-  return owners as Owner[]
+export async function upsertOwner(owner: Owner) {
+  const { id, externalKey, firstName, lastName, email } = owner
+  await db('owners')
+        .insert({
+          id: id,
+          external_key: externalKey,
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+        })
+        .onConflict('external_key')
+        .merge()
 }
 
 // Add new owner
