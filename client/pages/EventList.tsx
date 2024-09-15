@@ -5,6 +5,8 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { fetchEvents } from '../apis/apiClientEvents'
 import LoadingSpinner from '../components/LoadingSpinner'
+import { ChangeEvent, useState } from 'react'
+
 export function EventList() {
   const {
     data: events,
@@ -16,6 +18,8 @@ export function EventList() {
     queryKey: ['events'],
   })
 
+  const [search, setSearch] = useState(events)
+
   if (isPending) return <LoadingSpinner />
 
   if (isError)
@@ -25,8 +29,15 @@ export function EventList() {
         {String(error)}
       </div>
     )
+  
+  function handleChange(event: ChangeEvent<HTMLInputElement>): void {
+    if (!events) return
+    const src = event.target.value
+    const res = []
+    const titles = events.map((cv) => {if (cv.title.toLowerCase().includes(src.toLowerCase())) res.push(cv) })
+    console.log(res)
+  }
 
-  if (events)
     return (
       <>
         <div className="mx-auto  text-center max-w-5xl py-32 sm:py-48 lg:py-24">
@@ -36,6 +47,7 @@ export function EventList() {
           <p className="my-6 text-lg leading-8 text-gray-600">
             placeholder text of a list of all upcoming events in your area...
           </p>
+          <input onChange={(event) => handleChange(event)} type="text" placeholder="Search events..."></input>
           <ul>
             {events.map((event) => (
               <div key={event.id}>
