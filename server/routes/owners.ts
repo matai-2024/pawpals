@@ -32,22 +32,36 @@ router.get('/:id', checkJwt, async (req, res) => {
 })
 
 // GET owner by name
-router.get('/name/:firstName', checkJwt, async (req, res) => {
-  const { firstName } = req.params
-  try {
-    const owners = await db.getOwnerByName(firstName)
-    res.json(owners)
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('Error: ', error)
-    res.sendStatus(500)
-  }
-})
+// router.get('/name/:firstName', checkJwt, async (req, res) => {
+//   const { firstName } = req.params
+//   try {
+//     const owners = await db.getOwnerByName(firstName)
+//     res.json(owners)
+//   } catch (error) {
+//     // eslint-disable-next-line no-console
+//     console.log('Error: ', error)
+//     res.sendStatus(500)
+//   }
+// })
 
 // TODO LIST:
 // -----------
 // Add new owner
 router.post('/', validateAccessToken, async (req, res) => {
+  const auth0Id = req.auth?.payload.sub
+  const form = req.body
+
+  if (!auth0Id) {
+    res.status(400).json({ message: 'Missing auth0 id' })
+    return
+  }
+
+  if (!form) {
+    res.status(400).json({ message: 'Please provide a form' })
+    return
+  }
+
+
   try {
     const owner = req.body
     await db.addNewOwner(owner)
