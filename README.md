@@ -1,36 +1,12 @@
-# Boilerplate: Fullstack with Sass
+# pawpals
+Pawpals is a website made to bring pet-lovers together - whether you have a pet or not! Browse our cute pawpal pets, pet-friendly events, or create your own.
 
-## Setup
+The easiest way to get started is simply visiting pawpals. Create an account to make your very own pawpal profile for one of your pets and join events posted by our users.
 
-### What's included
+## About this project
 
-This repo includes:
+This project was thought up by [Anahera](https://github.com/anaherawashere), and created alongside [Jack](https://github.com/jack-gloyer), [Dean](https://github.com/dean-tunbridge), [Sam](https://github.com/sam-pedersen), and [Amy](https://github.com/achoo-o).
 
-- a single, simple API endpoint (`/api/v1/fruits`)
-- a single React component (`<App />`)
-- an example database module (`server/db/fruits.js`)
-- an API client module (`client/apis/fruits.js`)
-- configuration for Vitest and testing library
-- configuration for server-side debugging in VS Code
-- configuration for preprocessing Sass
+Agile roles, pair programming, Github Projects, testing, and ticket review were utilised during its creation as part of [Dev Academy](https://devacademy.co.nz/)'s course. Browser extension [WAVE](https://wave.webaim.org/extension/) was also used to ensure accessibility needs were met.
 
-### Installation
-
-#### **From the Github UI**
-
-See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use Github's feature to create a new repo from a template.
-
-#### **From the command line**
-
-```
-git clone https://github.com/dev-academy-challenges/boilerplate-fullstack [your-project-name]
-cd [your-project-name]
-npm install # to install dependencies
-npm run dev # to start the dev server
-```
-
-You can find the server running on [http://localhost:3000](http://localhost:3000) and the client running on [http://localhost:5173](http://localhost:5173).
-
----
-
-[Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=boilerplate-fullstack)
+The main libraries include react, vite, express, typescript, and knex. Tests are included to verify the code's behaviour and document expected features.
