@@ -2,6 +2,7 @@ import express from 'express'
 
 import * as db from '../db/functions/owners.ts'
 import checkJwt from '../db/auth0.ts'
+import { validateAccessToken } from '../db/auth0'
 
 const router = express.Router()
 
@@ -46,7 +47,7 @@ router.get('/name/:firstName', checkJwt, async (req, res) => {
 // TODO LIST:
 // -----------
 // Add new owner
-router.post('/', checkJwt, async (req, res) => {
+router.post('/', validateAccessToken, async (req, res) => {
   try {
     const owner = req.body
     await db.addNewOwner(owner)
