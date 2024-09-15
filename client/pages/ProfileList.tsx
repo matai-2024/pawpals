@@ -39,33 +39,33 @@ export default function ProfileList() {
             lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
             fugiat aliqua.
           </p>
-          <div className="mt-10 grid grid-cols-5 gap-x-8 gap-y-8  sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
+          <div className="px-6 flex flex-wrap gap-6 mb-20">
             {data.map((profile: PetProfile) => (
-              <div
-                key={profile.id}
-                className="shadow-lg hover:shadow-xl relative group duration-500 group overflow-hidden  text-gray-50 h-64 w-56  rounded-2xl hover:duration-700 "
-              >
+              <div key={profile.id}>
                 <Link to={`${profile.id}`}>
-                  <div className="w-full h-full">
-                    <img
-                      className="rounded-2xl object-cover object-center w-full h-full"
-                      src={profile.image}
-                      alt={profile.petName}
-                    />
-                  </div>
-                  <div className="opacity-90 rounded rounded-lg absolute bg-gray-50 -bottom-12 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500 ease-in-out group-hover:bg-yellow-100 group-hover:border-yellow-400 group-hover:opacity-90">
-                    <span className="text-[#2b2b2d] font-['Inter'] font-bold text-2xl pb-6 align-text-top">
-                      {profile.petName}
-                    </span>
-                    <div className="flex flex-row justify-between">
-                      <span className="text-[#2b2b2d] font-['Inter'] font-bold text-xs">
-                        {profile.breed}
-                      </span>
-                      <span className="opacity-70 text-right text-[#2b2b2d] text-[13px] font-medium font-['Inter'] leading-none">
+                  <div className=" p-6 py-6 bg-white hover:bg-gray-50 shadow-lg hover:shadow-lg border border-gray-100 rounded-lg flex flex-col gap-6 ease-in-out duration-200">
+                    <div className="relative m-2 w-36 h-36 rounded-full shadow-lg overflow-hidden border-gray-100">
+                      <img
+                        className="object-cover relative -top-7 "
+                        src={profile.image}
+                        alt={profile.petName}
+                      />
+                    </div>
+                    <div className="h-28 flex-col gap-2 flex">
+                      <p className="text-sm text-gray-800 font-semibold">
                         {getAge(profile.dateOfBirth) > 1
-                          ? `${getAge(profile.dateOfBirth)}yrs`
-                          : `${getAge(profile.dateOfBirth)}yr`}
-                      </span>
+                          ? `${getAge(profile.dateOfBirth)}yrs, ${profile.breed}`
+                          : `${getAge(profile.dateOfBirth)}yr, ${profile.breed}`}
+                      </p>
+
+                      <div>
+                        <h3 className="text-2xl text-gray-950 font-semibold">
+                          {profile.petName}
+                        </h3>
+                      </div>
+                      <div className="text-gray-600 text-sm font-normal leading-tight">
+                        <p className="line-clamp-3">{profile.species}</p>
+                      </div>
                     </div>
                   </div>
                 </Link>
