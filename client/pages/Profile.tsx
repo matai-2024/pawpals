@@ -6,7 +6,7 @@ import useOwnerById from '../hooks/use-get-owner-by-id.ts'
 export default function Profile() {
   const { id } = useParams()
   const { data, isPending, isError, error } = usePetById(Number(id))
-  const { data: owner, isPending: isLoading, isError: isErroring, error: err } = useOwnerById(Number(id))
+  const { data: owner, isPending: isLoading, isError: isErroring, error: err } = useOwnerById(Number(data?.ownerId))
 
   if (isPending || isLoading) return <LoadingSpinner />
 
