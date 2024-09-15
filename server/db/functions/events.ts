@@ -1,7 +1,8 @@
-import { EventData } from '../../../models/events.ts'
+import { EventData, Event } from '../../../models/events.ts'
 import db from '../connection.ts'
 
 const camelCase = [
+  'id',
   'title',
   'date',
   'time',
