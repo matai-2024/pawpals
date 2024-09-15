@@ -39,15 +39,20 @@ export default function Events() {
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Pet-friendly Events
           </h1>
-          <p className="my-6 text-lg leading-8 text-gray-600">
-            placeholder text of a list of all upcoming events in your area...
-          </p>
+          <label
+            className="block my-6 text-lg leading-8 text-gray-600"
+            htmlFor="search"
+          >
+            Search the latest pet-friendly events in your area.
+          </label>
           <input
+            id="search"
             className="w-5/12 rounded-md border-2 mb-5 border-gray-400"
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Search events..."
           ></input>
+
           <EventList search={search} />
         </div>
       </>
