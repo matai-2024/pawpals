@@ -48,3 +48,8 @@ export async function insertEvent(eventData: EventData) {
   const result = await db('events').insert(newEvent, ['id'])
   return result[0].id
 }
+
+// delete an event
+export async function deleteEvent(id: number) {
+  return await db('events').where({ id }).del()
+}
