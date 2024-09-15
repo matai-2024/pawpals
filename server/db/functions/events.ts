@@ -53,8 +53,7 @@ export async function insertEvent(eventData: EventData) {
 export async function getEventsByPetId(petId: number) {
   const events = await db('events')
     .join('attendees', 'attendees.event_id', 'events.id')
-    // .join('pets', 'pets.owner_id', 'owners.id')
-    .where('owners.id', petId)
+    .where('attendees.pet_id', petId)
     .select(
       'events.id',
       'events.title',
@@ -65,8 +64,7 @@ export async function getEventsByPetId(petId: number) {
       'events.event_image as eventImage',
       'events.event_website as eventWebsite',
       'events.audience',
-      'events.creator_id as creatorId'
-    );
-  return events as Event[];
+      'events.creator_id as creatorId',
+    )
+  return events as Event[]
 }
-
