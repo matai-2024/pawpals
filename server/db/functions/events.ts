@@ -1,9 +1,21 @@
 import { EventData } from '../../../models/events.ts'
 import db from '../connection.ts'
 
+const camelCase = [
+  'title',
+  'date',
+  'time',
+  'location',
+  'description',
+  'event_image as eventImage',
+  'event_website as eventWebsite',
+  'audience',
+  'creator_id as creatorId',
+]
+
 // Get all events
 export async function getAllEvents() {
-  const events = await db('events').select('*')
+  const events = await db('events').select(camelCase)
   return events as Event[]
 }
 
@@ -36,3 +48,25 @@ export async function insertEvent(eventData: EventData) {
   const result = await db('events').insert(newEvent, ['id'])
   return result[0].id
 }
+
+// Get all events by pet id
+export async function getEventsByPetId(petId: number) {
+  const events = await db('events')
+    .join('attendees', 'attendees.event_id', 'events.id')
+    // .join('pets', 'pets.owner_id', 'owners.id')
+    .where('owners.id', petId)
+    .select(
+      'events.id',
+      'events.title',
+      'events.date',
+      'events.time',
+      'events.location',
+      'events.description',
+      'events.event_image as eventImage',
+      'events.event_website as eventWebsite',
+      'events.audience',
+      'events.creator_id as creatorId'
+    );
+  return events as Event[];
+}
+
