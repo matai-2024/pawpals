@@ -11,6 +11,7 @@ const navigation = [
   { name: 'Pets', to: '/profiles' },
   { name: 'Add a Pet', to: '/create' },
   { name: 'Events', to: '/events' },
+  { name: 'Dashboard', to: '/dashboard' },
 ]
 
 export default function Nav() {
