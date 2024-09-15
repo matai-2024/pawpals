@@ -140,7 +140,7 @@ export default function Profile() {
             <div className="table mt-10 align-middle">
             <img 
               className="table-cell w-12 h-12 mr-3 rounded-full object-cover"
-              src={`../../owner${data.ownerId}.webp`} 
+              src={data.ownerId < 16 ? `../../owner${data.ownerId}.webp` : `../../owner1.webp`} 
               alt={`${owner.firstName} profile`}></img>
               <p className="table-cell align-middle text-2xl text-gray-800">{owner.firstName}</p>
             </div>
