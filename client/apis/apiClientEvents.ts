@@ -35,9 +35,8 @@ export async function delEvent(id: number, token: string) {
 
 //GET events by pet id
 export async function getEventsByPetId(id: number) {
-  const res = await request
-    .get(`${rootUrl}/pet/${id}`)
-    // .set('Authorization', `Bearer ${token}`)
+  const res = await request.get(`${rootUrl}/pet/${id}`)
+  // .set('Authorization', `Bearer ${token}`)
   return res.body as Event[]
 }
 
