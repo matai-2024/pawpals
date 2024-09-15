@@ -35,3 +35,7 @@ export async function delEvent(id: number, token: string) {
 
 // TODO
 // get event by creator id
+export async function getEventsByCreatorId(ownerId: string) {
+  const res = await request.get(`${rootUrl}/creator/${ownerId}`)
+  return res.body as Event[]
+}
