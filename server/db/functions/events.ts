@@ -16,7 +16,7 @@ const camelCase = [
 // Get all events
 export async function getAllEvents() {
   const events = await db('events').select(camelCase)
-  return events as Event[]
+  return events as Events[]
 }
 
 // Add an event
