@@ -127,22 +127,22 @@ export default function Nav() {
                 ))}
               </div>
               <div className="py-6">
-              <IfAuthenticated>
-              <button
-                className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                onClick={handleSignOut}
-              >
-              Sign out
-            </button>
-          </IfAuthenticated>
-          <IfNotAuthenticated>
-            <button
-              className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              onClick={handleSignIn}
-            >
-              Sign in
-            </button>
-          </IfNotAuthenticated>
+                <IfAuthenticated>
+                  <button
+                    className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={handleSignOut}
+                  >
+                    Sign out
+                  </button>
+                </IfAuthenticated>
+                <IfNotAuthenticated>
+                  <button
+                    className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={handleSignIn}
+                  >
+                    Sign in
+                  </button>
+                </IfNotAuthenticated>
               </div>
             </div>
           </div>
