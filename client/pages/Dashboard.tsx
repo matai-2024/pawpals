@@ -6,6 +6,7 @@ import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
 import { fetchPetsByOwnerId } from '../apis/apiClientPets' // Your API call to fetch pets
 import { getEventsByCreatorId } from '../apis/apiClientEvents' // Assuming you're fetching events by user ID
+import { useUpsertOwner } from '../hooks/use-upsert-owner'
 
 // Define types for pets and events
 interface Pet {
@@ -24,6 +25,7 @@ interface Event {
 // Dashboard Component
 export function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
+  const { mutation } = useUpsertOwner()
 
   // Explicitly typing pets and events as arrays of Pet and Event
   const [pets, setPets] = useState<Pet[]>([]) // State to store fetched pets
@@ -32,6 +34,7 @@ export function Dashboard() {
   // Fetch pets and events when the user is authenticated
   useEffect(() => {
     if (isAuthenticated && user) {
+      mutation.mutate()
       // Fetch pets for the authenticated user
       fetchPetsByOwnerId(4) // user.sub is the unique user identifier
         .then((petsData) => setPets(petsData))

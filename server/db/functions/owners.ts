@@ -13,18 +13,21 @@ export async function getOwnerById(id: number) {
   return owner as Owner
 }
 
-export async function upsertOwner(owner: Owner) {
-  const { id, externalKey, firstName, lastName, email } = owner
-  await db('owners')
-        .insert({
-          id: id,
-          external_key: externalKey,
-          first_name: firstName,
-          last_name: lastName,
-          email: email,
-        })
-        .onConflict('external_key')
-        .merge()
+// Get owner by external id
+export async function getOwnerByExternalId(externalKey: string) {
+  console.log('DB - Get OWNER by EXTERNAL KEY')
+  const owner: OwnerData = await db('owners').where('external_key', externalKey).select('*').first()
+  return owner
+}
+
+export async function upsertOwner(token: string) {
+  await db('owners').where('external_key', token).then(async function(rows) {
+    if (rows.length===0) {
+      console.log('Add new owner')
+      await db('owners').insert({first_name: 'booger', last_name: 'booger', email: 'email', external_key: token})
+    }
+    return db('owners').where('external_key', token).select().first()
+  })
 }
 
 // Add new owner
