@@ -25,6 +25,7 @@ beforeEach(() => {
 
 const MOCK_EVENTS = [
   {
+    id: 1,
     title: 'Food Truck Night in Howick',
     date: '03-10-2024',
     time: '5:00 PM',
@@ -39,6 +40,7 @@ const MOCK_EVENTS = [
     creatorId: 1,
   },
   {
+    id: 2,
     title: 'Paws & Pints: Dog-Friendly Brewery Tour',
     date: '10-10-2024',
     time: '3:00 PM',
@@ -51,6 +53,7 @@ const MOCK_EVENTS = [
     creatorId: 2,
   },
   {
+    id: 3,
     title: 'Equestrian Gala: Horses & Harmony',
     date: '17-10-2024',
     time: '6:00 PM',
