@@ -1,20 +1,24 @@
 import { useParams } from 'react-router-dom'
 import LoadingSpinner from '../components/LoadingSpinner.tsx'
 import { usePetById } from '../hooks/hooks.ts'
+import useOwnerById from '../hooks/use-get-owner-by-id.ts'
 
 export default function Profile() {
   const { id } = useParams()
   const { data, isPending, isError, error } = usePetById(Number(id))
+  const { data: owner, isPending: isLoading, isError: isErroring, error: err } = useOwnerById(Number(id))
 
-  if (isPending) return <LoadingSpinner />
+  if (isPending || isLoading) return <LoadingSpinner />
 
-  if (isError)
+  if (isError || isErroring)
     return (
       <div>
         <h3>Error loading pet data: </h3>
-        {String(error)}
+        {String(error || err)}
       </div>
     )
+  
+  console.log(owner)
 
   function getAge(dateString: string) {
     const today = new Date()
@@ -27,6 +31,7 @@ export default function Profile() {
     return age
   }
 
+  console.log(data)
   return (
     <>
     <section className="flex-column align-middle my-20 w-full">
