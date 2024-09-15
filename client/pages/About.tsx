@@ -21,8 +21,8 @@ export default function About() {
             </p>
             <img
               className="mt-4 w-full rounded-lg"
-              src="https://via.placeholder.com/484x350"
-              alt="Sample image"
+              src="problemsolved.jpg"
+              alt="coders at work"
             />
           </div>
 
