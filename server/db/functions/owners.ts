@@ -1,6 +1,13 @@
 import { Owner, OwnerData } from '../../../models/forms.ts'
 import db from '../connection.ts'
 
+const camelCase = [
+  'external_key as externalKey',
+  'first_name as firstName',
+  'last_name as lastName',
+  'email',
+]
+
 // Get all owners
 export async function getAllOwners() {
   const owners: Owner[] = await db('owners').select('*')
@@ -38,6 +45,16 @@ export async function addNewOwner(owner: OwnerData) {
 // TODO: Check this works
 export async function deleteOwner(id: number) {
   return await db('owners').where({ id }).delete()
+}
+
+// Get owner by pet id
+export async function getOwnerByPetId(petId: number) {
+  const owner: OwnerData = await db('owners')
+    .join('pets', 'pets.owner_id', 'owners.id')
+    .where('pets.id', petId)
+    .select(camelCase)
+    .first()
+  return owner as Owner
 }
 
 // TODO LIST:
