@@ -10,10 +10,12 @@ import {
   IfAuthenticated,
   IfNotAuthenticated,
 } from '../components/utils/Authenticated'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function EventDetails() {
   const navigate = useNavigate()
   const deleteEvent = useDelEvent()
+  const { user, isAuthenticated } = useAuth0
   const params = useParams()
   const id = Number(params.id)
   const { data: pets, isLoading, isError, error } = usePets()
@@ -51,28 +53,29 @@ export default function EventDetails() {
             {evts.title}
           </div>
           {/* TODO: Conditionally render these buttons based on if the user added this event */}
-          <IfAuthenticated>
-            <button
-              onClick={() => handleEditEvent(id)}
-              className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
-            >
-              <div className="w-[58px] text-black text-xs font-normal font-['Inter']">
-                Edit Event
-              </div>
-            </button>
-
-            <button
-              onClick={() => handleDeleteEvent(id)}
-              className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
-            >
-              <div className="text-black text-xs font-normal font-['Inter']">
-                Delete Event
-              </div>
-            </button>
-          </IfAuthenticated>
-          <IfNotAuthenticated>
+          {isAuthenticated && user?.sub ? (
+            <>
+              <button
+                onClick={() => handleEditEvent(id)}
+                className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
+              >
+                <div className="w-[58px] text-black text-xs font-normal font-['Inter']">
+                  Edit Event
+                </div>
+              </button>
+              <button
+                onClick={() => handleDeleteEvent(id)}
+                className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
+              >
+                <div className="text-black text-xs font-normal font-['Inter']">
+                  Delete Event
+                </div>
+              </button>
+            </>
+          ) : (
             <></>
-          </IfNotAuthenticated>
+          )}
+
           <div className="self-stretch justify-start items-start gap-3 inline-flex">
             <div className="w-[70px] h-[70px] relative rounded-full">
               <img
