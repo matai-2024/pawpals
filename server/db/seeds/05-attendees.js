@@ -1,6 +1,6 @@
 export const addAttendees = [
   { id: 1, event_id: 1, account_id: 3, pet_id: 3 },
-  { id: 2, event_id: 1, account_id: 7, pet_id: 5 },
+  { id: 2, event_id: 1, account_id: 7, pet_id: 9 },
   { id: 3, event_id: 1, account_id: 9, pet_id: 11 },
   { id: 4, event_id: 1, account_id: 12, pet_id: 14 },
   { id: 5, event_id: 1, account_id: 4, pet_id: 5 },
@@ -20,7 +20,7 @@ export const addAttendees = [
   { id: 19, event_id: 6, account_id: 6, pet_id: 8 },
   { id: 20, event_id: 7, account_id: 2, pet_id: 2 },
   { id: 21, event_id: 8, account_id: 11, pet_id: 15 },
-  { id: 22, event_id: 9, account_id: 3, pet_id: 3 },
+  { id: 22, event_id: 9, account_id: 3, pet_id: 4 },
   { id: 23, event_id: 10, account_id: 15, pet_id: 17 },
   { id: 24, event_id: 10, account_id: 1, pet_id: 1 },
   { id: 25, event_id: 10, account_id: 5, pet_id: 7 },
