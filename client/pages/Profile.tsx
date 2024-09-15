@@ -45,7 +45,7 @@ export default function Profile() {
         <h1 className="my-11 text-6xl font-bold text-black">
           {data.petName ? data.petName : 'Cutie Patootie'}
         </h1>
-        <p className="text-2xl leading-8 text-gray-950">
+        <h2 className="text-2xl leading-8 text-gray-950">
           {getAge(data.dateOfBirth) > 1 || getAge(data.dateOfBirth) == 0
           ? `${getAge(data.dateOfBirth)}yrs old`
           : `${getAge(data.dateOfBirth)}yr old`}
@@ -55,7 +55,7 @@ export default function Profile() {
           {data.breed
           ? `, ${data.breed}`
           : ``}
-        </p>
+        </h2>
           <div className="text-md text-gray-950 font-medium mt-6 flex flex-wrap items-center justify-start gap-2 lg:gap-3">
               {data.busy === 'true' ? (
                 <span className="bg-yellow-400 rounded-full py-1 px-3">Busy</span>
@@ -146,7 +146,7 @@ export default function Profile() {
             </div>
         </div>
       </div>
-        <h2 className="mt-16 mx-auto mb-5 text-xl font-bold w-11/12">About me</h2>
+        <h3 className="mt-16 mx-auto mb-5 text-xl font-bold w-11/12">About me</h3>
         <p className="mx-auto w-11/12">{data.bio
           ? data.bio
           : `I don't have a description yet, but don't I look cute?`}</p>
