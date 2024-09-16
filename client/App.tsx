@@ -2,6 +2,7 @@ import { Outlet, useMatches } from 'react-router-dom'
 import Nav from './components/Nav.tsx'
 import Background from './components/utils/Background.tsx'
 import useDocumentTitle from './hooks/use-document-title.ts'
+import Footer from './components/Footer.tsx'
 
 function App() {
   const matches = useMatches()
@@ -14,6 +15,7 @@ function App() {
         <Background />
         <Outlet />
       </div>
+      <Footer />
     </div>
   )
 }
