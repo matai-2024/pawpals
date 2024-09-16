@@ -16,7 +16,7 @@ export default function Profile() {
   const { data, isPending, isError, error } = usePetById(Number(id))
   const events = useEventsByPetId(Number(id)).data
   const owner = useOwnerByPetId(Number(id)).data
-  const rootUrl = '../../pets'
+  const rootUrl = '../..'
 
   useDocumentTitle(
     data?.petName
@@ -61,7 +61,9 @@ export default function Profile() {
                 <img
                   className="object-cover min-h-48 relative -top-8"
                   src={
-                    data.image ? `${rootUrl}/${data.image}` : `../../miso.webp`
+                    data.image
+                      ? `${rootUrl}/pets/${data.image}`
+                      : `../../miso.webp`
                   }
                   alt={data.petName}
                 />
@@ -103,7 +105,7 @@ export default function Profile() {
                 <div className="w-12 h-12 rounded-full overflow-hidden">
                   <img
                     className="object-cover"
-                    src="../placeholder-user.png"
+                    src="../icons/placeholder-user.png"
                     alt={owner?.firstName}
                   />
                 </div>
