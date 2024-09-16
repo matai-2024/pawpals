@@ -10,12 +10,14 @@ import Home from './pages/Home'
 import CreatePet from './pages/CreatePet'
 import ProfileList from './pages/ProfileList'
 import Profile from './pages/Profile'
+import About from './pages/About'
 import Dashboard from './pages/Dashboard'
 import Events from './pages/Events'
 
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
     <Route index element={<Home />} handle={'pawpals'} />
+    <Route path="about" element={<About />} handle={'About | pawpals'} />
     <Route
       path="create"
       element={<CreatePet />}
