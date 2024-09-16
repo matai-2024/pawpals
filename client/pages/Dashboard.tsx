@@ -5,8 +5,6 @@ import Card from '../components/utils/Card/Card'
 import PetCard from '../components/utils/PetCard/PetCard'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
-import { fetchPetsByOwnerId } from '../apis/apiClientPets'
-import { getEventsByCreatorId } from '../apis/apiClientEvents'
 
 // Hardcoding the type for pets and events
 interface Pet {
@@ -30,21 +28,45 @@ export function Dashboard() {
 
   const [pets, setPets] = useState<Pet[]>([]) // State to store pets
   const [events, setEvents] = useState<Event[]>([]) // State to store events
-  console.log(user)
-  // UseEffect to set hardcoded data
+
+  // Function to fetch pets by owner ID
+  async function fetchPetsByOwnerId(ownerId: string) {
+    try {
+      const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
+      const data = await response.json()
+      return data
+    } catch (error) {
+      console.error('Error fetching pets:', error)
+      return []
+    }
+  }
+
+  // Function to fetch events by creator ID
+  async function getEventsByCreatorId(creatorId: string) {
+    try {
+      const response = await fetch(`/api/v1/events?creatorId=${creatorId}`)
+      const data = await response.json()
+      return data
+    } catch (error) {
+      console.error('Error fetching events:', error)
+      return []
+    }
+  }
+
+  // UseEffect to fetch pets and events for the authenticated user
   useEffect(() => {
     if (isAuthenticated && user) {
+      console.log(user)
       // Fetch pets for the authenticated user
-      fetchPetsByOwnerId(4) // user.sub is the unique user identifier
+      fetchPetsByOwnerId(user.sub)
         .then((petsData) => setPets(petsData))
         .catch((err) => console.error('Error fetching pets:', err))
 
       // Fetch events for the authenticated user
-      getEventsByCreatorId('auth0|66e4c67a85ce6c31049fb8a6') // Assuming you have a function to get all events by creator ID
+      getEventsByCreatorId(user.sub)
         .then((eventsData) => setEvents(eventsData))
         .catch((err) => console.error('Error fetching events:', err))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, user])
 
   if (isLoading) {
@@ -125,7 +147,7 @@ export function Dashboard() {
                     title={event.title}
                     time={event.time}
                     going={event.going}
-                    image={event.image} // Again, using any event data you have
+                    image={event.image}
                   />
                 ))
               ) : (
