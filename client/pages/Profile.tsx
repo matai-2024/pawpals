@@ -56,7 +56,7 @@ export default function Profile() {
               />
             </div>
             <div className="relative -top-28 px-10">
-              <div className="w-48 h-48 overflow-hidden rounded-full border border-4 border-white">
+              <div className="w-48 h-48 overflow-hidden rounded-full border-4 border-white">
                 <img
                   className="object-cover min-h-48 relative -top-8"
                   src={data.image ? `../../${data.image}` : `../../miso.webp`}
