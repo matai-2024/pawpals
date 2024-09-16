@@ -15,6 +15,7 @@ import Dashboard from './pages/Dashboard'
 import EventDetails from './pages/EventDetails'
 import Events from './pages/Events'
 import UserProfile from './pages/UserProfile'
+import CreateEvent from './pages/CreateEvent'
 
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
@@ -53,6 +54,11 @@ export const routes = createRoutesFromElements(
       handle={'Dashboard | pawpals'}
     />
     <Route path="events" element={<Events />} handle={'Events | pawpals'} />
+    <Route
+      path="events/create"
+      element={<CreateEvent />}
+      handle={'Create an Event | pawpals'}
+    />
   </Route>,
 )
 

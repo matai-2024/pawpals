@@ -12,27 +12,31 @@ const teamMembers = [
     img: '/anahera.jpeg',
     linkedin: 'https://www.linkedin.com/in/afoleypaama/',
     email: 'anahera.work@gmail.com',
+    github: 'https://github.com/anaherawashere?tab=repositories',
   },
   {
     name: 'Amy Jackson',
     role: 'Backend Lead',
     img: '/amy.jpg',
     linkedin: 'https://www.linkedin.com/in/amy-jackson',
-    email: 'amy@example.com',
+    email: 'amyj.etana@gmail.com',
+    github: 'https://github.com/achoo-o',
   },
   {
     name: 'Dean Tunbridge',
     role: 'Frontend Lead',
     img: '/dean.jpg',
     linkedin: 'https://www.linkedin.com/in/dean-tunbridge',
-    email: 'dean@example.com',
+    email: 'Deantunbridgedev@gmail.com',
+    github: 'https://github.com/dean-tunbridge',
   },
   {
     name: 'Jack Gloyer',
     role: 'Git Lead',
-    img: 'https://via.placeholder.com/120x120',
+    img: '/jack.png',
     linkedin: 'https://www.linkedin.com/in/jack-gloyer',
-    email: 'jack@example.com',
+    email: 'jackgloyer8@gmail.com',
+    github: 'https://github.com/jack-gloyer',
   },
   {
     name: 'Sam Pedersen',
@@ -40,6 +44,7 @@ const teamMembers = [
     img: '/sam.jpg',
     linkedin: 'https://www.linkedin.com/in/sam-pedersen-2060b0241/',
     email: 'sjcfpedersen@gmail.com',
+    github: 'https://github.com/sam-pedersen',
   },
 ]
 
