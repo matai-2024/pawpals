@@ -17,7 +17,7 @@ import Events from './pages/Events'
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
     <Route index element={<Home />} handle={'pawpals'} />
-    <Route path="about" element={<About />} handle={'about | pawpals'} />
+    <Route path="about" element={<About />} handle={'About | pawpals'} />
     <Route
       path="create"
       element={<CreatePet />}
