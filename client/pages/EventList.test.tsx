@@ -23,7 +23,7 @@ beforeEach(() => {
   } as any)
 })
 
-const MOCK_EVENTS = [
+const mockEvents = [
   {
     id: 1,
     title: 'Food Truck Night in Howick',
@@ -71,7 +71,7 @@ describe('EventList.tsx', () => {
   it('Should display a list of events', async () => {
     const scope = nock('http://localhost')
       .get('/api/v1/events')
-      .reply(200, MOCK_EVENTS)
+      .reply(200, mockEvents)
 
     const screen = renderApp('/events')
     const eventTitle = await screen.findByText('Food Truck Night in Howick')
@@ -84,12 +84,11 @@ describe('EventList.tsx', () => {
   it('should display the correct amount of events', async () => {
     const scope = nock('http://localhost')
       .get('/api/v1/events')
-      .reply(200, MOCK_EVENTS)
+      .reply(200, mockEvents)
 
     const screen = renderApp('/events')
-    const EventId = await screen.findAllByText(/\d+/)
-    console.log(EventId)
-    expect(EventId).toHaveLength(MOCK_EVENTS.length)
+    const EventId = await screen.findAllByTestId('event-card')
+    expect(EventId).toHaveLength(mockEvents.length)
     expect(scope.isDone()).toBe(true)
   })
 })
