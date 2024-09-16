@@ -86,7 +86,7 @@ describe('ProfileList.tsx', () => {
       .reply(200, mockPets)
 
     const screen = renderApp('/profiles')
-    const petsIds = await screen.findAllByText(/\d+/)
+    const petsIds = await screen.findAllByTestId('pet-card-vert')
     expect(petsIds).toHaveLength(mockPets.length)
     expect(scope.isDone()).toBe(true)
   })
