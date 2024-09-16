@@ -17,22 +17,16 @@ export default function Footer() {
     })
   }
 
-  const handleRegister = () => {
-    loginWithRedirect({
-      authorizationParams: {
-        screen_hint: 'signup',
-        redirect_uri: `${window.location.origin}/user-profile`,
-      },
-    })
-  }
   return (
     <>
-      <div className="z-50 max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8 font-[Inter]">
+      <div className="bg-yellow-400 h-4"></div>
+      <hr className="opacity-10 h-px  bg-[#5D3FD3] border-0 dark:bg-bg-[#5D3FD3]"></hr>
+      <div className="bg-[#08000d] z-50 max-w-screen-full px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8 font-[Inter]">
         <nav className="flex flex-wrap justify-center -mx-5 -my-2">
           <div className="px-5 py-2">
             <Link
               to="/about"
-              className=" text-base leading-6 text-gray-950 hover:text-gray-400 hover:text-gray-400"
+              className=" text-base leading-6 text-white hover:text-gray-400 hover:text-gray-400"
             >
               About
             </Link>
@@ -40,7 +34,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <Link
               to="/profiles"
-              className="text-base leading-6 text-gray-950 hover:text-gray-400  "
+              className="text-base leading-6 text-white hover:text-gray-400  "
             >
               Pets
             </Link>
@@ -48,7 +42,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <Link
               to="/events"
-              className="text-base leading-6 text-gray-950 hover:text-gray-400  "
+              className="text-base leading-6 text-white hover:text-gray-400  "
             >
               Events
             </Link>
@@ -56,7 +50,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <IfAuthenticated>
               <button
-                className="text-base leading-6 text-gray-950 hover:text-gray-400  "
+                className="text-base leading-6 text-white hover:text-gray-400  "
                 onClick={handleSignOut}
               >
                 Log out
@@ -64,7 +58,7 @@ export default function Footer() {
             </IfAuthenticated>
             <IfNotAuthenticated>
               <button
-                className="text-base leading-6 text-gray-950 hover:text-gray-400  "
+                className="text-base leading-6 text-white hover:text-gray-400  "
                 onClick={handleSignIn}
               >
                 Log in
@@ -73,19 +67,19 @@ export default function Footer() {
           </div>
         </nav>
         <div className="flex justify-center mt-8 space-x-6">
-          <Link to="#" className="text-gray-400 hover:text-gray-950 ">
+          <Link to="#" className="text-gray-400 hover:text-white ">
             <i className="fa-brands fa-facebook"></i>
             <span className="sr-only">Facebook</span>
           </Link>
-          <Link to="#" className="text-gray-400 hover:text-gray-950">
+          <Link to="#" className="text-gray-400 hover:text-white">
             <i className="fa-brands fa-instagram"></i>
             <span className="sr-only">Instagram</span>
           </Link>
-          <Link to="#" className="text-gray-400 hover:text-gray-950">
+          <Link to="#" className="text-gray-400 hover:text-white">
             <i className="fa-brands fa-twitter"></i>
             <span className="sr-only">Twitter</span>
           </Link>
-          <Link to="#" className="text-gray-400 hover:text-gray-950">
+          <Link to="#" className="text-gray-400 hover:text-white">
             <i className="fa-brands fa-github"></i>
             <span className="sr-only">GitHub</span>
           </Link>

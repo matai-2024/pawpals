@@ -9,14 +9,16 @@ function App() {
   const pageTitle = matches[1].handle
   useDocumentTitle(pageTitle ? `${pageTitle}` : 'paw pals.')
   return (
-    <div className="container">
-      <Nav />
-      <div className="z-10 relative isolate px-6 pt-14 lg:px-8">
-        <Background />
-        <Outlet />
+    <>
+      <div className="container">
+        <Nav />
+        <div className="z-10 relative isolate px-6 pt-14 lg:px-8">
+          <Background />
+          <Outlet />
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   )
 }
 
