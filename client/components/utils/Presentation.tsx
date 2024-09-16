@@ -1,29 +1,40 @@
 // -- HELPER FUNCTIONS FOR EVENT DATES -- //
 
 export function dateToReadable(date: string) {
-  const months: { [key: string]: string } = {
-    '01': 'Jan',
-    '02': 'Feb',
-    '03': 'Mar',
-    '04': 'Apr',
-    '05': 'May',
-    '06': 'Jun',
-    '07': 'Jul',
-    '08': 'Aug',
-    '09': 'Sep',
-    '10': 'Oct',
-    '11': 'Nov',
-    '12': 'Dec',
-  }
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ]
+  const months: string[] = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
 
   const regex = /[-/]/g
-  const split = date.split(regex)
-  split.pop()
-  const string = split.toString()
-  const hash = string.split(',').pop() || ''
-  const currMonth = months[hash]
+  const reverseDate = date.split(regex).reverse().join('-')
+  const theDate = new Date(reverseDate)
+  const currDay = theDate.getDay()
+  const currDayDate = theDate.getDate()
+  const currMonth = theDate.getMonth()
+  const dayName = days[currDay]
+  const monthName = months[currMonth]
 
-  return `${split[0]} ${currMonth}`
+  return `${dayName} ${currDayDate} ${monthName}`
 }
 
 export function TimeFormat(time: string) {
