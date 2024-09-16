@@ -9,12 +9,19 @@ import {
 import dateToReadable, {
   TimeFormat,
 } from '../components/utils/Presentation.tsx'
+import useDocumentTitle from '../hooks/use-document-title.ts'
 
 export default function Profile() {
   const { id } = useParams()
   const { data, isPending, isError, error } = usePetById(Number(id))
   const events = useEventsByPetId(Number(id)).data
   const owner = useOwnerByPetId(Number(id)).data
+
+  useDocumentTitle(
+    data?.petName
+      ? `${data?.petName}'s Profile | pawpals`
+      : 'Pet Profile | pawpals',
+  )
 
   if (isPending) return <LoadingSpinner />
 
