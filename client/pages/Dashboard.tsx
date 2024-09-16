@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import Card from '../components/utils/Card/Card'
 import PetCard from '../components/utils/PetCard/PetCard'
@@ -25,7 +24,6 @@ interface Event {
 // Dashboard Component
 export function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
-  const navigate = useNavigate()
 
   const [pets, setPets] = useState<Pet[]>([]) // State to store pets
   const [events, setEvents] = useState<Event[]>([]) // State to store events
@@ -49,6 +47,10 @@ export function Dashboard() {
       going: true,
     },
   ]
+
+  const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
+  const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
+  const editBtn = { title: 'Edit event', icon: 'pen-to-square' }
 
   // UseEffect to set hardcoded data
   useEffect(() => {
@@ -85,85 +87,92 @@ export function Dashboard() {
 
   return (
     <div className="mx-auto max-w-5xl pt-24 sm:pt-32 lg:pt-24">
-      <div className="flex bg-white bg-opacity-45 shadow-2xl rounded-4xl py-14 px-8">
-        <Sidebar />
-        {/* Pets Section */}
-        <div className="w-2/3">
-          <Card
-            title="My Pets"
-            addAction={() => navigate('/create')}
-            buttonText="Add Pet"
-            buttonIcon="plus"
-            icon="paw"
-          >
-            <div className="space-y-4">
-              {pets.length > 0 ? (
-                pets.map((pet) => (
-                  <PetCard
-                    key={pet.id}
-                    petName={pet.petName}
-                    image={pet.image}
-                  />
-                ))
-              ) : (
-                <p>You do not have any pets yet.</p>
-              )}
-            </div>
-          </Card>
-          {/* Schedule Section */}
-          <Card
-            title="My Schedule"
-            addAction={() => navigate('/events')}
-            buttonText="See more events"
-            buttonIcon="calendar-plus"
-            icon="calendar-alt"
-          >
-            <div className="space-y-4">
-              {events.length > 0 ? (
-                events.map((event) => (
-                  <ScheduleCard
-                    key={event.id}
-                    title={event.title}
-                    date={event.date}
-                    time={event.time}
-                    going={event.going}
-                    image={event.image}
-                  />
-                ))
-              ) : (
-                <p>You do not have any events scheduled.</p>
-              )}
-            </div>
-          </Card>
-          {/* Events Section */}
-          <Card
-            title="My Events"
-            addAction={() => navigate(`/edit-events/`)}
-            buttonText="Add Event"
-            buttonIcon="plus"
-            icon="icons"
-          >
-            <div className="space-y-4">
-              {events.length > 0 ? (
-                events.map((event) => (
-                  <ScheduleCard
-                    key={event.id}
-                    date={event.date}
-                    title={event.title}
-                    time={event.time}
-                    going={event.going}
-                    image={event.image} // Again, using any event data you have
-                    buttonIcon={['right-to-bracket', 'paw']}
-                    buttonTitle={['View details', 'Cancel attendance']}
-                  />
-                ))
-              ) : (
-                <p>You do not have any events yet.</p>
-              )}
-            </div>
-          </Card>
+      {/* <div className="shadow-2xl rounded-4xl p-2 bg-gradient-to-r from-yellow-400 via-[#cf789a] to-[#a85be5]"> */}
+        <div className="flex flex-col gap-8 lg:flex-row bg-white rounded-3xl shadow-2xl py-14 px-8 w-full">
+          <Sidebar />
+          {/* Pets Section */}
+          <div className="w-full lg:w-2/3">
+            <Card
+              icon="paw"
+              title="My Pets"
+              buttonPath={'/create'}
+              buttonText="Add Pet"
+              buttonIcon="plus"
+            >
+              <div className="space-y-4">
+                {pets.length > 0 ? (
+                  pets.map((pet) => (
+                    <PetCard
+                      key={pet.id}
+                      id={pet.id}
+                      petName={pet.petName}
+                      image={pet.image}
+                    />
+                  ))
+                ) : (
+                  <p>You do not have any pets yet.</p>
+                )}
+              </div>
+            </Card>
+            {/* Schedule Section */}
+            <Card
+              title="My Schedule"
+              buttonPath={'/events'}
+              buttonText="See more events"
+              buttonIcon="calendar-plus"
+              icon="calendar-alt"
+            >
+              <div className="space-y-4">
+                {events.length > 0 ? (
+                  events.map((event) => (
+                    <ScheduleCard
+                      key={event.id}
+                      id={event.id}
+                      title={event.title}
+                      date={event.date}
+                      time={event.time}
+                      going={event.going}
+                      image={event.image}
+                      viewBtn={viewBtn}
+                      cancelBtn={cancelBtn}
+                    />
+                  ))
+                ) : (
+                  <p>You do not have any events scheduled.</p>
+                )}
+              </div>
+            </Card>
+            {/* Events Section */}
+            <Card
+              title="My Events"
+              buttonPath={'/events/create'}
+              buttonText="Add Event"
+              buttonIcon="plus"
+              icon="icons"
+            >
+              <div className="space-y-4">
+                {events.length > 0 ? (
+                  events.map((event) => (
+                    <ScheduleCard
+                      key={event.id}
+                      id={event.id}
+                      date={event.date}
+                      title={event.title}
+                      time={event.time}
+                      going={event.going}
+                      image={event.image} // Again, using any event data you have
+                      viewBtn={viewBtn}
+                      editBtn={editBtn}
+                    />
+                  ))
+                ) : (
+                  <p>You do not have any events yet.</p>
+                )}
+              </div>
+            </Card>
+          </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   )
 }
