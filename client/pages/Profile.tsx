@@ -8,12 +8,8 @@ import {
 } from '../hooks/hooks.ts'
 import dateToReadable, {
   TimeFormat,
-<<<<<<< HEAD
-} from '../components/utils/EventPresentation.tsx'
-import useDocumentTitle from '../hooks/use-document-title.ts'
-=======
 } from '../components/utils/Presentation.tsx'
->>>>>>> 558222ad3751a5ed493235f0d57c3bdec9e8ba48
+import useDocumentTitle from '../hooks/use-document-title.ts'
 
 export default function Profile() {
   const { id } = useParams()
