@@ -14,6 +14,8 @@ export default function EventDetails() {
   const id = Number(params.id)
   const { data: pets, isLoading, isError, error } = usePets()
   const { data: evts } = useEventById(id)
+  const defaultImg =
+    'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
 
   function handleEditEvent(id: number) {
     navigate(`/edit-event/${id}`)
@@ -95,7 +97,7 @@ export default function EventDetails() {
           <div className="self-stretch justify-start items-start gap-16 flex">
             <img
               className="grow shrink basis-0 h-[260px] rounded-lg"
-              src={`/public/${evts.eventImage}`}
+              src={`/events/${evts.eventImage.length > 0 ? evts.eventImage : defaultImg}`}
               alt=""
             />
             <div className="grow shrink basis-0 flex-col justify-center items-start gap-6 inline-flex">
@@ -156,7 +158,7 @@ export default function EventDetails() {
                   <Link to={`/profiles/${pet.id}`}>
                     <img
                       className="w-[120px] h-[120px] rounded-full"
-                      src={`../../${pet.image}`}
+                      src={`../../pets/${pet.image}`}
                       alt={pet.petName}
                     />
                     <div className="h-[42px] flex-col justify-start items-center gap-2 flex">
