@@ -26,7 +26,7 @@ export default function EventDetails() {
     navigate(`/events`)
   }
 
-  //TODO: implement attend logic
+  // TODO: implement attend logic
   function handleAttend() {
     return
   }
@@ -41,7 +41,8 @@ export default function EventDetails() {
       </div>
     )
 
-  if (evts)
+  if (evts) {
+    console.log(evts.eventImage)
     return (
       <div className="h-[464px] px-40 py-16  flex-col justify-start items-center inline-flex">
         <div className="self-stretch h-[336px] pt-[70px] flex-col justify-start items-start gap-6 flex">
@@ -49,7 +50,7 @@ export default function EventDetails() {
             {evts.title}
           </div>
           {/* TODO: Conditionally render these buttons based on if the user added this event */}
-          {user?.sub === '' ? (
+          {isAuthenticated && user?.sub === '' ? (
             <>
               <button
                 onClick={() => handleEditEvent(id)}
@@ -92,19 +93,11 @@ export default function EventDetails() {
         </div>
         <div className="h-[650px] px-40 py-16 flex-col justify-start items-start gap-6 inline-flex">
           <div className="self-stretch justify-start items-start gap-16 inline-flex">
-            {evts.eventImage === '' || undefined ? (
-              <img
-                className="grow shrink basis-0 h-[260px] rounded-lg"
-                src="https://via.placeholder.com/408x260"
-                alt={evts.title}
-              />
-            ) : (
-              <img
-                className="grow shrink basis-0 h-[260px] rounded-lg"
-                src={evts.eventImage || 'https://via.placeholder.com/408x260'}
-                alt={`${evts.title}`}
-              />
-            )}
+            <img
+              className="grow shrink basis-0 h-[260px] rounded-lg"
+              src={`/public/${evts.eventImage}`}
+              alt={`${evts.title}`}
+            />
             <div className="grow shrink basis-0 flex-col justify-center items-start gap-6 inline-flex">
               <div className="self-stretch h-[458px] flex-col justify-start items-start gap-4 flex">
                 <div className="self-stretch justify-start items-center gap-2 inline-flex">
@@ -184,4 +177,5 @@ export default function EventDetails() {
         </div>
       </div>
     )
+  }
 }

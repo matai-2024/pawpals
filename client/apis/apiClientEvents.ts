@@ -19,10 +19,8 @@ export async function addEvent(newEvent: EventData, token: string) {
 }
 
 //GET event by id
-export async function getEventById(id: number, token: string) {
-  const res = await request
-    .get(`${rootUrl}/${id}`)
-    .set('Authorization', `Bearer ${token}`)
+export async function getEventById(id: number) {
+  const res = await request.get(`${rootUrl}/${id}`)
   return res.body as Event
 }
 
