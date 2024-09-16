@@ -10,7 +10,7 @@ beforeAll(() => {
   nock.disableNetConnect()
 })
 
-const MOCK_EVENT = {
+const mockEvents = {
   id: 1,
   title: 'Food Truck Night in Howick',
   date: '03-10-2024',
@@ -26,7 +26,7 @@ const MOCK_EVENT = {
   creatorId: 1,
 }
 
-const MOCK_PETS = [
+const mockPets = [
   {
     id: 1,
     ownerId: 1,
@@ -73,11 +73,11 @@ describe('EventDetails.tsx', () => {
   it('should display details about the event', async () => {
     const scope1 = nock('http://localhost')
       .get(`/api/v1/events/1`)
-      .reply(200, MOCK_EVENT)
+      .reply(200, mockEvents)
 
     const scope2 = nock('http://localhost')
       .get(`/api/v1/pets`)
-      .reply(200, MOCK_PETS)
+      .reply(200, mockPets)
 
     const screen = renderApp(`/events/1`)
     await waitForElementToBeRemoved(() => screen.getByTestId(/load/i))

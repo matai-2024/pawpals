@@ -62,17 +62,17 @@ describe('EventList.tsx', () => {
 
     const scope2 = nock('http://localhost')
       .get('/api/v1/events')
-      .reply(200, MOCK_EVENTS)
+      .reply(200, mockEvents)
 
     const screen = renderApp('/events')
 
     await waitForElementToBeRemoved(() => screen.getByTestId(/load/i))
-    const eventTitle = await screen.findByTestId('title')
-    expect(eventTitle).toBeInTheDocument()
-    expect(eventTitle.textContent).toBe('Pet-friendly Events')
-            
+    const eventTestTitle = await screen.findByTestId('title')
+    expect(eventTestTitle).toBeInTheDocument()
+    expect(eventTestTitle.textContent).toBe('Pet-friendly Events')
+
     const eventTitle = await screen.findByText('Food Truck Night in Howick')
-            
+
     expect(eventTitle).toBeVisible()
     expect(scope.isDone()).toBe(true)
     expect(scope2.isDone()).toBe(true)
