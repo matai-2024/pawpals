@@ -17,7 +17,6 @@ export default function OwnerForm({
   const [form, setForm] = useState({ firstName, lastName, email })
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    console.log(form)
     setForm({ ...form, [event.target.id]: event.target.value })
   }
 
