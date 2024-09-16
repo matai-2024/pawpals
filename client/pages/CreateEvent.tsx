@@ -3,6 +3,7 @@ import CreateEventForm from '../components/forms/create-event/CreateEventForm.ts
 import { useNavigate } from 'react-router-dom'
 import useCreateEvent from '../hooks/use-event-create.ts'
 import { useAuth0 } from '@auth0/auth0-react'
+import { EventData } from '../../models/events.ts'
 
 const INITIAL_DATA = {
   title: '',
@@ -22,7 +23,7 @@ export default function CreateEvent() {
   const navigate = useNavigate()
   const { getAccessTokenSilently } = useAuth0()
 
-  function updateFields(fields: Partial<FormData>) {
+  function updateFields(fields: Partial<EventData>) {
     setData((prev) => {
       return { ...prev, ...fields }
     })
@@ -48,6 +49,7 @@ export default function CreateEvent() {
             <div className="space-y-12">
               <div className="border-b border-gray-900/10 pb-12">
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  {/* // eslint-disable */}
                   <CreateEventForm {...data} updateFields={updateFields} />
                 </div>
               </div>

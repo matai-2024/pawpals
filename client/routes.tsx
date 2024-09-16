@@ -54,7 +54,11 @@ export const routes = createRoutesFromElements(
       handle={'Dashboard | pawpals'}
     />
     <Route path="events" element={<Events />} handle={'Events | pawpals'} />
-    <Route path="events/create" element={<CreateEvent />} handle={'Create an Event | pawpals'} />
+    <Route
+      path="events/create"
+      element={<CreateEvent />}
+      handle={'Create an Event | pawpals'}
+    />
   </Route>,
 )
 
