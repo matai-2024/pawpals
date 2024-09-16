@@ -11,6 +11,7 @@ interface Pet {
   image: string
   id: number
   petName: string
+  ownerId: string // Add ownerId field
 }
 
 interface Event {
@@ -25,7 +26,7 @@ interface Event {
 export function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
   const navigate = useNavigate()
-
+  console.log(user)
   const [pets, setPets] = useState<Pet[]>([]) // State to store pets
   const [events, setEvents] = useState<Event[]>([]) // State to store events
 
@@ -34,7 +35,11 @@ export function Dashboard() {
     try {
       const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
       const data = await response.json()
-      return data
+
+      // Filter pets by ownerId if backend does not handle it
+      const filteredPets = data.filter((pet: Pet) => pet.ownerId === ownerId)
+
+      return filteredPets
     } catch (error) {
       console.error('Error fetching pets:', error)
       return []
@@ -146,7 +151,7 @@ export function Dashboard() {
                     title={event.title}
                     time={event.time}
                     going={event.going}
-                    image={event.image}
+                    eventImage={event.eventImage}
                   />
                 ))
               ) : (
