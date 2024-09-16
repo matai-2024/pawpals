@@ -93,8 +93,6 @@ export default function Nav() {
             >
               Log in
             </button>
-          </IfNotAuthenticated>
-          <IfNotAuthenticated>
             <button
               className="rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
               onClick={handleRegister}
