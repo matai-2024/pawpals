@@ -43,12 +43,12 @@ describe('EventDetails.tsx', () => {
   it('should display details about the event', async () => {
     const scope = nock('http://localhost')
       .get(`/api/v1/events/${MOCK_EVENT.id}`)
-      .reply(200, MOCK_EVENT)
+      .reply(200)
 
-    const screen = renderApp('/events/1')
-
+    const screen = renderApp(`/events/${MOCK_EVENT.id}`)
     const eventTitle = await screen.findByText('Food Truck Night in Howick')
-    expect(eventTitle).toBeVisible()
+
     expect(scope.isDone()).toBe(true)
+    expect(eventTitle).toBeVisible()
   })
 })

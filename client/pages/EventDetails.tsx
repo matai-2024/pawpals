@@ -42,10 +42,9 @@ export default function EventDetails() {
     )
 
   if (evts) {
-    console.log(evts.eventImage)
     return (
-      <div className="h-[464px] px-40 py-16  flex-col justify-start items-center inline-flex">
-        <div className="self-stretch h-[336px] pt-[70px] flex-col justify-start items-start gap-6 flex">
+      <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
+        <div className="text-center flex-col justify-start items-start gap-6 flex">
           <div className="self-stretch text-[#1e1e1e] text-7xl font-bold font-['Inter'] leading-[86.40px]">
             {evts.title}
           </div>
@@ -81,7 +80,7 @@ export default function EventDetails() {
                 alt={`${evts.creatorId}`}
               />
             </div>
-            <div className="grow shrink basis-0 flex-col justify-start items-start gap-0.5 inline-flex">
+            <div className="grow shrink basis-0 flex-col justify-start text-left items-start gap-0.5 inline-flex">
               <div className="self-stretch text-[#757575] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
                 Hosted By
               </div>
@@ -90,9 +89,8 @@ export default function EventDetails() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="h-[650px] px-40 py-16 flex-col justify-start items-start gap-6 inline-flex">
-          <div className="self-stretch justify-start items-start gap-16 inline-flex">
+
+          <div className="self-stretch justify-start items-start gap-16 flex">
             <img
               className="grow shrink basis-0 h-[260px] rounded-lg"
               src={`/public/${evts.eventImage}`}
@@ -140,7 +138,7 @@ export default function EventDetails() {
             </div>
           </div>
         </div>
-        <div className="w-[1200px] h-[649px] p-16 flex-col justify-start items-start gap-12 inline-flex">
+        <div className="py-32 sm:py-48 lg:py-24">
           <div className="justify-start items-start inline-flex">
             <div className="text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
               Attendees
