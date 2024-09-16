@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 const navigation = [
   { name: 'Home', to: '/' },
-  { name: 'About', to: '#' },
+  { name: 'About', to: '/about' },
   { name: 'Pets', to: '/profiles' },
   { name: 'Add a Pet', to: '/create' },
   { name: 'Events', to: '/events' },
@@ -22,7 +22,21 @@ export default function Nav() {
   }
 
   const handleSignIn = () => {
-    loginWithRedirect()
+    loginWithRedirect({
+      authorizationParams: {
+        screen_hint: 'signin', //may need to change :3
+        redirect_uri: `${window.location.origin}/dashboard`,
+      },
+    })
+  }
+
+  const handleRegister = () => {
+    loginWithRedirect({
+      authorizationParams: {
+        screen_hint: 'signup', //may need to change :3
+        redirect_uri: `${window.location.origin}/user-profile`,
+      },
+    })
   }
 
   return (
@@ -65,7 +79,7 @@ export default function Nav() {
           <IfNotAuthenticated>
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={handleSignIn}
+              onClick={handleRegister}
             >
               Sign up
             </button>

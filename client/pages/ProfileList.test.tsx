@@ -23,7 +23,7 @@ beforeEach(() => {
   } as any)
 })
 
-const MOCK_PETS = [
+const mockPets = [
   {
     id: 1,
     ownerId: 1,
@@ -70,7 +70,7 @@ describe('ProfileList.tsx', () => {
   it('should display a list of pets', async () => {
     const scope = nock('http://localhost')
       .get('/api/v1/pets')
-      .reply(200, MOCK_PETS)
+      .reply(200, mockPets)
 
     const screen = renderApp('/profiles')
     const PetName = await screen.findByText('Brian the Iguana')
@@ -83,11 +83,11 @@ describe('ProfileList.tsx', () => {
   it('should display the correct amount of pets', async () => {
     const scope = nock('http://localhost')
       .get('/api/v1/pets')
-      .reply(200, MOCK_PETS)
+      .reply(200, mockPets)
 
     const screen = renderApp('/profiles')
     const petsIds = await screen.findAllByText(/\d+/)
-    expect(petsIds).toHaveLength(MOCK_PETS.length)
+    expect(petsIds).toHaveLength(mockPets.length)
     expect(scope.isDone()).toBe(true)
   })
 })

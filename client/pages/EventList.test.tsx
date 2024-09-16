@@ -10,7 +10,7 @@ beforeAll(() => {
   nock.disableNetConnect()
 })
 
-const MOCK_EVENTS = [
+const mockEvents = [
   {
     id: 1,
     title: 'Food Truck Night in Howick',
@@ -58,7 +58,7 @@ describe('EventList.tsx', () => {
   it.only('Should display a list of events', async () => {
     const scope = nock('http://localhost')
       .get('/api/v1/events')
-      .reply(200, MOCK_EVENTS)
+      .reply(200, mockEvents)
 
     const scope2 = nock('http://localhost')
       .get('/api/v1/events')
@@ -70,7 +70,24 @@ describe('EventList.tsx', () => {
     const eventTitle = await screen.findByTestId('title')
     expect(eventTitle).toBeInTheDocument()
     expect(eventTitle.textContent).toBe('Pet-friendly Events')
+            
+    const eventTitle = await screen.findByText('Food Truck Night in Howick')
+            
+    expect(eventTitle).toBeVisible()
     expect(scope.isDone()).toBe(true)
     expect(scope2.isDone()).toBe(true)
+  })
+})
+
+describe('EventList.tsx', () => {
+  it('should display the correct amount of events', async () => {
+    const scope = nock('http://localhost')
+      .get('/api/v1/events')
+      .reply(200, mockEvents)
+
+    const screen = renderApp('/events')
+    const EventId = await screen.findAllByTestId('event-card')
+    expect(EventId).toHaveLength(mockEvents.length)
+    expect(scope.isDone()).toBe(true)
   })
 })
