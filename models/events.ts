@@ -12,3 +12,7 @@ export interface EventData {
 export interface Event extends EventData {
   id: number
 }
+
+export interface EventFormProps extends EventData {
+  updateFields: (fields: Partial<EventData>) => void
+}
