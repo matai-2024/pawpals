@@ -20,11 +20,11 @@ import CreateEvent from './pages/CreateEvent'
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
     <Route index element={<Home />} />
-    <Route path="create" element={<CreatePet />} />
-    <Route path="profiles" element={<ProfileList />} />
-    <Route path="profiles/:id" element={<Profile />} />
-    <Route path="dashboard" element={<Dashboard />} />
-    <Route path="events/:id" element={<EventDetails />} />
+    <Route
+      path="events/:id"
+      element={<EventDetails />}
+      handle={'Event | pawpals'}
+    />
     <Route index element={<Home />} handle={'pawpals'} />
     <Route path="about" element={<About />} handle={'About | pawpals'} />
     <Route
