@@ -27,6 +27,7 @@ export default function CreateEventForm({
             name="title"
             type="text"
             placeholder="Event name"
+            required={true}
             value={title}
             onChange={(e) => updateFields({ title: e.target.value })}
             className="form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -46,6 +47,7 @@ export default function CreateEventForm({
             id="date"
             name="date"
             type="date"
+            required={true}
             value={date}
             onChange={(e) => updateFields({ date: e.target.value })}
             className="form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -65,6 +67,7 @@ export default function CreateEventForm({
             id="time"
             name="time"
             type="time"
+            required={true}
             value={time}
             onChange={(e) => updateFields({ time: e.target.value })}
             className="form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -85,6 +88,7 @@ export default function CreateEventForm({
             name="location"
             type="text"
             placeholder="Venue address"
+            required={true}
             value={location}
             onChange={(e) => updateFields({ location: e.target.value })}
             className="form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -104,6 +108,7 @@ export default function CreateEventForm({
             id="description"
             name="description"
             placeholder="Tell us about your event"
+            required={true}
             defaultValue={description}
             onChange={(e) => updateFields({ description: e.target.value })}
             rows={5}
@@ -163,6 +168,7 @@ export default function CreateEventForm({
           <select
             id="audience"
             name="audience"
+            required={true}
             value={audience}
             onChange={(e) => updateFields({ audience: e.target.value })}
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"

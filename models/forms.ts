@@ -65,8 +65,7 @@ export interface Trait extends TraitData {
   id: number
 }
 
-export interface PetProfileData {
-  ownerId: number
+export interface PetProfileDataInit {
   petName: string
   image: string
   dateOfBirth: string
@@ -88,8 +87,12 @@ export interface PetProfileData {
   floofy: string
 }
 
-export interface PetFormProps extends PetProfileData {
-  updateFields: (fields: Partial<PetProfileData>) => void
+export interface PetProfileData extends PetProfileDataInit {
+  ownerId: number
+}
+
+export interface PetFormProps extends PetProfileDataInit {
+  updateFields: (fields: Partial<PetProfileDataInit>) => void
 }
 
 export interface PetProfile extends PetProfileData {
