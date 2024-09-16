@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { EventData } from '../../models/events'
+import { EventData, Event } from '../../models/events'
 
 const rootUrl = '/api/v1/events'
 
@@ -33,5 +33,16 @@ export async function delEvent(id: number, token: string) {
     .set('Authorization', `Bearer ${token}`)
 }
 
+//GET events by pet id
+export async function getEventsByPetId(id: number) {
+  const res = await request.get(`${rootUrl}/pet/${id}`)
+  // .set('Authorization', `Bearer ${token}`)
+  return res.body as Event[]
+}
+
 // TODO
 // get event by creator id
+export async function getEventsByCreatorId(ownerId: string) {
+  const res = await request.get(`${rootUrl}/creator/${ownerId}`)
+  return res.body as Event[]
+}

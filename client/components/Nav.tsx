@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom'
 
 const navigation = [
   { name: 'Home', to: '/' },
-  { name: 'About', to: '#' },
+  { name: 'About', to: '/about' },
   { name: 'Pets', to: '/profiles' },
   { name: 'Add a Pet', to: '/create' },
   { name: 'Events', to: '/events' },
+  { name: 'Dashboard', to: '/dashboard' },
 ]
 
 export default function Nav() {
@@ -21,7 +22,21 @@ export default function Nav() {
   }
 
   const handleSignIn = () => {
-    loginWithRedirect()
+    loginWithRedirect({
+      authorizationParams: {
+        screen_hint: 'signin', //may need to change :3
+        redirect_uri: `${window.location.origin}/dashboard`,
+      },
+    })
+  }
+
+  const handleRegister = () => {
+    loginWithRedirect({
+      authorizationParams: {
+        screen_hint: 'signup', //may need to change :3
+        redirect_uri: `${window.location.origin}/user-profile`,
+      },
+    })
   }
 
   return (
@@ -32,8 +47,8 @@ export default function Nav() {
       >
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img alt="logo" src="/logo.png" className="h-14 w-auto" />
+            <span className="sr-only">pawpals</span>
+            <img alt="logo" src="/pawpals.png" className="h-16 w-auto" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -64,7 +79,7 @@ export default function Nav() {
           <IfNotAuthenticated>
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={handleSignIn}
+              onClick={handleRegister}
             >
               Sign up
             </button>

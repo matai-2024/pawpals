@@ -1,15 +1,25 @@
 import { Owner, OwnerData } from '../../../models/forms.ts'
 import db from '../connection.ts'
 
+const camelCase = [
+  'external_key as externalKey',
+  'first_name as firstName',
+  'last_name as lastName',
+  'email',
+]
+
 // Get all owners
 export async function getAllOwners() {
-  const owners: OwnerData[] = await db('owners').select('*')
+  const owners: Owner[] = await db('owners').select('*')
   return owners as Owner[]
 }
 
 // Get owner by id
-export async function getOwnerById(id: number) {
-  const owner: OwnerData = await db('owners').where({ id }).select('*').first()
+export async function getOwnerById(id: string) {
+  const owner: OwnerData = await db('owners')
+    .where('external_key', id)
+    .select('*')
+    .first()
   return owner as Owner
 }
 
@@ -24,11 +34,12 @@ export async function getOwnerByName(firstName: string) {
 // Add new owner
 // TODO: Check this works
 export async function addNewOwner(owner: OwnerData) {
-  const { firstName, lastName, email } = owner
+  const { firstName, lastName, email, externalId } = owner
   const serverData = {
     first_name: firstName,
     last_name: lastName,
     email: email,
+    external_key: externalId,
   }
   const result = await db('owners').insert(serverData)
   return result[0]
@@ -38,6 +49,16 @@ export async function addNewOwner(owner: OwnerData) {
 // TODO: Check this works
 export async function deleteOwner(id: number) {
   return await db('owners').where({ id }).delete()
+}
+
+// Get owner by pet id
+export async function getOwnerByPetId(petId: number) {
+  const owner: OwnerData = await db('owners')
+    .join('pets', 'pets.owner_id', 'owners.external_key')
+    .where('pets.id', petId)
+    .select(camelCase)
+    .first()
+  return owner as Owner
 }
 
 // TODO LIST:
