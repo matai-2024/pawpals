@@ -3,37 +3,42 @@ export default function About() {
     {
       name: 'Anahera Foley-Paama',
       role: 'Product Owner',
-      img: '/anahera.jpeg',
+      img: 'devs/anahera.jpeg',
       linkedin: 'https://www.linkedin.com/in/afoleypaama/',
       email: 'anahera.work@gmail.com',
+      github: 'https://github.com/anaherawashere?tab=repositories',
     },
     {
       name: 'Amy Jackson',
       role: 'Backend Lead',
-      img: '/amy.jpg',
+      img: 'devs/amy.jpg',
       linkedin: 'https://www.linkedin.com/in/amy-jackson',
-      email: 'amy@example.com',
+      email: 'amyj.etana@gmail.com',
+      github: 'https://github.com/achoo-o',
     },
     {
       name: 'Dean Tunbridge',
       role: 'Frontend Lead',
-      img: '/dean.jpg',
+      img: 'devs/dean.jpg',
       linkedin: 'https://www.linkedin.com/in/dean-tunbridge',
-      email: 'dean@example.com',
+      email: 'Deantunbridgedev@gmail.com',
+      github: 'https://github.com/dean-tunbridge',
     },
     {
       name: 'Jack Gloyer',
       role: 'Git Lead',
-      img: 'https://via.placeholder.com/120x120',
+      img: 'devs/jack.jpg',
       linkedin: 'https://www.linkedin.com/in/jack-gloyer',
-      email: 'jack@example.com',
+      email: 'jackgloyer8@gmail.com',
+      github: 'https://github.com/jack-gloyer',
     },
     {
       name: 'Sam Pedersen',
       role: 'Vibes Lead',
-      img: '/sam.jpg',
+      img: 'devs/sam.jpg',
       linkedin: 'https://www.linkedin.com/in/sam-pedersen-2060b0241/',
       email: 'sjcfpedersen@gmail.com',
+      github: 'https://github.com/sam-pedersen',
     },
   ]
 
@@ -116,6 +121,14 @@ export default function About() {
                       aria-label={`${member.name}'s email`}
                     >
                       <i className="text-2xl fa-solid fa-envelope"></i>
+                    </a>
+                    <a
+                      href={member.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name}'s github`}
+                    >
+                      <i className="text-2xl fa-brands fa-square-github"></i>
                     </a>
                   </div>
                 </div>

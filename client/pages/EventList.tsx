@@ -45,11 +45,7 @@ export default function EventList({ search }: Props) {
                 >
                   <img
                     className="w-40 h-40 object-cover"
-                    src={
-                      event.eventImage.length > 0
-                        ? event.eventImage
-                        : defaultImg
-                    }
+                    src={`/events/${event.eventImage.length > 0 ? event.eventImage : defaultImg}`}
                     alt={event.title}
                   />
                   <div className="grow  shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">

@@ -7,6 +7,7 @@ export default function ProfileList() {
   const { data, isPending, isError, error } = usePets()
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
+  const pulbicDir = 'pets'
 
   if (isPending) return <LoadingSpinner />
 
@@ -36,7 +37,7 @@ export default function ProfileList() {
                 <PetCardVertical
                   id={profile.id}
                   petName={profile.petName}
-                  image={profile.image.length > 0 ? profile.image : defaultImg}
+                  image={`/${pulbicDir}/${profile.image.length > 0 ? profile.image : defaultImg}`}
                   dateOfBirth={profile.dateOfBirth}
                   breed={profile.breed}
                   species={profile.species}
