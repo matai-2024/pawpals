@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { beforeEach, beforeAll, describe, it, vi, expect } from 'vitest'
-import { renderApp } from '../../../test-setup.tsx'
+import { renderApp } from './test-setup.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 import nock from 'nock'
 

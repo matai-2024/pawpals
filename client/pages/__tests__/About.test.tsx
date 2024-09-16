@@ -3,7 +3,7 @@
 
 import { beforeEach, describe, it, expect, vi } from 'vitest'
 import { fireEvent } from '@testing-library/react'
-import { renderApp } from '../../../test-setup'
+import { renderApp } from './test-setup.tsx'
 
 const teamMembers = [
   {
