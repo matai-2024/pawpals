@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import LoadingSpinner from '../components/LoadingSpinner.tsx'
+import { getAge } from '../components/utils/Presentation.tsx'
 import {
   usePetById,
   useEventsByPetId,
@@ -7,13 +8,20 @@ import {
 } from '../hooks/hooks.ts'
 import dateToReadable, {
   TimeFormat,
-} from '../components/utils/EventPresentation.tsx'
+} from '../components/utils/Presentation.tsx'
+import useDocumentTitle from '../hooks/use-document-title.ts'
 
 export default function Profile() {
   const { id } = useParams()
   const { data, isPending, isError, error } = usePetById(Number(id))
   const events = useEventsByPetId(Number(id)).data
   const owner = useOwnerByPetId(Number(id)).data
+
+  useDocumentTitle(
+    data?.petName
+      ? `${data?.petName}'s Profile | pawpals`
+      : 'Pet Profile | pawpals',
+  )
 
   if (isPending) return <LoadingSpinner />
 
@@ -35,17 +43,6 @@ export default function Profile() {
   }
   const activeTraits = getTraits()
 
-  function getAge(dateString: string) {
-    const today = new Date()
-    const birthDate = new Date(dateString)
-    let age = today.getFullYear() - birthDate.getFullYear()
-    const m = today.getMonth() - birthDate.getMonth()
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--
-    }
-    return age
-  }
-
   if (data)
     return (
       <>
@@ -62,7 +59,7 @@ export default function Profile() {
               <div className="w-48 h-48 overflow-hidden rounded-full border border-4 border-white">
                 <img
                   className="object-cover min-h-48 relative -top-8"
-                  src={data.image ? `../../${data.image}` : `../../miso.jpg`}
+                  src={data.image ? `../../${data.image}` : `../../miso.webp`}
                   alt={data.petName}
                 />
               </div>
