@@ -81,12 +81,6 @@ export default function Nav() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
           <IfAuthenticated>
             <AccountIcon />
-            <button
-              className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={handleSignOut}
-            >
-              Sign out
-            </button>
           </IfAuthenticated>
           <IfNotAuthenticated>
             <button
@@ -143,14 +137,6 @@ export default function Nav() {
                 ))}
               </div>
               <div className="py-6">
-                <IfAuthenticated>
-                  <button
-                    className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    onClick={handleSignOut}
-                  >
-                    Sign out
-                  </button>
-                </IfAuthenticated>
                 <IfNotAuthenticated>
                   <button
                     className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"

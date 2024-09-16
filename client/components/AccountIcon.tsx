@@ -1,8 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function AccountIcon() {
-  const { user } = useAuth0()
-  function handleClick(e) {
+  const { user, logout } = useAuth0()
+
+  const handleSignOut = () => {
+    logout()
+  }
+
+  function handleClick() {
     const dropdowns = document.querySelector('.dropdown-content')
     if (dropdowns?.classList.contains('hidden')) {
       dropdowns.classList.remove('hidden')
@@ -14,12 +19,14 @@ export default function AccountIcon() {
   return (
     <div>
       <img
-        onClick={(e) => handleClick(e)}
+        onClick={handleClick}
         src={`${user?.picture}`}
-        className="rounded-full max-w-11"
+        className="relative rounded-full max-w-11"
       ></img>
-      <div className="dropdown-content hidden">
-        <a href="#">Log out</a>
+      <div className="absolute right-5 dropdown-content hidden mt-2 p-2 text-gray-600 border-2">
+        <a className="" onClick={handleSignOut}>
+          Log out
+        </a>
       </div>
     </div>
   )

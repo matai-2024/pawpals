@@ -12,8 +12,6 @@ export default function useCreatePet() {
   return useMutation({
     mutationFn: ({ data, token }: Props) => {
       // eslint-disable-next-line no-console
-      console.log('mutation data', data)
-
       const id = addPet(data, token)
       return id
     },
