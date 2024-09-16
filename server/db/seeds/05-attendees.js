@@ -1,0 +1,37 @@
+export const addAttendees = [
+  { id: 1, event_id: 1, account_id: 3, pet_id: 3 },
+  { id: 2, event_id: 1, account_id: 7, pet_id: 9 },
+  { id: 3, event_id: 1, account_id: 9, pet_id: 11 },
+  { id: 4, event_id: 1, account_id: 12, pet_id: 14 },
+  { id: 5, event_id: 1, account_id: 4, pet_id: 5 },
+  { id: 6, event_id: 1, account_id: 6, pet_id: 8 },
+  { id: 7, event_id: 1, account_id: 14, pet_id: 16 },
+  { id: 8, event_id: 1, account_id: 1, pet_id: 1 },
+  { id: 9, event_id: 1, account_id: 11, pet_id: 13 },
+  { id: 10, event_id: 1, account_id: 2, pet_id: 2 },
+  { id: 11, event_id: 2, account_id: 8, pet_id: 10 },
+  { id: 12, event_id: 2, account_id: 5, pet_id: 7 },
+  { id: 13, event_id: 2, account_id: 13, pet_id: 15 },
+  { id: 14, event_id: 3, account_id: 15, pet_id: 17 },
+  { id: 15, event_id: 3, account_id: 10, pet_id: 12 },
+  { id: 16, event_id: 3, account_id: 4, pet_id: 6 },
+  { id: 17, event_id: 4, account_id: 9, pet_id: 11 },
+  { id: 18, event_id: 5, account_id: 7, pet_id: 9 },
+  { id: 19, event_id: 6, account_id: 6, pet_id: 8 },
+  { id: 20, event_id: 7, account_id: 2, pet_id: 2 },
+  { id: 21, event_id: 8, account_id: 11, pet_id: 15 },
+  { id: 22, event_id: 9, account_id: 3, pet_id: 4 },
+  { id: 23, event_id: 10, account_id: 15, pet_id: 17 },
+  { id: 24, event_id: 10, account_id: 1, pet_id: 1 },
+  { id: 25, event_id: 10, account_id: 5, pet_id: 7 },
+  { id: 26, event_id: 10, account_id: 8, pet_id: 12 },
+  { id: 27, event_id: 10, account_id: 4, pet_id: 6 },
+  { id: 28, event_id: 10, account_id: 9, pet_id: 11 },
+  { id: 29, event_id: 10, account_id: 12, pet_id: 14 },
+  { id: 30, event_id: 10, account_id: 7, pet_id: 9 },
+  { id: 31, event_id: 10, account_id: 13, pet_id: 15 },
+]
+
+export async function seed(knex) {
+  await knex('attendees').insert(addAttendees)
+}

@@ -5,7 +5,6 @@ import Card from '../components/utils/Card/Card'
 import PetCard from '../components/utils/PetCard/PetCard'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
-// import { fetchPetsByOwnerId } from '../apis/apiClientPets'
 
 // Hardcoding the type for pets and events
 interface Pet {
@@ -33,9 +32,10 @@ export function Dashboard() {
   // Hardcoded data for Pets and events
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const hardcodedPets: Pet[] = [
-    { id: 5, petName: 'Pixel', image: 'pixel.jpg' },
-    { id: 5, petName: 'Miso', image: 'miso.jpg' },
+    { id: 1, petName: 'Pixel', image: 'pixel.webp' },
+    { id: 2, petName: 'Miso', image: 'miso.webp' },
   ]
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const hardcodedEvents: Event[] = [
     {
@@ -52,18 +52,20 @@ export function Dashboard() {
   useEffect(() => {
     if (isAuthenticated && user) {
       setPets(hardcodedPets)
+
       // Fetch pets for the authenticated user
-      // fetchPetsByOwnerId(4) // user.sub is the unique user identifier
-      //   .then((petsData) => setPets(petsData))
-      //   .catch((err) => console.error('Error fetching pets:', err))
+      //  fetchPetsByOwnerId(4) // user.sub is the unique user identifier
+      //  .then((petsData) => setPets(petsData))
+      //  .catch((err) => console.error('Error fetching pets:', err))
 
       setEvents(hardcodedEvents)
       // Fetch events for the authenticated user
-      //  getEventsByCreatorId(4)
+      //  getEventsByCreatorId('auth0|66e4c67a85ce6c31049fb8a6') // Assuming you have a function to get all events by creator ID
       //  .then((eventsData) => setEvents(eventsData))
       //  .catch((err) => console.error('Error fetching events:', err))
     }
-  }, [hardcodedEvents, hardcodedPets, isAuthenticated, user])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, user])
 
   if (isLoading) {
     return <div>Loading...</div>

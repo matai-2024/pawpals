@@ -7,3 +7,9 @@ export async function getOwnerInfo(externalKey: string) {
   const res = await request.get(rootUrl + '/' + externalKey)
   return res.body as Owner[]
 }
+
+// get owner by pet id
+export async function getOwnerByPetId(id: number) {
+  const res = await request.get(`${rootUrl}/pet/${id}`)
+  return res.body as Owner
+}
