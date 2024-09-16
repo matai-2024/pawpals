@@ -1,7 +1,7 @@
 // -- HELPER FUNCTIONS FOR EVENT DATES -- //
 
 export function dateToReadable(date: string) {
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const days: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const months: string[] = [
     'Jan',
     'Feb',
@@ -29,8 +29,12 @@ export function dateToReadable(date: string) {
 }
 
 export function TimeFormat(time: string) {
-  const split = time.split('-')
-  const format = split[0].toUpperCase()
+  const [hour, min] = time.split(':')
+  const hourNum = Number(hour)
+  const format =
+    // eslint-disable-next-line no-constant-condition
+    (hourNum === 12 ? 12 : hourNum % 12) +
+    `:${min}${hourNum >= 12 ? ' PM' : ' AM'}`
   return format
 }
 
