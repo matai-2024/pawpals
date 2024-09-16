@@ -55,7 +55,7 @@ const mockEvents = [
 ]
 
 describe('EventList.tsx', () => {
-  it.only('Should display a list of events', async () => {
+  it('Should display a list of events', async () => {
     const scope = nock('http://localhost')
       .get('/api/v1/events')
       .reply(200, mockEvents)
@@ -85,9 +85,14 @@ describe('EventList.tsx', () => {
       .get('/api/v1/events')
       .reply(200, mockEvents)
 
+    const scope2 = nock('http://localhost')
+      .get('/api/v1/events')
+      .reply(200, mockEvents)
+
     const screen = renderApp('/events')
     const EventId = await screen.findAllByTestId('event-card')
     expect(EventId).toHaveLength(mockEvents.length)
     expect(scope.isDone()).toBe(true)
+    expect(scope2.isDone()).toBe(true)
   })
 })
