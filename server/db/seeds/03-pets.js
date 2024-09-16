@@ -1,7 +1,7 @@
 export const addPets = [
   {
     id: 1,
-    owner_id: 'auth0|123','auth0|123',
+    owner_id: 'auth0|123',
     pet_name: 'Pepper',
     image: 'pepper.webp',
     dob: '2021-12-01',
@@ -13,7 +13,7 @@ export const addPets = [
   },
   {
     id: 2,
-    owner_id: 'auth0|123','auth0|123',
+    owner_id: 'auth0|123',
     pet_name: 'Obi',
     image: 'obi.webp',
     dob: '2021-02-07',
