@@ -25,7 +25,6 @@ router.get('/:id', async (req, res) => {
     const event = await db.getEventById(id)
     res.status(200).json(event)
   } catch (e) {
-    console.error(e)
     res.sendStatus(500)
   }
 })
@@ -37,7 +36,6 @@ router.delete('/:id', async (req, res) => {
     const event = await db.delEvent(Number(id))
     res.status(204).json(event)
   } catch (e) {
-    console.error(e)
     res.sendStatus(500)
   }
 })

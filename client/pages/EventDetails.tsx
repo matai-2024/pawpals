@@ -32,7 +32,6 @@ export default function EventDetails() {
   if (isLoading) return <LoadingSpinner />
 
   if (isError) {
-    console.log(error)
     return (
       <div>
         <h3>Error loading event details: </h3>
