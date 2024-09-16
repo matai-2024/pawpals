@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="container">
       <Nav />
-      <div className="relative isolate px-6 pt-14 lg:px-8">
+      <div className="z-10 relative isolate px-6 pt-14 lg:px-8">
         <Background />
         <Outlet />
       </div>
