@@ -73,7 +73,7 @@ export async function deletePet(petsId: number) {
 // Add a pet
 export async function createNewPet(newPetProfile: PetProfileData) {
   //MVP - Hard code an image if there isn't one
-  if (newPetProfile.image == "") newPetProfile.image = 'miso.jpg'
+  if (newPetProfile.image == '') newPetProfile.image = 'miso.jpg'
 
   // All the data being passed in from the form
   const {
