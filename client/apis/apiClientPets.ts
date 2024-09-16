@@ -30,7 +30,6 @@ export async function deletePetById(id: number, token: string) {
 
 // add a pet
 export async function addPet(newPet: PetProfileDataInit, token: string) {
-  console.log(newPet)
   const res = await request
     .post(rootUrl + '/')
     .set('Authorization', `Bearer ${token}`)
