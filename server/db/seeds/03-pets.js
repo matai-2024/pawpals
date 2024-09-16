@@ -73,7 +73,7 @@ export const addPets = [
   },
   {
     id: 7,
-    owner_id: 'auth0|123',
+    owner_id: 'auth0|66e4c67a85ce6c31049fb8a6',
     pet_name: 'Starsky',
     image: 'starsky.webp',
     dob: '2020-05-22',

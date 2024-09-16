@@ -18,7 +18,7 @@ interface Event {
   title: string
   time: string
   going: boolean
-  image: string
+  eventImage: string
 }
 
 // Dashboard Component
@@ -55,8 +55,7 @@ export function Dashboard() {
 
   // UseEffect to fetch pets and events for the authenticated user
   useEffect(() => {
-    if (isAuthenticated && user) {
-      console.log(user)
+    if (isAuthenticated && user?.sub) {
       // Fetch pets for the authenticated user
       fetchPetsByOwnerId(user.sub)
         .then((petsData) => setPets(petsData))
@@ -124,7 +123,7 @@ export function Dashboard() {
                     title={event.title}
                     time={event.time}
                     going={event.going}
-                    image={event.image}
+                    eventImage={event.eventImage}
                   />
                 ))
               ) : (

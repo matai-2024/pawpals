@@ -8,7 +8,7 @@ interface PetCardProps {
 const PetCard: React.FC<PetCardProps> = ({ petName, image }) => (
   <div className="flex items-center border p-4 rounded-lg space-x-4">
     <img
-      src={image}
+      src={`pets/${image}`}
       alt={petName}
       className="w-20 h-20 object-cover rounded-lg"
     />
