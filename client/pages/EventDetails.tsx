@@ -33,21 +33,26 @@ export default function EventDetails() {
 
   if (isLoading) return <LoadingSpinner />
 
-  if (isError)
+  if (isError) {
+    console.log(error)
     return (
       <div>
         <h3>Error loading event details: </h3>
         {String(error)}
       </div>
     )
+  }
 
   if (evts) {
     return (
       <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
         <div className="text-center flex-col justify-start items-start gap-6 flex">
-          <div className="self-stretch text-[#1e1e1e] text-7xl font-bold font-['Inter'] leading-[86.40px]">
+          <h1
+            data-testid="title"
+            className="self-stretch text-[#1e1e1e] text-7xl font-bold font-['Inter'] leading-[86.40px]"
+          >
             {evts.title}
-          </div>
+          </h1>
           {/* TODO: Conditionally render these buttons based on if the user added this event */}
           {isAuthenticated && user?.sub === '' ? (
             <>
@@ -94,7 +99,7 @@ export default function EventDetails() {
             <img
               className="grow shrink basis-0 h-[260px] rounded-lg"
               src={`/public/${evts.eventImage}`}
-              alt={`${evts.title}`}
+              alt=""
             />
             <div className="grow shrink basis-0 flex-col justify-center items-start gap-6 inline-flex">
               <div className="self-stretch h-[458px] flex-col justify-start items-start gap-4 flex">

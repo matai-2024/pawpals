@@ -1,26 +1,13 @@
 // @vitest-environment jsdom
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { beforeEach, beforeAll, describe, it, vi, expect } from 'vitest'
-import { renderApp } from '../../test-setup.tsx'
-import { useAuth0 } from '@auth0/auth0-react'
+import { beforeAll, describe, it, expect } from 'vitest'
+import { renderApp } from './__tests__/test-setup.tsx'
 import nock from 'nock'
-
-vi.mock('@auth0/auth0-react')
-const ACCESS_TOKEN = 'mock-access-token'
+import { waitForElementToBeRemoved } from '@testing-library/react'
+import '@testing-library/jest-dom/vitest'
 
 beforeAll(() => {
   nock.disableNetConnect()
-})
-
-beforeEach(() => {
-  vi.mocked(useAuth0).mockReturnValue({
-    isAuthenticated: true,
-    user: { sub: 'fake-user@example.org', nickname: 'fake-user' },
-    getAccessTokenSilently: vi.fn().mockResolvedValue(ACCESS_TOKEN),
-    loginWithRedirect: vi.fn(),
-    logout: vi.fn(),
-  } as any)
 })
 
 const MOCK_EVENT = {
@@ -39,16 +26,64 @@ const MOCK_EVENT = {
   creatorId: 1,
 }
 
+const MOCK_PETS = [
+  {
+    id: 1,
+    ownerId: 1,
+    petName: 'Brian the Iguana',
+    image: 'BrianTheIguana.JPG',
+    dateOfBirth: '2021-12-01',
+    breed: 'iguana',
+  },
+  {
+    id: 2,
+    ownerId: 2,
+    petName: 'Rupert the Bear',
+    image: 'rupert.JPG',
+    dateOfBirth: '2021-12-01',
+    breed: 'bear',
+  },
+  {
+    id: 3,
+    ownerId: 7,
+    petName: 'Orion',
+    image: 'orion.JPG',
+    dateOfBirth: '2021-12-01',
+    breed: 'pug',
+  },
+  {
+    id: 4,
+    ownerId: 2,
+    petName: 'Pixel',
+    image: 'pixel.JPG',
+    dateOfBirth: '2021-12-01',
+    breed: 'cat',
+  },
+  {
+    id: 5,
+    ownerId: 4,
+    petName: 'Miso',
+    image: 'miso.JPG',
+    dateOfBirth: '2021-12-01',
+    breed: 'cat',
+  },
+]
+
 describe('EventDetails.tsx', () => {
   it('should display details about the event', async () => {
-    const scope = nock('http://localhost')
-      .get(`/api/v1/events/${MOCK_EVENT.id}`)
-      .reply(200)
+    const scope1 = nock('http://localhost')
+      .get(`/api/v1/events/1`)
+      .reply(200, MOCK_EVENT)
 
-    const screen = renderApp(`/events/${MOCK_EVENT.id}`)
-    const eventTitle = await screen.findByText('Food Truck Night in Howick')
+    const scope2 = nock('http://localhost')
+      .get(`/api/v1/pets`)
+      .reply(200, MOCK_PETS)
 
-    expect(scope.isDone()).toBe(true)
-    expect(eventTitle).toBeVisible()
+    const screen = renderApp(`/events/1`)
+    await waitForElementToBeRemoved(() => screen.getByTestId(/load/i))
+    const eventTitle = await screen.findByTestId('title')
+    expect(eventTitle).toBeInTheDocument()
+    expect(scope1.isDone()).toBe(true)
+    expect(scope2.isDone()).toBe(true)
   })
 })

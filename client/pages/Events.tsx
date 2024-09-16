@@ -36,7 +36,10 @@ export default function Events() {
     return (
       <>
         <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+          <h1
+            data-testid="title"
+            className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+          >
             Pet-friendly Events
           </h1>
           <label

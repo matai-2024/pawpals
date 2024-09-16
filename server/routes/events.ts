@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
     const event = await db.getEventById(id)
-    res.json(event)
+    res.status(200).json(event)
   } catch (e) {
     console.error(e)
     res.sendStatus(500)

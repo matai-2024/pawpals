@@ -27,7 +27,7 @@ export default function EventList({ search }: Props) {
   if (isError)
     return (
       <div>
-        <h3>Error loading pet data: </h3>
+        <h3>Error loading event data: </h3>
         {String(error)}
       </div>
     )
@@ -42,7 +42,7 @@ export default function EventList({ search }: Props) {
                   <img
                     className="w-40 h-40 object-cover"
                     src={event.eventImage}
-                    alt={event.title}
+                    alt=""
                   />
                   <div className="grow  shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">
                     <div className="self-stretch h-[107px] flex-col justify-start items-start gap-2 flex  ">
