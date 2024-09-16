@@ -4,6 +4,7 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { IfAuthenticated, IfNotAuthenticated } from './utils/Authenticated.tsx'
 import { Link } from 'react-router-dom'
+import AccountIcon from './AccountIcon.tsx'
 
 const navigation = [
   { name: 'About', to: '/about' },
@@ -79,6 +80,7 @@ export default function Nav() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
           <IfAuthenticated>
+            <AccountIcon />
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
               onClick={handleSignOut}
