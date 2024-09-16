@@ -12,11 +12,13 @@ import ProfileList from './pages/ProfileList'
 import Profile from './pages/Profile'
 import Dashboard from './pages/Dashboard'
 import Events from './pages/Events'
+import UserProfile from './pages/UserProfile'
 
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
     <Route index element={<Home />} />
     <Route path="create" element={<CreatePet />} />
+    <Route path="user-profile" element={<UserProfile />} />
     <Route path="profiles" element={<ProfileList />} />
     <Route path="profiles/:id" element={<Profile />} />
     <Route path="dashboard" element={<Dashboard />} />
