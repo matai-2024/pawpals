@@ -15,6 +15,7 @@ interface Pet {
 }
 
 interface Event {
+  creatorId: number
   id: number
   title: string
   time: string
