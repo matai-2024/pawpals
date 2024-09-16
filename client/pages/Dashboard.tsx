@@ -46,22 +46,19 @@ export function Dashboard() {
     }
   }
 
-  // Function to fetch events by creator ID
-  // Function to fetch events with creatorId hardcoded to 1
   async function getEventsByCreatorId() {
     try {
-      // Fetch events where creatorId is hardcoded to 1
-      const response = await fetch(`/api/v1/events?creatorId=1`)
-
+      // Fetch all events from the API
+      const response = await fetch(`/api/v1/events`)
       const data = await response.json()
 
-      return data
+      // Return only the events where creatorId is 1
+      return data.filter((event: Event) => event.creatorId === 1)
     } catch (error) {
       console.error('Error fetching events:', error)
       return []
     }
   }
-
   // UseEffect to fetch pets and events for the authenticated user
   useEffect(() => {
     if (isAuthenticated && user?.sub) {
@@ -70,10 +67,10 @@ export function Dashboard() {
         .then((petsData) => {
           setPets(petsData)
 
-          // Fetch events with hardcoded creatorId = 1
+          // Fetch and filter events with creatorId = 1
           return getEventsByCreatorId()
         })
-        .then((eventsData) => setEvents(eventsData))
+        .then((filteredEvents) => setEvents(filteredEvents))
         .catch((err) => console.error('Error fetching events:', err))
     }
   }, [isAuthenticated, user])
