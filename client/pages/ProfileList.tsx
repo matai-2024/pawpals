@@ -43,8 +43,8 @@ export default function ProfileList() {
             {data.map((profile: PetProfile) => (
               <div key={profile.id}>
                 <Link to={`${profile.id}`}>
-                  <div className=" p-6 py-6 bg-white hover:bg-gray-50 shadow-lg hover:shadow-lg border border-gray-100 rounded-lg flex flex-col gap-6 ease-in-out duration-200">
-                    <div className="relative m-2 w-36 h-36 rounded-full shadow-lg overflow-hidden border-gray-100">
+                  <div className=" px-6 pt-8 pb-10 bg-white shadow-lg  border border-gray-100 rounded-lg flex flex-col gap-6 ease-in-out duration-200">
+                    <div className="relative w-36 h-36 rounded-full shadow-2xl overflow-hidden border-gray-100">
                       <img
                         className="object-cover relative -top-7 "
                         src={profile.image}
@@ -59,12 +59,13 @@ export default function ProfileList() {
                       </p>
 
                       <div>
-                        <h3 className="text-2xl text-gray-950 font-semibold">
+                        <h3 className="text-2xl text-gray-950 font-bold pb-4">
                           {profile.petName}
                         </h3>
                       </div>
-                      <div className="text-gray-600 text-sm font-normal leading-tight">
-                        <p className="line-clamp-3">{profile.species}</p>
+
+                      <div className="shadow-lg hover:bg-yellow-500 ease-in-out duration-200 text-center rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-gray-950 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">
+                        View profile <span aria-hidden="true">→</span>
                       </div>
                     </div>
                   </div>

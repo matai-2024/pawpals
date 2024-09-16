@@ -74,9 +74,22 @@ describe('EventList.tsx', () => {
       .reply(200, MOCK_EVENTS)
 
     const screen = renderApp('/events')
-
     const eventTitle = await screen.findByText('Food Truck Night in Howick')
     expect(eventTitle).toBeVisible()
+    expect(scope.isDone()).toBe(true)
+  })
+})
+
+describe('EventList.tsx', () => {
+  it('should display the correct amount of events', async () => {
+    const scope = nock('http://localhost')
+      .get('/api/v1/events')
+      .reply(200, MOCK_EVENTS)
+
+    const screen = renderApp('/events')
+    const EventId = await screen.findAllByText(/\d+/)
+    console.log(EventId)
+    expect(EventId).toHaveLength(MOCK_EVENTS.length)
     expect(scope.isDone()).toBe(true)
   })
 })
