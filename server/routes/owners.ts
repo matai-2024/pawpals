@@ -17,11 +17,11 @@ router.get('/', checkJwt, async (req, res) => {
   }
 })
 
-// GET owner by id
+// GET owner by external id
 router.get('/:id', checkJwt, async (req, res) => {
   const { id } = req.params
   try {
-    const owner = await db.getOwnerById(Number(id))
+    const owner = await db.getOwnerById(id)
     res.json(owner)
   } catch (error) {
     // eslint-disable-next-line no-console

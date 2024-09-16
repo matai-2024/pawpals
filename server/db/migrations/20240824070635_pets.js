@@ -1,7 +1,7 @@
 export function up(knex) {
   return knex.schema.createTable('pets', (table) => {
     table.increments('id').primary()
-    table.integer('owner_id').references('owners.id')
+    table.string('owner_id').references('owners.external_key')
     table.string('pet_name')
     table.string('image')
     table.string('dob')

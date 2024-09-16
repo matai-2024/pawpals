@@ -15,8 +15,11 @@ export async function getAllOwners() {
 }
 
 // Get owner by id
-export async function getOwnerById(id: number) {
-  const owner: OwnerData = await db('owners').where({ id }).select('*').first()
+export async function getOwnerById(id: string) {
+  const owner: OwnerData = await db('owners')
+    .where('external_key', id)
+    .select('*')
+    .first()
   return owner as Owner
 }
 

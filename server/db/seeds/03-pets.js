@@ -1,7 +1,7 @@
 export const addPets = [
   {
     id: 1,
-    owner_id: 1,
+    owner_id: 'auth0|123','auth0|123',
     pet_name: 'Pepper',
     image: 'pepper.webp',
     dob: '2021-12-01',
@@ -13,7 +13,7 @@ export const addPets = [
   },
   {
     id: 2,
-    owner_id: 2,
+    owner_id: 'auth0|123','auth0|123',
     pet_name: 'Obi',
     image: 'obi.webp',
     dob: '2021-02-07',
@@ -25,7 +25,7 @@ export const addPets = [
   },
   {
     id: 3,
-    owner_id: 3,
+    owner_id: 'auth0|123',
     pet_name: 'Luna',
     image: 'luna.webp',
     dob: '2019-11-13',
@@ -37,7 +37,7 @@ export const addPets = [
   },
   {
     id: 4,
-    owner_id: 3,
+    owner_id: 'auth0|123',
     pet_name: 'Django',
     image: 'django.webp',
     dob: '2019-11-13',
@@ -49,7 +49,7 @@ export const addPets = [
   },
   {
     id: 5,
-    owner_id: 4,
+    owner_id: 'auth0|123',
     pet_name: 'Pixel',
     image: 'pixel.webp',
     dob: '2019-11-13',
@@ -61,7 +61,7 @@ export const addPets = [
   },
   {
     id: 6,
-    owner_id: 4,
+    owner_id: 'auth0|123',
     pet_name: 'Miso',
     image: 'miso.webp',
     dob: '2022-01-18',
@@ -73,7 +73,7 @@ export const addPets = [
   },
   {
     id: 7,
-    owner_id: 5,
+    owner_id: 'auth0|123',
     pet_name: 'Starsky',
     image: 'starsky.webp',
     dob: '2020-05-22',
@@ -85,7 +85,7 @@ export const addPets = [
   },
   {
     id: 8,
-    owner_id: 6,
+    owner_id: 'auth0|123',
     pet_name: 'Bella',
     image: 'bella.webp',
     dob: '2017-03-14',
@@ -97,7 +97,7 @@ export const addPets = [
   },
   {
     id: 9,
-    owner_id: 7,
+    owner_id: 'auth0|123',
     pet_name: 'Tess',
     image: 'tess.webp',
     dob: '2023-03-09',
@@ -109,7 +109,7 @@ export const addPets = [
   },
   {
     id: 10,
-    owner_id: 8,
+    owner_id: 'auth0|123',
     pet_name: 'Ginger',
     image: 'ginger.webp',
     dob: '2018-09-10',
@@ -121,7 +121,7 @@ export const addPets = [
   },
   {
     id: 11,
-    owner_id: 9,
+    owner_id: 'auth0|123',
     pet_name: 'Luna',
     image: 'luna-2.webp',
     dob: '2021-07-03',
@@ -133,7 +133,7 @@ export const addPets = [
   },
   {
     id: 12,
-    owner_id: 10,
+    owner_id: 'auth0|123',
     pet_name: 'Bella',
     image: 'bella-2.webp',
     dob: '2019-08-15',
@@ -145,7 +145,7 @@ export const addPets = [
   },
   {
     id: 13,
-    owner_id: 11,
+    owner_id: 'auth0|123',
     pet_name: 'Thumper',
     image: 'thumper.webp',
     dob: '2022-05-30',
@@ -157,7 +157,7 @@ export const addPets = [
   },
   {
     id: 14,
-    owner_id: 12,
+    owner_id: 'auth0|123',
     pet_name: 'Star',
     image: 'star.webp',
     dob: '2018-04-15',
@@ -169,7 +169,7 @@ export const addPets = [
   },
   {
     id: 15,
-    owner_id: 13,
+    owner_id: 'auth0|123',
     pet_name: 'Bubbles',
     image: 'bubbles.webp',
     dob: '2021-11-05',
@@ -181,7 +181,7 @@ export const addPets = [
   },
   {
     id: 16,
-    owner_id: 14,
+    owner_id: 'auth0|123',
     pet_name: 'Zog',
     image: 'zog.webp',
     dob: '2024-01-01',
@@ -193,7 +193,7 @@ export const addPets = [
   },
   {
     id: 17,
-    owner_id: 15,
+    owner_id: 'auth0|123',
     pet_name: 'Chirpy',
     image: 'chirpy.webp',
     dob: '2022-08-25',
