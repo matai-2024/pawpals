@@ -30,59 +30,50 @@ export default function Footer() {
       <div className="z-50 max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8 font-[Inter]">
         <nav className="flex flex-wrap justify-center -mx-5 -my-2">
           <div className="px-5 py-2">
-            <Link to="/about" className="text-base leading-6 text-gray-950 ">
+            <Link
+              to="/about"
+              className=" text-base leading-6 text-gray-950 hover:text-gray-400 hover:text-gray-400"
+            >
               About
             </Link>
           </div>
           <div className="px-5 py-2">
-            <Link to="/profiles" className="text-base leading-6 text-gray-950 ">
+            <Link
+              to="/profiles"
+              className="text-base leading-6 text-gray-950 hover:text-gray-400  "
+            >
               Pets
             </Link>
           </div>
           <div className="px-5 py-2">
-            <Link to="/events" className="text-base leading-6 text-gray-950 ">
+            <Link
+              to="/events"
+              className="text-base leading-6 text-gray-950 hover:text-gray-400  "
+            >
               Events
             </Link>
           </div>
           <div className="px-5 py-2">
             <IfAuthenticated>
               <button
-                className="text-base leading-6 text-gray-950 "
+                className="text-base leading-6 text-gray-950 hover:text-gray-400  "
                 onClick={handleSignOut}
               >
-                Sign out
+                Log out
               </button>
             </IfAuthenticated>
             <IfNotAuthenticated>
               <button
-                className="text-base leading-6 text-gray-950 "
+                className="text-base leading-6 text-gray-950 hover:text-gray-400  "
                 onClick={handleSignIn}
               >
-                Sign in
-              </button>
-            </IfNotAuthenticated>
-          </div>
-          <div className="px-5 py-2">
-            <IfAuthenticated>
-              <Link
-                to="/dashboard"
-                className="text-base leading-6 text-gray-950 "
-              >
-                Dashboard
-              </Link>
-            </IfAuthenticated>
-            <IfNotAuthenticated>
-              <button
-                className="text-base leading-6 text-gray-950 "
-                onClick={handleRegister}
-              >
-                Sign up
+                Log in
               </button>
             </IfNotAuthenticated>
           </div>
         </nav>
         <div className="flex justify-center mt-8 space-x-6">
-          <Link to="#" className="text-gray-400 hover:text-gray-950">
+          <Link to="#" className="text-gray-400 hover:text-gray-950 ">
             <i className="fa-brands fa-facebook"></i>
             <span className="sr-only">Facebook</span>
           </Link>
