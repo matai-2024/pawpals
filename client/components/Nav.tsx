@@ -6,12 +6,9 @@ import { IfAuthenticated, IfNotAuthenticated } from './utils/Authenticated.tsx'
 import { Link } from 'react-router-dom'
 
 const navigation = [
-  { name: 'Home', to: '/' },
   { name: 'About', to: '/about' },
   { name: 'Pets', to: '/profiles' },
-  { name: 'Add a Pet', to: '/create' },
   { name: 'Events', to: '/events' },
-  { name: 'Dashboard', to: '/dashboard' },
 ]
 
 export default function Nav() {
@@ -71,19 +68,16 @@ export default function Nav() {
               {item.name}
             </Link>
           ))}
+          <IfAuthenticated>
+            <Link
+              to="/dashboard"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Dashboard
+            </Link>
+          </IfAuthenticated>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
-          <IfAuthenticated>
-            <></>
-          </IfAuthenticated>
-          <IfNotAuthenticated>
-            <button
-              className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={handleRegister}
-            >
-              Sign up
-            </button>
-          </IfNotAuthenticated>
           <IfAuthenticated>
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
@@ -97,7 +91,15 @@ export default function Nav() {
               className="text-sm font-semibold leading-6 text-gray-900"
               onClick={handleSignIn}
             >
-              Sign in
+              Log in
+            </button>
+          </IfNotAuthenticated>
+          <IfNotAuthenticated>
+            <button
+              className="rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+              onClick={handleRegister}
+            >
+              Sign up
             </button>
           </IfNotAuthenticated>
         </div>
