@@ -1,15 +1,7 @@
 // -- HELPER FUNCTIONS FOR EVENT DATES -- //
 
 export function dateToReadable(date: string) {
-  const days = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ]
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const months: string[] = [
     'Jan',
     'Feb',

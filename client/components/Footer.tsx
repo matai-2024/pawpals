@@ -19,14 +19,14 @@ export default function Footer() {
 
   return (
     <>
-      <div className="bg-yellow-400 h-4"></div>
-      <hr className="opacity-10 h-px  bg-[#5D3FD3] border-0 dark:bg-bg-[#5D3FD3]"></hr>
-      <div className="bg-[#08000d] z-50 max-w-screen-full px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8 font-[Inter]">
+      <div className="bg-gradient-to-r from-yellow-400 via-[#cf789a] to-[#a85be5] h-4"></div>
+      <hr className="opacity-20 h-px  bg-white border-0 dark:bg-white"></hr>
+      <div className="bg-white bg-opacity-10 z-50 max-w-screen-full px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8 font-[Inter]">
         <nav className="flex flex-wrap justify-center -mx-5 -my-2">
           <div className="px-5 py-2">
             <Link
               to="/about"
-              className=" text-base leading-6 text-white hover:text-gray-400 hover:text-gray-400"
+              className=" text-base leading-6 text-gray-900 hover:text-gray-400 hover:text-gray-400"
             >
               About
             </Link>
@@ -34,7 +34,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <Link
               to="/profiles"
-              className="text-base leading-6 text-white hover:text-gray-400  "
+              className="text-base leading-6 text-gray-900 hover:text-gray-400  "
             >
               Pets
             </Link>
@@ -42,7 +42,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <Link
               to="/events"
-              className="text-base leading-6 text-white hover:text-gray-400  "
+              className="text-base leading-6 text-gray-900 hover:text-gray-400  "
             >
               Events
             </Link>
@@ -50,7 +50,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <IfAuthenticated>
               <button
-                className="text-base leading-6 text-white hover:text-gray-400  "
+                className="text-base leading-6 text-gray-900 hover:text-gray-400  "
                 onClick={handleSignOut}
               >
                 Log out
@@ -58,7 +58,7 @@ export default function Footer() {
             </IfAuthenticated>
             <IfNotAuthenticated>
               <button
-                className="text-base leading-6 text-white hover:text-gray-400  "
+                className="text-base leading-6 text-gray-900 hover:text-gray-400  "
                 onClick={handleSignIn}
               >
                 Log in
