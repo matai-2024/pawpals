@@ -4,20 +4,20 @@ import { beforeEach, expect } from 'vitest'
 import { cleanup, render } from '@testing-library/react'
 import * as matchers from '@testing-library/jest-dom/matchers'
 import '@testing-library/jest-dom/vitest'
-import type { TestingLibraryMatchers } from '@testing-library/jest-dom/matchers'
+// import type { TestingLibraryMatchers } from '@testing-library/jest-dom/matchers'
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
-import { routes } from './client/routes.tsx'
+import { routes } from '../../routes.tsx'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-declare module 'vitest' {
-  interface JestAssertion<T = any>
-    extends TestingLibraryMatchers<
-      ReturnType<typeof expect.stringContaining>,
-      T
-    > {}
-}
+// declare module 'vitest' {
+//   interface JestAssertion<T = any>
+//     extends TestingLibraryMatchers<
+//       ReturnType<typeof expect.stringContaining>,
+//       T
+//     > {}
+// }
 
 beforeEach(cleanup)
 expect.extend(matchers)

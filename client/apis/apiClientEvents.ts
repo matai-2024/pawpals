@@ -19,18 +19,15 @@ export async function addEvent(newEvent: EventData, token: string) {
 }
 
 //GET event by id
-export async function getEventById(id: number, token: string) {
-  const res = await request
-    .get(`${rootUrl}/event/${id}`)
-    .set('Authorization', `Bearer ${token}`)
+export async function getEventById(id: number) {
+  const res = await request.get(`${rootUrl}/${id}`)
   return res.body as Event
 }
 
 //DEL event by id
-export async function delEvent(id: number, token: string) {
-  await request
-    .delete(`${rootUrl}/event/${id}`)
-    .set('Authorization', `Bearer ${token}`)
+export async function delEvent(id: number) {
+  await request.delete(`${rootUrl}/${id}`)
+  // .set('Authorization', `Bearer ${token}`)
 }
 
 //GET events by pet id
