@@ -11,7 +11,7 @@ interface Pet {
   image: string
   id: number
   petName: string
-  ownerId: string // Add ownerId field
+  ownerId: string // Add ownerId field for filtering
 }
 
 interface Event {
@@ -20,6 +20,7 @@ interface Event {
   time: string
   going: boolean
   eventImage: string
+  creatorId: string // Add creatorId field for filtering
 }
 
 // Dashboard Component
@@ -36,7 +37,7 @@ export function Dashboard() {
       const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
       const data = await response.json()
 
-      // Filter pets by ownerId if backend does not handle it
+      // Filter pets by ownerId if the backend does not handle it
       const filteredPets = data.filter((pet: Pet) => pet.ownerId === ownerId)
 
       return filteredPets
@@ -51,7 +52,13 @@ export function Dashboard() {
     try {
       const response = await fetch(`/api/v1/events?creatorId=${creatorId}`)
       const data = await response.json()
-      return data
+
+      // Filter events by creatorId if the backend does not handle it
+      const filteredEvents = data.filter(
+        (event: Event) => event.creatorId === creatorId,
+      )
+
+      return filteredEvents
     } catch (error) {
       console.error('Error fetching events:', error)
       return []
