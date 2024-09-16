@@ -16,6 +16,7 @@ interface Pet {
 interface Event {
   id: number
   title: string
+  date: string
   time: string
   going: boolean
   image: string
@@ -41,7 +42,8 @@ export function Dashboard() {
     {
       id: 1,
       title: 'Food Truck Night in Howick',
-      time: '03-10-2024 5:00 PM',
+      date: 'Mon 16 Sep',
+      time: '5:00 PM',
       image:
         'https://eastaucklandtourism.co.nz/wp-content/uploads/2024/08/Food-Truck.jpg',
       going: true,
@@ -82,16 +84,17 @@ export function Dashboard() {
   }
 
   return (
-    <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
-      <div className="flex">
+    <div className="mx-auto max-w-5xl pt-24 sm:pt-32 lg:pt-24">
+      <div className="flex bg-white bg-opacity-45 shadow-2xl rounded-4xl py-14 px-8">
         <Sidebar />
-
-        <div className="flex-1 p-8">
-          {/* Pets Section */}
+        {/* Pets Section */}
+        <div className="w-2/3">
           <Card
             title="My Pets"
             addAction={() => navigate('/create')}
             buttonText="Add Pet"
+            buttonIcon="plus"
+            icon="paw"
           >
             <div className="space-y-4">
               {pets.length > 0 ? (
@@ -107,12 +110,13 @@ export function Dashboard() {
               )}
             </div>
           </Card>
-
           {/* Schedule Section */}
           <Card
             title="My Schedule"
             addAction={() => navigate('/events')}
             buttonText="See more events"
+            buttonIcon="calendar-plus"
+            icon="calendar-alt"
           >
             <div className="space-y-4">
               {events.length > 0 ? (
@@ -120,6 +124,7 @@ export function Dashboard() {
                   <ScheduleCard
                     key={event.id}
                     title={event.title}
+                    date={event.date}
                     time={event.time}
                     going={event.going}
                     image={event.image}
@@ -130,18 +135,20 @@ export function Dashboard() {
               )}
             </div>
           </Card>
-
           {/* Events Section */}
           <Card
             title="My Events"
             addAction={() => navigate(`/edit-events/`)}
             buttonText="Add Event"
+            buttonIcon="plus"
+            icon="icons"
           >
             <div className="space-y-4">
               {events.length > 0 ? (
                 events.map((event) => (
                   <ScheduleCard
                     key={event.id}
+                    date={event.date}
                     title={event.title}
                     time={event.time}
                     going={event.going}
