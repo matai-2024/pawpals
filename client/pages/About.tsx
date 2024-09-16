@@ -3,21 +3,21 @@ export default function About() {
     {
       name: 'Anahera Foley-Paama',
       role: 'Product Owner',
-      img: 'public/anahera.jpeg',
+      img: '/anahera.jpeg',
       linkedin: 'https://www.linkedin.com/in/afoleypaama/',
       email: 'anahera.work@gmail.com',
     },
     {
       name: 'Amy Jackson',
       role: 'Backend Lead',
-      img: 'public/amy.jpg',
+      img: '/amy.jpg',
       linkedin: 'https://www.linkedin.com/in/amy-jackson',
       email: 'amy@example.com',
     },
     {
       name: 'Dean Tunbridge',
       role: 'Frontend Lead',
-      img: 'public/dean.jpg',
+      img: '/dean.jpg',
       linkedin: 'https://www.linkedin.com/in/dean-tunbridge',
       email: 'dean@example.com',
     },
@@ -31,7 +31,7 @@ export default function About() {
     {
       name: 'Sam Pedersen',
       role: 'Vibes Lead',
-      img: 'public/sam.jpg',
+      img: '/sam.jpg',
       linkedin: 'https://www.linkedin.com/in/sam-pedersen-2060b0241/',
       email: 'sjcfpedersen@gmail.com',
     },
@@ -49,7 +49,7 @@ export default function About() {
       <div className="space-y-12 mt-12">
         {/* About Section */}
         <div className="bg-white opacity-90 p-8 rounded-lg shadow hover:bg-opacity-100 transition duration-200 ease-in-out">
-          <h2 className=" text-center text-2xl font-semibold text-gray-800">
+          <h2 className="text-center text-2xl font-semibold text-gray-800">
             The Animals that made this
           </h2>
           <p className="text-xl text-center text-gray-600 mt-2">
@@ -60,7 +60,7 @@ export default function About() {
             lovers, whether they have pets or not. Users can browse adorable
             pets, explore pet-friendly events, or even create their own. The
             platform allows users to create personalized profiles for their pets
-            and join events hosted by other members.{' '}
+            and join events hosted by other members.
           </p>
           <p className="mt-4 text-center text-base text-gray-700">
             This project was conceptualized by Anahera and developed in
@@ -69,7 +69,7 @@ export default function About() {
           </p>
           <img
             className="mt-4 w-full rounded-lg object-cover"
-            src="problemsolved.jpg"
+            src=""
             alt="coders at work"
           />
         </div>
@@ -106,11 +106,15 @@ export default function About() {
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`${member.name}'s LinkedIn`}
                     >
                       <i className="text-2xl fa-brands fa-linkedin"></i>
                     </a>
 
-                    <a href={`mailto:${member.email}`}>
+                    <a
+                      href={`mailto:${member.email}`}
+                      aria-label={`${member.name}'s email`}
+                    >
                       <i className="text-2xl fa-solid fa-envelope"></i>
                     </a>
                   </div>
