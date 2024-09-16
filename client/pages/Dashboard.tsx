@@ -20,7 +20,7 @@ interface Event {
   time: string
   going: boolean
   eventImage: string
-  creatorId: string // Add creatorId field for filtering
+  creatorId: string
 }
 
 // Dashboard Component
@@ -28,6 +28,7 @@ export function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
   const navigate = useNavigate()
   console.log(user)
+
   const [pets, setPets] = useState<Pet[]>([]) // State to store pets
   const [events, setEvents] = useState<Event[]>([]) // State to store events
 
@@ -47,15 +48,13 @@ export function Dashboard() {
     }
   }
 
-  // Function to fetch events by creator ID
-  async function getEventsByCreatorId(creatorId: string) {
+  async function getEventsByPetOwners(creatorId: string[]) {
     try {
-      const response = await fetch(`/api/v1/events?creatorId=${creatorId}`)
+      const response = await fetch(`/api/v1/events`) // Fetch all events or modify endpoint if needed
       const data = await response.json()
-
-      // Filter events by creatorId if the backend does not handle it
-      const filteredEvents = data.filter(
-        (event: Event) => event.creatorId === creatorId,
+      console.log(creatorId) //     // Filter events where creatorId is in the ownerIds array
+      const filteredEvents = data.filter((event: Event) =>
+        creatorId.includes(event.creatorId),
       )
 
       return filteredEvents
@@ -70,11 +69,15 @@ export function Dashboard() {
     if (isAuthenticated && user?.sub) {
       // Fetch pets for the authenticated user
       fetchPetsByOwnerId(user.sub)
-        .then((petsData) => setPets(petsData))
-        .catch((err) => console.error('Error fetching pets:', err))
+        .then((petsData) => {
+          setPets(petsData)
 
-      // Fetch events for the authenticated user
-      getEventsByCreatorId(user.sub)
+          // Extract ownerIds (which are the same as creatorIds for events)
+          const creatorId = petsData.map((pet: Pet) => pet.ownerId)
+
+          // Fetch events linked to those pets
+          return getEventsByPetOwners(creatorId)
+        })
         .then((eventsData) => setEvents(eventsData))
         .catch((err) => console.error('Error fetching events:', err))
     }
