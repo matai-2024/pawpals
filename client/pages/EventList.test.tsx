@@ -1,26 +1,13 @@
 // @vitest-environment jsdom
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { beforeEach, beforeAll, describe, it, vi, expect } from 'vitest'
-import { renderApp } from '../../test-setup.tsx'
-import { useAuth0 } from '@auth0/auth0-react'
+import { beforeAll, describe, it, expect } from 'vitest'
+import { renderApp } from './__tests__/test-setup.tsx'
 import nock from 'nock'
-
-vi.mock('@auth0/auth0-react')
-const ACCESS_TOKEN = 'mock-access-token'
+import { waitForElementToBeRemoved } from '@testing-library/react'
 
 beforeAll(() => {
   nock.disableNetConnect()
-})
-
-beforeEach(() => {
-  vi.mocked(useAuth0).mockReturnValue({
-    isAuthenticated: true,
-    user: { sub: 'fake-user@example.org', nickname: 'fake-user' },
-    getAccessTokenSilently: vi.fn().mockResolvedValue(ACCESS_TOKEN),
-    loginWithRedirect: vi.fn(),
-    logout: vi.fn(),
-  } as any)
 })
 
 const mockEvents = [
@@ -73,10 +60,22 @@ describe('EventList.tsx', () => {
       .get('/api/v1/events')
       .reply(200, mockEvents)
 
+    const scope2 = nock('http://localhost')
+      .get('/api/v1/events')
+      .reply(200, mockEvents)
+
     const screen = renderApp('/events')
+
+    await waitForElementToBeRemoved(() => screen.getByTestId(/load/i))
+    const eventTestTitle = await screen.findByTestId('title')
+    expect(eventTestTitle).toBeInTheDocument()
+    expect(eventTestTitle.textContent).toBe('Pet-friendly Events')
+
     const eventTitle = await screen.findByText('Food Truck Night in Howick')
+
     expect(eventTitle).toBeVisible()
     expect(scope.isDone()).toBe(true)
+    expect(scope2.isDone()).toBe(true)
   })
 })
 
@@ -86,9 +85,14 @@ describe('EventList.tsx', () => {
       .get('/api/v1/events')
       .reply(200, mockEvents)
 
+    const scope2 = nock('http://localhost')
+      .get('/api/v1/events')
+      .reply(200, mockEvents)
+
     const screen = renderApp('/events')
     const EventId = await screen.findAllByTestId('event-card')
     expect(EventId).toHaveLength(mockEvents.length)
     expect(scope.isDone()).toBe(true)
+    expect(scope2.isDone()).toBe(true)
   })
 })
