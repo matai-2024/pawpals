@@ -53,7 +53,7 @@ export async function deleteOwner(id: number) {
 // Get owner by pet id
 export async function getOwnerByPetId(petId: number) {
   const owner: OwnerData = await db('owners')
-    .join('pets', 'pets.owner_id', 'owners.id')
+    .join('pets', 'pets.owner_id', 'owners.external_key')
     .where('pets.id', petId)
     .select(camelCase)
     .first()

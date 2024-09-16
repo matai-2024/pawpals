@@ -11,5 +11,6 @@ export async function getOwnerInfo(externalKey: string) {
 // get owner by pet id
 export async function getOwnerByPetId(id: number) {
   const res = await request.get(`${rootUrl}/pet/${id}`)
+  console.log(res.body)
   return res.body as Owner
 }
