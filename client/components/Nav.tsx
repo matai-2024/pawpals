@@ -86,6 +86,7 @@ export default function Nav() {
           </IfNotAuthenticated>
           <IfAuthenticated>
             <button
+              data-testid="nav-sign-out"
               className="text-sm font-semibold leading-6 text-gray-900"
               onClick={handleSignOut}
             >

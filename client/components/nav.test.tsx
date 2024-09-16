@@ -27,14 +27,14 @@ beforeEach(() => {
 describe('Nav.tsx', () => {
   it('should render the log out button when signed in', async () => {
     const screen = renderApp('/')
-    const result = await screen.getByText('Sign out')
+    const result = await screen.findByTestId('nav-sign-out')
 
     expect(result.textContent).toMatch('Sign out')
   })
 
   it('should redirect you to the home page on sign out', async () => {
     const { user, ...screen } = renderApp('/')
-    const button = await screen.getByText('Sign out')
+    const button = await screen.findByTestId('nav-sign-out')
     await user.click(button)
     const homeText = await screen.getByText(
       'Find more friends for your best friend',
