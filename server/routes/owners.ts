@@ -1,7 +1,7 @@
 import express from 'express'
 
 import * as db from '../db/functions/owners.ts'
-import checkJwt from '../db/auth0.ts'
+import checkJwt, { JwtRequest } from '../db/auth0.ts'
 
 const router = express.Router()
 
@@ -17,11 +17,11 @@ router.get('/', checkJwt, async (req, res) => {
   }
 })
 
-// GET owner by id
+// GET owner by external id
 router.get('/:id', checkJwt, async (req, res) => {
   const { id } = req.params
   try {
-    const owner = await db.getOwnerById(Number(id))
+    const owner = await db.getOwnerById(id)
     res.json(owner)
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -59,10 +59,11 @@ router.get('/pet/:id', async (req, res) => {
 // TODO LIST:
 // -----------
 // Add new owner
-router.post('/', checkJwt, async (req, res) => {
+router.post('/', checkJwt, async (req: JwtRequest, res) => {
   try {
+    const externalId = req.auth?.sub
     const owner = req.body
-    await db.addNewOwner(owner)
+    await db.addNewOwner({ ...owner, externalId })
     res.status(201).json(owner)
   } catch (error) {
     // eslint-disable-next-line no-console
