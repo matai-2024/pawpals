@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import LoadingSpinner from '../components/LoadingSpinner.tsx'
 import { usePetById } from '../hooks/hooks.ts'
+import { getAge } from '../components/utils/Presentation.tsx'
 
 export default function Profile() {
   const { id } = useParams()
@@ -15,17 +16,6 @@ export default function Profile() {
         {String(error)}
       </div>
     )
-
-  function getAge(dateString: string) {
-    const today = new Date()
-    const birthDate = new Date(dateString)
-    let age = today.getFullYear() - birthDate.getFullYear()
-    const m = today.getMonth() - birthDate.getMonth()
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--
-    }
-    return age
-  }
 
   return (
     <>

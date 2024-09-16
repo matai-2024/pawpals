@@ -1,7 +1,4 @@
-import {
-  dateToReadable,
-  TimeFormat,
-} from '../components/utils/EventPresentation'
+import { dateToReadable, TimeFormat } from '../components/utils/Presentation'
 import { useQuery } from '@tanstack/react-query'
 import { fetchEvents } from '../apis/apiClientEvents'
 import LoadingSpinner from '../components/LoadingSpinner'
