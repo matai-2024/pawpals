@@ -69,7 +69,7 @@ export default function About() {
           </p>
           <img
             className="mt-4 w-full rounded-lg object-cover"
-            src=""
+            src="problemsolved.jpg"
             alt="coders at work"
           />
         </div>
