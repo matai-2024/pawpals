@@ -125,7 +125,7 @@ export default function Profile() {
                     <div className="rounded-lg overflow-hidden h-40">
                       <img
                         className="min-h-44 object-cover"
-                        src={`../${event.eventImage}`}
+                        src={`../events/${event.eventImage}`}
                         alt={event.title}
                       />
                     </div>
