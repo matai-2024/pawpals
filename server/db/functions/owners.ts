@@ -34,11 +34,12 @@ export async function getOwnerByName(firstName: string) {
 // Add new owner
 // TODO: Check this works
 export async function addNewOwner(owner: OwnerData) {
-  const { firstName, lastName, email } = owner
+  const { firstName, lastName, email, externalId } = owner
   const serverData = {
     first_name: firstName,
     last_name: lastName,
     email: email,
+    external_key: externalId,
   }
   const result = await db('owners').insert(serverData)
   return result[0]

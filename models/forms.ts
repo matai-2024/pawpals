@@ -101,6 +101,10 @@ export interface Names {
   lastName: string
 }
 
+export interface CreateOwnerData extends Names {
+  email: string
+}
+
 export interface OwnerData extends Names {
   externalId: number
   email: string
