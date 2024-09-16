@@ -17,9 +17,8 @@ export function dateToReadable(date: string) {
     'Dec',
   ]
 
-  const regex = /[-/]/g
-  const reverseDate = date.split(regex).reverse().join('-')
-  const theDate = new Date(reverseDate)
+  const theDate = new Date(date)
+
   const currDay = theDate.getDay()
   const currDayDate = theDate.getDate()
   const currMonth = theDate.getMonth()

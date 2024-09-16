@@ -7,7 +7,7 @@ import Footer from './components/Footer.tsx'
 function App() {
   const matches = useMatches()
   const pageTitle = matches[1].handle
-  useDocumentTitle(pageTitle ? `${pageTitle}` : 'paw pals.')
+  useDocumentTitle(pageTitle ? `${pageTitle}` : 'pawpals.')
   return (
     <>
       <div className="container">
