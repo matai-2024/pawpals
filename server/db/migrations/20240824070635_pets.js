@@ -1,7 +1,6 @@
 export function up(knex) {
   return knex.schema.createTable('pets', (table) => {
     table.increments('id').primary()
-    //ADD REFERENCE TO EXTERNAL_KEY
     table.string('owner_id').references('owners.external_key')
     table.string('pet_name')
     table.string('image')
