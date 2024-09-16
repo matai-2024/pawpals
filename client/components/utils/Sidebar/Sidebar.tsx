@@ -10,7 +10,7 @@ const Sidebar = () => {
 
   return (
     isAuthenticated && (
-      <div className="bg-white w-60 h-screen shadow-lg bg-white shadow-md rounded-lg p-6 mb-6">
+      <div className="bg-white w-60 h-screen shadow-lg rounded-lg p-6 mb-6">
         <div className="flex flex-col items-center py-6">
           <img
             src={user?.picture || 'https://via.placeholder.com/100'} // Use optional chaining

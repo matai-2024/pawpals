@@ -13,6 +13,7 @@ import Profile from './pages/Profile'
 import About from './pages/About'
 import Dashboard from './pages/Dashboard'
 import Events from './pages/Events'
+import UserProfile from './pages/UserProfile'
 
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
@@ -23,6 +24,12 @@ export const routes = createRoutesFromElements(
       element={<CreatePet />}
       handle={'Add a Pet | pawpals'}
     />
+    <Route
+      path="user-profile"
+      element={<UserProfile />}
+      handle={'Create Profile | pawpals'}
+    />
+
     <Route
       path="profiles"
       element={<ProfileList />}
