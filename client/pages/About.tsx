@@ -27,7 +27,7 @@ export default function About() {
     {
       name: 'Jack Gloyer',
       role: 'Git Lead',
-      img: 'https://via.placeholder.com/120x120',
+      img: '/jack.png',
       linkedin: 'https://www.linkedin.com/in/jack-gloyer',
       email: 'jackgloyer8@gmail.com',
       github: 'https://github.com/jack-gloyer',
