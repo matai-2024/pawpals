@@ -16,7 +16,6 @@ export default function Profile() {
   const { data, isPending, isError, error } = usePetById(Number(id))
   const events = useEventsByPetId(Number(id)).data
   const owner = useOwnerByPetId(Number(id)).data
-  const rootUrl = '../../pets'
 
   useDocumentTitle(
     data?.petName
