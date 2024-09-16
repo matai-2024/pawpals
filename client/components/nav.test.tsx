@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { beforeEach, beforeAll, describe, it, vi, expect } from 'vitest'
-import { renderApp } from '../../test-setup.tsx'
+import { renderApp } from '../pages/__tests__/test-setup.tsx'
 
 import nock from 'nock'
 
