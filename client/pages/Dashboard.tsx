@@ -153,6 +153,8 @@ export function Dashboard() {
                     time={event.time}
                     going={event.going}
                     image={event.image} // Again, using any event data you have
+                    buttonIcon={['right-to-bracket', 'paw']}
+                    buttonTitle={['View details', 'Cancel attendance']}
                   />
                 ))
               ) : (
