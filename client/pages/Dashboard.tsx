@@ -32,8 +32,8 @@ export function Dashboard() {
   // Hardcoded data for Pets and events
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const hardcodedPets: Pet[] = [
-    { id: 1, petName: 'Pixel', image: 'pixel.webp' },
-    { id: 2, petName: 'Miso', image: 'miso.webp' },
+    { id: 1, petName: 'Pixel', image: 'pets/pixel.webp' },
+    { id: 2, petName: 'Miso', image: 'pets/miso.webp' },
   ]
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
