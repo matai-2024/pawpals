@@ -17,8 +17,11 @@ export default function Profile() {
   const events = useEventsByPetId(Number(id)).data
   const owner = useOwnerByPetId(Number(id)).data
 
-  useDocumentTitle(`${data?.petName}'s Profile`)
-  console.log(data?.petName)
+  useDocumentTitle(
+    data?.petName
+      ? `${data?.petName}'s Profile | pawpals`
+      : 'Pet Profile | pawpals',
+  )
 
   if (isPending) return <LoadingSpinner />
 
