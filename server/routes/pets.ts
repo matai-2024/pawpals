@@ -1,7 +1,7 @@
 import express from 'express'
 import * as db from '../db/functions/pets.ts'
 import { PetProfileData } from '../../models/forms.ts'
-import checkJwt from '../db/auth0.ts'
+import checkJwt, { JwtRequest } from '../db/auth0.ts'
 
 const router = express.Router()
 
@@ -58,10 +58,16 @@ router.delete('/:id', checkJwt, async (req, res) => {
 })
 
 // POST / add a new pet
-router.post('/', checkJwt, async (req, res) => {
+router.post('/', checkJwt, async (req: JwtRequest, res) => {
   try {
     const newPet: PetProfileData = req.body
-    const id = await db.createNewPet(newPet)
+    const externalKey = req.auth?.sub
+    console.log('External key', externalKey)
+    if (!externalKey) {
+      res.status(401).json({ error: 'Unauthorized' })
+      return
+    }
+    const id = await db.createNewPet(newPet, externalKey)
     res.status(201).json(id)
   } catch (error) {
     // eslint-disable-next-line no-console

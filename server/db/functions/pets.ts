@@ -71,13 +71,15 @@ export async function deletePet(petsId: number) {
 }
 
 // Add a pet
-export async function createNewPet(newPetProfile: PetProfileData) {
+export async function createNewPet(
+  newPetProfile: PetProfileData,
+  externalKey: string,
+) {
   //MVP - Hard code an image if there isn't one
   if (newPetProfile.image == '') newPetProfile.image = 'miso.jpg'
 
   // All the data being passed in from the form
   const {
-    ownerId,
     petName,
     image,
     dateOfBirth,
@@ -119,8 +121,9 @@ export async function createNewPet(newPetProfile: PetProfileData) {
   const traitResult = await db('traits').insert(traitData, ['id'])
 
   // Defining pets data being passed in by the form, incl traits.id
+  console.log('YAAA MA TOKEN', externalKey)
   const petData = {
-    owner_id: ownerId,
+    owner_id: externalKey,
     pet_name: petName,
     image,
     dob: dateOfBirth,
