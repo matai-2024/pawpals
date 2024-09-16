@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <Link
               to="/about"
-              className=" text-base leading-6 text-gray-900 hover:text-gray-400 hover:text-gray-400"
+              className=" text-base leading-6 text-gray-800 hover:text-gray-400 "
             >
               About
             </Link>
@@ -34,7 +34,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <Link
               to="/profiles"
-              className="text-base leading-6 text-gray-900 hover:text-gray-400  "
+              className="text-base leading-6  text-gray-800 hover:text-gray-400  "
             >
               Pets
             </Link>
@@ -42,7 +42,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <Link
               to="/events"
-              className="text-base leading-6 text-gray-900 hover:text-gray-400  "
+              className="text-base leading-6  text-gray-800 hover:text-gray-400  "
             >
               Events
             </Link>
@@ -50,7 +50,7 @@ export default function Footer() {
           <div className="px-5 py-2">
             <IfAuthenticated>
               <button
-                className="text-base leading-6 text-gray-900 hover:text-gray-400  "
+                className="text-base leading-6  text-gray-800 hover:text-gray-400  "
                 onClick={handleSignOut}
               >
                 Log out
@@ -58,7 +58,7 @@ export default function Footer() {
             </IfAuthenticated>
             <IfNotAuthenticated>
               <button
-                className="text-base leading-6 text-gray-900 hover:text-gray-400  "
+                className="text-base leading-6  text-gray-800 hover:text-gray-400  "
                 onClick={handleSignIn}
               >
                 Log in
@@ -66,25 +66,25 @@ export default function Footer() {
             </IfNotAuthenticated>
           </div>
         </nav>
-        <div className="flex justify-center mt-8 space-x-6">
-          <Link to="#" className="text-gray-400 hover:text-white ">
+        <div className="text-xl flex justify-center mt-8 space-x-6">
+          <Link to="#" className="  text-gray-800 hover:text-gray-400 ">
             <i className="fa-brands fa-facebook"></i>
             <span className="sr-only">Facebook</span>
           </Link>
-          <Link to="#" className="text-gray-400 hover:text-white">
+          <Link to="#" className="  text-gray-800 hover:text-gray-400">
             <i className="fa-brands fa-instagram"></i>
             <span className="sr-only">Instagram</span>
           </Link>
-          <Link to="#" className="text-gray-400 hover:text-white">
+          <Link to="#" className="  text-gray-800 hover:text-gray-400">
             <i className="fa-brands fa-twitter"></i>
             <span className="sr-only">Twitter</span>
           </Link>
-          <Link to="#" className="text-gray-400 hover:text-white">
+          <Link to="#" className="  text-gray-800 hover:text-gray-400">
             <i className="fa-brands fa-github"></i>
             <span className="sr-only">GitHub</span>
           </Link>
         </div>
-        <p className="mt-8 text-base leading-6 text-center text-gray-400">
+        <p className="mt-8 text-sm leading-6 text-center text-gray-400">
           © 2024 pawpals, Inc. All rights reserved.
         </p>
       </div>
