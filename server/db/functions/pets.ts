@@ -121,7 +121,6 @@ export async function createNewPet(
   const traitResult = await db('traits').insert(traitData, ['id'])
 
   // Defining pets data being passed in by the form, incl traits.id
-  console.log('YAAA MA TOKEN', externalKey)
   const petData = {
     owner_id: externalKey,
     pet_name: petName,

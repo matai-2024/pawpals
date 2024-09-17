@@ -62,7 +62,6 @@ router.post('/', checkJwt, async (req: JwtRequest, res) => {
   try {
     const newPet: PetProfileData = req.body
     const externalKey = req.auth?.sub
-    console.log('External key', externalKey)
     if (!externalKey) {
       res.status(401).json({ error: 'Unauthorized' })
       return
