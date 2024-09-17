@@ -1,27 +1,67 @@
 // ScheduleCard component
+import { Link } from 'react-router-dom'
 
 interface ScheduleCardProps {
+  id: number
   title: string
+  date: string
   time: string
-  going: boolean
   image: string
+  viewBtn?: CardButtons
+  cancelBtn?: CardButtons
+  editBtn?: CardButtons
 }
 
-const ScheduleCard: React.FC<ScheduleCardProps> = ({
-  title,
-  time,
-  going,
-  image,
-}) => (
-  <div className="flex items-center border p-4 rounded-lg space-x-4">
-    <img src={image} alt={title} className="w-16 h-16 bg-gray-200 rounded-lg" />{' '}
-    <div className="flex-1">
-      <p className="font-semibold">{title}</p>
-      <p className="text-sm text-gray-500">{time}</p>
-      <button className="text-sm text-blue-500 mt-2">View details</button>
-    </div>
-    <p className="text-sm text-gray-500">{going ? '✓ Going' : '✗ Not going'}</p>
-  </div>
-)
+interface CardButtons {
+  title: string
+  icon: string
+}
 
-export default ScheduleCard
+export default function ScheduleCard({
+  id,
+  title,
+  date,
+  time,
+  image,
+  viewBtn,
+  editBtn,
+  cancelBtn,
+}: ScheduleCardProps) {
+  return (
+    <div className="flex items-center border w-full p-3 rounded-lg gap-6 shadow-md ease-in-out duration-200">
+      <div className="w-36 h-24 rounded-md overflow-hidden">
+        <img src={image} alt={title} className="object-cover" />
+      </div>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col text-left">
+          <p className="text-sm text-gray-500">
+            {date}, {time}
+          </p>
+          <p className="font-semibold">{title}</p>
+        </div>
+        <div className="flex space-x-6 mt-2">
+          <Link to={`/events/${id}`} onClick={() => window.scroll(0, 0)}>
+            <button className="text-sm text-gray-500 hover:text-blue-500 flex items-center space-x-2">
+              <i className={`fa-solid fa-${viewBtn?.icon}`}></i>
+              <span>{viewBtn?.title}</span>
+            </button>
+          </Link>
+          {editBtn && (
+            <Link to={`/events/${id}/edit`} onClick={() => window.scroll(0, 0)}>
+              <button className="text-sm text-gray-500 hover:text-blue-500 flex items-center space-x-2">
+                <i className={`fa-solid fa-${editBtn?.icon}`}></i>
+                <span>{editBtn?.title}</span>
+              </button>
+            </Link>
+          )}
+          {cancelBtn && (
+            <button className="text-sm text-gray-500 hover:text-red-700 flex items-center space-x-2">
+              <i className={`fa-solid fa-${cancelBtn?.icon}`}></i>
+              <span>{cancelBtn?.title}</span>
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
