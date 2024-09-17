@@ -6,8 +6,6 @@ import dateToReadable, {
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { fetchEvents } from '../apis/apiClientEvents'
-import LoadingSpinner from '../components/LoadingSpinner'
-
 import { Event } from '../../models/events'
 import useAttendees from '../hooks/use-attendees'
 
@@ -16,12 +14,7 @@ interface Props {
 }
 
 export default function EventList({ search }: Props) {
-  const {
-    data: events,
-    // isPending,
-    // isError,
-    // error,
-  } = useQuery({
+  const { data: events } = useQuery({
     queryFn: fetchEvents,
     queryKey: ['events'],
   })
@@ -36,15 +29,7 @@ export default function EventList({ search }: Props) {
     const numOfEvents = eventsArr.filter((event: number) => event === num)
     return numOfEvents.length
   }
-  // if (isPending) return <LoadingSpinner />
 
-  // if (isError)
-  // return (
-  //   <div>
-  //     <h3>Error loading event data: </h3>
-  //     {String(error)}
-  //   </div>
-  // )
   if (events && attendees)
     return (
       <ul>
