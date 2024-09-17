@@ -9,6 +9,7 @@ import { fetchEvents } from '../apis/apiClientEvents'
 import LoadingSpinner from '../components/LoadingSpinner'
 
 import { Event } from '../../models/events'
+import { fetchAttendees } from '../apis/apiClientAttendees'
 
 interface Props {
   search: Event[] | undefined
@@ -26,6 +27,22 @@ export default function EventList({ search }: Props) {
   })
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
+
+  function useAttendees() {
+    const query = useQuery({
+      queryKey: ['attendees'],
+      queryFn: fetchAttendees,
+    })
+    return { ...query }
+  }
+  const { data: attendees } = useAttendees()
+  function countAttendees(num: string) {
+    const eventsArr = attendees.map((guest) => {
+      return guest.eventId
+    })
+    const numOfEvents = eventsArr.filter((event) => event === num)
+    return numOfEvents.length
+  }
 
   if (isPending) return <LoadingSpinner />
 
@@ -71,7 +88,7 @@ export default function EventList({ search }: Props) {
                         </p>
                       </div>
                       <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal  leading-tight">
-                        x attending
+                        {countAttendees(event.id)} attending
                       </p>
                     </div>
                   </div>
