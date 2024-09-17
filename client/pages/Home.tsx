@@ -18,15 +18,6 @@ export default function Home() {
   return (
     <>
       <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
-        {/* <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              Announcing our next round of funding.{' '}
-              <Link to="#" className="font-semibold text-indigo-600">
-                <span aria-hidden="true" className="absolute inset-0" />
-                Read more <span aria-hidden="true">&rarr;</span>
-              </Link>
-            </div>
-          </div> */}
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Find more friends for your best friend
@@ -34,7 +25,7 @@ export default function Home() {
           <p className="mt-6 text-lg leading-8 text-gray-600">
             Connecting local pet owners, making it easy to find playmates and
             organise pet-friendly events. Build a community for your pets so
-            they live th eir best lives!
+            they live their best lives!
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
@@ -52,27 +43,36 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="mx-auto text-center max-w-5xl pt-32 sm:pt-48 lg:pt-24">
-          <HomeCards title="Title" body="yap" />
-          <HomeCards title="Title" body="yap" />
-          <HomeCards title="Title" body="yap" />
+        <div className=" inline-flex max-w-5xl pt-32 sm:pt-48 lg:pt-24">
+          <HomeCards
+            title="Sign Up"
+            body="Click get started to make your (people) account"
+          />
+          <HomeCards
+            title="Sign Up "
+            body="Then make an account for your little pal(s)!"
+          />
+          <HomeCards
+            title="Attend Events"
+            body="Browse events setup by the community to meet local pet owners"
+          />
         </div>
-      </div>
-      <div className="flex-col">
-        <HomeHeading
-          heading={'I want to be right'}
-          subheading={'SUBHEADING'}
-          body={'YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE'}
-          img={'public/pets/obi.webp'}
-          direction={'right'}
-        />
-        <HomeHeading
-          heading={'I want to be left'}
-          subheading={'SUBHEADING'}
-          body={'YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE'}
-          img={'public/pets/bubbles.webp'}
-          direction={'left'}
-        />
+        <div className="flex-col max-w-5xl py-32 sm:py-48 lg:py-24">
+          <HomeHeading
+            heading={'I want to be right'}
+            subheading={'SUBHEADING'}
+            body={'bodyyyyyyyyyyyyyyyyy'}
+            img={'public/pets/obi.webp'}
+            direction={'right'}
+          />
+          <HomeHeading
+            heading={'I want to be left'}
+            subheading={'SUBHEADING'}
+            body={'bodyyyyyyyyyyyyyyyy'}
+            img={'public/pets/bubbles.webp'}
+            direction={'left'}
+          />
+        </div>
       </div>
     </>
   )

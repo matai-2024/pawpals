@@ -4,7 +4,7 @@ interface Props {
 }
 
 const HomeCards: React.FC<Props> = ({ title, body }) => (
-  <div className="inline-flex px-20">
+  <div className=" inline-flex flex-col">
     <div className="grow shrink basis-0 h-[173px] p-6">
       <div className="grow shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">
         <div className="self-stretch h-[125px] flex-col justify-start items-start gap-2 flex">
