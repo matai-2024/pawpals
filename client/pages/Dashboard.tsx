@@ -4,8 +4,6 @@ import Card from '../components/utils/Card/Card'
 import PetCard from '../components/utils/PetCard/PetCard'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
-import useEvents from '../hooks/use-events'
-import usePetByOwnerId from '../hooks/use-pet-by-owner-id'
 
 interface Pet {
   image: string
@@ -24,106 +22,97 @@ interface Event {
   eventImage: string
 }
 
-const test = {
-  id: 1,
-  title: 'Food Truck Night in Howick',
-  date: '2024-10-03',
-  time: '17:00',
-  location: 'Lloyd Elsmore Park, Sir Lloyd Drive, Auckland',
-  description:
-    '🍔🌮 Experience the Best of Street Food at Howick’s Ultimate Food Truck Night! 🚚🎉 Join us in Howick for an exciting Food Truck Night that promises a feast for all your senses! Get ready to dive into a world of flavors as the best food trucks in town come together to serve up mouthwatering dishes that will leave you craving more.',
-  eventImage: 'event-1.webp',
-  eventWebsite:
-    'https://www.eventfinda.co.nz/2024/food-trucks-in-howick/auckland/pakuranga',
-  audience: 'Anyone!',
-  creatorId: 1,
-}
-
-export function Dashboard() {
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
-    useAuth0()
+export default function Dashboard() {
+  const { user, isAuthenticated, isLoading } = useAuth0()
   const [pets, setPets] = useState<Pet[]>([]) // State to store pets
-  const [events, setEvents] = useState(test) // State to store events
-  // console.log(events)
+  const [events, setEvents] = useState<Event[]>([]) // State to store events
+  const [mySchedule, setMySchedule] = useState<Event[]>([]) // State for events user is attending
 
   const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
   const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
   const editBtn = { title: 'Edit event', icon: 'pen-to-square' }
 
-  const token = getAccessTokenSilently()
-  const petsArr = usePetByOwnerId(String(token))
-  console.log(petsArr)
+  async function fetchPetsByOwnerId(ownerId: string) {
+    try {
+      const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
+      const data = await response.json()
 
-  // async function fetchPetsByOwnerId(ownerId: string) {
-  //   try {
-  //     const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
-  //     const data = await response.json()
+      return data.filter((pet: Pet) => pet.ownerId === ownerId)
+    } catch (error) {
+      console.error('Error fetching pets:', error)
+      return []
+    }
+  }
 
-  //     return data.filter((pet: Pet) => pet.ownerId === ownerId)
-  //   } catch (error) {
-  //     console.error('Error fetching pets:', error)
-  //     return []
-  //   }
-  // }
+  async function getEventsByCreatorId() {
+    try {
+      const response = await fetch(`/api/v1/events`)
+      const data = await response.json()
 
-  // async function getEventsByCreatorId() {
-  //   const { data } = response
-  //   if (!data) return
-  //   // console.log(data)
-  //   return []
-  // }
+      return data.filter((event: Event) => event.creatorId === 1)
+    } catch (error) {
+      console.error('Error fetching events:', error)
+      return []
+    }
+  }
 
-  // async function getEventsForAttendingPets(accountId: string) {
-  //   try {
-  //     // Call the backend API to get events where pets of this accountId are attending
-  //     const attendeeResponse = await fetch(`/api/v1/attendees/${accountId}`)
+  async function getEventsForAttendingPets(accountId: string) {
+    try {
+      const attendeeResponse = await fetch(`/api/v1/attendees/${accountId}`)
 
-  //     const eventsData = await attendeeResponse.json()
+      const eventsData = await attendeeResponse.json()
+      console.log(eventsData)
+      return eventsData
+    } catch (error) {
+      console.error('Error fetching schedule events for pets:', error)
+      return []
+    }
+  }
 
-  //     return eventsData // Return the events for the pets
-  //   } catch (error) {
-  //     console.error('Error fetching schedule events for pets:', error)
-  //     return []
-  //   }
-  // }
+  // UseEffect to fetch pets, created events, and attending events
+  useEffect(() => {
+    if (isAuthenticated && user?.sub) {
+      const ownerId = user.sub
 
-  // // UseEffect to fetch pets, created events, and attending events
-  // useEffect(() => {
-  //   if (isAuthenticated && user?.sub) {
-  //     const ownerId = user.sub
+      // Define an async function to handle all async operations
+      const fetchData = async () => {
+        try {
+          // Fetch pets by ownerId
+          const petsData = await fetchPetsByOwnerId(ownerId)
+          setPets(petsData)
 
-  //     fetchPetsByOwnerId(ownerId)
-  //       .then((petsData) => {
-  //         setPets(petsData)
+          // Fetch attending events for all pets owned by the user
+          const attendingEvents = await getEventsForAttendingPets(ownerId)
 
-  //         // Fetch attending events (where user's pets are attendees)
-  //         return getEventsForAttendingPets(ownerId) // Pass ownerId (accountId) here
-  //       })
-  //       .then((attendingEvents) => {
-  //         // console.log(attendingEvents)
-  //         return setEvents(attendingEvents)
-  //       })
-  //       .catch((err) => console.error('Error fetching schedule:', err))
+          // Fetch created events by the user
+          const createdEvents = await getEventsByCreatorId()
 
-  //     getEventsByCreatorId() // For fetching user's created events
-  //       .then((createdEvents) => setEvents(createdEvents))
-  //       .catch((err) => console.error('Error fetching events:', err))
-  //   }
-  // }, [isAuthenticated, user])
+          // Store attending and created events in state
+          setMySchedule(attendingEvents)
+          setEvents(createdEvents)
+        } catch (err) {
+          console.error('Error fetching data:', err)
+        }
+      }
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>
-  // }
+      // Call the async function
+      fetchData()
+    }
+  }, [isAuthenticated, user])
 
-  // if (!isAuthenticated) {
-  //   return (
-  //     <div className="flex items-center justify-center h-screen">
-  //       <h2 className="text-xl font-semibold">
-  //         You need to log in to see your dashboard.
-  //       </h2>
-  //     </div>
-  //   )
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <h2 className="text-xl font-semibold">
+          You need to log in to see your dashboard.
+        </h2>
+      </div>
+    )
+  }
 
   return (
     <div className="mx-auto max-w-5xl py-24 sm:py-32 lg:py-24">
@@ -165,8 +154,8 @@ export function Dashboard() {
               buttonIcon="calendar-plus"
             >
               <div className="space-y-4">
-                {events.length > 0 ? (
-                  events.map((event) => (
+                {mySchedule.length > 0 ? (
+                  mySchedule.map((event) => (
                     <ScheduleCard
                       key={event.id}
                       id={event.id}
@@ -217,171 +206,3 @@ export function Dashboard() {
     </div>
   )
 }
-
-export default Dashboard
-
-// import { useEffect, useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
-// import { useAuth0 } from '@auth0/auth0-react'
-// import Card from '../components/utils/Card/Card'
-// import PetCard from '../components/utils/PetCard/PetCard'
-// import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
-// import Sidebar from '../components/utils/Sidebar/Sidebar'
-
-// interface Pet {
-//   image: string
-//   id: number
-//   petName: string
-//   ownerId: string
-// }
-
-// interface Event {
-//   creatorId: number
-//   id: number
-//   title: string
-//   time: string
-//   going: boolean
-//   eventImage: string
-// }
-
-// export function Dashboard() {
-//   const { user, isAuthenticated, isLoading } = useAuth0()
-//   const navigate = useNavigate()
-//   console.log(user)
-//   const [pets, setPets] = useState<Pet[]>([]) // State to store pets
-//   const [events, setEvents] = useState<Event[]>([]) // State to store events
-
-//   async function fetchPetsByOwnerId(ownerId: string) {
-//     try {
-//       const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
-//       const data = await response.json()
-
-//       const filteredPets = data.filter((pet: Pet) => pet.ownerId === ownerId)
-
-//       return filteredPets
-//     } catch (error) {
-//       console.error('Error fetching pets:', error)
-//       return []
-//     }
-//   }
-
-//   async function getEventsByCreatorId() {
-//     try {
-//       const response = await fetch(`/api/v1/events`)
-//       const data = await response.json()
-
-//       return data.filter((event: Event) => event.creatorId === 1)
-//     } catch (error) {
-//       console.error('Error fetching events:', error)
-//       return []
-//     }
-//   }
-
-//   useEffect(() => {
-//     if (isAuthenticated && user?.sub) {
-//       // Fetch pets for the authenticated user
-//       fetchPetsByOwnerId(user.sub)
-//         .then((petsData) => {
-//           setPets(petsData)
-
-//           // Fetch and filter events with creatorId = 1
-//           return getEventsByCreatorId()
-//         })
-//         .then((filteredEvents) => setEvents(filteredEvents))
-//         .catch((err) => console.error('Error fetching events:', err))
-//     }
-//   }, [isAuthenticated, user])
-
-//   if (isLoading) {
-//     return <div>Loading...</div>
-//   }
-
-//   if (!isAuthenticated) {
-//     return (
-//       <div className="flex items-center justify-center h-screen">
-//         <h2 className="text-xl font-semibold">
-//           You need to log in to see your dashboard.
-//         </h2>
-//       </div>
-//     )
-//   }
-
-//   return (
-//     <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
-//       <div className="flex">
-//         <Sidebar />
-
-//         <div className="flex-1 p-8">
-//           {/* Pets Section */}
-//           <Card
-//             title="My Pets"
-//             addAction={() => navigate('/create')}
-//             buttonText="Add Pet"
-//           >
-//             <div className="space-y-4">
-//               {pets.length > 0 ? (
-//                 pets.map((pet) => (
-//                   <PetCard
-//                     key={pet.id}
-//                     petName={pet.petName}
-//                     image={pet.image}
-//                   />
-//                 ))
-//               ) : (
-//                 <p>You do not have any pets yet.</p>
-//               )}
-//             </div>
-//           </Card>
-
-//           {/* Schedule Section */}
-//           <Card
-//             title="My Schedule"
-//             addAction={() => navigate('/events')}
-//             buttonText="See more events"
-//           >
-//             <div className="space-y-4">
-//               {events.length > 0 ? (
-//                 events.map((event) => (
-//                   <ScheduleCard
-//                     key={event.id}
-//                     title={event.title}
-//                     time={event.time}
-//                     going={true}
-//                     eventImage={event.eventImage}
-//                   />
-//                 ))
-//               ) : (
-//                 <p>You do not have any events scheduled.</p>
-//               )}
-//             </div>
-//           </Card>
-
-//           {/* Events Section */}
-//           <Card
-//             title="My Events"
-//             addAction={() => navigate(`/events/create`)}
-//             buttonText="Add Event"
-//           >
-//             <div className="space-y-4">
-//               {events.length > 0 ? (
-//                 events.map((event) => (
-//                   <ScheduleCard
-//                     key={event.id}
-//                     title={event.title}
-//                     time={event.time}
-//                     going={true}
-//                     eventImage={event.eventImage}
-//                   />
-//                 ))
-//               ) : (
-//                 <p>You do not have any events yet.</p>
-//               )}
-//             </div>
-//           </Card>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Dashboard
