@@ -6,7 +6,3 @@ export { default as useMultistepForm } from './use-multistep-form.ts'
 export { default as useEventsByPetId } from './eventHooks/use-events-pet-id.ts'
 export { default as useOwnerByPetId } from './ownerHooks/user-owner-pet-id.ts'
 export { default as usePetByOwnerId } from './pets/use-pet-by-owner-id.ts'
-
-// TODO:
-// delete pets
-// update the edit pets api client function and hook
