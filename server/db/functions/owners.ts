@@ -61,6 +61,16 @@ export async function getOwnerByPetId(petId: number) {
   return owner as Owner
 }
 
+// Get owner by owner id
+export async function getOwnerByEventId(eventId: number) {
+  const owner: OwnerData = await db('owners')
+    .join('events', 'events.creator_id', 'owners.id')
+    .where('events.id', eventId)
+    .select(camelCase)
+    .first()
+  return owner as Owner
+}
+
 // TODO LIST:
 // -----------
 // Edit an owner
