@@ -37,6 +37,15 @@ export default function Nav() {
     })
   }
 
+  function handleClick() {
+    const dropdowns = document.querySelector('.dropdown-content')
+    if (dropdowns?.classList.contains('hidden')) {
+      dropdowns.classList.remove('hidden')
+    } else {
+      dropdowns?.classList.add('hidden')
+    }
+  }
+
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <nav
@@ -80,7 +89,7 @@ export default function Nav() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
           <IfAuthenticated>
-            <AccountIcon />
+            <AccountIcon handleClick={handleClick} />
           </IfAuthenticated>
           <IfNotAuthenticated>
             <button
