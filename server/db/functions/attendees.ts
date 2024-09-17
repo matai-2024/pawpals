@@ -8,7 +8,7 @@ const camelCase = [
 ]
 
 // Get all attendees
-export async function getAllattendees() {
+export async function getAllAttendees() {
   const attendees = await db('attendees').select(camelCase)
   return attendees
 }
