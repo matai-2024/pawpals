@@ -27,7 +27,7 @@ export default function About() {
     {
       name: 'Jack Gloyer',
       role: 'Git Lead',
-      img: 'devs/jack.jpg',
+      img: 'devs/jack.png',
       linkedin: 'https://www.linkedin.com/in/jack-gloyer',
       email: 'jackgloyer8@gmail.com',
       github: 'https://github.com/jack-gloyer',
@@ -35,7 +35,7 @@ export default function About() {
     {
       name: 'Sam Pedersen',
       role: 'Vibes Lead',
-      img: 'devs/sam.jpg',
+      img: 'devs/sam.webp',
       linkedin: 'https://www.linkedin.com/in/sam-pedersen-2060b0241/',
       email: 'sjcfpedersen@gmail.com',
       github: 'https://github.com/sam-pedersen',
@@ -74,7 +74,7 @@ export default function About() {
           </p>
           <img
             className="mt-4 w-full rounded-lg object-cover"
-            src="problemsolved.jpg"
+            src="team.webp"
             alt="coders at work"
           />
         </div>
