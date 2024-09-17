@@ -15,7 +15,7 @@ export const addOwners = [
   },
   {
     id: 3,
-    external_key: 'auth0|2',
+    external_key: 'auth0|66d68c678f5438f35cec79c2',
     first_name: 'Amy',
     last_name: 'Jackson',
     email: 'amy@email.com',
