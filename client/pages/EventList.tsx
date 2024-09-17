@@ -21,7 +21,6 @@ export default function EventList({ search }: Props) {
   const { data: attendees } = useAttendees()
 
   function countAttendees(num: number) {
-    console.log('count function', attendees)
     const eventsArr = attendees.map((guest: { eventId: number }) => {
       return guest.eventId
     })
