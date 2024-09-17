@@ -46,7 +46,12 @@ export default function Events() {
             className="block my-6 text-lg leading-8 text-gray-600"
             htmlFor="search"
           >
-            Search the latest pet-friendly events in your area.
+            Looking for exciting pet-friendly events in your area? Whether
+            it&apos;s a dog-friendly market, a pet costume party, or a
+            neighbourhood pet birthday bash, we&apos;ve got you covered!
+            Discover local events where you and your furry friends can have a
+            blast. Check out the latest pet events near you and make
+            unforgettable memories with your best mate!
           </label>
           <input
             id="search"

@@ -51,7 +51,7 @@ export function getAge(dateString: string) {
 
 export function LocationFormat(location: string) {
   const locationFormat = location.split(',')
-  const format = `${locationFormat[0]}, ${locationFormat[1]}`
+  const format = `${locationFormat[0]}`
   return format
 }
 

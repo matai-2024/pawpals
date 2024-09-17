@@ -57,11 +57,8 @@ export default function EventList({ search }: Props) {
                       <div className="flex flex-row space-x-4">
                         <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px] ">
                           {`${dateToReadable(event.date)},`}{' '}
-                          {TimeFormat(event.time)}{' '}
-                        </p>
-                        <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px]  ">
+                          {TimeFormat(event.time)} {' | '}
                           {LocationFormat(event.location)}{' '}
-                          {/* {<i className="fa-solid fa-location-dot"></i>} */}
                         </p>
                       </div>
                       <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
