@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 // Update the CardProps interface
 interface CardProps {
   title?: string // Make title optional
+  id?: string
   children: React.ReactNode
   buttonPath: string
   buttonText?: string
@@ -13,6 +14,7 @@ interface CardProps {
 // Card Component
 const Card: React.FC<CardProps> = ({
   title = '',
+  id,
   children,
   buttonPath,
   buttonText,
@@ -21,7 +23,7 @@ const Card: React.FC<CardProps> = ({
 }) => (
   <div className="first-of-type:pt-0 py-10 w-full">
     <div className="flex justify-between items-center mb-4">
-      <div className="inline-flex items-center">
+      <div id={id} className="inline-flex items-center">
         <i className={`fa-solid fa-${icon} text-2xl pr-4`}></i>
         <h2 className="text-2xl font-semibold">{title}</h2>
       </div>

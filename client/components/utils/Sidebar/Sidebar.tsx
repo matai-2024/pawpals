@@ -1,6 +1,6 @@
 // Sidebar component
 import { useAuth0 } from '@auth0/auth0-react'
-import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
 
 const Sidebar = () => {
   const { user, isAuthenticated, isLoading } = useAuth0()
@@ -16,34 +16,36 @@ const Sidebar = () => {
           <img
             src={user?.picture || 'https://via.placeholder.com/100'} // Use optional chaining
             alt="Profile"
-            className="w-16 h-16 rounded-full mb-4"
+            className="w-16 h-16 rounded-full mb-8"
           />
-          <p className="text-3xl font-semibold">{user?.name || 'User'}</p>{' '}
+          <p className="text-3xl font-semibold text-center">
+            {`${user?.nickname}'s Dashboard` || 'User'}
+          </p>{' '}
           {/* Use optional chaining */}
         </div>
         <div className="flex flex-col items-center mt-10">
           <div className="flex flex-col gap-y-6">
-            <Link
-              to="/profiles"
+            <HashLink
+              to="#my-pets"
               className="text-gray-950 hover:text-gray-600 ease-in-out duration-100"
             >
               <i className="fas fa-paw text-2xl pr-8"></i>
               <span>My Pets</span>
-            </Link>
-            <Link
-              to="/events"
+            </HashLink>
+            <HashLink
+              to="#my-schedule"
               className="text-gray-950 hover:text-gray-600 ease-in-out duration-100"
             >
               <i className="fas fa-calendar-alt text-2xl pr-8"></i>
               <span>My Schedule</span>
-            </Link>
-            <Link
-              to="/events"
+            </HashLink>
+            <HashLink
+              to="#my-events"
               className="text-gray-950 hover:text-gray-600 ease-in-out duration-100"
             >
               <i className="fas fa-icons text-2xl pr-8"></i>
               <span>My Events</span>
-            </Link>
+            </HashLink>
           </div>
         </div>
       </div>

@@ -86,15 +86,16 @@ export function Dashboard() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl pt-24 sm:pt-32 lg:pt-24">
-      {/* <div className="shadow-2xl rounded-4xl p-2 bg-gradient-to-r from-yellow-400 via-[#cf789a] to-[#a85be5]"> */}
-        <div className="flex flex-col gap-8 lg:flex-row bg-white rounded-3xl shadow-2xl py-14 px-8 w-full">
+    <div className="mx-auto max-w-5xl py-24 sm:py-32 lg:py-24">
+      <div className="shadow-lg rounded-2xl pt-6 bg-gradient-to-r from-yellow-400 via-[#cf789a] to-[#a85be5]">
+        <div className="flex flex-col gap-10 lg:flex-row bg-white rounded-b-2xl shadow-2xl py-14 px-10 w-full">
           <Sidebar />
           {/* Pets Section */}
           <div className="w-full lg:w-2/3">
             <Card
               icon="paw"
               title="My Pets"
+              id="my-pets"
               buttonPath={'/create'}
               buttonText="Add Pet"
               buttonIcon="plus"
@@ -116,11 +117,12 @@ export function Dashboard() {
             </Card>
             {/* Schedule Section */}
             <Card
+              icon="calendar-alt"
               title="My Schedule"
+              id="my-schedule"
               buttonPath={'/events'}
               buttonText="See more events"
               buttonIcon="calendar-plus"
-              icon="calendar-alt"
             >
               <div className="space-y-4">
                 {events.length > 0 ? (
@@ -144,11 +146,12 @@ export function Dashboard() {
             </Card>
             {/* Events Section */}
             <Card
+              icon="icons"
               title="My Events"
+              id="my-events"
               buttonPath={'/events/create'}
               buttonText="Add Event"
               buttonIcon="plus"
-              icon="icons"
             >
               <div className="space-y-4">
                 {events.length > 0 ? (
@@ -172,7 +175,7 @@ export function Dashboard() {
             </Card>
           </div>
         </div>
-      {/* </div> */}
+      </div>
     </div>
   )
 }

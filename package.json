@@ -38,6 +38,7 @@
     "jwks-rsa": "^3.1.0",
     "knex": "^2.5.1",
     "nock": "^13.5.5",
+    "react-router-hash-link": "^2.4.3",
     "sqlite3": "^5.1.7",
     "superagent": "^8.1.2",
     "zod": "^3.23.8"
