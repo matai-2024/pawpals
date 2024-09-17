@@ -4,6 +4,7 @@ import HomeCards from '../components/utils/Home/HomeCards'
 import HomeHeading from '../components/utils/Home/HomeHeading'
 import { ImgDirection } from '../../models/enums'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
+import Card from '../components/utils/Card/Card'
 
 export default function Home() {
   const { loginWithRedirect } = useAuth0()
@@ -60,9 +61,9 @@ export default function Home() {
         </div>
         <div className="flex-col max-w-5xl pt-16 sm:pt-48 lg:pt-24 ">
           <HomeHeading
-            heading={'I want to be right'}
-            subheading={'SUBHEADING'}
-            body={''}
+            heading={'pawpals'}
+            subheading={'Brief description'}
+            body={`Discover the ultimate destination for pet lovers! Sign in to pawpals to connect with a vibrant community of fellow pet enthusiasts, find exciting local and virtual events, and keep your furry friends entertained and engaged. Whether you're looking for pet-friendly activities, training workshops, or adoption fairs, we’ve got it all in one place. Join us today and make every day an adventure for you and your pets!`}
             img={'https://via.placeholder.com/277x160'}
             alt={'placeholder'}
             direction={ImgDirection.Right}
@@ -70,18 +71,25 @@ export default function Home() {
         </div>
         <div className="flex-col max-w-5xl py-32 sm:py-48 lg:py-24 ">
           <HomeHeading
-            heading={'I want to be left'}
-            subheading={'SUBHEADING'}
+            heading={'How do pets tie into it?'}
+            subheading={'Create a profile for your pets!'}
             body={
-              'bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy yyyyyyyyyyyyyyyyyyyyyyyy yyyyyyyyyy'
+              'Give your pets the spotlight they deserve! Create a profile for each of your furry, feathered, or scaly friends on pawpals and showcase their unique personalities, favorite activities, and adorable photos. With pet profiles, you can easily track their traits, connect with other pet parents, and discover events tailored to their interests. Start building their profiles today and let the world see how special your pets are!'
             }
             img={'https://via.placeholder.com/277x160'}
             alt={'placeholder'}
             direction={ImgDirection.Left}
           />
         </div>
-        <div className="flex flex-col md:flex-row max-w-5x1 w-full gap-5">
-          <h2></h2>
+        <div className="flex flex-row">
+          <Card
+            icon="calendar-alt"
+            title="My Schedule"
+            id="my-schedule"
+            buttonPath={'/events'}
+            buttonText="See more events"
+            buttonIcon="calendar-plus"
+          />
           <ScheduleCard
             id={1}
             title={'Hello!'}

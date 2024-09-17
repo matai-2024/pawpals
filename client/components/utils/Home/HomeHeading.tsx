@@ -38,7 +38,7 @@ const HomeHeading: React.FC<Props> = ({
           </h2>
         </div>
         <div className={`self-stretch justify-start items-start`}>
-          <p className="text-start line-clamp-[12] grow shrink basis-0 text-[#1e1e1e] text-base font-normal leading-snug">
+          <p className="text-start line-clamp-[12] pt-6 grow shrink basis-0 text-[#1e1e1e] text-base font-normal leading-snug">
             {body}
           </p>
         </div>
