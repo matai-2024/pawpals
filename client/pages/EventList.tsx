@@ -55,22 +55,22 @@ export default function EventList({ search }: Props) {
                   <div className="grow basis-0 flex-col justify-start items-start gap-4 inline-flex">
                     <div className="self-stretch h-[107px] flex-col justify-start items-start gap-2 flex  ">
                       <div className="flex flex-row space-x-4">
-                        <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px] ">
+                        <p className="text-[#1e1e1e] text-md font-semibold  leading-[28.80px] ">
                           {`${dateToReadable(event.date)},`}{' '}
                           {TimeFormat(event.time)}{' '}
                           <span style={{ padding: '0 10px' }}> | </span>
                           {LocationFormat(event.location)}{' '}
                         </p>
                       </div>
-                      <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
+                      <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]">
                         {event.title}
                       </h1>
-                      <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-relaxed ">
+                      <div className="text-[#757575] text-sm font-normal  leading-relaxed ">
                         <p className="line-clamp-2">
                           {DescriptionFormat(event.description)}
                         </p>
                       </div>
-                      <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
+                      <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal  leading-tight">
                         x attending
                       </p>
                     </div>
