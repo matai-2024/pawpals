@@ -77,7 +77,6 @@ export async function createNewPet(
 ) {
   //MVP - Hard code an image if there isn't one
   if (newPetProfile.image == '') newPetProfile.image = 'miso.jpg'
-  console.log(newPetProfile)
 
   // All the data being passed in from the form
   const {
