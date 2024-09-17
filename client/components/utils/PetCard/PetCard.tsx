@@ -3,7 +3,7 @@
 import { Link } from 'react-router-dom'
 
 interface PetCardProps {
-  id: number
+  id?: number
   petName: string
   image: string
 }
