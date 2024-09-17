@@ -23,6 +23,7 @@ export default function AccountIcon({ handleClick }: Props) {
     <section>
       <img
         onClick={handleClick}
+        alt={`${user?.name}'s profile`}
         src={`${user?.picture}`}
         className="dropdown-menu relative rounded-full max-w-14 hover:cursor-pointer border-4 p-0.5 border-white"
       ></img>
