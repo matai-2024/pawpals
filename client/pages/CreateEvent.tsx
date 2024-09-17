@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react'
 import CreateEventForm from '../components/forms/create-event/CreateEventForm.tsx'
 import { useNavigate } from 'react-router-dom'
-import useCreateEvent from '../hooks/use-event-create.ts'
+import useCreateEvent from '../hooks/eventHooks/use-event-create.ts'
 import { useAuth0 } from '@auth0/auth0-react'
 import { EventData } from '../../models/events.ts'
 

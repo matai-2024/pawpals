@@ -1,6 +1,6 @@
 import LoadingSpinner from '../components/LoadingSpinner'
 import { ChangeEvent, useEffect, useState } from 'react'
-import useFetchEvents from '../hooks/use-fetch-events'
+import useFetchEvents from '../hooks/eventHooks/use-fetch-events'
 import EventList from './EventList'
 
 export default function Events() {
