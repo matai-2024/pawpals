@@ -87,6 +87,7 @@ export default function Signup() {
           </div>
         </div>
         <div className="mt-10 flex items-center gap-x-6">
+          {/* Form here */}
           <form onSubmit={onSubmit} className="w-full">
             <div className="space-y-12">
               <div className="border-b border-gray-900/10 pb-12">
