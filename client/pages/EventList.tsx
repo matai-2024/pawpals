@@ -4,47 +4,32 @@ import dateToReadable, {
   TimeFormat,
 } from '../components/utils/Presentation'
 import { Link } from 'react-router-dom'
-import LoadingSpinner from '../components/LoadingSpinner'
 import { Event } from '../../models/events'
 import useAttendees from '../hooks/use-attendees'
 import useFetchEvents from '../hooks/use-fetch-events'
-import { fetchEvents } from '../apis/apiClientEvents'
-import { useQuery } from '@tanstack/react-query'
 
 interface Props {
   search: Event[] | undefined
 }
 
 export default function EventList({ search }: Props) {
-  // const { data: events, isPending, isError, error } = useFetchEvents()
-  const { data: events } = useQuery({
-    queryFn: fetchEvents,
-    queryKey: ['events'],
-  })
+  const { data: events } = useFetchEvents()
 
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
 
-  // const { data: attendees } = useAttendees()
+  const { data: attendees } = useAttendees()
 
-  // function countAttendees(num: number) {
-  //   const eventsArr = attendees.map((guest: { eventId: number }) => {
-  //     return guest.eventId
-  //   })
-  //   const numOfEvents = eventsArr.filter((event: number) => event === num)
-  //   return numOfEvents.length
-  // }
+  function countAttendees(num: number) {
+    console.log('count function', attendees)
+    const eventsArr = attendees.map((guest: { eventId: number }) => {
+      return guest.eventId
+    })
+    const numOfEvents = eventsArr.filter((event: number) => event === num)
+    return numOfEvents.length
+  }
 
-  // if (isPending) return <LoadingSpinner />
-
-  // if (isError)
-  //   return (
-  //     <div>
-  //       <h3>Error loading event data: </h3>
-  //       {String(error)}
-  //     </div>
-  //   )
-  if (events)
+  if (events && attendees)
     return (
       <ul>
         {search?.map((event) => (
@@ -81,9 +66,9 @@ export default function EventList({ search }: Props) {
                           {DescriptionFormat(event.description)}
                         </p>
                       </div>
-                      {/* <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal  leading-tight">
+                      <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal  leading-tight">
                         {countAttendees(event.id)} attending
-                      </p> */}
+                      </p>
                     </div>
                   </div>
                 </div>
