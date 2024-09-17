@@ -1,4 +1,5 @@
 import dateToReadable, {
+  DescriptionFormat,
   LocationFormat,
   TimeFormat,
 } from '../components/utils/Presentation'
@@ -60,14 +61,16 @@ export default function EventList({ search }: Props) {
                         </p>
                         <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px]  ">
                           {LocationFormat(event.location)}{' '}
-                          {<i className="fa-solid fa-location-dot"></i>}
+                          {/* {<i className="fa-solid fa-location-dot"></i>} */}
                         </p>
                       </div>
                       <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
                         {event.title}
                       </h1>
                       <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight ">
-                        <p className="line-clamp-2">{event.description}</p>
+                        <p className="line-clamp-2">
+                          {DescriptionFormat(event.description)}
+                        </p>
                       </div>
                       <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
                         x attending

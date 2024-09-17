@@ -55,4 +55,13 @@ export function LocationFormat(location: string) {
   return format
 }
 
+export function DescriptionFormat(description: string) {
+  const emojiRegex = /[\p{Emoji}]/gu
+  const descriptionArr = description.split(' ')
+  const format = descriptionArr
+    .filter((word) => !word.match(emojiRegex))
+    .join(' ')
+  return format
+}
+
 export default dateToReadable
