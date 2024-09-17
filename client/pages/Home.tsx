@@ -6,7 +6,7 @@ import {
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Home() {
-  const { logout, loginWithRedirect } = useAuth0()
+  const { loginWithRedirect } = useAuth0()
   return (
     <>
       <div className="z-0 mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
