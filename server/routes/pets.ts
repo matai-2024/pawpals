@@ -31,10 +31,15 @@ router.get('/:id', async (req, res) => {
 })
 
 // GET pets by owner id
-router.get('/owner/:id', async (req, res) => {
-  const { id } = req.params
+router.get('/owner/:id', async (req: JwtRequest, res) => {
   try {
-    const pets = await db.getPetsByOwnerId(Number(id))
+    console.log('BACKEND ROUTES')
+    const externalKey = req.auth?.sub
+    if (!externalKey) {
+      res.status(401).json({ error: 'Unauthorized' })
+      return
+    }
+    const pets = await db.getPetsByOwnerId(externalKey)
     res.status(200).json(pets)
   } catch (error) {
     // eslint-disable-next-line no-console

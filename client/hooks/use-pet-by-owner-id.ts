@@ -4,7 +4,7 @@ import { fetchPetsByOwnerId } from '../apis/apiClientPets.ts'
 export default function usePetByOwnerId(ownerId: string) {
   const query = useQuery({
     queryKey: ['pets', ownerId],
-    queryFn: () => fetchPetsByOwnerId(5),
+    queryFn: () => fetchPetsByOwnerId(ownerId),
   })
   return { ...query }
 }

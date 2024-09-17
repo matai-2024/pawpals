@@ -31,7 +31,7 @@ export default function ScheduleCard({
     <div className="flex items-center border w-full p-3 rounded-lg gap-6 shadow-md ease-in-out duration-200">
       <div className="w-36 h-24 rounded-md overflow-hidden">
         <img
-          src={`events/${eventImage}`}
+          src={`/events/${eventImage}`}
           alt={title}
           className="object-cover"
         />

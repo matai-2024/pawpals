@@ -17,7 +17,18 @@ const camelCase = [
 
 // Get all events
 export async function getAllEvents() {
-  const events = await db('events').select(camelCase)
+  const events = await db('events').select(
+    'id',
+    'title',
+    'date',
+    'time',
+    'location',
+    'description',
+    'event_image as eventImage',
+    'event_website as eventWebsite',
+    'audience',
+    'creator_id as creatorId',
+  )
   return events as Event[]
 }
 

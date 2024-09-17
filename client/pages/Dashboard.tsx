@@ -4,6 +4,8 @@ import Card from '../components/utils/Card/Card'
 import PetCard from '../components/utils/PetCard/PetCard'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
+import useEvents from '../hooks/use-events'
+import usePetByOwnerId from '../hooks/use-pet-by-owner-id'
 
 interface Pet {
   image: string
@@ -22,102 +24,106 @@ interface Event {
   eventImage: string
 }
 
+const test = {
+  id: 1,
+  title: 'Food Truck Night in Howick',
+  date: '2024-10-03',
+  time: '17:00',
+  location: 'Lloyd Elsmore Park, Sir Lloyd Drive, Auckland',
+  description:
+    '🍔🌮 Experience the Best of Street Food at Howick’s Ultimate Food Truck Night! 🚚🎉 Join us in Howick for an exciting Food Truck Night that promises a feast for all your senses! Get ready to dive into a world of flavors as the best food trucks in town come together to serve up mouthwatering dishes that will leave you craving more.',
+  eventImage: 'event-1.webp',
+  eventWebsite:
+    'https://www.eventfinda.co.nz/2024/food-trucks-in-howick/auckland/pakuranga',
+  audience: 'Anyone!',
+  creatorId: 1,
+}
+
 export function Dashboard() {
-  const { user, isAuthenticated, isLoading } = useAuth0()
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
+    useAuth0()
   const [pets, setPets] = useState<Pet[]>([]) // State to store pets
-  const [events, setEvents] = useState<Event[]>([]) // State to store events
-  const [mySchedule, setMySchedule] = useState<Event[]>([]) // State for events user is attending
+  const [events, setEvents] = useState(test) // State to store events
+  // console.log(events)
 
   const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
   const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
   const editBtn = { title: 'Edit event', icon: 'pen-to-square' }
 
-  async function fetchPetsByOwnerId(ownerId: string) {
-    try {
-      const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
-      const data = await response.json()
+  const token = getAccessTokenSilently()
+  const petsArr = usePetByOwnerId(String(token))
+  console.log(petsArr)
 
-      return data.filter((pet: Pet) => pet.ownerId === ownerId)
-    } catch (error) {
-      console.error('Error fetching pets:', error)
-      return []
-    }
-  }
+  // async function fetchPetsByOwnerId(ownerId: string) {
+  //   try {
+  //     const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
+  //     const data = await response.json()
 
-  async function getEventsByCreatorId() {
-    try {
-      const response = await fetch(`/api/v1/events`)
-      const data = await response.json()
+  //     return data.filter((pet: Pet) => pet.ownerId === ownerId)
+  //   } catch (error) {
+  //     console.error('Error fetching pets:', error)
+  //     return []
+  //   }
+  // }
 
-      return data.filter((event: Event) => event.creatorId === 1)
-    } catch (error) {
-      console.error('Error fetching events:', error)
-      return []
-    }
-  }
+  // async function getEventsByCreatorId() {
+  //   const { data } = response
+  //   if (!data) return
+  //   // console.log(data)
+  //   return []
+  // }
 
-  async function getEventsForAttendingPets(accountId: string) {
-    try {
-      const attendeeResponse = await fetch(
-        `/api/v1/attendees?accountId=${accountId}`,
-      )
-      const attendeeData = await attendeeResponse.json()
+  // async function getEventsForAttendingPets(accountId: string) {
+  //   try {
+  //     // Call the backend API to get events where pets of this accountId are attending
+  //     const attendeeResponse = await fetch(`/api/v1/attendees/${accountId}`)
 
-      const attendingEventIds = attendeeData.map(
-        (attendee: { event_id: number }) => attendee.event_id,
-      )
+  //     const eventsData = await attendeeResponse.json()
 
-      if (attendingEventIds.length === 0) {
-        return [] // No attending events
-      }
+  //     return eventsData // Return the events for the pets
+  //   } catch (error) {
+  //     console.error('Error fetching schedule events for pets:', error)
+  //     return []
+  //   }
+  // }
 
-      // Fetch events that match the event IDs
-      const eventsResponse = await fetch(
-        `/api/v1/events?eventIds=${attendingEventIds.join(',')}`,
-      )
-      const eventsData = await eventsResponse.json()
+  // // UseEffect to fetch pets, created events, and attending events
+  // useEffect(() => {
+  //   if (isAuthenticated && user?.sub) {
+  //     const ownerId = user.sub
 
-      return eventsData
-    } catch (error) {
-      console.error('Error fetching schedule events for pets:', error)
-      return []
-    }
-  }
+  //     fetchPetsByOwnerId(ownerId)
+  //       .then((petsData) => {
+  //         setPets(petsData)
 
-  // UseEffect to fetch pets, created events, and attending events
-  useEffect(() => {
-    if (isAuthenticated && user?.sub) {
-      const ownerId = user.sub
+  //         // Fetch attending events (where user's pets are attendees)
+  //         return getEventsForAttendingPets(ownerId) // Pass ownerId (accountId) here
+  //       })
+  //       .then((attendingEvents) => {
+  //         // console.log(attendingEvents)
+  //         return setEvents(attendingEvents)
+  //       })
+  //       .catch((err) => console.error('Error fetching schedule:', err))
 
-      fetchPetsByOwnerId(ownerId)
-        .then((petsData) => {
-          setPets(petsData)
+  //     getEventsByCreatorId() // For fetching user's created events
+  //       .then((createdEvents) => setEvents(createdEvents))
+  //       .catch((err) => console.error('Error fetching events:', err))
+  //   }
+  // }, [isAuthenticated, user])
 
-          // Fetch attending events (where user's pets are attendees)
-          return getEventsForAttendingPets(ownerId) // Pass ownerId (accountId) here
-        })
-        .then((attendingEvents) => setMySchedule(attendingEvents))
-        .catch((err) => console.error('Error fetching schedule:', err))
+  // if (isLoading) {
+  //   return <div>Loading...</div>
+  // }
 
-      getEventsByCreatorId() // For fetching user's created events
-        .then((createdEvents) => setEvents(createdEvents))
-        .catch((err) => console.error('Error fetching events:', err))
-    }
-  }, [isAuthenticated, user])
-
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (!isAuthenticated) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <h2 className="text-xl font-semibold">
-          You need to log in to see your dashboard.
-        </h2>
-      </div>
-    )
-  }
+  // if (!isAuthenticated) {
+  //   return (
+  //     <div className="flex items-center justify-center h-screen">
+  //       <h2 className="text-xl font-semibold">
+  //         You need to log in to see your dashboard.
+  //       </h2>
+  //     </div>
+  //   )
+  // }
 
   return (
     <div className="mx-auto max-w-5xl py-24 sm:py-32 lg:py-24">

@@ -44,12 +44,14 @@ export async function getPetById(id: number) {
 }
 
 // Get pets by owner_id
-export async function getPetsByOwnerId(ownerId: number) {
+export async function getPetsByOwnerId(ownerId: string) {
+  console.log('hellO?')
   const pets = await db('pets')
     .join('traits', 'traits.id', 'pets.trait_id')
-    .where('owner_id', ownerId)
+    .where('external_key', ownerId)
     .select(camelCase)
-  return pets as Form[]
+  console.log(pets)
+  return pets
 }
 
 // Delete a pet by id

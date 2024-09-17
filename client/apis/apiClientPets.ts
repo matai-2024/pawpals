@@ -16,8 +16,10 @@ export async function fetchPetById(id: number) {
 }
 
 // get pets by owner id
-export async function fetchPetsByOwnerId(id: number) {
-  const res = await request.get(rootUrl + '/owner/' + id)
+export async function fetchPetsByOwnerId(token: string) {
+  const res = await request
+    .get(rootUrl + '/owner/1')
+    .set('Authorization', `Bearer ${token}`)
   return res.body as PetProfile[]
 }
 
