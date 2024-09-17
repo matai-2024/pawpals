@@ -4,14 +4,12 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { IfAuthenticated, IfNotAuthenticated } from './utils/Authenticated.tsx'
 import { Link } from 'react-router-dom'
+import AccountIcon from './UserMenu.tsx'
 
 const navigation = [
-  { name: 'Home', to: '/' },
   { name: 'About', to: '/about' },
   { name: 'Pets', to: '/profiles' },
-  { name: 'Add a Pet', to: '/create' },
   { name: 'Events', to: '/events' },
-  { name: 'Dashboard', to: '/dashboard' },
 ]
 
 export default function Nav() {
@@ -37,6 +35,20 @@ export default function Nav() {
         redirect_uri: `${window.location.origin}/user-profile`,
       },
     })
+  }
+
+  function handleClick() {
+    const dropdowns = document.querySelector('.dropdown-content')
+    const profileImage = document.querySelector('.dropdown-menu')
+    if (dropdowns?.classList.contains('hidden')) {
+      dropdowns.classList.remove('hidden')
+      profileImage?.classList.remove('border-white')
+      profileImage?.classList.add('border-yellow-400')
+    } else {
+      dropdowns?.classList.add('hidden')
+      profileImage?.classList.remove('border-yellow-400')
+      profileImage?.classList.add('border-white')
+    }
   }
 
   return (
@@ -71,34 +83,32 @@ export default function Nav() {
               {item.name}
             </Link>
           ))}
+          <IfAuthenticated>
+            <Link
+              to="/dashboard"
+              className="text-sm font-semibold leading-6 text-gray-900"
+              data-testid="dashboard"
+            >
+              Dashboard
+            </Link>
+          </IfAuthenticated>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
           <IfAuthenticated>
-            <></>
-          </IfAuthenticated>
-          <IfNotAuthenticated>
-            <button
-              className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={handleRegister}
-            >
-              Sign up
-            </button>
-          </IfNotAuthenticated>
-          <IfAuthenticated>
-            <button
-              data-testid="nav-sign-out"
-              className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={handleSignOut}
-            >
-              Sign out
-            </button>
+            <AccountIcon handleClick={handleClick} />
           </IfAuthenticated>
           <IfNotAuthenticated>
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
               onClick={handleSignIn}
             >
-              Sign in
+              Log in
+            </button>
+            <button
+              className="rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+              onClick={handleRegister}
+            >
+              Sign up
             </button>
           </IfNotAuthenticated>
         </div>
@@ -144,7 +154,7 @@ export default function Nav() {
               <div className="py-6">
                 <IfAuthenticated>
                   <button
-                    className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="block -mx-3 text-left rounded-lg w-full px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     onClick={handleSignOut}
                   >
                     Sign out
@@ -152,7 +162,7 @@ export default function Nav() {
                 </IfAuthenticated>
                 <IfNotAuthenticated>
                   <button
-                    className="block rounded-lg text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="block text-left -mx-3 rounded-lg w-full px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     onClick={handleSignIn}
                   >
                     Sign in

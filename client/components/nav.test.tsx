@@ -25,21 +25,17 @@ beforeEach(() => {
 })
 
 describe('Nav.tsx', () => {
-  it('should render the log out button when signed in', async () => {
+  it('should render a dashboard link in the navigation menu', async () => {
     const screen = renderApp('/')
-    const result = await screen.findByTestId('nav-sign-out')
-
-    expect(result.textContent).toMatch('Sign out')
+    const result = await screen.getByTestId('dashboard')
+    expect(result).toBeTruthy()
   })
 
-  it('should redirect you to the home page on sign out', async () => {
+  it('on log out, it redirects the user to the home page', async () => {
     const { user, ...screen } = renderApp('/')
-    const button = await screen.findByTestId('nav-sign-out')
+    const button = await screen.getByTestId('Log out')
     await user.click(button)
-    const homeText = await screen.getByText(
-      'Find more friends for your best friend',
-    )
-
-    expect(homeText).toBeTruthy()
+    const result = await screen.getByText('Get started')
+    expect(result).toBeTruthy()
   })
 })
