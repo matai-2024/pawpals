@@ -1,6 +1,5 @@
-import { ParsedQs } from 'qs'
 import db from '../connection.ts'
-
+import { ParsedQs } from 'qs'
 const camelCase = [
   'id',
   'event_id as eventId',

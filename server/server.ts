@@ -6,6 +6,7 @@ import ownerRoutes from './routes/owners.ts'
 import traitRoutes from './routes/traits.ts'
 import eventRoutes from './routes/events.ts'
 import attendeesRoute from './routes/attendees.ts'
+
 const server = express()
 
 server.use(express.json())
@@ -23,7 +24,5 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(Path.resolve('./dist/index.html'))
   })
 }
-
-//bguidshkjg
 
 export default server

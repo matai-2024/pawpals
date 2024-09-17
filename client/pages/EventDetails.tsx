@@ -1,10 +1,11 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import dateToReadable, { TimeFormat } from '../components/utils/Presentation'
-import usePets from '../hooks/use-pets'
+import usePets from '../hooks/pets/use-pets'
 import LoadingSpinner from '../components/LoadingSpinner'
-import useEventById from '../hooks/eventHooks/useEventById'
-import useDelEvent from '../hooks/eventHooks/useDeleteEvent'
+import useEventById from '../hooks/eventHooks/use-event-by-id'
+import useDelEvent from '../hooks/eventHooks/use-delete-event'
 import { useAuth0 } from '@auth0/auth0-react'
+import useDocumentTitle from '../hooks/use-document-title'
 
 export default function EventDetails() {
   const navigate = useNavigate()
@@ -16,6 +17,8 @@ export default function EventDetails() {
   const { data: evts } = useEventById(id)
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
+
+  useDocumentTitle(evts?.title ? `${evts?.title}` : 'Event | pawpals')
 
   function handleEditEvent(id: number) {
     navigate(`/edit-event/${id}`)
@@ -48,7 +51,7 @@ export default function EventDetails() {
         <div className="text-center flex-col justify-start items-start gap-6 flex">
           <h1
             data-testid="title"
-            className="self-stretch text-[#1e1e1e] text-7xl font-bold font-['Inter'] leading-[86.40px]"
+            className="self-stretch text-[#1e1e1e] text-7xl font-bold  leading-[86.40px]"
           >
             {evts.title}
           </h1>
@@ -59,7 +62,7 @@ export default function EventDetails() {
                 onClick={() => handleEditEvent(id)}
                 className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
               >
-                <div className="w-[58px] text-black text-xs font-normal font-['Inter']">
+                <div className="w-[58px] text-black text-xs font-normal ">
                   Edit Event
                 </div>
               </button>
@@ -67,7 +70,7 @@ export default function EventDetails() {
                 onClick={() => handleDeleteEvent(id)}
                 className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
               >
-                <div className="text-black text-xs font-normal font-['Inter']">
+                <div className="text-black text-xs font-normal ">
                   Delete Event
                 </div>
               </button>
@@ -85,10 +88,10 @@ export default function EventDetails() {
               />
             </div>
             <div className="grow shrink basis-0 flex-col justify-start text-left items-start gap-0.5 inline-flex">
-              <div className="self-stretch text-[#757575] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
+              <div className="self-stretch text-[#757575] text-2xl font-semibold  leading-[28.80px]">
                 Hosted By
               </div>
-              <div className="self-stretch text-[#b3b3b3] text-[32px] font-normal font-['Inter'] leading-[38.40px]">
+              <div className="self-stretch text-[#b3b3b3] text-[32px] font-normal  leading-[38.40px]">
                 {user?.nickname}
               </div>
             </div>
@@ -105,7 +108,7 @@ export default function EventDetails() {
                 <div className="self-stretch justify-start items-center gap-2 inline-flex">
                   <div className="w-7 h-7 relative"></div>
                   <div className="grow shrink basis-0 h-[29px] justify-start items-start flex">
-                    <div className="text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
+                    <div className="text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]">
                       {`${dateToReadable(evts.date)}, `} {TimeFormat(evts.time)}
                     </div>
                   </div>
@@ -113,19 +116,19 @@ export default function EventDetails() {
                 <div className="self-stretch justify-start items-center gap-2 inline-flex">
                   <div className="w-7 h-7 relative"></div>
                   <div className="grow shrink basis-0 h-[29px] justify-start items-start flex">
-                    <div className="text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
+                    <div className="text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]">
                       {evts.location}
                     </div>
                   </div>
                 </div>
                 <div className="self-stretch h-[368px] flex-col justify-start items-start gap-4 flex">
                   <div className="self-stretch justify-start items-start py-6 inline-flex">
-                    <div className="text-[#1e1e1e] text-base font-semibold font-['Inter'] leading-snug">
+                    <div className="text-[#1e1e1e] text-base font-semibold  leading-snug">
                       {evts.title}
                     </div>
                   </div>
                   <div className="self-stretch justify-start items-start inline-flex">
-                    <div className="grow shrink basis-0 text-[#757575] text-base font-normal font-['Inter'] leading-snug">
+                    <div className="grow shrink basis-0 text-[#757575] text-base font-normal  leading-snug">
                       {evts.description}
                     </div>
                   </div>
@@ -135,7 +138,7 @@ export default function EventDetails() {
                 onClick={() => handleAttend()}
                 className="self-stretch p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
               >
-                <div className="text-neutral-100 text-base font-normal font-['Inter'] leading-none">
+                <div className="text-neutral-100 text-base font-normal  leading-none">
                   Attend
                 </div>
               </button>
@@ -144,7 +147,7 @@ export default function EventDetails() {
         </div>
         <div className="py-32 sm:py-48 lg:py-24">
           <div className="justify-start items-start inline-flex">
-            <div className="text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
+            <div className="text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]">
               Attendees
             </div>
           </div>
@@ -163,10 +166,10 @@ export default function EventDetails() {
                     />
                     <div className="h-[42px] flex-col justify-start items-center gap-2 flex">
                       <div className="h-[42px] flex-col justify-start items-center flex">
-                        <div className="text-[#1e1e1e] text-base font-semibold font-['Inter'] leading-snug">
+                        <div className="text-[#1e1e1e] text-base font-semibold  leading-snug">
                           {pet.petName}
                         </div>
-                        <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight">
+                        <div className="text-[#757575] text-sm font-normal  leading-tight">
                           {pet.species}
                         </div>
                       </div>
