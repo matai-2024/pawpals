@@ -8,36 +8,43 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import { Event } from '../../models/events'
 import useAttendees from '../hooks/use-attendees'
 import useFetchEvents from '../hooks/use-fetch-events'
+import { fetchEvents } from '../apis/apiClientEvents'
+import { useQuery } from '@tanstack/react-query'
 
 interface Props {
   search: Event[] | undefined
 }
 
 export default function EventList({ search }: Props) {
-  const { data: events, isPending, isError, error } = useFetchEvents()
+  // const { data: events, isPending, isError, error } = useFetchEvents()
+  const { data: events } = useQuery({
+    queryFn: fetchEvents,
+    queryKey: ['events'],
+  })
+
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
 
-  const { data: attendees } = useAttendees()
+  // const { data: attendees } = useAttendees()
 
-  function countAttendees(num: number) {
-    const eventsArr = attendees.map((guest: { eventId: number }) => {
-      return guest.eventId
-    })
-    const numOfEvents = eventsArr.filter((event: number) => event === num)
-    return numOfEvents.length
-  }
+  // function countAttendees(num: number) {
+  //   const eventsArr = attendees.map((guest: { eventId: number }) => {
+  //     return guest.eventId
+  //   })
+  //   const numOfEvents = eventsArr.filter((event: number) => event === num)
+  //   return numOfEvents.length
+  // }
 
-  if (isPending) return <LoadingSpinner />
+  // if (isPending) return <LoadingSpinner />
 
-  if (isError)
-    return (
-      <div>
-        <h3>Error loading event data: </h3>
-        {String(error)}
-      </div>
-    )
-  if (events && attendees)
+  // if (isError)
+  //   return (
+  //     <div>
+  //       <h3>Error loading event data: </h3>
+  //       {String(error)}
+  //     </div>
+  //   )
+  if (events)
     return (
       <ul>
         {search?.map((event) => (
@@ -63,7 +70,10 @@ export default function EventList({ search }: Props) {
                           {LocationFormat(event.location)}{' '}
                         </p>
                       </div>
-                      <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]">
+                      <h1
+                        className="self-stretch text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]"
+                        data-testid="event-title"
+                      >
                         {event.title}
                       </h1>
                       <div className="text-[#757575] text-sm font-normal  leading-relaxed ">
@@ -71,9 +81,9 @@ export default function EventList({ search }: Props) {
                           {DescriptionFormat(event.description)}
                         </p>
                       </div>
-                      <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal  leading-tight">
+                      {/* <p className="opacity-60 self-stretch text-[#757575] text-sm font-normal  leading-tight">
                         {countAttendees(event.id)} attending
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </div>
