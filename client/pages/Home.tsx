@@ -17,7 +17,7 @@ export default function Home() {
   }
   return (
     <>
-      <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
+      <div className="mx-auto text-center inline-col max-w-5xl py-32 sm:py-48 lg:py-24">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Find more friends for your best friend
@@ -43,7 +43,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className=" inline-flex max-w-5xl pt-32 sm:pt-48 lg:pt-24">
+        <div className=" inline-flex max-w-5xl pt-14 sm:pt-44 lg:pt-20">
           <HomeCards
             title="Sign Up"
             body="Click get started to make your (people) account"
@@ -57,7 +57,7 @@ export default function Home() {
             body="Browse events setup by the community to meet local pet owners"
           />
         </div>
-        <div className="flex-col max-w-5xl py-32 sm:py-48 lg:py-24">
+        <div className="flex-col max-w-5xl pt-16 sm:pt-48 lg:pt-24 ">
           <HomeHeading
             heading={'I want to be right'}
             subheading={'SUBHEADING'}
@@ -65,6 +65,8 @@ export default function Home() {
             img={'public/pets/obi.webp'}
             direction={'right'}
           />
+        </div>
+        <div className="flex-col max-w-5xl py-32 sm:py-48 lg:py-24 ">
           <HomeHeading
             heading={'I want to be left'}
             subheading={'SUBHEADING'}
