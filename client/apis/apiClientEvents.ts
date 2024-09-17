@@ -6,6 +6,7 @@ const rootUrl = '/api/v1/events'
 // get all events
 export async function fetchEvents() {
   const res = await request.get(rootUrl)
+
   return res.body as Event[]
 }
 
