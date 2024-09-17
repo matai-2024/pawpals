@@ -9,7 +9,7 @@ const teamMembers = [
   {
     name: 'Anahera Foley-Paama',
     role: 'Product Owner',
-    img: '/anahera.jpeg',
+    img: 'devs/anahera.jpeg',
     linkedin: 'https://www.linkedin.com/in/afoleypaama/',
     email: 'anahera.work@gmail.com',
     github: 'https://github.com/anaherawashere?tab=repositories',
@@ -17,7 +17,7 @@ const teamMembers = [
   {
     name: 'Amy Jackson',
     role: 'Backend Lead',
-    img: '/amy.jpg',
+    img: 'devs/amy.jpg',
     linkedin: 'https://www.linkedin.com/in/amy-jackson',
     email: 'amyj.etana@gmail.com',
     github: 'https://github.com/achoo-o',
@@ -25,7 +25,7 @@ const teamMembers = [
   {
     name: 'Dean Tunbridge',
     role: 'Frontend Lead',
-    img: '/dean.jpg',
+    img: 'devs/dean.jpg',
     linkedin: 'https://www.linkedin.com/in/dean-tunbridge',
     email: 'Deantunbridgedev@gmail.com',
     github: 'https://github.com/dean-tunbridge',
@@ -33,7 +33,7 @@ const teamMembers = [
   {
     name: 'Jack Gloyer',
     role: 'Git Lead',
-    img: '/jack.png',
+    img: 'devs/jack.jpg',
     linkedin: 'https://www.linkedin.com/in/jack-gloyer',
     email: 'jackgloyer8@gmail.com',
     github: 'https://github.com/jack-gloyer',
@@ -41,7 +41,7 @@ const teamMembers = [
   {
     name: 'Sam Pedersen',
     role: 'Vibes Lead',
-    img: '/sam.jpg',
+    img: 'devs/sam.jpg',
     linkedin: 'https://www.linkedin.com/in/sam-pedersen-2060b0241/',
     email: 'sjcfpedersen@gmail.com',
     github: 'https://github.com/sam-pedersen',
