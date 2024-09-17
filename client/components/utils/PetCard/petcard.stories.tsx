@@ -10,7 +10,7 @@ type Story = StoryObj<typeof PetCard>
 
 export const populated: Story = {
   name: 'petcard',
-  render: () => <PetCard petName={''} image={''} />,
+  render: () => <PetCard petName={''} image={''} id={0} />,
 }
 
 export default meta
