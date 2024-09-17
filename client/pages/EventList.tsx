@@ -1,5 +1,4 @@
 import dateToReadable, {
-  countAttendees,
   DescriptionFormat,
   LocationFormat,
   TimeFormat,
