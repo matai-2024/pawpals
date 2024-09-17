@@ -20,7 +20,7 @@ const HomeHeading: React.FC<Props> = ({
   <>
     <div className={`flex flex-col md:flex-row max-w-5xl w-full gap-10`}>
       <img
-        className={`object-cover md:w-1/2 h-[350px] w-full rounded-2xl ${direction === ImgDirection.Left ? 'flex' : 'flex md:hidden'}`}
+        className={`object-scale-down md:w-1/2 h-60 w-full rounded-2xl ${direction === ImgDirection.Left ? 'flex' : 'flex md:hidden'}`}
         src={img}
         alt={alt}
       />
@@ -44,7 +44,7 @@ const HomeHeading: React.FC<Props> = ({
         </div>
       </div>
       <img
-        className={`object-cover w-1/2 h-[350px] rounded-2xl ${direction === ImgDirection.Right ? 'md:flex hidden' : 'hidden'} `}
+        className={`object-scale-down w-1/2 h-[350px] rounded-2xl ${direction === ImgDirection.Right ? 'md:flex hidden' : 'hidden'} `}
         src={img}
         alt={alt}
       />

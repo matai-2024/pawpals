@@ -64,7 +64,7 @@ export default function Home() {
             heading={'pawpals'}
             subheading={'Brief description'}
             body={`Discover the ultimate destination for pet lovers! Sign in to pawpals to connect with a vibrant community of fellow pet enthusiasts, find exciting local and virtual events, and keep your furry friends entertained and engaged. Whether you're looking for pet-friendly activities, training workshops, or adoption fairs, we’ve got it all in one place. Join us today and make every day an adventure for you and your pets!`}
-            img={'https://via.placeholder.com/277x160'}
+            img={'public/homepagePaw.webp'}
             alt={'placeholder'}
             direction={ImgDirection.Right}
           />
@@ -76,7 +76,7 @@ export default function Home() {
             body={
               'Give your pets the spotlight they deserve! Create a profile for each of your furry, feathered, or scaly friends on pawpals and showcase their unique personalities, favorite activities, and adorable photos. With pet profiles, you can easily track their traits, connect with other pet parents, and discover events tailored to their interests. Start building their profiles today and let the world see how special your pets are!'
             }
-            img={'https://via.placeholder.com/277x160'}
+            img={'public/dawgs.webp'}
             alt={'placeholder'}
             direction={ImgDirection.Left}
           />
@@ -84,8 +84,8 @@ export default function Home() {
         <div className="flex flex-row">
           <Card
             icon="calendar-alt"
-            title="My Schedule"
-            id="my-schedule"
+            title="Featured Events:"
+            id="FEvents"
             buttonPath={'/events'}
             buttonText="See more events"
             buttonIcon="calendar-plus"

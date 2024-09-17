@@ -49,4 +49,19 @@ export function getAge(dateString: string) {
   return age
 }
 
+export function LocationFormat(location: string) {
+  const locationFormat = location.split(',')
+  const format = `${locationFormat[0]}`
+  return format
+}
+
+export function DescriptionFormat(description: string) {
+  const emojiRegex = /[\p{Emoji}]/gu
+  const descriptionArr = description.split(' ')
+  const format = descriptionArr
+    .filter((word) => !word.match(emojiRegex))
+    .join(' ')
+  return format
+}
+
 export default dateToReadable

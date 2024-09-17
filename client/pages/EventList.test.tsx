@@ -64,6 +64,196 @@ describe('EventList.tsx', () => {
       .get('/api/v1/events')
       .reply(200, mockEvents)
 
+    const scope3 = nock('http://localhost')
+      .get('/api/v1/attendees')
+      .reply(200, [
+        {
+          id: 1,
+          eventId: 1,
+          accountId: 3,
+          petId: 3,
+        },
+        {
+          id: 2,
+          eventId: 1,
+          accountId: 7,
+          petId: 9,
+        },
+        {
+          id: 3,
+          eventId: 1,
+          accountId: 9,
+          petId: 11,
+        },
+        {
+          id: 4,
+          eventId: 1,
+          accountId: 12,
+          petId: 14,
+        },
+        {
+          id: 5,
+          eventId: 1,
+          accountId: 4,
+          petId: 5,
+        },
+        {
+          id: 6,
+          eventId: 1,
+          accountId: 6,
+          petId: 8,
+        },
+        {
+          id: 7,
+          eventId: 1,
+          accountId: 14,
+          petId: 16,
+        },
+        {
+          id: 8,
+          eventId: 1,
+          accountId: 1,
+          petId: 1,
+        },
+        {
+          id: 9,
+          eventId: 1,
+          accountId: 11,
+          petId: 13,
+        },
+        {
+          id: 10,
+          eventId: 1,
+          accountId: 2,
+          petId: 2,
+        },
+        {
+          id: 11,
+          eventId: 2,
+          accountId: 8,
+          petId: 10,
+        },
+        {
+          id: 12,
+          eventId: 2,
+          accountId: 5,
+          petId: 7,
+        },
+        {
+          id: 13,
+          eventId: 2,
+          accountId: 13,
+          petId: 15,
+        },
+        {
+          id: 14,
+          eventId: 3,
+          accountId: 15,
+          petId: 17,
+        },
+        {
+          id: 15,
+          eventId: 3,
+          accountId: 10,
+          petId: 12,
+        },
+        {
+          id: 16,
+          eventId: 3,
+          accountId: 4,
+          petId: 6,
+        },
+        {
+          id: 17,
+          eventId: 4,
+          accountId: 9,
+          petId: 11,
+        },
+        {
+          id: 18,
+          eventId: 5,
+          accountId: 7,
+          petId: 9,
+        },
+        {
+          id: 19,
+          eventId: 6,
+          accountId: 6,
+          petId: 8,
+        },
+        {
+          id: 20,
+          eventId: 7,
+          accountId: 2,
+          petId: 2,
+        },
+        {
+          id: 21,
+          eventId: 8,
+          accountId: 11,
+          petId: 15,
+        },
+        {
+          id: 22,
+          eventId: 9,
+          accountId: 3,
+          petId: 4,
+        },
+        {
+          id: 23,
+          eventId: 10,
+          accountId: 15,
+          petId: 17,
+        },
+        {
+          id: 24,
+          eventId: 10,
+          accountId: 1,
+          petId: 1,
+        },
+        {
+          id: 25,
+          eventId: 10,
+          accountId: 5,
+          petId: 7,
+        },
+        {
+          id: 26,
+          eventId: 10,
+          accountId: 8,
+          petId: 12,
+        },
+        {
+          id: 27,
+          eventId: 10,
+          accountId: 4,
+          petId: 6,
+        },
+        {
+          id: 28,
+          eventId: 10,
+          accountId: 9,
+          petId: 11,
+        },
+        {
+          id: 29,
+          eventId: 10,
+          accountId: 12,
+          petId: 14,
+        },
+        {
+          id: 30,
+          eventId: 10,
+          accountId: 7,
+          petId: 9,
+        },
+        {
+          id: 31,
+          eventId: 10,
+          accountId: 13,
+          petId: 15,
+        },
+      ])
     const screen = renderApp('/events')
 
     await waitForElementToBeRemoved(() => screen.getByTestId(/load/i))
@@ -76,6 +266,7 @@ describe('EventList.tsx', () => {
     expect(eventTitle).toBeVisible()
     expect(scope.isDone()).toBe(true)
     expect(scope2.isDone()).toBe(true)
+    expect(scope3.isDone()).toBe(true)
   })
 })
 
@@ -89,10 +280,201 @@ describe('EventList.tsx', () => {
       .get('/api/v1/events')
       .reply(200, mockEvents)
 
+    const scope3 = nock('http://localhost')
+      .get('/api/v1/attendees')
+      .reply(200, [
+        {
+          id: 1,
+          eventId: 1,
+          accountId: 3,
+          petId: 3,
+        },
+        {
+          id: 2,
+          eventId: 1,
+          accountId: 7,
+          petId: 9,
+        },
+        {
+          id: 3,
+          eventId: 1,
+          accountId: 9,
+          petId: 11,
+        },
+        {
+          id: 4,
+          eventId: 1,
+          accountId: 12,
+          petId: 14,
+        },
+        {
+          id: 5,
+          eventId: 1,
+          accountId: 4,
+          petId: 5,
+        },
+        {
+          id: 6,
+          eventId: 1,
+          accountId: 6,
+          petId: 8,
+        },
+        {
+          id: 7,
+          eventId: 1,
+          accountId: 14,
+          petId: 16,
+        },
+        {
+          id: 8,
+          eventId: 1,
+          accountId: 1,
+          petId: 1,
+        },
+        {
+          id: 9,
+          eventId: 1,
+          accountId: 11,
+          petId: 13,
+        },
+        {
+          id: 10,
+          eventId: 1,
+          accountId: 2,
+          petId: 2,
+        },
+        {
+          id: 11,
+          eventId: 2,
+          accountId: 8,
+          petId: 10,
+        },
+        {
+          id: 12,
+          eventId: 2,
+          accountId: 5,
+          petId: 7,
+        },
+        {
+          id: 13,
+          eventId: 2,
+          accountId: 13,
+          petId: 15,
+        },
+        {
+          id: 14,
+          eventId: 3,
+          accountId: 15,
+          petId: 17,
+        },
+        {
+          id: 15,
+          eventId: 3,
+          accountId: 10,
+          petId: 12,
+        },
+        {
+          id: 16,
+          eventId: 3,
+          accountId: 4,
+          petId: 6,
+        },
+        {
+          id: 17,
+          eventId: 4,
+          accountId: 9,
+          petId: 11,
+        },
+        {
+          id: 18,
+          eventId: 5,
+          accountId: 7,
+          petId: 9,
+        },
+        {
+          id: 19,
+          eventId: 6,
+          accountId: 6,
+          petId: 8,
+        },
+        {
+          id: 20,
+          eventId: 7,
+          accountId: 2,
+          petId: 2,
+        },
+        {
+          id: 21,
+          eventId: 8,
+          accountId: 11,
+          petId: 15,
+        },
+        {
+          id: 22,
+          eventId: 9,
+          accountId: 3,
+          petId: 4,
+        },
+        {
+          id: 23,
+          eventId: 10,
+          accountId: 15,
+          petId: 17,
+        },
+        {
+          id: 24,
+          eventId: 10,
+          accountId: 1,
+          petId: 1,
+        },
+        {
+          id: 25,
+          eventId: 10,
+          accountId: 5,
+          petId: 7,
+        },
+        {
+          id: 26,
+          eventId: 10,
+          accountId: 8,
+          petId: 12,
+        },
+        {
+          id: 27,
+          eventId: 10,
+          accountId: 4,
+          petId: 6,
+        },
+        {
+          id: 28,
+          eventId: 10,
+          accountId: 9,
+          petId: 11,
+        },
+        {
+          id: 29,
+          eventId: 10,
+          accountId: 12,
+          petId: 14,
+        },
+        {
+          id: 30,
+          eventId: 10,
+          accountId: 7,
+          petId: 9,
+        },
+        {
+          id: 31,
+          eventId: 10,
+          accountId: 13,
+          petId: 15,
+        },
+      ])
     const screen = renderApp('/events')
     const EventId = await screen.findAllByTestId('event-card')
     expect(EventId).toHaveLength(mockEvents.length)
     expect(scope.isDone()).toBe(true)
     expect(scope2.isDone()).toBe(true)
+    expect(scope3.isDone()).toBe(true)
   })
 })
