@@ -1,8 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 import HomeCards from '../components/utils/Home/HomeCards'
-import Heading from '../components/utils/Home/HomeHeading'
 import HomeHeading from '../components/utils/Home/HomeHeading'
+import { ImgDirection } from '../../models/enums'
+import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 
 export default function Home() {
   const { loginWithRedirect } = useAuth0()
@@ -43,7 +44,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className=" inline-flex max-w-5xl pt-14 sm:pt-44 lg:pt-20">
+        <div className="flex max-w-5xl pt-14 sm:pt-44 lg:pt-20">
           <HomeCards
             title="Sign Up"
             body="Click get started to make your (people) account"
@@ -61,18 +62,46 @@ export default function Home() {
           <HomeHeading
             heading={'I want to be right'}
             subheading={'SUBHEADING'}
-            body={'bodyyyyyyyyyyyyyyyyy'}
-            img={'public/pets/obi.webp'}
-            direction={'right'}
+            body={''}
+            img={'https://via.placeholder.com/277x160'}
+            alt={'placeholder'}
+            direction={ImgDirection.Right}
           />
         </div>
         <div className="flex-col max-w-5xl py-32 sm:py-48 lg:py-24 ">
           <HomeHeading
             heading={'I want to be left'}
             subheading={'SUBHEADING'}
-            body={'bodyyyyyyyyyyyyyyyy'}
-            img={'public/pets/bubbles.webp'}
-            direction={'left'}
+            body={
+              'bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy yyyyyyyyyyyyyyyyyyyyyyyy yyyyyyyyyy'
+            }
+            img={'https://via.placeholder.com/277x160'}
+            alt={'placeholder'}
+            direction={ImgDirection.Left}
+          />
+        </div>
+        <div className="flex flex-col md:flex-row max-w-5x1 w-full gap-5">
+          <h2></h2>
+          <ScheduleCard
+            id={1}
+            title={'Hello!'}
+            date={'2024-11-11'}
+            time={'7:00'}
+            image={'https://via.placeholder.com/277x160'}
+          />
+          <ScheduleCard
+            id={1}
+            title={'Hello!'}
+            date={'2024-11-11'}
+            time={'7:00'}
+            image={'https://via.placeholder.com/277x160'}
+          />
+          <ScheduleCard
+            id={1}
+            title={'Hello!'}
+            date={'2024-11-11'}
+            time={'7:00'}
+            image={'https://via.placeholder.com/277x160'}
           />
         </div>
       </div>

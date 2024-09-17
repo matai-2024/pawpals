@@ -1,9 +1,12 @@
+import { ImgDirection } from '../../../../models/enums'
+
 interface Props {
   heading: string
   subheading: string
   body: string
   img: string
-  direction: string
+  alt: string
+  direction: ImgDirection
 }
 
 const HomeHeading: React.FC<Props> = ({
@@ -11,32 +14,40 @@ const HomeHeading: React.FC<Props> = ({
   subheading,
   body,
   img,
+  alt,
   direction,
 }) => (
   <>
-    <div className="inline-flex max-w-5xl ">
-      <div className="w-[484px] h-[351px] flex-col justify-center items-start gap-6 inline-flex">
+    <div className={`flex flex-col md:flex-row max-w-5xl w-full gap-10`}>
+      <img
+        className={`object-cover md:w-1/2 h-[350px] w-full rounded-2xl ${direction === ImgDirection.Left ? 'flex' : 'flex md:hidden'}`}
+        src={img}
+        alt={alt}
+      />
+      <div className="md:w-1/2 md:h-[350px] w-full flex-col justify-start items-start gap-6">
         <div className="text-start self-stretch h-[61px] flex-col gap-2 flex">
           <h1
-            className={`text-${direction} text-[#1e1e1e] text-2xl font-semibold leading-[28.80px]`}
+            className={`text-[#1e1e1e] text-2xl font-semibold leading-[28.80px]`}
           >
             {heading}
           </h1>
           <h2
-            className={`self-stretch text-${direction} text-[#757575] text-xl font-normal leading-normal`}
+            className={`self-stretch text-[#757575] text-xl font-normal leading-normal`}
           >
             {subheading}
           </h2>
         </div>
-        <div
-          className={`self-stretch justify-start text-${direction} items-start`}
-        >
-          <p className="grow shrink basis-0 text-[#1e1e1e] text-base font-normal leading-snug">
+        <div className={`self-stretch justify-start items-start`}>
+          <p className="text-start line-clamp-[12] grow shrink basis-0 text-[#1e1e1e] text-base font-normal leading-snug">
             {body}
           </p>
         </div>
       </div>
-      <img className="w-[484px] h-[350px] rounded-2xl" src={`${img}`} alt="" />
+      <img
+        className={`object-cover w-1/2 h-[350px] rounded-2xl ${direction === ImgDirection.Right ? 'md:flex hidden' : 'hidden'} `}
+        src={img}
+        alt={alt}
+      />
     </div>
   </>
 )
