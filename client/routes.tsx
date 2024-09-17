@@ -3,7 +3,6 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom'
-
 import App from './App'
 import NotFound from './components/NotFound404'
 import Home from './pages/Home'

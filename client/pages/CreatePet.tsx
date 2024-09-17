@@ -5,11 +5,10 @@ import { useCreatePet, useMultistepForm } from '../hooks/hooks.ts'
 import PetBasicsForm from '../components/forms/PetBasicsForm.tsx'
 import PetTraitsForm from '../components/forms/PetTraitsForm.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
-import { PetProfileData } from '../../models/forms.ts'
+import { PetProfileDataInit } from '../../models/forms.ts'
 
 const INITIAL_DATA = {
   // get owner by sign-in ID
-  ownerId: 1,
   petName: '',
   image: '',
   dateOfBirth: '',
@@ -37,7 +36,7 @@ export default function Signup() {
   const navigate = useNavigate()
   const { getAccessTokenSilently } = useAuth0()
 
-  function updateFields(fields: Partial<PetProfileData>) {
+  function updateFields(fields: Partial<PetProfileDataInit>) {
     setData((prev) => {
       return { ...prev, ...fields }
     })

@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { addPet } from '../apis/apiClientPets.ts'
-import { PetProfileData } from '../../models/forms.ts'
+import { PetProfileDataInit } from '../../models/forms.ts'
 
 interface Props {
-  data: PetProfileData
+  data: PetProfileDataInit
   token: string
 }
 
