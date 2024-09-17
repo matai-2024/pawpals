@@ -87,6 +87,7 @@ export default function Nav() {
             <Link
               to="/dashboard"
               className="text-sm font-semibold leading-6 text-gray-900"
+              data-testid="dashboard"
             >
               Dashboard
             </Link>
