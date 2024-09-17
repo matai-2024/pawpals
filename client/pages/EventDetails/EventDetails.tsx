@@ -1,9 +1,9 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import dateToReadable, { TimeFormat } from '../components/utils/Presentation'
-import usePets from '../hooks/use-pets'
-import LoadingSpinner from '../components/LoadingSpinner'
-import useEventById from '../hooks/eventHooks/useEventById'
-import useDelEvent from '../hooks/eventHooks/useDeleteEvent'
+import dateToReadable, { TimeFormat } from '../../components/utils/Presentation'
+import usePets from '../../hooks/use-pets'
+import LoadingSpinner from '../../components/LoadingSpinner'
+import useEventById from '../../hooks/eventHooks/useEventById'
+import useDelEvent from '../../hooks/eventHooks/useDeleteEvent'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function EventDetails() {

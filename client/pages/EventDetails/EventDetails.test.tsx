@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { beforeAll, describe, it, expect } from 'vitest'
-import { renderApp } from './__tests__/test-setup.tsx'
+import { renderApp } from '../__tests__/test-setup.tsx'
 import nock from 'nock'
 import { waitForElementToBeRemoved } from '@testing-library/react'
 import '@testing-library/jest-dom/vitest'
