@@ -1,4 +1,5 @@
 import { Event, EventData } from '../../../models/events.ts'
+import connection from '../connection.ts'
 import db from '../connection.ts'
 
 const camelCase = [
@@ -79,4 +80,16 @@ export async function getEventsByPetId(petId: number) {
       'events.creator_id as creatorId',
     )
   return events as Event[]
+}
+// Get attendees based on accountId
+export async function getAttendeesByAccountId(accountId: number) {
+  try {
+    return await connection('attendees')
+      .join('pets', 'attendees.pet_id', 'pets.id')
+      .join('events', 'attendees.event_id', 'events.id')
+      .where('attendees.accountId', accountId) // Filter by the owner's ID
+  } catch (error) {
+    console.error('Error fetching attendees:', error)
+    throw error
+  }
 }
