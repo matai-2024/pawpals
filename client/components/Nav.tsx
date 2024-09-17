@@ -39,10 +39,16 @@ export default function Nav() {
 
   function handleClick() {
     const dropdowns = document.querySelector('.dropdown-content')
+    const profileImage = document.querySelector('.dropdown-menu')
+    console.log(profileImage)
     if (dropdowns?.classList.contains('hidden')) {
       dropdowns.classList.remove('hidden')
+      profileImage?.classList.remove('border-white')
+      profileImage?.classList.add('border-yellow-400')
     } else {
       dropdowns?.classList.add('hidden')
+      profileImage?.classList.remove('border-yellow-400')
+      profileImage?.classList.add('border-white')
     }
   }
 
