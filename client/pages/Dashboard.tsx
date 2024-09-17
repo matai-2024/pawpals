@@ -24,7 +24,6 @@ interface Event {
 // Dashboard Component
 export function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
-
   const [pets, setPets] = useState<Pet[]>([]) // State to store pets
   const [events, setEvents] = useState<Event[]>([]) // State to store events
 
@@ -133,7 +132,6 @@ export function Dashboard() {
                       title={event.title}
                       date={event.date}
                       time={event.time}
-                      going={event.going}
                       image={event.image}
                       viewBtn={viewBtn}
                       cancelBtn={cancelBtn}
@@ -162,7 +160,6 @@ export function Dashboard() {
                       date={event.date}
                       title={event.title}
                       time={event.time}
-                      going={event.going}
                       image={event.image} // Again, using any event data you have
                       viewBtn={viewBtn}
                       editBtn={editBtn}

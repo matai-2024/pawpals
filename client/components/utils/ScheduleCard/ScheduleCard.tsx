@@ -1,5 +1,4 @@
 // ScheduleCard component
-
 import { Link } from 'react-router-dom'
 
 interface ScheduleCardProps {
@@ -7,7 +6,6 @@ interface ScheduleCardProps {
   title: string
   date: string
   time: string
-  going: boolean
   image: string
   viewBtn?: CardButtons
   cancelBtn?: CardButtons
@@ -24,35 +22,32 @@ export default function ScheduleCard({
   title,
   date,
   time,
-  going,
   image,
   viewBtn,
   editBtn,
   cancelBtn,
 }: ScheduleCardProps) {
-  console.log(viewBtn)
-
   return (
-    <div className="flex items-center border p-3 rounded-lg gap-6">
+    <div className="flex items-center border w-full p-3 rounded-lg gap-6 shadow-md ease-in-out duration-200">
       <div className="w-36 h-24 rounded-md overflow-hidden">
         <img src={image} alt={title} className="object-cover" />
       </div>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col">
+        <div className="flex flex-col text-left">
           <p className="text-sm text-gray-500">
             {date}, {time}
           </p>
           <p className="font-semibold">{title}</p>
         </div>
         <div className="flex space-x-6 mt-2">
-          <Link to={`/events/${id}`}>
+          <Link to={`/events/${id}`} onClick={() => window.scroll(0, 0)}>
             <button className="text-sm text-gray-500 hover:text-blue-500 flex items-center space-x-2">
               <i className={`fa-solid fa-${viewBtn?.icon}`}></i>
               <span>{viewBtn?.title}</span>
             </button>
           </Link>
           {editBtn && (
-            <Link to={`/events/${id}/edit`}>
+            <Link to={`/events/${id}/edit`} onClick={() => window.scroll(0, 0)}>
               <button className="text-sm text-gray-500 hover:text-blue-500 flex items-center space-x-2">
                 <i className={`fa-solid fa-${editBtn?.icon}`}></i>
                 <span>{editBtn?.title}</span>
@@ -67,9 +62,6 @@ export default function ScheduleCard({
           )}
         </div>
       </div>
-      <p className="text-sm text-gray-500">
-        {going ? '✓ Going' : '✗ Not going'}
-      </p>
     </div>
   )
 }
