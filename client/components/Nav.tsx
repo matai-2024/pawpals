@@ -4,7 +4,7 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { IfAuthenticated, IfNotAuthenticated } from './utils/Authenticated.tsx'
 import { Link } from 'react-router-dom'
-import AccountIcon from './AccountIcon.tsx'
+import AccountIcon from './UserMenu.tsx'
 
 const navigation = [
   { name: 'About', to: '/about' },
@@ -40,7 +40,6 @@ export default function Nav() {
   function handleClick() {
     const dropdowns = document.querySelector('.dropdown-content')
     const profileImage = document.querySelector('.dropdown-menu')
-    console.log(profileImage)
     if (dropdowns?.classList.contains('hidden')) {
       dropdowns.classList.remove('hidden')
       profileImage?.classList.remove('border-white')
