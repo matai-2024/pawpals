@@ -5,9 +5,7 @@ import dateToReadable, {
 } from '../components/utils/Presentation'
 import { Link } from 'react-router-dom'
 import LoadingSpinner from '../components/LoadingSpinner'
-
 import { Event } from '../../models/events'
-
 import useAttendees from '../hooks/use-attendees'
 import useFetchEvents from '../hooks/use-fetch-events'
 
