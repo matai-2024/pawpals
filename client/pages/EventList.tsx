@@ -41,25 +41,27 @@ export default function EventList({ search }: Props) {
               <Link to={`/events/${event.id}`}>
                 <div
                   data-testid="event-card"
-                  className="inline-flex justify-start items-start gap-6 my-3 w-[880px] text-left bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100h-52 p-6 bg-white rounded-lg border border-[#d9d9d9]"
+                  className="shadow-lg hover:bg-gray-50 hover:shadow-xl inline-flex justify-start items-start gap-6 my-3 w-[880px] text-left bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100h-52 p-6 bg-white rounded-lg border border-[#d9d9d9]"
                 >
                   <img
-                    className="w-40 h-40 object-cover"
+                    className="w-40 h-40 object-cover rounded-lg"
                     src={`/events/${event.eventImage.length > 0 ? event.eventImage : defaultImg}`}
                     alt={event.title}
                   />
-                  <div className="grow  shrink basis-0 flex-col justify-start items-start gap-4 inline-flex">
+                  <div className="grow basis-0 flex-col justify-start items-start gap-4 inline-flex">
                     <div className="self-stretch h-[107px] flex-col justify-start items-start gap-2 flex  ">
-                      <p className="self-stretch text-[#1e1e1e] text-base font-semibold font-['Inter'] leading-snug">
-                        {`${dateToReadable(event.date)},`}{' '}
-                        {TimeFormat(event.time)}
-                      </p>
+                      <div className="flex flex-row space-x-2">
+                        <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px] ">
+                          {`${dateToReadable(event.date)},`}{' '}
+                          {TimeFormat(event.time)}
+                        </p>
+                        <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px] justify-self-end">
+                          {event.location}
+                        </p>
+                      </div>
                       <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
                         {event.title}
                       </h1>
-                      <p className="self-stretch text-[#1e1e1e] text-xl font-semibold font-['Inter'] leading-[28.80px]">
-                        {event.location}
-                      </p>
                       <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight ">
                         <p className="line-clamp-2">{event.description}</p>
                       </div>
