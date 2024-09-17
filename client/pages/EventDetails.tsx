@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import dateToReadable, { TimeFormat } from '../components/utils/Presentation'
-import usePets from '../hooks/use-pets'
+import usePets from '../hooks/pets/use-pets'
 import LoadingSpinner from '../components/LoadingSpinner'
 import useEventById from '../hooks/eventHooks/use-event-by-id'
 import useDelEvent from '../hooks/eventHooks/use-delete-event'
