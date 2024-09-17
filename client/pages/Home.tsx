@@ -6,6 +6,8 @@ import { ImgDirection } from '../../models/enums'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Card from '../components/utils/Card/Card'
 
+const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
+
 export default function Home() {
   const { loginWithRedirect } = useAuth0()
 
@@ -89,27 +91,41 @@ export default function Home() {
             buttonPath={'/events'}
             buttonText="See more events"
             buttonIcon="calendar-plus"
-          />
-          <ScheduleCard
-            id={1}
-            title={'Hello!'}
-            date={'2024-11-11'}
-            time={'7:00'}
-            image={'https://via.placeholder.com/277x160'}
-          />
-          <ScheduleCard
-            id={1}
-            title={'Hello!'}
-            date={'2024-11-11'}
-            time={'7:00'}
-            image={'https://via.placeholder.com/277x160'}
-          />
-          <ScheduleCard
-            id={1}
-            title={'Hello!'}
-            date={'2024-11-11'}
-            time={'7:00'}
-            image={'https://via.placeholder.com/277x160'}
+            // eslint-disable-next-line react/no-children-prop
+            children={
+              <>
+                <div className="flex flex-col py-2">
+                  <ScheduleCard
+                    id={1}
+                    title={'Food Truck Night in Howick'}
+                    date={'2024-10-03'}
+                    time={'17:00'}
+                    image={'public/events/event-1.webp'}
+                    viewBtn={viewBtn}
+                  />
+                </div>
+                <div className="flex flex-col py-2">
+                  <ScheduleCard
+                    id={2}
+                    title={'Paws & Pints: Dog-Friendly Brewery Tour'}
+                    date={'2024-10-07'}
+                    time={'15:00'}
+                    image={'public/events/event-2.webp'}
+                    viewBtn={viewBtn}
+                  />
+                </div>
+                <div className="flex flex-col py-2">
+                  <ScheduleCard
+                    id={3}
+                    title={'Equestrian Gala: Horses & Harmony'}
+                    date={'2024-10-11'}
+                    time={'18:00'}
+                    image={'public/events/event-3.webp'}
+                    viewBtn={viewBtn}
+                  />
+                </div>
+              </>
+            }
           />
         </div>
       </div>
