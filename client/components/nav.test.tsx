@@ -31,11 +31,11 @@ describe('Nav.tsx', () => {
     expect(result).toBeTruthy()
   })
 
-  it('should redirect you to the home page on sign out', async () => {
+  it('on log out, it redirects the user to the home page', async () => {
     const { user, ...screen } = renderApp('/')
-    const logoutBtn = screen.getAllByRole('link', { name: 'Log out' })
-    await user.click(logoutBtn[0])
-    const uniqueText = screen.getByText('My Schedule')
-    expect(uniqueText).toBeTruthy()
+    const button = await screen.getByTestId('Log out')
+    await user.click(button)
+    const result = await screen.getByText('Get started')
+    expect(result).toBeTruthy()
   })
 })
