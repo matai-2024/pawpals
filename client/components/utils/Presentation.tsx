@@ -49,4 +49,10 @@ export function getAge(dateString: string) {
   return age
 }
 
+export function LocationFormat(location: string) {
+  const locationFormat = location.split(',')
+  const format = `${locationFormat[0]}, ${locationFormat[1]}`
+  return format
+}
+
 export default dateToReadable

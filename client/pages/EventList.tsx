@@ -1,4 +1,7 @@
-import dateToReadable, { TimeFormat } from '../components/utils/Presentation'
+import dateToReadable, {
+  LocationFormat,
+  TimeFormat,
+} from '../components/utils/Presentation'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { fetchEvents } from '../apis/apiClientEvents'
@@ -50,13 +53,14 @@ export default function EventList({ search }: Props) {
                   />
                   <div className="grow basis-0 flex-col justify-start items-start gap-4 inline-flex">
                     <div className="self-stretch h-[107px] flex-col justify-start items-start gap-2 flex  ">
-                      <div className="flex flex-row space-x-2">
+                      <div className="flex flex-row space-x-4">
                         <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px] ">
                           {`${dateToReadable(event.date)},`}{' '}
-                          {TimeFormat(event.time)}
+                          {TimeFormat(event.time)}{' '}
                         </p>
-                        <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px] justify-self-end">
-                          {event.location}
+                        <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px]  ">
+                          {LocationFormat(event.location)}{' '}
+                          {<i className="fa-solid fa-location-dot"></i>}
                         </p>
                       </div>
                       <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
