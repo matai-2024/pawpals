@@ -57,14 +57,15 @@ export default function EventList({ search }: Props) {
                       <div className="flex flex-row space-x-4">
                         <p className="text-[#1e1e1e] text-md font-semibold font-['Inter'] leading-[28.80px] ">
                           {`${dateToReadable(event.date)},`}{' '}
-                          {TimeFormat(event.time)} {' | '}
+                          {TimeFormat(event.time)}{' '}
+                          <span style={{ padding: '0 10px' }}> | </span>
                           {LocationFormat(event.location)}{' '}
                         </p>
                       </div>
                       <h1 className="self-stretch text-[#1e1e1e] text-2xl font-semibold font-['Inter'] leading-[28.80px]">
                         {event.title}
                       </h1>
-                      <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-tight ">
+                      <div className="text-[#757575] text-sm font-normal font-['Inter'] leading-relaxed ">
                         <p className="line-clamp-2">
                           {DescriptionFormat(event.description)}
                         </p>
