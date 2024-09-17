@@ -16,8 +16,8 @@ export const populated: Story = {
       title={undefined}
       // eslint-disable-next-line react/no-children-prop
       children={''}
-      addAction={undefined}
       buttonText={undefined}
+      buttonPath={''}
     />
   ),
 }
