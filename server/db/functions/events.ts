@@ -57,6 +57,7 @@ export async function insertEvent(eventData: EventData) {
   }
 
   const result = await db('events').insert(newEvent, ['id'])
+  if (newEvent.event_image == '') newEvent.event_image = 'miso.webp'
   return result[0].id
 }
 

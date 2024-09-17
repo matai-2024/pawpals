@@ -137,7 +137,7 @@ export function Dashboard() {
           {/* Events Section */}
           <Card
             title="My Events"
-            addAction={() => navigate(`/edit-events/`)}
+            addAction={() => navigate(`/events/create`)}
             buttonText="Add Event"
           >
             <div className="space-y-4">
