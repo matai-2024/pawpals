@@ -1,6 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
-import HomeCards from '../components/HomeCards'
+import HomeCards from '../components/utils/Home/HomeCards'
+import Heading from '../components/utils/Home/HomeHeading'
+import HomeHeading from '../components/utils/Home/HomeHeading'
 
 export default function Home() {
   const { loginWithRedirect } = useAuth0()
@@ -49,8 +51,28 @@ export default function Home() {
               Learn more <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <HomeCards />
         </div>
+        <div className="mx-auto text-center max-w-5xl pt-32 sm:pt-48 lg:pt-24">
+          <HomeCards title="Title" body="yap" />
+          <HomeCards title="Title" body="yap" />
+          <HomeCards title="Title" body="yap" />
+        </div>
+      </div>
+      <div className="flex-col">
+        <HomeHeading
+          heading={'I want to be right'}
+          subheading={'SUBHEADING'}
+          body={'YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE'}
+          img={'public/pets/obi.webp'}
+          direction={'right'}
+        />
+        <HomeHeading
+          heading={'I want to be left'}
+          subheading={'SUBHEADING'}
+          body={'YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE'}
+          img={'public/pets/bubbles.webp'}
+          direction={'left'}
+        />
       </div>
     </>
   )
