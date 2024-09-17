@@ -1,4 +1,5 @@
 import dateToReadable, {
+  countAttendees,
   DescriptionFormat,
   LocationFormat,
   TimeFormat,
@@ -9,7 +10,8 @@ import { fetchEvents } from '../apis/apiClientEvents'
 import LoadingSpinner from '../components/LoadingSpinner'
 
 import { Event } from '../../models/events'
-import { fetchAttendees } from '../apis/apiClientAttendees'
+
+import useAttendees from '../hooks/use-attendees'
 
 interface Props {
   search: Event[] | undefined
@@ -28,19 +30,13 @@ export default function EventList({ search }: Props) {
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
 
-  function useAttendees() {
-    const query = useQuery({
-      queryKey: ['attendees'],
-      queryFn: fetchAttendees,
-    })
-    return { ...query }
-  }
   const { data: attendees } = useAttendees()
-  function countAttendees(num: string) {
-    const eventsArr = attendees.map((guest) => {
+
+  function countAttendees(num: number) {
+    const eventsArr = attendees.map((guest: { eventId: number }) => {
       return guest.eventId
     })
-    const numOfEvents = eventsArr.filter((event) => event === num)
+    const numOfEvents = eventsArr.filter((event: number) => event === num)
     return numOfEvents.length
   }
 
@@ -53,7 +49,7 @@ export default function EventList({ search }: Props) {
         {String(error)}
       </div>
     )
-  if (events)
+  if (events && attendees)
     return (
       <ul>
         {search?.map((event) => (
