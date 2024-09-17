@@ -26,7 +26,6 @@ export function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
   const [pets, setPets] = useState<Pet[]>([]) // State to store pets
   const [events, setEvents] = useState<Event[]>([]) // State to store events
-  const [mySchedule, setMySchedule] = useState<Event[]>([]) // State for events user is attending
 
   const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
   const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
@@ -37,16 +36,13 @@ export function Dashboard() {
       const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
       const data = await response.json()
 
-      const filteredPets = data.filter((pet: Pet) => pet.ownerId === ownerId)
-
-      return filteredPets
+      return data.filter((pet: Pet) => pet.ownerId === ownerId)
     } catch (error) {
       console.error('Error fetching pets:', error)
       return []
     }
   }
 
-  // Fetch events created by the authenticated user
   async function getEventsByCreatorId() {
     try {
       const response = await fetch(`/api/v1/events`)
@@ -99,7 +95,6 @@ export function Dashboard() {
           // Fetch attending events (where user's pets are attendees)
           return getEventsForAttendingPets(ownerId) // Pass ownerId (accountId) here
         })
-        .then((attendingEvents) => setMySchedule(attendingEvents))
         .catch((err) => console.error('Error fetching schedule:', err))
 
       getEventsByCreatorId() // For fetching user's created events

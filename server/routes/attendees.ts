@@ -1,5 +1,4 @@
 import express from 'express'
-
 import * as db from '../db/functions/events.ts'
 
 const router = express.Router()
@@ -20,4 +19,4 @@ router.get('/attendees', async (req, res) => {
   }
 })
 
-module.exports = router
+export default router

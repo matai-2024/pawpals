@@ -81,6 +81,7 @@ export async function getEventsByPetId(petId: number) {
     )
   return events as Event[]
 }
+
 // Get attendees based on accountId
 export async function getAttendeesByAccountId(accountId: number) {
   try {
