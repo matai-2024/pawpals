@@ -5,6 +5,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import useEventById from '../hooks/eventHooks/useEventById'
 import useDelEvent from '../hooks/eventHooks/useDeleteEvent'
 import { useAuth0 } from '@auth0/auth0-react'
+import useDocumentTitle from '../hooks/use-document-title'
 
 export default function EventDetails() {
   const navigate = useNavigate()
@@ -16,6 +17,8 @@ export default function EventDetails() {
   const { data: evts } = useEventById(id)
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
+
+  useDocumentTitle(evts?.title ? `${evts?.title}` : 'Event | pawpals')
 
   function handleEditEvent(id: number) {
     navigate(`/edit-event/${id}`)
