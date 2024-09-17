@@ -4,28 +4,19 @@ import dateToReadable, {
   TimeFormat,
 } from '../components/utils/Presentation'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import { fetchEvents } from '../apis/apiClientEvents'
 import LoadingSpinner from '../components/LoadingSpinner'
 
 import { Event } from '../../models/events'
 
 import useAttendees from '../hooks/use-attendees'
+import useFetchEvents from '../hooks/use-fetch-events'
 
 interface Props {
   search: Event[] | undefined
 }
 
 export default function EventList({ search }: Props) {
-  const {
-    data: events,
-    isPending,
-    isError,
-    error,
-  } = useQuery({
-    queryFn: fetchEvents,
-    queryKey: ['events'],
-  })
+  const { data: events, isPending, isError, error } = useFetchEvents()
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
 
