@@ -6,7 +6,7 @@ import dateToReadable, {
 import { Link } from 'react-router-dom'
 import { Event } from '../../models/events'
 import useAttendees from '../hooks/use-attendees'
-import useFetchEvents from '../hooks/use-fetch-events'
+import useFetchEvents from '../hooks/eventHooks/use-fetch-events'
 
 interface Props {
   search: Event[] | undefined
