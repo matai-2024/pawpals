@@ -24,7 +24,9 @@ router.get('/:id', async (req, res) => {
     const id = Number(req.params.id)
     const event = await db.getEventById(id)
     res.status(200).json(event)
-  } catch (e) {
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error: ', error)
     res.sendStatus(500)
   }
 })
@@ -35,7 +37,9 @@ router.delete('/:id', async (req, res) => {
     const id = req.params.id
     const event = await db.delEvent(Number(id))
     res.status(204).json(event)
-  } catch (e) {
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error: ', error)
     res.sendStatus(500)
   }
 })
