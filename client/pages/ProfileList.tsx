@@ -10,7 +10,7 @@ export default function ProfileList() {
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
   const pulbicDir = 'pets'
 
-  // -- TEST SEARCH FUNCTION -- //
+
   const [petSearch, setSearch] = useState(data)
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function ProfileList() {
       e.preventDefault() // Prevent action on Enter key
     }
   }
-  // -- TEST SEARCH FUNCTION -- //
+
 
   if (isPending) return <LoadingSpinner />
 
