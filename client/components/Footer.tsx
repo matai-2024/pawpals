@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 export default function Footer() {
   const { logout, loginWithRedirect } = useAuth0()
   const handleSignOut = () => {
-    logout()
+    logout({ logoutParams: { returnTo: window.location.origin } })
   }
 
   const handleSignIn = () => {
