@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       clientId={import.meta.env.VITE_AUTH0_CLIENT_ID as string}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      sso_disabled={true}
       cacheLocation="localstorage"
       authorizationParams={{
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -42,7 +42,7 @@ export default function Home() {
                 onClick={() => {
                   return loginWithRedirect({
                     authorizationParams: {
-                      screen_hint: 'signin', //may need to change :3
+                      screen_hint: 'signin',
                       redirect_uri: `${window.location.origin}/dashboard`,
                     },
                   })
