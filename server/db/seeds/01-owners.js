@@ -22,7 +22,7 @@ export const addOwners = [
   },
   {
     id: 4,
-    external_key: 'auth0|3',
+    external_key: 'github|171200457',
     first_name: 'Dean',
     last_name: 'Tunbridge',
     email: 'dean@email.com',

@@ -49,7 +49,7 @@ export const addPets = [
   },
   {
     id: 5,
-    owner_id: 'auth0|3',
+    owner_id: 'github|171200457',
     pet_name: 'Pixel',
     image: 'pixel.webp',
     dob: '2019-11-13',
@@ -61,7 +61,7 @@ export const addPets = [
   },
   {
     id: 6,
-    owner_id: 'auth0|3',
+    owner_id: 'github|171200457',
     pet_name: 'Miso',
     image: 'miso.webp',
     dob: '2022-01-18',

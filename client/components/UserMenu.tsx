@@ -10,7 +10,7 @@ export default function AccountIcon({ handleClick }: Props) {
   const navigate = useNavigate()
 
   const handleSignOut = () => {
-    logout()
+    logout({ logoutParams: { returnTo: window.location.origin } })
   }
 
   const navigation = [
