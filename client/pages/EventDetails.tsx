@@ -1,38 +1,19 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import dateToReadable, { TimeFormat } from '../components/utils/Presentation'
-import usePets from '../hooks/pets/use-pets'
 import LoadingSpinner from '../components/LoadingSpinner'
-import useEventById from '../hooks/eventHooks/use-event-by-id'
-import useDelEvent from '../hooks/eventHooks/use-delete-event'
+import useEventById from '../hooks/eventHooks/use-event-by-id.ts'
 import { useAuth0 } from '@auth0/auth0-react'
-import useDocumentTitle from '../hooks/use-document-title'
+import { useAttendeeByEventId, useOwnerByEventId } from '../hooks/hooks.ts'
 
 export default function EventDetails() {
-  const navigate = useNavigate()
-  const deleteEvent = useDelEvent()
   const { user, isAuthenticated } = useAuth0()
   const params = useParams()
   const id = Number(params.id)
-  const { data: pets, isLoading, isError, error } = usePets()
-  const { data: evts } = useEventById(id)
+  const { data: event, isLoading, isError, error } = useEventById(id)
+  const { data: owner } = useOwnerByEventId(id)
+  const { data: attendees } = useAttendeeByEventId(id)
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
-
-  useDocumentTitle(evts?.title ? `${evts?.title}` : 'Event | pawpals')
-
-  function handleEditEvent(id: number) {
-    navigate(`/edit-event/${id}`)
-  }
-
-  function handleDeleteEvent(id: number) {
-    deleteEvent.mutate(id)
-    navigate(`/events`)
-  }
-
-  // TODO: implement attend logic
-  function handleAttend() {
-    return
-  }
 
   if (isLoading) return <LoadingSpinner />
 
@@ -45,140 +26,128 @@ export default function EventDetails() {
     )
   }
 
-  if (evts) {
+  if (event) {
     return (
-      <div className="mx-auto text-center max-w-5xl py-32 sm:py-48 lg:py-24">
-        <div className="text-center flex-col justify-start items-start gap-6 flex">
+      <div className="mx-auto max-w-3xl py-32 sm:py-48 lg:py-24">
+        <div className="mb-12">
           <h1
             data-testid="title"
-            className="self-stretch text-[#1e1e1e] text-7xl font-bold  leading-[86.40px]"
+            className="text-5xl font-bold tracking-tight text-gray-900 mb-8"
           >
-            {evts.title}
+            {event.title}
           </h1>
-          {/* TODO: Conditionally render these buttons based on if the user added this event */}
-          {isAuthenticated && user?.sub === '' ? (
-            <>
-              <button
-                onClick={() => handleEditEvent(id)}
-                className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
-              >
-                <div className="w-[58px] text-black text-xs font-normal ">
-                  Edit Event
-                </div>
-              </button>
-              <button
-                onClick={() => handleDeleteEvent(id)}
-                className="self-center p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
-              >
-                <div className="text-black text-xs font-normal ">
-                  Delete Event
-                </div>
-              </button>
-            </>
-          ) : (
-            <></>
-          )}
 
-          <div className="self-stretch justify-start items-start gap-3 inline-flex">
-            <div className="w-[70px] h-[70px] relative rounded-full">
-              <img
-                className="w-[75px] h-[75px] left-0 top-0 absolute"
-                src={user?.picture || 'https://via.placeholder.com/100'}
-                alt={`${evts.creatorId}`}
-              />
+          <div className="flex flex-row justify-between items-center gap-8">
+            <div className="justify-start items-center gap-4 inline-flex">
+              <div className="w-12 h-12 rounded-full overflow-hidden">
+                <img
+                  className="object-cover"
+                  src="../icons/placeholder-user.png"
+                  alt={owner?.firstName}
+                />
+              </div>
+              <h3 data-testid="owner" className="text-xl text-gray-600">
+                Hosted by {owner?.firstName} {owner?.lastName.charAt(0)}.
+              </h3>
             </div>
-            <div className="grow shrink basis-0 flex-col justify-start text-left items-start gap-0.5 inline-flex">
-              <div className="self-stretch text-[#757575] text-2xl font-semibold  leading-[28.80px]">
-                Hosted By
-              </div>
-              <div className="self-stretch text-[#b3b3b3] text-[32px] font-normal  leading-[38.40px]">
-                {user?.nickname}
-              </div>
+            <div className="justify-start items-center gap-8 inline-flex">
+              {isAuthenticated && user?.sub === owner?.externalKey ? (
+                <>
+                  <Link
+                    to={`/events/${id}/edit`}
+                    onClick={() => window.scroll(0, 0)}
+                  >
+                    <button className="text-lg text-gray-500 hover:text-blue-500 ease-in-out duration-200 flex items-center space-x-3">
+                      <i className="fa-solid fa-pen-to-square"></i>
+                      <span>Edit event</span>
+                    </button>
+                  </Link>
+                  <Link
+                    to={`/events/${id}/delete`}
+                    onClick={() => window.scroll(0, 0)}
+                  >
+                    <button className="text-lg text-gray-500 hover:text-red-700 ease-in-out duration-200 flex items-center space-x-3">
+                      <i className="fa-solid fa-trash"></i>
+                      <span>Delete event</span>
+                    </button>
+                  </Link>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
+        </div>
 
-          <div className="self-stretch justify-start items-start gap-16 flex">
+        <div className="flex flex-col gap-10">
+          <div className="w-full max-h-[350px] rounded-xl overflow-hidden">
             <img
-              className="grow shrink basis-0 h-[260px] rounded-lg"
-              src={`/events/${evts.eventImage.length > 0 ? evts.eventImage : defaultImg}`}
+              className="object-cover relative -top-28"
+              src={`/events/${event.eventImage.length > 0 ? event.eventImage : defaultImg}`}
               alt=""
             />
-            <div className="grow shrink basis-0 flex-col justify-center items-start gap-6 inline-flex">
-              <div className="self-stretch h-[458px] flex-col justify-start items-start gap-4 flex">
-                <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                  <div className="w-7 h-7 relative"></div>
-                  <div className="grow shrink basis-0 h-[29px] justify-start items-start flex">
-                    <div className="text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]">
-                      {`${dateToReadable(evts.date)}, `} {TimeFormat(evts.time)}
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                  <div className="w-7 h-7 relative"></div>
-                  <div className="grow shrink basis-0 h-[29px] justify-start items-start flex">
-                    <div className="text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]">
-                      {evts.location}
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch h-[368px] flex-col justify-start items-start gap-4 flex">
-                  <div className="self-stretch justify-start items-start py-6 inline-flex">
-                    <div className="text-[#1e1e1e] text-base font-semibold  leading-snug">
-                      {evts.title}
-                    </div>
-                  </div>
-                  <div className="self-stretch justify-start items-start inline-flex">
-                    <div className="grow shrink basis-0 text-[#757575] text-base font-normal  leading-snug">
-                      {evts.description}
-                    </div>
-                  </div>
-                </div>
+          </div>
+
+          <div className="w-full">
+            <div className="flex flex-col gap-4 mb-12 text-gray-950">
+              <div className="flex gap-4">
+                <i className="fa-solid fa-clock text-2xl w-10"></i>
+                <h4 className="text-xl font-semibold">
+                  {dateToReadable(event.date)}, {TimeFormat(event.time)}
+                </h4>
               </div>
-              <button
-                onClick={() => handleAttend()}
-                className="self-stretch p-3 bg-[#ffc82c] rounded-lg border justify-center items-center gap-2 inline-flex"
-              >
-                <div className="text-neutral-100 text-base font-normal  leading-none">
-                  Attend
-                </div>
+              <div className="flex gap-4">
+                <i className="fa-solid fa-location-dot text-3xl w-10"></i>
+                <h4 className="text-xl font-semibold">{event.location}</h4>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4 mb-12">
+              <h5 className="text-2xl font-semibold">Details</h5>
+              <p>{event.description}</p>
+            </div>
+            <div>
+              <button className="w-full rounded-md bg-yellow-400 hover:bg-yellow-500 ease-in-out duration-200 px-3.5 py-2.5 text-lg font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                Attend
               </button>
             </div>
           </div>
         </div>
-        <div className="py-32 sm:py-48 lg:py-24">
-          <div className="justify-start items-start inline-flex">
-            <div className="text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]">
-              Attendees
-            </div>
-          </div>
-          <ul>
-            {pets?.map((pet) => (
-              <div
-                key={pet.id}
-                className="self-stretch p-2 justify-start items-start gap-6 inline-flex"
+
+        <div className="flex flex-col gap-4 mb-20 mt-28">
+          <h2 className="text-3xl font-semibold">
+            Attendees{' '}
+            <span className="text-gray-500 font-normal">
+              ({attendees?.length})
+            </span>
+          </h2>
+          <div className="flex flex-wrap gap-6">
+            {attendees?.map((pet) => (
+              <Link
+                key={`pet-${pet.petName}`}
+                to={`/profiles/${pet.petId}`}
+                onClick={() => window.scroll(0, 0)}
               >
-                <div className="p-4 bg-white rounded-lg border border-[#d9d9d9] flex-col justify-start items-center gap-4 inline-flex">
-                  <Link to={`/profiles/${pet.id}`}>
+                <div className="flex flex-col gap-6 items-center opacity-90 px-6 pt-6 pb-8 shadow-lg border border-gray-100 rounded-lg hover:bg-gray-50 hover:shadow-xl ease-in-out duration-200">
+                  <div className="relative w-24 h-24 rounded-full shadow-2xl overflow-hidden border-gray-100">
                     <img
-                      className="w-[120px] h-[120px] rounded-full"
-                      src={`../../pets/${pet.image}`}
+                      className="object-cover relative -top-7 "
+                      src={pet.image ? `/pets/${pet.image}` : defaultImg}
                       alt={pet.petName}
                     />
-                    <div className="h-[42px] flex-col justify-start items-center gap-2 flex">
-                      <div className="h-[42px] flex-col justify-start items-center flex">
-                        <div className="text-[#1e1e1e] text-base font-semibold  leading-snug">
-                          {pet.petName}
-                        </div>
-                        <div className="text-[#757575] text-sm font-normal  leading-tight">
-                          {pet.species}
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
+                  </div>
+                  <div className="flex-col gap-2 flex">
+                    <h3 className="text-2xl text-gray-950 font-bold">
+                      {pet.petName}
+                    </h3>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
-          </ul>
+            {attendees?.length === 0 && (
+              <p className="text-gray-600">Be the first to join this event.</p>
+            )}
+          </div>
         </div>
       </div>
     )

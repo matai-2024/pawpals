@@ -23,3 +23,9 @@ export async function getOwnerByPetId(id: number) {
   const res = await request.get(`${rootUrl}/pet/${id}`)
   return res.body as Owner
 }
+
+// get owner by event id
+export async function getOwnerByEventId(id: number) {
+  const res = await request.get(`${rootUrl}/event/${id}`)
+  return res.body as Owner
+}
