@@ -1,10 +1,14 @@
-import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 import HomeCards from '../components/utils/Home/HomeCards'
 import HomeHeading from '../components/utils/Home/HomeHeading'
 import { ImgDirection } from '../../models/enums'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Card from '../components/utils/Card/Card'
+import {
+  IfAuthenticated,
+  IfNotAuthenticated,
+} from '../components/utils/Authenticated'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
 const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
@@ -20,6 +24,7 @@ export default function Home() {
       },
     })
   }
+
   return (
     <>
       <div className="mx-auto text-center inline-col max-w-5xl py-32 sm:py-48 lg:py-24">
@@ -33,13 +38,29 @@ export default function Home() {
             they live their best lives!
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link
-              to="#"
-              onClick={handleRegister}
-              className="rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Get started
-            </Link>
+            <IfAuthenticated>
+              <Link
+                to="/create"
+                className="rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Get started
+              </Link>
+            </IfAuthenticated>
+            <IfNotAuthenticated>
+              <button
+                onClick={() => {
+                  return loginWithRedirect({
+                    authorizationParams: {
+                      screen_hint: 'signin', //may need to change :3
+                      redirect_uri: `${window.location.origin}/dashboard`,
+                    },
+                  })
+                }}
+                className="rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Get started
+              </button>
+            </IfNotAuthenticated>
             <Link
               to="/about"
               className="text-sm font-semibold leading-6 text-gray-900"
