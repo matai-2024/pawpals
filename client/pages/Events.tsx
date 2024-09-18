@@ -31,6 +31,11 @@ export default function Events() {
     })
     setSearch(res)
   }
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Enter') {
+      e.preventDefault() // Prevent action on Enter key
+    }
+  }
 
   if (events)
     return (
@@ -60,6 +65,7 @@ export default function Events() {
                 id="search"
                 className="w-[600px] mb-6 input rounded-full px-10 py-3 border-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                 onChange={(e) => handleChange(e)}
+                onKeyDown={handleKeyDown}
                 type="text"
                 placeholder="Search events..."
               ></input>
