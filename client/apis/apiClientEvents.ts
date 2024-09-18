@@ -40,7 +40,7 @@ export async function getEventsByPetId(id: number) {
 
 // TODO
 // get event by creator id
-export async function getEventsByCreatorId(ownerId: string) {
-  const res = await request.get(`${rootUrl}/creator/${ownerId}`)
+export async function fetchEventsByExtKey(extKey: string) {
+  const res = await request.get(`${rootUrl}/owner/${extKey}`)
   return res.body as Event[]
 }

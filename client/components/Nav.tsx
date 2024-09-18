@@ -16,7 +16,7 @@ export default function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { logout, loginWithRedirect } = useAuth0()
   const handleSignOut = () => {
-    logout()
+    logout({ logoutParams: { returnTo: window.location.origin } })
   }
 
   const handleSignIn = () => {
@@ -28,7 +28,7 @@ export default function Nav() {
     })
   }
 
-  const handleRegister =  () => {
+  const handleRegister = () => {
     loginWithRedirect({
       authorizationParams: {
         screen_hint: 'signup',
@@ -60,7 +60,7 @@ export default function Nav() {
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">pawpals</span>
-            <img alt="logo" src="logos/pawpals.png" className="h-16 w-auto" />
+            <img alt="logo" src="/logos/pawpals.png" className="h-16 w-auto" />
           </Link>
         </div>
         <div className="flex lg:hidden">
