@@ -1,5 +1,6 @@
 // ScheduleCard component
 import { Link } from 'react-router-dom'
+import dateToReadable, { TimeFormat } from '../Presentation'
 
 interface ScheduleCardProps {
   id: number
@@ -28,6 +29,8 @@ export default function ScheduleCard({
   cancelBtn,
 }: ScheduleCardProps) {
   const fallbackimage = '/events/event-9.webp'
+  // console.log(eventImage)
+
   return (
     <div className="flex items-center border w-full p-3 rounded-lg gap-6 shadow-md ease-in-out duration-200">
       <div className="w-36 h-24 rounded-md overflow-hidden">
@@ -43,7 +46,8 @@ export default function ScheduleCard({
       <div className="flex flex-col gap-4">
         <div className="flex flex-col text-left">
           <p className="text-sm text-gray-500">
-            {date}, {time}
+            {`${dateToReadable(date)}, `}
+            {TimeFormat(time)}
           </p>
           <p className="font-semibold">{title}</p>
         </div>

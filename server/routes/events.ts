@@ -70,6 +70,17 @@ router.get('/pet/:id', async (req, res) => {
   }
 })
 
-//get all events by events id
+// GET all events by external key
+router.get('/owner/:extKey', async (req, res) => {
+  const { extKey } = req.params
+  try {
+    const events = await db.getEventsByExtKey(extKey)
+    res.json(events)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error: ', error)
+    res.sendStatus(500)
+  }
+})
 
 export default router
