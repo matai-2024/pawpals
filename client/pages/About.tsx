@@ -48,7 +48,6 @@ export default function About() {
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           About
         </h1>
-        <p className="text-2xl text-gray-600 mt-4">We are the pawpals team!</p>
       </div>
 
       <div className="space-y-12 mt-12">
