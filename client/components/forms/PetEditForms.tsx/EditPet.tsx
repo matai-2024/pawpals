@@ -33,7 +33,7 @@ const INITIAL_DATA = {
 
 export default function Signup() {
   const [data, setData] = useState(INITIAL_DATA)
-  const addPet = useCreatePet()
+  const addPet = useCreatePet() // UPDATE THIS
   const navigate = useNavigate()
   const { getAccessTokenSilently } = useAuth0()
 
