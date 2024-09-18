@@ -16,7 +16,7 @@ export default function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { logout, loginWithRedirect } = useAuth0()
   const handleSignOut = () => {
-    logout()
+    logout({ logoutParams: { returnTo: window.location.origin } })
   }
 
   const handleSignIn = () => {
@@ -28,7 +28,7 @@ export default function Nav() {
     })
   }
 
-  const handleRegister =  () => {
+  const handleRegister = () => {
     loginWithRedirect({
       authorizationParams: {
         screen_hint: 'signup',
