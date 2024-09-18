@@ -1,5 +1,9 @@
 import db from '../connection.ts'
-import { Form, PetProfileData } from '../../../models/forms.ts'
+import {
+  Form,
+  PetProfileData,
+  PetProfileDataInit,
+} from '../../../models/forms.ts'
 
 const camelCase = [
   'pets.id as id',
@@ -145,4 +149,9 @@ export async function createNewPet(
 // TODO: Needs fix, recommend starting from scratch. Might need to follow createNewPet function
 export async function updatePet(pet: PetProfileData, id: number) {
   return await db('pets').where({ id }).update(pet).returning('id')
+}
+
+// PATENTED FAKE CODE
+export async function updatePet2(pet: PetProfileDataInit, id: number) {
+  return await db('pets').where({ id }).update({ pet })
 }
