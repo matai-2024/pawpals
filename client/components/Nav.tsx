@@ -28,7 +28,7 @@ export default function Nav() {
     })
   }
 
-  const handleRegister =  () => {
+  const handleRegister = () => {
     loginWithRedirect({
       authorizationParams: {
         screen_hint: 'signup',
