@@ -124,7 +124,7 @@ export default function EventDetails() {
           <div className="flex flex-wrap gap-6">
             {attendees?.map((pet) => (
               <Link
-                key={`pet-${pet.petId}`}
+                key={`pet-${pet.petName}`}
                 to={`/profiles/${pet.petId}`}
                 onClick={() => window.scroll(0, 0)}
               >
