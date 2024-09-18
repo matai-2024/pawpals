@@ -22,16 +22,16 @@ export default function Nav() {
   const handleSignIn = () => {
     loginWithRedirect({
       authorizationParams: {
-        screen_hint: 'signin', //may need to change :3
+        screen_hint: 'signin',
         redirect_uri: `${window.location.origin}/dashboard`,
       },
     })
   }
 
-  const handleRegister = () => {
+  const handleRegister =  () => {
     loginWithRedirect({
       authorizationParams: {
-        screen_hint: 'signup', //may need to change :3
+        screen_hint: 'signup',
         redirect_uri: `${window.location.origin}/user-profile`,
       },
     })

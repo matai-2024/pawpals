@@ -4,13 +4,14 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import useEventById from '../hooks/eventHooks/use-event-by-id.ts'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useAttendeeByEventId, useOwnerByEventId } from '../hooks/hooks.ts'
+import NotFound from '../components/NotFound404.tsx'
 import AttendEvent from '../components/forms/attend-event/AttendEvent.tsx'
 
 export default function EventDetails() {
   const { user, isAuthenticated } = useAuth0()
   const params = useParams()
   const id = Number(params.id)
-  const { data: event, isLoading, isError, error } = useEventById(id)
+  const { data: event, isLoading, isError } = useEventById(id)
   const { data: owner } = useOwnerByEventId(id)
   const { data: attendees } = useAttendeeByEventId(id)
   const defaultImg =
@@ -18,14 +19,7 @@ export default function EventDetails() {
 
   if (isLoading) return <LoadingSpinner />
 
-  if (isError) {
-    return (
-      <div>
-        <h3>Error loading event details: </h3>
-        {String(error)}
-      </div>
-    )
-  }
+  if (isError) return <NotFound />
 
   if (event) {
     return (

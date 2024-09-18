@@ -10,10 +10,11 @@ import dateToReadable, {
   TimeFormat,
 } from '../components/utils/Presentation.tsx'
 import useDocumentTitle from '../hooks/use-document-title.ts'
+import NotFound from '../components/NotFound404.tsx'
 
 export default function Profile() {
   const { id } = useParams()
-  const { data, isPending, isError, error } = usePetById(Number(id))
+  const { data, isPending, isError } = usePetById(Number(id))
   const events = useEventsByPetId(Number(id)).data
   const owner = useOwnerByPetId(Number(id)).data
   const rootUrl = '../..'
@@ -25,14 +26,7 @@ export default function Profile() {
   )
 
   if (isPending) return <LoadingSpinner />
-
-  if (isError)
-    return (
-      <div>
-        <h3>Error loading pet data: </h3>
-        {String(error)}
-      </div>
-    )
+  if (isError) return <NotFound />
 
   function getTraits() {
     const active = Object.entries(data || {})

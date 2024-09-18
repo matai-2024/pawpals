@@ -91,3 +91,17 @@ describe('ProfileList.tsx', () => {
     expect(scope.isDone()).toBe(true)
   })
 })
+
+describe('ProfileList.tsx', () => {
+  it('should display the search bar on the page', async () => {
+    const scope = nock('http://localhost')
+      .get('/api/v1/pets')
+      .reply(200, mockPets)
+
+    const screen = renderApp('/profiles')
+    const searchBar = await screen.findByTestId('pet-card-search')
+
+    expect(searchBar).toBeInTheDocument()
+    expect(scope.isDone()).toBe(true)
+  })
+})
