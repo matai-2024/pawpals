@@ -100,3 +100,23 @@ export async function getAttendeesByAccountId(accountId: number) {
     .join('events', 'attendees.event_id', 'events.id')
     .where('attendees.accountId', accountId) // Filter by the owner's ID
 }
+
+// Get all events by external key
+export async function getEventsByExtKey(extKey: string) {
+  const events = await db('events')
+    .join('owners', 'events.creator_id', 'owners.id')
+    .where('owners.external_key', extKey)
+    .select(
+      'events.id',
+      'events.title',
+      'events.date',
+      'events.time',
+      'events.location',
+      'events.description',
+      'events.event_image as eventImage',
+      'events.event_website as eventWebsite',
+      'events.audience',
+      'events.creator_id as creatorId',
+    )
+  return events as Event[]
+}

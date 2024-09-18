@@ -20,6 +20,7 @@ interface Event {
   time: string
   going: boolean
   eventImage: string
+  event_image?: string
 }
 
 export default function Dashboard() {
@@ -27,6 +28,9 @@ export default function Dashboard() {
   const [pets, setPets] = useState<Pet[]>([])
   const [events, setEvents] = useState<Event[]>([])
   const [mySchedule, setMySchedule] = useState<Event[]>([])
+
+  // const { data: evt } = useEventsByExtKey(user?.sub ? user.sub : '')
+  // console.log('evt', evt)
 
   const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
   const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
@@ -52,6 +56,7 @@ export default function Dashboard() {
     const eventsData = await attendeeResponse.json()
     return eventsData
   }
+  console.log(mySchedule)
 
   useEffect(() => {
     if (isAuthenticated && user?.sub) {
@@ -63,6 +68,7 @@ export default function Dashboard() {
 
         const attendingEvents = await getEventsForAttendingPets(ownerId)
 
+        // const createdEvents = await getEventsByCreatorId()
         const createdEvents = await getEventsByCreatorId()
 
         setMySchedule(attendingEvents)
@@ -127,7 +133,7 @@ export default function Dashboard() {
               buttonIcon="calendar-plus"
             >
               <div className="space-y-4">
-                {mySchedule.length > 0 ? (
+                {mySchedule && mySchedule.length > 0 ? (
                   mySchedule.map((event) => (
                     <ScheduleCard
                       key={event.id}
@@ -135,7 +141,7 @@ export default function Dashboard() {
                       title={event.title}
                       date={event.date}
                       time={event.time}
-                      eventImage={event.eventImage}
+                      eventImage={event.event_image ? event.event_image : ''}
                       viewBtn={viewBtn}
                       cancelBtn={cancelBtn}
                     />

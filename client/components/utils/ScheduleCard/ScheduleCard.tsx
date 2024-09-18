@@ -29,6 +29,8 @@ export default function ScheduleCard({
   cancelBtn,
 }: ScheduleCardProps) {
   const fallbackimage = '/events/event-9.webp'
+  // console.log(eventImage)
+
   return (
     <div className="flex items-center border w-full p-3 rounded-lg gap-6 shadow-md ease-in-out duration-200">
       <div className="w-36 h-24 rounded-md overflow-hidden">
