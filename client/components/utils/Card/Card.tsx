@@ -28,7 +28,7 @@ const Card: React.FC<CardProps> = ({
         <h2 className="text-2xl font-semibold">{title}</h2>
       </div>
       <Link to={buttonPath}>
-        <button className="text-blue-500 hover:text-blue-600 text-sm">
+        <button className="text-blue-800 hover:text-blue-700 text-sm">
           <i className={`fa-solid fa-${buttonIcon} text-xl pr-3`}></i>
           {buttonText} {/* This will be the label for the button */}
         </button>
