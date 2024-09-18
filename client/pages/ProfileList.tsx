@@ -31,7 +31,7 @@ export default function ProfileList() {
             lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
             fugiat aliqua.
           </p>
-          <div className="px-6 flex flex-wrap gap-6 mb-20">
+          <div className="px-6 flex flex-wrap gap-6 mb-20 justify-center ">
             {data.map((profile: PetProfile) => (
               <div key={profile.id}>
                 <PetCardVertical
