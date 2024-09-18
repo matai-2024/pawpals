@@ -38,7 +38,7 @@ export const PetCardVertical: React.FC<PetCardVerticalProps> = ({
           </p>
 
           <div>
-            <h3 className="text-2xl text-gray-950 font-bold pb-4">{petName}</h3>
+            <h2 className="text-2xl text-gray-950 font-bold pb-4">{petName}</h2>
           </div>
 
           <div className="opacity-100 shadow-lg hover:bg-yellow-500 ease-in-out duration-200 text-center rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-gray-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">
