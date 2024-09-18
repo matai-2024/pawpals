@@ -19,6 +19,9 @@ export default function Profile() {
   const owner = useOwnerByPetId(Number(id)).data
   const rootUrl = '../..'
 
+  console.log(data?.ownerId)
+  console.log(owner?.externalId)
+
   useDocumentTitle(
     data?.petName
       ? `${data?.petName}'s Profile | pawpals`

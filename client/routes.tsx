@@ -15,6 +15,7 @@ import EventDetails from './pages/EventDetails'
 import Events from './pages/Events'
 import UserProfile from './pages/UserProfile'
 import CreateEvent from './pages/CreateEvent'
+import EditPet from './components/forms/PetEditForms.tsx/EditPet'
 
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<NotFound />}>
@@ -57,6 +58,11 @@ export const routes = createRoutesFromElements(
       path="events/create"
       element={<CreateEvent />}
       handle={'Create an Event | pawpals'}
+    />
+    <Route
+      path="profiles/:id/edit"
+      element={<EditPet />}
+      handle={`Edit Profile | pawpals`}
     />
   </Route>,
 )
