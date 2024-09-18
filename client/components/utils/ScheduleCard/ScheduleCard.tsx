@@ -42,28 +42,28 @@ export default function ScheduleCard({
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col text-left">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-600">
             {date}, {time}
           </p>
           <p className="font-semibold">{title}</p>
         </div>
         <div className="flex space-x-6 mt-2">
           <Link to={`/events/${id}`} onClick={() => window.scroll(0, 0)}>
-            <button className="text-sm text-gray-500 hover:text-blue-500 flex items-center space-x-2">
+            <button className="text-sm text-gray-600 hover:text-blue-500 flex items-center space-x-2">
               <i className={`fa-solid fa-${viewBtn?.icon}`}></i>
               <span>{viewBtn?.title}</span>
             </button>
           </Link>
           {editBtn && (
             <Link to={`/events/${id}/edit`} onClick={() => window.scroll(0, 0)}>
-              <button className="text-sm text-gray-500 hover:text-blue-500 flex items-center space-x-2">
+              <button className="text-sm text-gray-600 hover:text-blue-500 flex items-center space-x-2">
                 <i className={`fa-solid fa-${editBtn?.icon}`}></i>
                 <span>{editBtn?.title}</span>
               </button>
             </Link>
           )}
           {cancelBtn && (
-            <button className="text-sm text-gray-500 hover:text-red-700 flex items-center space-x-2">
+            <button className="text-sm text-gray-600 hover:text-red-700 flex items-center space-x-2">
               <i className={`fa-solid fa-${cancelBtn?.icon}`}></i>
               <span>{cancelBtn?.title}</span>
             </button>
