@@ -77,9 +77,6 @@ export default function Signup() {
           <h1 className="text-5xl font-bold tracking-tight text-gray-900">
             Create a profile for your pet
           </h1>
-          {/* <p className="mt-6 text-lg leading-8 text-gray-600">
-            Add your pet's details to create their very own pawpal profile
-          </p> */}
         </div>
         <div className="mt-6 flex items-center gap-x-6">
           <form onSubmit={onSubmit} className="w-full">
