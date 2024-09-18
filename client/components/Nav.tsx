@@ -28,11 +28,10 @@ export default function Nav() {
     })
   }
 
-  const handleRegister = async () => {
+  const handleRegister =  () => {
     loginWithRedirect({
       authorizationParams: {
         screen_hint: 'signup',
-        prompt: 'login',
         redirect_uri: `${window.location.origin}/user-profile`,
       },
     })
