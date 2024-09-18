@@ -33,39 +33,24 @@ export default function Dashboard() {
   const editBtn = { title: 'Edit event', icon: 'pen-to-square' }
 
   async function fetchPetsByOwnerId(ownerId: string) {
-    try {
-      const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
-      const data = await response.json()
+    const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
+    const data = await response.json()
 
-      return data.filter((pet: Pet) => pet.ownerId === ownerId)
-    } catch (error) {
-      console.error('Error fetching pets:', error)
-      return []
-    }
+    return data.filter((pet: Pet) => pet.ownerId === ownerId)
   }
 
   async function getEventsByCreatorId() {
-    try {
-      const response = await fetch(`/api/v1/events`)
-      const data = await response.json()
+    const response = await fetch(`/api/v1/events`)
+    const data = await response.json()
 
-      return data.filter((event: Event) => event.creatorId === 1)
-    } catch (error) {
-      console.error('Error fetching events:', error)
-      return []
-    }
+    return data.filter((event: Event) => event.creatorId === 1)
   }
 
   async function getEventsForAttendingPets(accountId: string) {
-    try {
-      const attendeeResponse = await fetch(`/api/v1/attendees/${accountId}`)
+    const attendeeResponse = await fetch(`/api/v1/attendees/${accountId}`)
 
-      const eventsData = await attendeeResponse.json()
-      return eventsData
-    } catch (error) {
-      console.error('Error fetching schedule events for pets:', error)
-      return []
-    }
+    const eventsData = await attendeeResponse.json()
+    return eventsData
   }
 
   // UseEffect to fetch pets, created events, and attending events
@@ -75,23 +60,19 @@ export default function Dashboard() {
 
       // Define an async function to handle all async operations
       const fetchData = async () => {
-        try {
-          // Fetch pets by ownerId
-          const petsData = await fetchPetsByOwnerId(ownerId)
-          setPets(petsData)
+        // Fetch pets by ownerId
+        const petsData = await fetchPetsByOwnerId(ownerId)
+        setPets(petsData)
 
-          // Fetch attending events for all pets owned by the user
-          const attendingEvents = await getEventsForAttendingPets(ownerId)
+        // Fetch attending events for all pets owned by the user
+        const attendingEvents = await getEventsForAttendingPets(ownerId)
 
-          // Fetch created events by the user
-          const createdEvents = await getEventsByCreatorId()
+        // Fetch created events by the user
+        const createdEvents = await getEventsByCreatorId()
 
-          // Store attending and created events in state
-          setMySchedule(attendingEvents)
-          setEvents(createdEvents)
-        } catch (err) {
-          console.error('Error fetching data:', err)
-        }
+        // Store attending and created events in state
+        setMySchedule(attendingEvents)
+        setEvents(createdEvents)
       }
 
       // Call the async function

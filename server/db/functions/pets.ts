@@ -45,12 +45,11 @@ export async function getPetById(id: number) {
 
 // Get pets by owner_id
 export async function getPetsByOwnerId(ownerId: string) {
-  console.log('hellO?')
   const pets = await db('pets')
     .join('traits', 'traits.id', 'pets.trait_id')
     .where('external_key', ownerId)
     .select(camelCase)
-  console.log(pets)
+
   return pets
 }
 

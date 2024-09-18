@@ -26,6 +26,7 @@ router.get('/:id', async (req, res) => {
     const events = await db.getEventsForPetsByOwnerId(accountId)
     return res.json(events)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error: ', error)
     res.sendStatus(500)
   }
