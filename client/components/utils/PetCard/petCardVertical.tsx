@@ -27,7 +27,7 @@ export const PetCardVertical: React.FC<PetCardVerticalProps> = ({
           <img
             className="object-cover relative -top-7 "
             src={image}
-            alt={petName}
+            alt={`${petName}'s profile`}
           />
         </div>
         <div className="h-28 flex-col gap-2 flex">
