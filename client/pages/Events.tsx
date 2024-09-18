@@ -2,9 +2,10 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import { ChangeEvent, useEffect, useState } from 'react'
 import useFetchEvents from '../hooks/eventHooks/use-fetch-events'
 import EventList from './EventList'
+import NotFound from '../components/NotFound404'
 
 export default function Events() {
-  const { data: events, isPending, isError, error } = useFetchEvents()
+  const { data: events, isPending, isError } = useFetchEvents()
   const [search, setSearch] = useState(events)
 
   useEffect(() => {
@@ -15,13 +16,7 @@ export default function Events() {
 
   if (isPending) return <LoadingSpinner />
 
-  if (isError)
-    return (
-      <div>
-        <h3>Error loading pet data: </h3>
-        {String(error)}
-      </div>
-    )
+  if (isError) return <NotFound />
 
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
     if (!events) return
@@ -30,6 +25,11 @@ export default function Events() {
       return obj.title.toLowerCase().includes(src.toLowerCase())
     })
     setSearch(res)
+  }
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Enter') {
+      e.preventDefault() // Prevent action on Enter key
+    }
   }
 
   if (events)
@@ -60,6 +60,7 @@ export default function Events() {
                 id="search"
                 className="w-[600px] mb-6 input rounded-full px-10 py-3 border-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                 onChange={(e) => handleChange(e)}
+                onKeyDown={handleKeyDown}
                 type="text"
                 placeholder="Search events..."
               ></input>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { getAge } from '../Presentation'
+import { PetProfile } from '../../../../models/forms'
 
 interface PetCardVerticalProps {
   id: number
@@ -8,6 +9,7 @@ interface PetCardVerticalProps {
   dateOfBirth: string
   breed: string
   species: string
+  search: PetProfile[] | undefined
 }
 
 export const PetCardVertical: React.FC<PetCardVerticalProps> = ({
