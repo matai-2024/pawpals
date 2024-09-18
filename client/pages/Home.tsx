@@ -1,4 +1,6 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
+
 import HomeCards from '../components/utils/Home/HomeCards'
 import HomeHeading from '../components/utils/Home/HomeHeading'
 import { ImgDirection } from '../../models/enums'
@@ -8,22 +10,12 @@ import {
   IfAuthenticated,
   IfNotAuthenticated,
 } from '../components/utils/Authenticated'
-import { useAuth0 } from '@auth0/auth0-react'
 
 const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
 const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
 
 export default function Home() {
   const { loginWithRedirect } = useAuth0()
-
-  const handleRegister = () => {
-    loginWithRedirect({
-      authorizationParams: {
-        screen_hint: 'signup', //may need to change :3
-        redirect_uri: `${window.location.origin}/user-profile`,
-      },
-    })
-  }
 
   return (
     <>
