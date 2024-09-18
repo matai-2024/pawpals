@@ -133,7 +133,7 @@ export default function EventDetails() {
                     <img
                       className="object-cover relative -top-7 "
                       src={pet.image ? `/pets/${pet.image}` : defaultImg}
-                      alt={pet.petName}
+                      alt={`${pet.petName}'s profile`}
                     />
                   </div>
                   <div className="flex-col gap-2 flex">
