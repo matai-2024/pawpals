@@ -46,9 +46,9 @@ export default function EventDetails() {
                   alt={`${owner?.firstName}'s event location`}
                 />
               </div>
-              <h3 data-testid="owner" className="text-xl text-gray-600">
+              <h2 data-testid="owner" className="text-xl text-gray-600">
                 Hosted by {owner?.firstName} {owner?.lastName.charAt(0)}.
-              </h3>
+              </h2>
             </div>
             <div className="justify-start items-center gap-8 inline-flex">
               {isAuthenticated && user?.sub === owner?.externalKey ? (
