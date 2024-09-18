@@ -48,37 +48,41 @@ export default function About() {
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           About
         </h1>
-        <p className="text-2xl text-gray-600 mt-4">We are the pawpals team!</p>
+        <p className="block my-6 text-lg leading-8 text-gray-600">
+          We are the pawpals team!
+        </p>
       </div>
 
-      <div className="space-y-12 mt-12">
-        {/* About Section */}
-        <div className="bg-white opacity-90 p-8 rounded-lg shadow hover:bg-opacity-100 transition duration-200 ease-in-out">
-          <h2 className="text-center text-2xl font-semibold text-gray-800">
+      <div className="flex flex-row items-center">
+        <div className="w-1/2 p-6">
+          <h2 className="text-4xl font-semibold text-gray-800">
             The Animals that made this
           </h2>
-          <p className="text-xl text-center text-gray-600 mt-2">
+          <p className="text-xl font-semibold text-gray-600 mt-2">
             Who is Who in the ZOO!!
           </p>
-          <p className="mt-4 text-center text-base text-gray-700">
+          <p className="mt-4 text-base text-gray-700">
             Pawpals is a community-driven website designed to connect pet
             lovers, whether they have pets or not. Users can browse adorable
             pets, explore pet-friendly events, or even create their own. The
             platform allows users to create personalized profiles for their pets
             and join events hosted by other members.
           </p>
-          <p className="mt-4 text-center text-base text-gray-700">
+          <p className="mt-4 text-base text-gray-700">
             This project was conceptualized by Anahera and developed in
             collaboration with Jack, Dean, Sam, and Amy as part of the pawpals
             team!
           </p>
+        </div>
+        <div className="w-1/2 p-6">
           <img
             className="mt-4 w-full rounded-lg object-cover"
             src="team.webp"
             alt="coders at work"
           />
         </div>
-
+      </div>
+      <div>
         {/* Team Section */}
         <div className="bg-white p-8 rounded-lg shadow">
           <h2 className="text-center text-2xl font-semibold text-gray-800">
