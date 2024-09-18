@@ -44,12 +44,13 @@ export async function getPetById(id: number) {
 }
 
 // Get pets by owner_id
-export async function getPetsByOwnerId(ownerId: number) {
+export async function getPetsByOwnerId(ownerId: string) {
   const pets = await db('pets')
     .join('traits', 'traits.id', 'pets.trait_id')
-    .where('owner_id', ownerId)
+    .where('external_key', ownerId)
     .select(camelCase)
-  return pets as Form[]
+
+  return pets
 }
 
 // Delete a pet by id
@@ -76,7 +77,7 @@ export async function createNewPet(
   externalKey: string,
 ) {
   //MVP - Hard code an image if there isn't one
-  if (newPetProfile.image == '') newPetProfile.image = 'miso.jpg'
+  if (newPetProfile.image == '') newPetProfile.image = 'miso.webp'
 
   // All the data being passed in from the form
   const {

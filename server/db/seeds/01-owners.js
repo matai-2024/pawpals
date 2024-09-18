@@ -1,7 +1,7 @@
 export const addOwners = [
   {
     id: 1,
-    external_key: 'auth0|66e4b53cec82a00a88d8d7a3',
+    external_key: 'auth0|66e50f691c13e2abcc0bdf91',
     first_name: 'Anahera',
     last_name: 'Foley-Paama',
     email: 'anahera@email.com',

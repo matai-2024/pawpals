@@ -6,7 +6,7 @@ interface ScheduleCardProps {
   title: string
   date: string
   time: string
-  image: string
+  eventImage: string
   viewBtn?: CardButtons
   cancelBtn?: CardButtons
   editBtn?: CardButtons
@@ -22,15 +22,23 @@ export default function ScheduleCard({
   title,
   date,
   time,
-  image,
+  eventImage,
   viewBtn,
   editBtn,
   cancelBtn,
 }: ScheduleCardProps) {
+  const fallbackimage = '/events/event-9.webp'
   return (
     <div className="flex items-center border w-full p-3 rounded-lg gap-6 shadow-md ease-in-out duration-200">
       <div className="w-36 h-24 rounded-md overflow-hidden">
-        <img src={image} alt={title} className="object-cover" />
+        <img
+          src={`/events/${eventImage}` || fallbackimage}
+          alt={title}
+          className="object-cover"
+          onError={(e) => {
+            ;(e.target as HTMLImageElement).src = fallbackimage
+          }}
+        />
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col text-left">

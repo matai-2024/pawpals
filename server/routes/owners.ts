@@ -72,6 +72,19 @@ router.post('/', checkJwt, async (req: JwtRequest, res) => {
   }
 })
 
+// GET owner by event id
+router.get('/event/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const owner = await db.getOwnerByEventId(Number(id))
+    res.json(owner)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error: ', error)
+    res.sendStatus(500)
+  }
+})
+
 // Delete an owner
 // Edit an owner
 

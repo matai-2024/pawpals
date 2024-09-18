@@ -11,7 +11,11 @@ interface PetCardProps {
 const PetCard: React.FC<PetCardProps> = ({ id, petName, image }) => (
   <div className="flex flex-row items-center gap-6 border w-full p-3 rounded-lg shadow-md ease-in-out duration-200">
     <div className="w-24 h-24 rounded-full overflow-hidden">
-      <img src={image} alt={petName} className="object-cover -top-8" />
+      <img
+        src={`pets/${image}`}
+        alt={petName}
+        className="object-cover -top-8"
+      />
     </div>
     <div className="flex lg:flex-col gap-3">
       <h2 className="flex font-semibold text-xl">{petName}</h2>

@@ -76,7 +76,7 @@ describe('EventDetails.tsx', () => {
       .reply(200, mockEvents)
 
     const scope2 = nock('http://localhost')
-      .get(`/api/v1/pets`)
+      .get(`/api/v1/attendees/event/1`)
       .reply(200, mockPets)
 
     const screen = renderApp(`/events/1`)
