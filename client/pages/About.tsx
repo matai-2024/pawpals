@@ -13,7 +13,7 @@ export default function About() {
       role: 'Backend Lead',
       img: 'devs/amy.jpg',
       linkedin: 'https://www.linkedin.com/in/amy-jackson',
-      email: 'amyj.etana@gmail.com',
+      email: 'dev@achoo-o.mozmail.com',
       github: 'https://github.com/achoo-o',
     },
     {
