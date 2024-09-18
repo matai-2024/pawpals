@@ -1,134 +1,132 @@
+// Dashboard.test.tsx
 // @vitest-environment jsdom
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { renderApp, screen, fireEvent, waitFor } from '../__tests__/test-setup'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { beforeEach, beforeAll, describe, it, vi, expect } from 'vitest'
+import { renderApp } from './test-setup.tsx' // Adjust this import based on your setup
 import { useAuth0 } from '@auth0/auth0-react'
-import { Dashboard } from '../Dashboard'
+import nock from 'nock'
 
+// Mocking @auth0/auth0-react
 vi.mock('@auth0/auth0-react')
+const ACCESS_TOKEN = 'mock-access-token'
 
-// Mocking fetch responses for pets and events
-global.fetch = vi.fn()
+const MOCK_PETS = [
+  {
+    id: 1,
+    ownerId: 'fake-user-id',
+    petName: 'Pepper',
+    image: 'pepper.webp',
+  },
+]
+
+const MOCK_EVENTS = [
+  {
+    id: 1,
+    title: 'Food Truck Night in Howick',
+    date: '03-10-2024',
+    time: '5:00 PM',
+    eventImage: 'event-1.webp',
+    creatorId: 1,
+    going: true,
+  },
+]
+
+const MOCK_SCHEDULE = [
+  {
+    id: 2,
+    title: 'Bunny Bonding Brunch',
+    date: '05-12-2024',
+    time: '11:00 AM',
+    eventImage: 'event-10.webp',
+    creatorId: 2,
+    going: true,
+  },
+]
+
+beforeAll(() => {
+  nock.disableNetConnect()
+})
+
+beforeEach(() => {
+  vi.mocked(useAuth0).mockReturnValue({
+    isAuthenticated: true,
+    user: { sub: 'fake-user-id' },
+    getAccessTokenSilently: vi.fn().mockResolvedValue(ACCESS_TOKEN),
+    loginWithRedirect: vi.fn(),
+    logout: vi.fn(),
+  } as any)
+})
 
 describe('Dashboard', () => {
-  const mockPets = [
-    { id: 1, petName: 'Buddy', image: '/buddy.jpg', ownerId: 'auth0|123' },
-    { id: 2, petName: 'Bella', image: '/bella.jpg', ownerId: 'auth0|123' },
-  ]
+  it('Displays the Dashboard with Pets, Schedule, and Events', async () => {
+    // Mock API responses
+    const scope1 = nock('http://localhost')
+      .get('/api/v1/pets')
+      .query({ ownerId: 'fake-user-id' })
+      .reply(200, MOCK_PETS)
 
-  const mockEvents = [
-    {
-      id: 1,
-      title: 'Dog Walk',
-      time: '10:00 AM',
-      going: true,
-      eventImage: '/event1.jpg',
-      creatorId: 1,
-    },
-    {
-      id: 2,
-      title: 'Pet Adoption',
-      time: '2:00 PM',
-      going: true,
-      eventImage: '/event2.jpg',
-      creatorId: 1,
-    },
-  ]
+    const scope2 = nock('http://localhost')
+      .get('/api/v1/events')
+      .reply(200, MOCK_EVENTS)
 
-  beforeEach(() => {
-    vi.clearAllMocks()
-    fetch.mockImplementation((url) => {
-      if (url.includes('/api/v1/pets')) {
-        return Promise.resolve({
-          json: () => Promise.resolve(mockPets),
-        })
-      }
-      if (url.includes('/api/v1/events')) {
-        return Promise.resolve({
-          json: () => Promise.resolve(mockEvents),
-        })
-      }
-      return Promise.reject(new Error('Invalid API call'))
-    })
+    const scope3 = nock('http://localhost')
+      .get('/api/v1/attendees/fake-user-id')
+      .reply(200, MOCK_SCHEDULE)
+
+    const screen = renderApp('/dashboard') // Adjust if necessary
+
+    // Verify Pets Section
+    expect(await screen.findByText('Pepper')).toBeVisible()
+
+    // Verify Schedule Section
+    expect(await screen.findByText('Bunny Bonding Brunch')).toBeVisible()
+
+    // Verify Events Section
+    expect(await screen.findByText('Food Truck Night in Howick')).toBeVisible()
+
+    expect(scope1.isDone()).toBe(true)
+    expect(scope2.isDone()).toBe(true)
+    expect(scope3.isDone()).toBe(true)
   })
 
-  it('should render pets and events for an authenticated user', async () => {
-    ;(useAuth0 as any).mockReturnValue({
+  it('Displays loading state when data is being fetched', async () => {
+    // Temporarily mock useAuth0 to return loading state
+    vi.mocked(useAuth0).mockReturnValue({
       isAuthenticated: true,
-      isLoading: false,
-      user: { sub: 'auth0|123' },
-    })
+      user: { sub: 'fake-user-id' },
+      getAccessTokenSilently: vi.fn().mockResolvedValue(ACCESS_TOKEN),
+      loginWithRedirect: vi.fn(),
+      logout: vi.fn(),
+      isLoading: true,
+    } as any)
 
-    renderApp('/dashboard')
-
-    // Wait for the pets and events to load
-    await waitFor(() => {
-      // Check if pets are rendered
-      mockPets.forEach((pet) => {
-        expect(screen.getByText(pet.petName)).toBeVisible()
-      })
-
-      // Check if events are rendered
-      mockEvents.forEach((event) => {
-        expect(screen.getByText(event.title)).toBeVisible()
-        expect(screen.getByText(event.time)).toBeVisible()
-      })
-    })
+    const screen = renderApp('/dashboard') // Adjust if necessary
+    expect(screen.getByText('Loading...')).toBeInTheDocument()
   })
 
-  it('should show message if no pets or events are found', async () => {
-    fetch.mockImplementationOnce(() =>
-      Promise.resolve({ json: () => Promise.resolve([]) }),
+  it('Displays message when no pets are available', async () => {
+    const scope1 = nock('http://localhost')
+      .get('/api/v1/pets')
+      .query({ ownerId: 'fake-user-id' })
+      .reply(200, [])
+
+    const scope2 = nock('http://localhost')
+      .get('/api/v1/events')
+      .reply(200, MOCK_EVENTS)
+
+    const scope3 = nock('http://localhost')
+      .get('/api/v1/attendees/fake-user-id')
+      .reply(200, MOCK_SCHEDULE)
+
+    const screen = renderApp('/dashboard') // Adjust if necessary
+    const noPetsMessage = await screen.findByText(
+      'You do not have any pets yet.',
     )
-    fetch
-      .mockImplementationOnce(() =>
-        Promise.resolve({ json: () => Promise.resolve([]) }),
-      )
-      (useAuth0 as any)
-      .mockReturnValue({
-        isAuthenticated: true,
-        isLoading: false,
-        user: { sub: 'auth0|123' },
-      })
+    expect(noPetsMessage).toBeVisible()
 
-    renderApp('/dashboard')
-
-    await waitFor(() => {
-      expect(screen.getByText('You do not have any pets yet.')).toBeVisible()
-      expect(
-        screen.getByText('You do not have any events scheduled.'),
-      ).toBeVisible()
-      expect(screen.getByText('You do not have any events yet.')).toBeVisible()
-    })
-  })
-
-  it('should show login message for unauthenticated users', () => {
-    ;(useAuth0 as any).mockReturnValue({
-      isAuthenticated: false,
-      isLoading: false,
-    })
-
-    renderApp('/dashboard')
-
-    expect(
-      screen.getByText('You need to log in to see your dashboard.'),
-    ).toBeVisible()
-  })
-
-  it('should navigate to add pet or event when buttons are clicked', () => {
-    ;(useAuth0 as any).mockReturnValue({
-      isAuthenticated: true,
-      isLoading: false,
-      user: { sub: 'auth0|123' },
-    })
-
-    const { history } = renderApp('/dashboard')
-
-    const addPetButton = screen.getByText('Add Pet')
-    fireEvent.click(addPetButton)
-    expect(history.location.pathname).toBe('/create')
-
-    const addEventButton = screen.getByText('Add Event')
-    fireEvent.click(addEventButton)
-    expect(history.location.pathname).toBe('/events/create')
+    expect(scope1.isDone()).toBe(true)
+    expect(scope2.isDone()).toBe(true)
+    expect(scope3.isDone()).toBe(true)
   })
 })

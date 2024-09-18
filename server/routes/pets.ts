@@ -33,7 +33,6 @@ router.get('/:id', async (req, res) => {
 // GET pets by owner id
 router.get('/owner/:id', async (req: JwtRequest, res) => {
   try {
-    console.log('BACKEND ROUTES')
     const externalKey = req.auth?.sub
     if (!externalKey) {
       res.status(401).json({ error: 'Unauthorized' })
