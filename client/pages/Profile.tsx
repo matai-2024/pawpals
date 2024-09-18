@@ -44,7 +44,8 @@ export default function Profile() {
   }
   const activeTraits = getTraits()
 
-  if (data)
+  if (data) {
+    const { petName, bio, gender, dateOfBirth, species, breed, image } = data
     return (
       <>
         <div className="mx-auto max-w-5xl pt-24 sm:pt-32 lg:pt-24">
@@ -60,36 +61,38 @@ export default function Profile() {
               <div className="w-48 h-48 overflow-hidden rounded-full border-4 border-white">
                 <img
                   className="object-cover min-h-48 relative -top-8"
-                  src={
-                    data.image
-                      ? `${rootUrl}/pets/${data.image}`
-                      : `../../miso.webp`
+                  src={image ? `${rootUrl}/pets/${image}` : `../../miso.webp`}
+                  alt={
+                    species
+                      ? `a ${species} named ${petName}`
+                      : breed
+                        ? `a ${breed} named ${petName}`
+                        : `an animal named ${petName}`
                   }
-                  alt={data.petName}
                 />
               </div>
               <h1 className="text-gray-950 text-6xl font-bold pb-8 mt-4">
-                {data.petName}
+                {petName}
               </h1>
               <div className="flex gap-x-8">
                 <div className="flex flex-row gap-4">
                   <i className="fa-solid fa-cake-candles text-3xl text-gray-950"></i>
                   <h2 data-testid="age-heading" className="text-xl">
-                    {getAge(data.dateOfBirth) > 1
-                      ? `${getAge(data.dateOfBirth)}yrs old`
-                      : `${getAge(data.dateOfBirth)}yr old`}
+                    {getAge(dateOfBirth) > 1
+                      ? `${getAge(dateOfBirth)}yrs old`
+                      : `${getAge(dateOfBirth)}yr old`}
                   </h2>
                 </div>
                 <div className="flex flex-row gap-4">
                   <i className="fa-solid fa-transgender text-3xl text-gray-950"></i>
-                  <h2 className="text-xl">{data.gender}</h2>
+                  <h2 className="text-xl">{gender}</h2>
                 </div>
                 <div className="flex flex-row gap-4">
                   <i className="fa-solid fa-paw text-3xl text-gray-950"></i>
-                  <h2 className="text-xl">{data.breed}</h2>
+                  <h2 className="text-xl">{breed}</h2>
                 </div>
               </div>
-              <div className="my-10">{data.bio}</div>
+              <div className="my-10">{bio}</div>
               <div className="flex flex-wrap gap-2 mt-4">
                 {activeTraits.map((trait) => (
                   <span
@@ -117,7 +120,7 @@ export default function Profile() {
 
             <div className="px-10 grid grid-cols-3 gap-6 mb-20">
               <h2 className="col-span-3 text-3xl font-semibold">
-                Find {data.petName} at these events
+                Find {petName} at these events
               </h2>
               {events?.map((event) => (
                 <Link to={`/events/${event.id}`} key={`event-${event.id}`}>
@@ -165,4 +168,5 @@ export default function Profile() {
         </div>
       </>
     )
+  }
 }
