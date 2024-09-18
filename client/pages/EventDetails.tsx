@@ -92,13 +92,13 @@ export default function EventDetails() {
             <div className="flex flex-col gap-4 mb-12 text-gray-950">
               <div className="flex gap-4">
                 <i className="fa-solid fa-clock text-2xl w-10"></i>
-                <h4 className="text-xl font-semibold">
+                <h3 className="text-xl font-semibold">
                   {dateToReadable(event.date)}, {TimeFormat(event.time)}
-                </h4>
+                </h3>
               </div>
               <div className="flex gap-4">
                 <i className="fa-solid fa-location-dot text-3xl w-10"></i>
-                <h4 className="text-xl font-semibold">{event.location}</h4>
+                <h3 className="text-xl font-semibold">{event.location}</h3>
               </div>
             </div>
 
