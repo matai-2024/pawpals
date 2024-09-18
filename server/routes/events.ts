@@ -70,4 +70,6 @@ router.get('/pet/:id', async (req, res) => {
   }
 })
 
+//get all events by events id
+
 export default router

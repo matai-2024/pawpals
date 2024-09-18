@@ -5,69 +5,72 @@ import PetCard from '../components/utils/PetCard/PetCard'
 import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Sidebar from '../components/utils/Sidebar/Sidebar'
 
-// Hardcoding the type for pets and events
 interface Pet {
   image: string
   id: number
   petName: string
+  ownerId: string
 }
 
 interface Event {
+  creatorId: number
   id: number
   title: string
   date: string
   time: string
   going: boolean
-  image: string
+  eventImage: string
 }
 
-// Dashboard Component
-export function Dashboard() {
+export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
-  const [pets, setPets] = useState<Pet[]>([]) // State to store pets
-  const [events, setEvents] = useState<Event[]>([]) // State to store events
-
-  // Hardcoded data for Pets and events
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const hardcodedPets: Pet[] = [
-    { id: 1, petName: 'Pixel', image: 'pets/pixel.webp' },
-    { id: 2, petName: 'Miso', image: 'pets/miso.webp' },
-  ]
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const hardcodedEvents: Event[] = [
-    {
-      id: 1,
-      title: 'Food Truck Night in Howick',
-      date: 'Mon 16 Sep',
-      time: '5:00 PM',
-      image:
-        'https://eastaucklandtourism.co.nz/wp-content/uploads/2024/08/Food-Truck.jpg',
-      going: true,
-    },
-  ]
+  const [pets, setPets] = useState<Pet[]>([])
+  const [events, setEvents] = useState<Event[]>([])
+  const [mySchedule, setMySchedule] = useState<Event[]>([])
 
   const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
   const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
   const editBtn = { title: 'Edit event', icon: 'pen-to-square' }
 
-  // UseEffect to set hardcoded data
+  async function fetchPetsByOwnerId(ownerId: string) {
+    const response = await fetch(`/api/v1/pets?ownerId=${ownerId}`)
+    const data = await response.json()
+
+    return data.filter((pet: Pet) => pet.ownerId === ownerId)
+  }
+
+  async function getEventsByCreatorId() {
+    const response = await fetch(`/api/v1/events`)
+    const data = await response.json()
+
+    return data.filter((event: Event) => event.creatorId === 1)
+  }
+
+  async function getEventsForAttendingPets(accountId: string) {
+    const attendeeResponse = await fetch(`/api/v1/attendees/${accountId}`)
+
+    const eventsData = await attendeeResponse.json()
+    return eventsData
+  }
+
   useEffect(() => {
-    if (isAuthenticated && user) {
-      setPets(hardcodedPets)
+    if (isAuthenticated && user?.sub) {
+      const ownerId = user.sub
 
-      // Fetch pets for the authenticated user
-      //  fetchPetsByOwnerId(4) // user.sub is the unique user identifier
-      //  .then((petsData) => setPets(petsData))
-      //  .catch((err) => console.error('Error fetching pets:', err))
+      const fetchData = async () => {
+        const petsData = await fetchPetsByOwnerId(ownerId)
+        setPets(petsData)
 
-      setEvents(hardcodedEvents)
-      // Fetch events for the authenticated user
-      //  getEventsByCreatorId('auth0|66e4c67a85ce6c31049fb8a6') // Assuming you have a function to get all events by creator ID
-      //  .then((eventsData) => setEvents(eventsData))
-      //  .catch((err) => console.error('Error fetching events:', err))
+        const attendingEvents = await getEventsForAttendingPets(ownerId)
+
+        const createdEvents = await getEventsByCreatorId()
+
+        setMySchedule(attendingEvents)
+        setEvents(createdEvents)
+      }
+
+      fetchData()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, user])
 
   if (isLoading) {
@@ -124,15 +127,15 @@ export function Dashboard() {
               buttonIcon="calendar-plus"
             >
               <div className="space-y-4">
-                {events.length > 0 ? (
-                  events.map((event) => (
+                {mySchedule.length > 0 ? (
+                  mySchedule.map((event) => (
                     <ScheduleCard
                       key={event.id}
                       id={event.id}
                       title={event.title}
                       date={event.date}
                       time={event.time}
-                      image={event.image}
+                      eventImage={event.eventImage}
                       viewBtn={viewBtn}
                       cancelBtn={cancelBtn}
                     />
@@ -160,7 +163,7 @@ export function Dashboard() {
                       date={event.date}
                       title={event.title}
                       time={event.time}
-                      image={event.image} // Again, using any event data you have
+                      eventImage={event.eventImage}
                       viewBtn={viewBtn}
                       editBtn={editBtn}
                     />
@@ -176,5 +179,3 @@ export function Dashboard() {
     </div>
   )
 }
-
-export default Dashboard

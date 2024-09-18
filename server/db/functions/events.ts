@@ -1,4 +1,5 @@
 import { Event, EventData } from '../../../models/events.ts'
+import connection from '../connection.ts'
 import db from '../connection.ts'
 
 const camelCase = [
@@ -16,7 +17,18 @@ const camelCase = [
 
 // Get all events
 export async function getAllEvents() {
-  const events = await db('events').select(camelCase)
+  const events = await db('events').select(
+    'id',
+    'title',
+    'date',
+    'time',
+    'location',
+    'description',
+    'event_image as eventImage',
+    'event_website as eventWebsite',
+    'audience',
+    'creator_id as creatorId',
+  )
   return events as Event[]
 }
 
@@ -57,6 +69,7 @@ export async function insertEvent(eventData: EventData) {
   }
 
   const result = await db('events').insert(newEvent, ['id'])
+  if (newEvent.event_image == '') newEvent.event_image = 'miso.webp'
   return result[0].id
 }
 
@@ -78,4 +91,12 @@ export async function getEventsByPetId(petId: number) {
       'events.creator_id as creatorId',
     )
   return events as Event[]
+}
+
+// Get attendees based on accountId
+export async function getAttendeesByAccountId(accountId: number) {
+  return await connection('attendees')
+    .join('pets', 'attendees.pet_id', 'pets.id')
+    .join('events', 'attendees.event_id', 'events.id')
+    .where('attendees.accountId', accountId) // Filter by the owner's ID
 }
