@@ -61,7 +61,6 @@ export default function Dashboard() {
       const attendeeResponse = await fetch(`/api/v1/attendees/${accountId}`)
 
       const eventsData = await attendeeResponse.json()
-      console.log(eventsData)
       return eventsData
     } catch (error) {
       console.error('Error fetching schedule events for pets:', error)
