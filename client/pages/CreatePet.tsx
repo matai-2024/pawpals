@@ -73,44 +73,48 @@ export default function Signup() {
   return (
     <div>
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-24">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Let&apos;s get started
+        <div className="">
+          <h1 className="text-5xl font-bold tracking-tight text-gray-900">
+            Create a profile for your pet
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Fill in the details below to add your pet&apos;s new pawpal profile.
-          </p>
-          <div>
-            <h2>
-              Form Page {currentStepIndex + 1} / {steps.length}
-            </h2>
-          </div>
+          {/* <p className="mt-6 text-lg leading-8 text-gray-600">
+            Add your pet's details to create their very own pawpal profile
+          </p> */}
         </div>
-        <div className="mt-10 flex items-center gap-x-6">
+        <div className="mt-6 flex items-center gap-x-6">
           <form onSubmit={onSubmit} className="w-full">
             <div className="space-y-12">
               <div className="border-b border-gray-900/10 pb-12">
-                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   {step}
                 </div>
               </div>
             </div>
-            <div className="mt-6 flex items-center justify-end gap-x-6">
-              {!isFirstStep && (
+
+            <div className="flex items-center justify-start mt-6 gap-x-6 text-sm font-semibold leading-6 text-gray-900">
+              <div className="flex-grow">
+                <h2 className="text-gray-600">
+                  Step {currentStepIndex + 1} / {steps.length}
+                </h2>
+              </div>
+              <div className="flex gap-x-6">
+                {!isFirstStep && (
+                  <button
+                    type="button"
+                    onClick={() => (back(), window.scrollTo(0, 0))}
+                    className="text-sm font-semibold leading-6 text-gray-900"
+                  >
+                    Back
+                  </button>
+                )}
                 <button
-                  type="button"
-                  onClick={back}
-                  className="text-sm font-semibold leading-6 text-gray-900"
+                  type="submit"
+                  className="rounded-md bg-yellow-400 px-3 py-2 text-sm font-semibold text-gray-950 shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600"
+                  onClick={() => window.scrollTo(0, 0)}
                 >
-                  Back
+                  {isLastStep ? 'Complete' : 'Continue'}
                 </button>
-              )}
-              <button
-                type="submit"
-                className="rounded-md bg-yellow-400 px-3 py-2 text-sm font-semibold text-gray-950 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                {isLastStep ? 'Complete' : 'Continue'}
-              </button>
+              </div>
             </div>
           </form>
         </div>
