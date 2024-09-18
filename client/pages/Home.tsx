@@ -1,18 +1,17 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
-
 import HomeCards from '../components/utils/Home/HomeCards'
 import HomeHeading from '../components/utils/Home/HomeHeading'
 import { ImgDirection } from '../../models/enums'
-import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Card from '../components/utils/Card/Card'
 import {
   IfAuthenticated,
   IfNotAuthenticated,
 } from '../components/utils/Authenticated'
-
-const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
-const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
+import dateToReadable, {
+  DescriptionFormat,
+  TimeFormat,
+} from '../components/utils/Presentation'
 
 export default function Home() {
   const { loginWithRedirect } = useAuth0()
@@ -97,7 +96,7 @@ export default function Home() {
             direction={ImgDirection.Left}
           />
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-col">
           <Card
             icon="calendar-alt"
             title="Featured Events:"
@@ -107,41 +106,104 @@ export default function Home() {
             buttonIcon="calendar-plus"
             // eslint-disable-next-line react/no-children-prop
             children={
-              <>
-                <div className="flex flex-col py-2">
-                  <ScheduleCard
-                    id={1}
-                    title={'Food Truck Night in Howick'}
-                    date={'2024-10-03'}
-                    time={'17:00'}
-                    image={'public/events/event-1.webp'}
-                    viewBtn={viewBtn}
-                    cancelBtn={cancelBtn}
-                  />
+              <div className="flex flex-row ">
+                <div className=" px-2">
+                  <Link to={`/events/6`} key={`event-6`}>
+                    <div className="col-span-1 h-96 p-4 py-6 bg-white hover:bg-gray-50 shadow-md hover:shadow-lg border border-gray-100 rounded-lg flex-col gap-6 inline-flex ease-in-out duration-200">
+                      <div className="rounded-lg overflow-hidden h-40">
+                        <img
+                          className="min-h-44 object-cover"
+                          src={'public/events/event-6.webp'}
+                          alt={''}
+                        />
+                      </div>
+                      <div className="h-44 flex flex-col text-left gap-2 ">
+                        <p className="text-sm text-gray-800 font-semibold">
+                          {`${dateToReadable('2024-11-05')},`}{' '}
+                          {TimeFormat('11:00')}
+                        </p>
+
+                        <div>
+                          <h3 className="text-xl text-gray-950 font-semibold">
+                            {'Birdwatching & Beaks Picnic'}
+                          </h3>
+                        </div>
+                        <div className="text-gray-600 text-sm font-normal leading-tight">
+                          <p className="line-clamp-3">
+                            {DescriptionFormat(
+                              '🦜🌳 Enjoy a day of birdwatching with fellow avian enthusiasts! Bring your binoculars, a picnic lunch, and learn about local bird species while your feathered friends enjoy a treat-filled picnic.',
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-                <div className="flex flex-col py-2">
-                  <ScheduleCard
-                    id={2}
-                    title={'Paws & Pints: Dog-Friendly Brewery Tour'}
-                    date={'2024-10-07'}
-                    time={'15:00'}
-                    image={'public/events/event-2.webp'}
-                    viewBtn={viewBtn}
-                    cancelBtn={cancelBtn}
-                  />
+                <div className="px-2">
+                  <Link to={`/events/${5}`} key={`event-5`}>
+                    <div className="col-span-1 h-96 p-4 py-6 bg-white hover:bg-gray-50 shadow-md hover:shadow-lg border border-gray-100 rounded-lg flex-col gap-6 inline-flex ease-in-out duration-200">
+                      <div className="rounded-lg overflow-hidden h-40">
+                        <img
+                          className="min-h-44 object-cover"
+                          src={'public/events/event-5.webp'}
+                          alt={''}
+                        />
+                      </div>
+                      <div className="h-44 flex-col gap-2 text-left flex">
+                        <p className="text-sm text-gray-800 font-semibold">
+                          {`${dateToReadable('2024-10-22')},`}{' '}
+                          {TimeFormat('14:00')}
+                        </p>
+
+                        <div>
+                          <h3 className="text-xl text-gray-950 font-semibold">
+                            {'Pet Costume Parade'}
+                          </h3>
+                        </div>
+                        <div className="text-gray-600 text-sm font-normal leading-tight">
+                          <p className="line-clamp-3">
+                            {DescriptionFormat(
+                              '🎃🐾 Dress up your pets and join us for a spooktacular Pet Costume Parade! Prizes for the best costumes, pet-friendly treats, and plenty of fun for pets and their humans. Don’t miss this Halloween-themed event!',
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-                <div className="flex flex-col py-2">
-                  <ScheduleCard
-                    id={3}
-                    title={'Equestrian Gala: Horses & Harmony'}
-                    date={'2024-10-11'}
-                    time={'18:00'}
-                    image={'public/events/event-3.webp'}
-                    viewBtn={viewBtn}
-                    cancelBtn={cancelBtn}
-                  />
+                <div className="px-2">
+                  <Link to={`/events/${1}`} key={`event-1`}>
+                    <div className="col-span-1 h-96 p-4 py-6 bg-white hover:bg-gray-50 shadow-md hover:shadow-lg border border-gray-100 rounded-lg flex-col gap-6 inline-flex ease-in-out duration-200">
+                      <div className="rounded-lg overflow-hidden h-40">
+                        <img
+                          className="min-h-44 object-cover"
+                          src={'public/events/event-1.webp'}
+                          alt={''}
+                        />
+                      </div>
+                      <div className="h-44 flex-col gap-2 text-left flex">
+                        <p className="text-sm text-gray-800 font-semibold">
+                          {`${dateToReadable('2024-10-03')},`}{' '}
+                          {TimeFormat('17:00')}
+                        </p>
+
+                        <div>
+                          <h3 className="text-xl text-gray-950 font-semibold">
+                            {'Food Truck Night in Howick'}
+                          </h3>
+                        </div>
+                        <div className="text-gray-600 text-sm font-normal leading-tight">
+                          <p className="line-clamp-3">
+                            {DescriptionFormat(
+                              '🍔🌮 Experience the Best of Street Food at Howick’s Ultimate Food Truck Night! 🚚🎉 Join us in Howick for an exciting Food Truck Night that promises a feast for all your senses! Get ready to dive into a world of flavors as the best food trucks in town come together to serve up mouthwatering dishes that will leave you craving more.',
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-              </>
+              </div>
             }
           />
         </div>
