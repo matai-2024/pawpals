@@ -36,7 +36,7 @@ export default function Profile() {
 
   function getTraits() {
     const active = Object.entries(data || {})
-    const filteredActive = active.filter((trait) => trait[1] === 'on')
+    const filteredActive = active.filter((trait) => trait[1] === 'true')
     const mappedActive = filteredActive.map((trait) => {
       return trait[0]
     })
@@ -47,15 +47,9 @@ export default function Profile() {
   if (data)
     return (
       <>
-        <div className="mx-auto max-w-5xl pt-24 sm:pt-32 lg:pt-24">
+        <div className="mx-auto max-w-5xl py-24 sm:py-32 lg:py-24">
+          <div className="h-72 rounded-t-4xl bg-gradient-to-r from-yellow-400 via-[#cf789a] to-[#a85be5]"></div>
           <div className="flex flex-col justify-center items-center shadow-2xl rounded-4xl">
-            <div className="h-72 overflow-hidden rounded-t-4xl">
-              <img
-                src="../cover-photo2.webp"
-                alt="mountain scape"
-                className="relative -top-72"
-              />
-            </div>
             <div className="relative -top-28 px-10">
               <div className="w-48 h-48 overflow-hidden rounded-full border-4 border-white">
                 <img
