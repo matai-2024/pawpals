@@ -3,13 +3,13 @@ import LoadingSpinner from '../components/LoadingSpinner.tsx'
 import { usePets } from '../hooks/hooks.ts'
 import PetCardVertical from '../components/utils/PetCard/petCardVertical.tsx'
 import { ChangeEvent, useEffect, useState } from 'react'
+import NotFound from '../components/NotFound404.tsx'
 
 export default function ProfileList() {
-  const { data, isPending, isError, error } = usePets()
+  const { data, isPending, isError } = usePets()
   const defaultImg =
     'https://www.reginapolice.ca/wp-content/uploads/placeholder-9.png'
   const pulbicDir = 'pets'
-
 
   const [petSearch, setSearch] = useState(data)
 
@@ -34,16 +34,9 @@ export default function ProfileList() {
     }
   }
 
-
   if (isPending) return <LoadingSpinner />
 
-  if (isError)
-    return (
-      <div>
-        <h3>Error loading pet list: </h3>
-        {String(error)}
-      </div>
-    )
+  if (isError) return <NotFound />
   if (data)
     return (
       <>
