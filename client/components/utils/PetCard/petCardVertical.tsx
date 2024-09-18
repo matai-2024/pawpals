@@ -16,6 +16,7 @@ export const PetCardVertical: React.FC<PetCardVerticalProps> = ({
   petName,
   dateOfBirth,
   breed,
+  species,
 }) => {
   return (
     <Link to={`${id}`}>
@@ -28,9 +29,11 @@ export const PetCardVertical: React.FC<PetCardVerticalProps> = ({
             className="object-cover relative -top-7 "
             src={image}
             alt={
-              breed
-                ? `a ${breed} named ${petName}`
-                : `an animal named ${petName}`
+              species
+                ? `a ${species} named ${petName}`
+                : breed
+                  ? `a ${breed} named ${petName}`
+                  : `an animal named ${petName}`
             }
           />
         </div>

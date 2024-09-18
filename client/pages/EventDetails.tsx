@@ -134,9 +134,11 @@ export default function EventDetails() {
                       className="object-cover relative -top-7 "
                       src={pet.image ? `/pets/${pet.image}` : defaultImg}
                       alt={
-                        pet.breed
-                          ? `a ${pet.breed} named ${pet.petName}`
-                          : `an animal named ${pet.petName}`
+                        pet.species
+                          ? `a ${pet.species} named ${pet.petName}`
+                          : pet.breed
+                            ? `a ${pet.breed} named ${pet.petName}`
+                            : `an animal named ${pet.petName}`
                       }
                     />
                   </div>
