@@ -1,5 +1,6 @@
 // ScheduleCard component
 import { Link } from 'react-router-dom'
+import dateToReadable, { TimeFormat } from '../Presentation'
 
 interface ScheduleCardProps {
   id: number
@@ -43,7 +44,8 @@ export default function ScheduleCard({
       <div className="flex flex-col gap-4">
         <div className="flex flex-col text-left">
           <p className="text-sm text-gray-500">
-            {date}, {time}
+            {`${dateToReadable(date)}, `}
+            {TimeFormat(time)}
           </p>
           <p className="font-semibold">{title}</p>
         </div>
