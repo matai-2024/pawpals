@@ -24,9 +24,9 @@ interface Event {
 
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0()
-  const [pets, setPets] = useState<Pet[]>([]) // State to store pets
-  const [events, setEvents] = useState<Event[]>([]) // State to store events
-  const [mySchedule, setMySchedule] = useState<Event[]>([]) // State for events user is attending
+  const [pets, setPets] = useState<Pet[]>([])
+  const [events, setEvents] = useState<Event[]>([])
+  const [mySchedule, setMySchedule] = useState<Event[]>([])
 
   const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
   const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
@@ -53,29 +53,22 @@ export default function Dashboard() {
     return eventsData
   }
 
-  // UseEffect to fetch pets, created events, and attending events
   useEffect(() => {
     if (isAuthenticated && user?.sub) {
       const ownerId = user.sub
 
-      // Define an async function to handle all async operations
       const fetchData = async () => {
-        // Fetch pets by ownerId
         const petsData = await fetchPetsByOwnerId(ownerId)
         setPets(petsData)
 
-        // Fetch attending events for all pets owned by the user
         const attendingEvents = await getEventsForAttendingPets(ownerId)
 
-        // Fetch created events by the user
         const createdEvents = await getEventsByCreatorId()
 
-        // Store attending and created events in state
         setMySchedule(attendingEvents)
         setEvents(createdEvents)
       }
 
-      // Call the async function
       fetchData()
     }
   }, [isAuthenticated, user])
@@ -170,7 +163,7 @@ export default function Dashboard() {
                       date={event.date}
                       title={event.title}
                       time={event.time}
-                      eventImage={event.eventImage} // Again, using any event data you have
+                      eventImage={event.eventImage}
                       viewBtn={viewBtn}
                       editBtn={editBtn}
                     />

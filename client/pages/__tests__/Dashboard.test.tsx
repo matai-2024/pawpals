@@ -2,10 +2,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { beforeEach, describe, it, vi, expect } from 'vitest'
-import { renderApp } from './test-setup' // Adjust this import based on your setup
+import { renderApp } from './test-setup'
 import { useAuth0 } from '@auth0/auth0-react'
 
-// Mocking @auth0/auth0-react
 vi.mock('@auth0/auth0-react')
 const ACCESS_TOKEN = 'mock-access-token'
 
@@ -17,13 +16,16 @@ beforeEach(() => {
     loginWithRedirect: vi.fn(),
     logout: vi.fn(),
   } as any)
+  global.fetch = vi.fn().mockResolvedValue({
+    ok: true,
+    json: async () => [{ id: 1, name: 'Fido' }],
+  })
 })
 
 describe('Dashboard', () => {
   it('Renders the Dashboard component', async () => {
-    const screen = renderApp('/dashboard') // Adjust if necessary
+    const screen = renderApp('/dashboard')
 
-    // Verify that key elements are present
     expect(
       screen.getByRole('heading', { name: /My Pets/i }),
     ).toBeInTheDocument()
@@ -34,7 +36,6 @@ describe('Dashboard', () => {
       screen.getByRole('heading', { name: /My Events/i }),
     ).toBeInTheDocument()
 
-    // Use specific queries for buttons or other elements
     expect(screen.getByRole('button', { name: /Add Pet/i })).toBeInTheDocument()
     expect(
       screen.getByRole('button', { name: /See more events/i }),
