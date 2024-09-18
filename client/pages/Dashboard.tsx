@@ -29,9 +29,6 @@ export default function Dashboard() {
   const [events, setEvents] = useState<Event[]>([])
   const [mySchedule, setMySchedule] = useState<Event[]>([])
 
-  // const { data: evt } = useEventsByExtKey(user?.sub ? user.sub : '')
-  // console.log('evt', evt)
-
   const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
   const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
   const editBtn = { title: 'Edit event', icon: 'pen-to-square' }
@@ -56,7 +53,6 @@ export default function Dashboard() {
     const eventsData = await attendeeResponse.json()
     return eventsData
   }
-  console.log(mySchedule)
 
   useEffect(() => {
     if (isAuthenticated && user?.sub) {
