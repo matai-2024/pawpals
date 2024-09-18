@@ -3,7 +3,7 @@ import * as db from '../db/functions/attendees.ts'
 
 const router = express.Router()
 
-// Get all the tendies
+// Get all the attendees for /api/v1/attendees
 router.get('/', async (req, res) => {
   try {
     const attendees = await db.getAllAttendees()
@@ -30,5 +30,18 @@ router.get('/', async (req, res) => {
 //     res.status(500).json({ error: 'Error fetching attendees' })
 //   }
 // })
+
+// GET attendees by event id
+router.get('/event/:id', async (req, res) => {
+  const eventId = req.params.id
+  try {
+    const attendees = await db.getAttendeesByEventId(Number(eventId))
+    res.json(attendees)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('Error: ', error)
+    res.sendStatus(500)
+  }
+})
 
 export default router

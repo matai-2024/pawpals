@@ -21,11 +21,11 @@ export default function EventList({ search }: Props) {
   const { data: attendees } = useAttendees()
 
   function countAttendees(num: number) {
-    const eventsArr = attendees.map((guest: { eventId: number }) => {
+    const eventsArr = attendees?.map((guest: { eventId: number }) => {
       return guest.eventId
     })
-    const numOfEvents = eventsArr.filter((event: number) => event === num)
-    return numOfEvents.length
+    const numOfEvents = eventsArr?.filter((event: number) => event === num)
+    return numOfEvents?.length
   }
 
   if (events && attendees)
