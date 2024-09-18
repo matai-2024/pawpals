@@ -109,7 +109,7 @@ export default function Profile() {
                   <img
                     className="object-cover"
                     src="../icons/placeholder-user.png"
-                    alt={owner?.firstName}
+                    alt={`${owner?.firstName}'s profile`}
                   />
                 </div>
                 <h3 data-testid="owner" className="text-xl text-gray-600">
