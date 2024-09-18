@@ -7,6 +7,7 @@ import ScheduleCard from '../components/utils/ScheduleCard/ScheduleCard'
 import Card from '../components/utils/Card/Card'
 
 const viewBtn = { title: 'View event', icon: 'right-to-bracket' }
+const cancelBtn = { title: 'Cancel attendance', icon: 'x' }
 
 export default function Home() {
   const { loginWithRedirect } = useAuth0()
@@ -102,6 +103,7 @@ export default function Home() {
                     time={'17:00'}
                     image={'public/events/event-1.webp'}
                     viewBtn={viewBtn}
+                    cancelBtn={cancelBtn}
                   />
                 </div>
                 <div className="flex flex-col py-2">
@@ -112,6 +114,7 @@ export default function Home() {
                     time={'15:00'}
                     image={'public/events/event-2.webp'}
                     viewBtn={viewBtn}
+                    cancelBtn={cancelBtn}
                   />
                 </div>
                 <div className="flex flex-col py-2">
@@ -122,6 +125,7 @@ export default function Home() {
                     time={'18:00'}
                     image={'public/events/event-3.webp'}
                     viewBtn={viewBtn}
+                    cancelBtn={cancelBtn}
                   />
                 </div>
               </>
