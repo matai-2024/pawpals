@@ -1,5 +1,7 @@
 # pawpals
 
+Check out our website!: https://pawpals.pushed.nz/
+
 Pawpals is a website made to bring pet-lovers together - whether you have a pet or not! Browse our cute pawpal pets, pet-friendly events, or create your own.
 
 The easiest way to get started is simply visiting pawpals. Create an account to make your very own pawpal profile for one of your pets and join events posted by our users.
