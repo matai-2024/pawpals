@@ -82,10 +82,16 @@ export default function Footer() {
             <i className="fa-brands fa-twitter"></i>
             <span className="sr-only">Twitter</span>
             </Link> */}
-            <Link to="#" className="transition-all  text-gray-800 hover:text-[#593573]">
+            <a 
+            href="https://github.com/matai-2024/pawpals" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="transition-all  text-gray-800 hover:text-[#593573]">
               <i className="fa-brands fa-github fa-xl"></i>
-              <span className="sr-only">GitHub</span>
-            </Link>
+              <span className="sr-only">
+                GitHub
+              </span>
+            </a>
         </div>
       </div>
       <div
