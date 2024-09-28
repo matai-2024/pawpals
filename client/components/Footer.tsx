@@ -21,8 +21,8 @@ export default function Footer() {
     <>
       <div className="bg-gradient-to-r from-yellow-400 via-[#cf789a] to-[#a85be5] h-4"></div>
       <hr className="opacity-20 h-px  bg-white border-0 dark:bg-white"></hr>
-      <div className="bg-white bg-opacity-10 z-50 max-w-screen-full px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8 font-[Inter]">
-        <nav className="flex flex-wrap justify-center -mx-5 -my-2">
+      <div className="bg-white bg-opacity-10 z-50 max-w-screen-full px-4 py-12 mx-auto space-y-3 overflow-hidden sm:px-6 lg:px-8 font-[Inter]">
+        <nav className="flex flex-wrap justify-center -mx-5 -my-62">
           <div className="px-5 py-2">
             <Link
               to="/about"
@@ -66,8 +66,11 @@ export default function Footer() {
             </IfNotAuthenticated>
           </div>
         </nav>
-        <div className="text-xl flex justify-center mt-8 space-x-6">
-          <Link to="#" className="  text-gray-800 hover:text-gray-400 ">
+        <p className="text-sm leading-6 text-center text-gray-700">
+          © 2024 pawpals, Inc. All rights reserved.
+        </p>
+        <div className="text-xl flex justify-center space-x-6">
+          {/* <Link to="#" className="  text-gray-800 hover:text-gray-400 ">
             <i className="fa-brands fa-facebook"></i>
             <span className="sr-only">Facebook</span>
           </Link>
@@ -78,15 +81,12 @@ export default function Footer() {
           <Link to="#" className="  text-gray-800 hover:text-gray-400">
             <i className="fa-brands fa-twitter"></i>
             <span className="sr-only">Twitter</span>
-          </Link>
-          <Link to="#" className="  text-gray-800 hover:text-gray-400">
-            <i className="fa-brands fa-github"></i>
-            <span className="sr-only">GitHub</span>
-          </Link>
+            </Link> */}
+            <Link to="#" className="transition-all  text-gray-800 hover:text-[#593573]">
+              <i className="fa-brands fa-github fa-xl"></i>
+              <span className="sr-only">GitHub</span>
+            </Link>
         </div>
-        <p className="mt-8 text-sm leading-6 text-center text-gray-400">
-          © 2024 pawpals, Inc. All rights reserved.
-        </p>
       </div>
       <div
         aria-hidden="true"
