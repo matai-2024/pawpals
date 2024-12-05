@@ -23,16 +23,16 @@ export const PetCardVertical: React.FC<PetCardVerticalProps> = ({
     <Link to={`${id}`}>
       <div
         data-testid="pet-card-vert"
-        className="opacity-90 px-6 pt-8 pb-10 bg-white shadow-lg  border border-gray-100 rounded-lg flex flex-col gap-6 ease-in-out duration-200"
+        className="opacity-90 md:px-6 md:pt-8 pb-10 bg-white shadow-lg border border-gray-100 rounded-lg flex flex-col gap-6 ease-in-out duration-200"
       >
-        <div className="relative w-36 h-36 rounded-full shadow-2xl overflow-hidden border-gray-100">
+        <div className="relative h-80 md:w-36 md:h-36 md:rounded-full shadow-2xl overflow-hidden border-gray-100">
           <img
-            className="object-cover relative -top-7 "
+            className="object-cover relative -top-20 md:-top-7 "
             src={image}
             alt={petName}
           />
         </div>
-        <div className="h-28 flex-col gap-2 flex">
+        <div className="flex flex-col gap-2 px-5 h-28">
           <p className="text-sm text-gray-800 font-semibold">
             {getAge(dateOfBirth) > 1
               ? `${getAge(dateOfBirth)}yrs, ${breed}`
