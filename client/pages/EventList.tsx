@@ -37,7 +37,7 @@ export default function EventList({ search }: Props) {
               <Link to={`/events/${event.id}`}>
                 <div
                   data-testid="event-card"
-                  className="opacity-90 md:px-6 md:pt-8 pb-10 bg-white shadow-lg border border-gray-100 rounded-lg flex flex-col md:flex-row gap-6 ease-in-out duration-200"
+                  className="flex flex-col md:flex-row gap-6 md:px-6 md:pt-8 bg-white shadow-lg border border-gray-100 rounded-lg opacity-90 ease-in-out duration-200"
                 >
                   <img
                     className="w-full md:w-40 h-40 object-cover md:rounded-lg"
@@ -45,7 +45,7 @@ export default function EventList({ search }: Props) {
                     alt={event.title}
                   />
                   <div className="flex-col justify-start items-start grow basis-0 gap-4 mx-6 md:mx-0 mb-6 md:mb-0">
-                    <div className="flex flex-col self-stretch justify-start items-start gap-2 h-[107px]">
+                    <div className="flex flex-col self-stretch justify-start items-start gap-2">
                       <div className="flex flex-row space-x-4">
                         <p className="text-[#1e1e1e] text-md font-semibold leading-[28.80px] ">
                           {`${dateToReadable(event.date)},`}{' '}
