@@ -42,7 +42,7 @@ export default function Events() {
           >
             Pet-friendly Events
           </h1>
-          <p className="my-6 text-lg leading-8 text-gray-600 text-center">
+          <p className="my-6 xl:px-20 text-lg leading-8 text-gray-600 text-center">
             Looking for exciting pet-friendly events in your area? Whether
             it&apos;s a dog-friendly market, a pet costume party, or a
             neighbourhood pet birthday bash, we&apos;ve got you covered.

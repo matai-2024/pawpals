@@ -45,7 +45,7 @@ export default function ProfileList() {
             <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl ">
               Pet Profiles
             </h1>
-            <p className="my-6 text-lg leading-8 text-gray-600 text-center">
+            <p className="my-6 xl:px-20 text-lg leading-8 text-gray-600 text-center">
               Meet the star of pawpals! Dive into their profile and see why
               every moment with them is an opportunity for unforgettable
               memories and boundless joy.
