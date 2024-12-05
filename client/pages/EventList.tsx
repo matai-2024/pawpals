@@ -30,24 +30,24 @@ export default function EventList({ search }: Props) {
 
   if (events && attendees)
     return (
-      <ul>
+      <ul className="xl:px-24">
         {search?.map((event) => (
-          <div key={event.id}>
+          <div key={event.id} className="mb-6">
             <div>
               <Link to={`/events/${event.id}`}>
                 <div
                   data-testid="event-card"
-                  className="shadow-lg hover:bg-gray-50 hover:shadow-xl inline-flex justify-start items-start gap-6 my-3 w-[880px] text-left bg-opacity-20 ease-in-out duration-200 hover:bg-opacity-50 hover:bg-gray-100h-52 p-6 bg-white rounded-lg border border-[#d9d9d9]"
+                  className="flex flex-col md:flex-row gap-6 md:px-6 md:pt-8 bg-white shadow-lg border border-gray-100 rounded-lg opacity-90 ease-in-out duration-200"
                 >
                   <img
-                    className="w-40 h-40 object-cover rounded-lg"
+                    className="w-full md:w-40 h-40 object-cover md:rounded-lg"
                     src={`/events/${event.eventImage.length > 0 ? event.eventImage : defaultImg}`}
                     alt={event.title}
                   />
-                  <div className="grow basis-0 flex-col justify-start items-start gap-4 inline-flex">
-                    <div className="self-stretch h-[107px] flex-col justify-start items-start gap-2 flex  ">
+                  <div className="flex-col justify-start items-start grow basis-0 gap-4 mx-6 md:mx-0 mb-6 md:mb-0">
+                    <div className="flex flex-col self-stretch justify-start items-start gap-2">
                       <div className="flex flex-row space-x-4">
-                        <p className="text-[#1e1e1e] text-md font-semibold  leading-[28.80px] ">
+                        <p className="text-[#1e1e1e] text-md font-semibold leading-[28.80px] ">
                           {`${dateToReadable(event.date)},`}{' '}
                           {TimeFormat(event.time)}{' '}
                           <span style={{ padding: '0 10px' }}> | </span>
@@ -55,12 +55,12 @@ export default function EventList({ search }: Props) {
                         </p>
                       </div>
                       <h1
-                        className="self-stretch text-[#1e1e1e] text-2xl font-semibold  leading-[28.80px]"
+                        className="self-stretch text-[#1e1e1e] text-2xl font-semibold leading-[28.80px]"
                         data-testid="event-title"
                       >
                         {event.title}
                       </h1>
-                      <div className="text-[#757575] text-sm font-normal  leading-relaxed ">
+                      <div className="text-[#757575] text-sm font-normal leading-relaxed ">
                         <p className="line-clamp-2">
                           {DescriptionFormat(event.description)}
                         </p>

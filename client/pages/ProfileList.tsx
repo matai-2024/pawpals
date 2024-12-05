@@ -45,13 +45,13 @@ export default function ProfileList() {
             <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl ">
               Pet Profiles
             </h1>
-            <p className="mx-auto w-2/3 my-6 text-lg leading-8 text-gray-600 text-center">
+            <p className="my-6 xl:px-20 text-lg leading-8 text-gray-600 text-center">
               Meet the star of pawpals! Dive into their profile and see why
               every moment with them is an opportunity for unforgettable
               memories and boundless joy.
             </p>
             <div className="flex justify-center">
-              <form className="form relative mb-3 mt-10">
+              <form className="form relative mb-3 mt-10 w-[600px]">
                 <span className="absolute left-4 top-3 opacity-50">
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </span>
@@ -59,7 +59,7 @@ export default function ProfileList() {
                   data-testid="pet-card-search"
                   aria-label="Search pets"
                   id="search"
-                  className="w-[600px]  mb-6 input rounded-full px-10 py-3 border-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                  className="w-full mb-6 input rounded-full px-10 py-3 border-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   onChange={(e) => handleChange(e)}
                   onKeyDown={handleKeyDown}
                   type="text"
