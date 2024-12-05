@@ -45,15 +45,22 @@ export default function About() {
   ]
 
   return (
-    <div className="min-h-screen mx-auto max-w-7xl py-32 sm:py-48 lg:py-24">
+    <div className="min-h-screen mx-auto max-w-7xl py-48 xl:py-24">
       <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           About
         </h1>
       </div>
 
-      <div className="flex flex-row items-center gap-6 py-10">
-        <div className="w-1/2 p-6">
+      <div className="flex flex-col xl:flex-row items-center gap-6 py-10">
+        <div className="xl:w-1/2 p-6 xl:order-2">
+          <img
+            className="mt-4 w-full rounded-lg object-cover"
+            src="/pets/pet-event.webp"
+            alt="A cutie dog at a outdoor event"
+          />
+        </div>
+        <div className="xl:w-1/2 p-6 xl:order-1">
           <h2 className="text-4xl font-semibold text-gray-900">
             Letting pets live their best lives
           </h2>
@@ -75,17 +82,17 @@ export default function About() {
             </span>
           </Link>
         </div>
-        <div className="w-1/2 p-6">
-          <img
-            className="mt-4 w-full rounded-lg object-cover"
-            src="/pets/pet-event.webp"
-            alt="A cutie dog at a outdoor event"
-          />
-        </div>
       </div>
 
-      <div className="flex flex-row-reverse items-center gap-6 py-10">
-        <div className="w-1/2 p-6">
+      <div className="flex flex-col xl:flex-row-reverse items-center gap-6 py-10">
+        <div className="xl:w-1/2 p-6 xl:order-2">
+          <img
+            className="mt-4 w-full rounded-lg object-cover"
+            src="team.webp"
+            alt="pawpal coders at work"
+          />
+        </div>
+        <div className="xl:w-1/2 p-6 xl:order-1">
           <h2 className="text-4xl font-semibold text-gray-900">
             The animals that made this
           </h2>
@@ -107,13 +114,6 @@ export default function About() {
           </p>
           <p className="text-lg text-gray-700">Find out more about us below.</p>
         </div>
-        <div className="w-1/2 p-6">
-          <img
-            className="mt-4 w-full rounded-lg object-cover"
-            src="team.webp"
-            alt="pawpal coders at work"
-          />
-        </div>
       </div>
 
       <div>
@@ -121,13 +121,13 @@ export default function About() {
           <h2 className="text-center text-4xl font-semibold text-gray-900">
             Our Team
           </h2>
-          <div className="flex lg:flex-row flex-col gap-6 py-10 overflow-x-auto">
+          <div className="flex flex-row gap-6 justify-center flex-wrap xl:flex-nowrap xl:overflow-x-auto py-10">
             {teamMembers.map((member) => (
               <div
                 key={member.name}
-                className="flex flex-col items-center w-1/5 p-6 bg-white border rounded-lg shadow-lg hover:shadow-xl ease-in-out duration-200"
+                className="flex flex-col items-center xl:w-1/5 p-6 bg-white border rounded-lg shadow-lg hover:shadow-xl ease-in-out duration-200"
               >
-                <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg mb-6">
+                <div className="w-52 h-52 xl:w-24 xl:h-24 rounded-full overflow-hidden shadow-lg mb-6">
                   <img
                     className="object-cover relative"
                     src={member.img}
