@@ -51,7 +51,7 @@ export default function ProfileList() {
               memories and boundless joy.
             </p>
             <div className="flex justify-center">
-              <form className="form relative mb-3 mt-10">
+              <form className="form relative mb-3 mt-10 w-[600px]">
                 <span className="absolute left-4 top-3 opacity-50">
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </span>
@@ -59,7 +59,7 @@ export default function ProfileList() {
                   data-testid="pet-card-search"
                   aria-label="Search pets"
                   id="search"
-                  className="w-[600px]  mb-6 input rounded-full px-10 py-3 border-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                  className="w-full mb-6 input rounded-full px-10 py-3 border-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   onChange={(e) => handleChange(e)}
                   onKeyDown={handleKeyDown}
                   type="text"
